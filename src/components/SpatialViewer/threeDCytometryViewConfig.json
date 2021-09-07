@@ -1,0 +1,81 @@
+{
+    "coordinationSpace": {
+    "dataset": {
+        "A": "A"
+    }
+},
+    "datasets": [
+    {
+        "files": [
+            {
+                "fileType": "raster.json",
+                "options": {
+                    "images": [
+                        {
+                            "name": "CD45",
+                            "type": "ome-tiff",
+                            "url": "http://localhost:3000/img/TMA_82_4_1_3_3_4_cyc010_ch002_CD45.tif"
+                        },
+                      {
+                        "name": "Ki67",
+                        "type": "ome-tiff",
+                        "url": "http://localhost:3000/img/TMA_82_4_1_3_3_4_cyc010_ch003_Ki67.tif"
+                      }
+                      ,                        {
+                        "name": "SYNPO",
+                        "type": "ome-tiff",
+                        "url": "http://localhost:3000/img/TMA_82_4_1_3_3_4_cyc010_ch004_SYNPO.tif"
+                      }
+                    ],
+                    "schemaVersion": "0.0.2",
+                    "usePhysicalSizeScaling": false
+                },
+                "type": "raster"
+            }
+        ],
+        "name": "Visualization Files",
+        "uid": "A"
+    }
+],
+    "description": "",
+    "initStrategy": "auto",
+    "layout": [
+    {
+        "component": "spatial",
+        "coordinationScopes": {
+            "dataset": "A"
+        },
+        "h": 12,
+        "w": 9,
+        "x": 3,
+        "y": 0
+    },
+      {
+        "component": "layerController",
+        "coordinationScopes": {
+          "dataset": "A"
+        },
+        "h": 9,
+        "props": {
+          "disable3d": [],
+          "disableChannelsIfRgbDetected": true,
+          "globalDisable3d": true
+        },
+        "w": 3,
+        "x": 0,
+        "y": 2
+      },
+    {
+        "component": "description",
+        "coordinationScopes": {
+            "dataset": "A"
+        },
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 0
+    }
+],
+    "name": "HuBMAP Data Portal",
+    "version": "1.0.1"
+}
