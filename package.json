@@ -2,8 +2,8 @@
   "name": "hubble-web",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/vitessce",
-  "baseURL": "/vitessce",
+  "homepage": "/",
+  "baseURL": "/",
   "dependencies": {
     "axios": "0.21.1",
     "bootstrap-css-only": "4.4.1",
@@ -18,9 +18,11 @@
     "react-redux": "7.2.4",
     "react-router-dom": "5.2.1",
     "react-scripts": "4.0.3",
-    "reactstrap": "8.9.0",
+    "react-table-filter": "^2.0.2",
+    "reactstrap": "^8.9.0",
     "redux": "4.1.1",
-    "redux-thunk": "2.3.0"
+    "redux-thunk": "2.3.0",
+    "vitessce": "^1.1.12"
   },
   "scripts": {
     "start": "npm-run-all -p watch-css start-js",
