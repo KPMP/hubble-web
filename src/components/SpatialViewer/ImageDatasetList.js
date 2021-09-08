@@ -19,10 +19,6 @@ class ImageDatasetList extends Component {
         });
     };
 
-    display = (item) => {
-        return item;
-    };
-
     getCells = (data) => {
         return data.map((item, index) => {
             return (
