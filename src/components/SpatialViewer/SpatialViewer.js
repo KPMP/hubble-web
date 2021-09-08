@@ -1,31 +1,43 @@
 import React, { Component } from 'react';
 import { Vitessce } from 'vitessce';
-
 import 'vitessce/dist/es/production/static/css/index.css';
-import { getViewConfig } from './viewConfigHelper';
+import { getViewConfig, populateViewConfig } from './viewConfigHelper';
 
 class SpatialViewer extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            viewConfig: ''
+            viewConfig: '',
+            noData: true
         }
     }
 
     componentDidMount() {
-        if (this.state.selectedImageDataset) {
-            let viewConfig = getViewConfig(this.props.selectedImageTray.type);
-            viewConfig.datasets[0].files[0].images[0].url = this.props.selectedImageTray.url;
+        console.log(this.props)
+        if (this.props.selectedImageDataset) {
+            // let viewConfig = getViewConfig(this.props.selectedImageTray.type);
+            // populateViewConfig(viewConfig, this.state.selectedImageDataset)
+            // this.setState({viewConfig: viewConfig, noData: false});
         }
     }
 
     render() {
+console.log(this.state)
+console.log(this.props)
         return (
-            <Vitessce
-                config={this.state.viewConfig}
-                height={800}
-                theme="light" />
+            <div>
+            {!this.state.noData ?
+                <div>
+                <span>Viewing {this.props.selectedImageDataset.dataType} images for {this.props.selectedImageDataset.participantID}</span>
+                <Vitessce
+                    config={this.state.viewConfig}
+                    height={800}
+                    theme="light" />
+                </div>
+                : <span> please select some data</span>
+            }
+            </div>
         )
     }
 }
