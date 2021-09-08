@@ -3,7 +3,6 @@ import {Col, Container, Row} from "reactstrap";
 import TableFilter from "react-table-filter";
 import { imageDatasets } from './imageDatasets.json'
 import 'react-table-filter/lib/styles.css';
-import threeDCytometryViewConfig from "./threeDCytometryViewConfig";
 
 class ImageDatasetList extends Component {
 
@@ -27,12 +26,12 @@ class ImageDatasetList extends Component {
     getCells = (data) => {
         return data.map((item, index) => {
             return (
-                <tr key={'row_'+index}>
+                <tr key={'row_' + index}>
                     <td>
                         { item.dataType }
                     </td>
                     <td>
-                        { item.participantID }
+                        <button onClick={() => this.props.setSelectedImageDataset(item)} type='button' className='table-column btn btn-link text-left p-0'>{item.participantID}</button>
                     </td>
                     <td>
                         { item.tissueType }
@@ -54,7 +53,7 @@ class ImageDatasetList extends Component {
             <Container id='outer-wrapper'>
                 <Row>
                     <Col md={12}>
-                        <table class="table table-bordered table-hover table-striped">
+                        <table className="table table-bordered table-hover table-striped">
                             <thead>
                         <TableFilter
                             rows={this.state.tableData}

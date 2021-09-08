@@ -10,23 +10,13 @@
             {
                 "fileType": "raster.json",
                 "options": {
-                    "images": [
-                        {
-                            "name": "CD45",
-                            "type": "ome-tiff",
-                            "url": "http://localhost:3000/img/TMA_82_4_1_3_3_4_cyc010_ch002_CD45.tif"
-                        },
-                      {
-                        "name": "Ki67",
-                        "type": "ome-tiff",
-                        "url": "http://localhost:3000/img/TMA_82_4_1_3_3_4_cyc010_ch003_Ki67.tif"
-                      }
-                      ,                        {
-                        "name": "SYNPO",
-                        "type": "ome-tiff",
-                        "url": "http://localhost:3000/img/TMA_82_4_1_3_3_4_cyc010_ch004_SYNPO.tif"
-                      }
-                    ],
+                  "images": [
+                    {
+                      "name": "20-0009_20A_stained.ome.tif",
+                      "type": "ome-tiff",
+                      "url": "http://localhost:3000/img/TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif"
+                    }
+                  ],
                     "schemaVersion": "0.0.2",
                     "usePhysicalSizeScaling": false
                 },

@@ -2,8 +2,8 @@
   "name": "hubble-web",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/spatial-viewer",
-  "baseURL": "/spatial-viewer",
+  "homepage": "/",
+  "baseURL": "/",
   "dependencies": {
     "axios": "0.21.1",
     "bootstrap-css-only": "4.4.1",
