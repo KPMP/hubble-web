@@ -59,8 +59,8 @@ class App extends Component {
           <ErrorBoundaryContainer>
             <NavBar app='atlas' />
             <Switch>
-              <Route exact path="/spatial-viewer" component={ImageDatasetListContainer} store={store} />
-              <Route exact path="/spatial-viewer/vitessce" component={SpatialViewerContainer} store={store} />
+              <Route exact path="/" component={ImageDatasetListContainer} store={store} />
+              <Route exact path="/vitessce" component={SpatialViewerContainer} store={store} />
               <Route exact path="/oops" component={Oops} />
             </Switch>
             <NavFooter app='atlas' />
