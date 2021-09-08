@@ -3,11 +3,11 @@ import threeDCytometryViewConfig from './threeDCytometryViewConfig.json';
 
 export const getViewConfig = (type) => {
     switch (type) {
-        case '3dc':
+        case '3D Cytometry':
             return threeDCytometryViewConfig;
-        case 'codex':
+        case 'CODEX':
             return threeDCytometryViewConfig;
-        case 'lm':
+        case 'WSI':
             return lmViewConfig;
         default:
             return threeDCytometryViewConfig
@@ -17,7 +17,7 @@ export const getViewConfig = (type) => {
 export const populateViewConfig = (viewConfig, selectedDataset) => {
     let stringifiedConfig = JSON.stringify(viewConfig);
 
-    stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', selectedDataset.name);
+    stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', selectedDataset.imageName);
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_URL>', selectedDataset.url);
     stringifiedConfig = stringifiedConfig.replace('<DATASET_INFO>', selectedDataset.description ? selectedDataset.description: '');
 

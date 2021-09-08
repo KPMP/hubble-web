@@ -6,6 +6,7 @@
       "tissueType": "AKI",
       "imageType": "label-free",
       "stainType": "PAS",
+      "imageName": "TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif",
       "url": "http://localhost:3000/img/TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif",
       "description": "here is an example description"
     },
@@ -15,6 +16,7 @@
       "tissueType": "AKI",
       "imageType": "label-free",
       "stainType": "PAS",
+      "imageName": "TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif",
       "url": "http://localhost:3000/img/TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif",
       "description": "here is another one"
     },
@@ -24,6 +26,7 @@
       "tissueType": "AKI",
       "imageType": "Light microscopy",
       "stainType": "H&E",
+      "imageName": "TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif",
       "url": "http://localhost:3000/img/TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif"
     },
     {
@@ -32,6 +35,7 @@
       "tissueType": "HRT",
       "imageType": "Electron microscopy",
       "stainType": "PAS",
+      "imageName": "TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif",
       "url": "http://localhost:3000/img/TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif"
     },
     {
@@ -40,6 +44,7 @@
       "tissueType": "CKD",
       "imageType": "Electron microscopy",
       "stainType": "H&E",
+      "imageName": "TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif",
       "url": "http://localhost:3000/img/TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif"
     },
     {
@@ -48,6 +53,7 @@
       "tissueType": "CKD",
       "imageType": "CODEX",
       "stainType": "PAS",
+      "imageName": "TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif",
       "url": "http://localhost:3000/img/TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif"
     }
   ]

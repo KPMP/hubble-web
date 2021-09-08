@@ -16,15 +16,15 @@ class SpatialViewer extends Component {
     componentDidMount() {
         console.log(this.props)
         if (this.props.selectedImageDataset) {
-            // let viewConfig = getViewConfig(this.props.selectedImageTray.type);
-            // populateViewConfig(viewConfig, this.state.selectedImageDataset)
-            // this.setState({viewConfig: viewConfig, noData: false});
+            let viewConfig = getViewConfig(this.props.selectedImageDataset.dataType);
+            viewConfig = populateViewConfig(viewConfig, this.props.selectedImageDataset);
+
+            this.setState({viewConfig: viewConfig, noData: false});
         }
     }
 
     render() {
-console.log(this.state)
-console.log(this.props)
+
         return (
             <div>
             {!this.state.noData ?

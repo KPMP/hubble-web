@@ -3,21 +3,21 @@ import lmViewConfig from './lightMicroscopyViewConfig.json';
 import threeDCytometryViewConfig from './threeDCytometryViewConfig.json';
 
 describe('getViewConfig', () => {
-    it('should return 3dCyto config when 3dcyto', () => {
-        let config = getViewConfig('3dc');
+    it('should return 3dCyto config when 3D Cytometry', () => {
+        let config = getViewConfig('3D Cytometry');
         let expectedConfig = threeDCytometryViewConfig;
 
         expect(config).toEqual(expectedConfig);
 
     });
-    it ('should return light microscopy config when lm', () => {
-        let config = getViewConfig('lm');
+    it ('should return light microscopy config when WSI', () => {
+        let config = getViewConfig('WSI');
         let expectedConfig = lmViewConfig;
 
         expect(config).toEqual(expectedConfig);
     });
-    it ('should return 3dcyto config when codex', () => {
-        let config = getViewConfig('codex');
+    it ('should return 3dcyto config when CODEX', () => {
+        let config = getViewConfig('CODEX');
         let expectedConfig = threeDCytometryViewConfig;
 
         expect(config).toEqual(expectedConfig);
@@ -33,7 +33,7 @@ describe('getViewConfig', () => {
 describe ('populateViewConfig', () => {
     it('should replace all of the placeholder values with the values passed in', () => {
         let selectedDataset = {
-            'name': 'imageName.tiff',
+            'imageName': 'imageName.tiff',
             'url': 'http://google.com',
             'description': 'description'
         };
@@ -48,7 +48,7 @@ describe ('populateViewConfig', () => {
     });
     it('should handle missing description', () => {
         let selectedDataset = {
-            'name': 'imageName.tiff',
+            'imageName': 'imageName.tiff',
             'url': 'http://google.com'
         };
         let result = populateViewConfig(threeDCytometryViewConfig, selectedDataset);
