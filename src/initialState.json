@@ -1,26 +1,3 @@
 {
-  "selectedImageDataset": {},
-  "imageDatasets": [
-    {
-      "name": "123-456",
-      "type": "3dc",
-      "caseID": 78439,
-      "typeDetail": "Label free",
-      "url": "http://localhost:3000/img/TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif"
-    },
-    {
-      "name": "984-245",
-      "type": "codex",
-      "caseID": 78359,
-      "typeDetail": "PAS",
-      "url": "http://localhost:3000/img/TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif"
-    },
-    {
-      "name": "456-987",
-      "type": "lm",
-      "caseID": 7589,
-      "typeDetail": "Second harmonic",
-      "url": "http://localhost:3000/img/TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif"
-    }
-  ]
+  "selectedImageDataset": {}
 }

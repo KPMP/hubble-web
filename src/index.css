@@ -59,3 +59,6 @@ body {
 
 .vitessce-container .card-body {
   background-color: #FAFBFC !important; }
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #color; }

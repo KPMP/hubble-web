@@ -3,7 +3,7 @@ import SpatialViewer from "./SpatialViewer";
 
 const mapStateToProps = (state, props) =>
     ({
-        selectedImageDataset: this.state.selectedImageDataset
+        selectedImageDataset: state.selectedImageDataset
     });
 
 const mapDispatchToProps = (dispatch, props) =>

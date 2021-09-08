@@ -10,7 +10,7 @@ import { createBrowserHistory } from 'history';
 import { Route, Switch, Router } from 'react-router-dom';
 import ErrorBoundaryContainer from './components/Error/ErrorBoundaryContainer';
 import Oops from './components/Error/Oops';
-import SpatialViewerContainer from "./components/SpatialViewer/SpatialViewerContainer";
+import ImageDatasetListContainer from "./components/SpatialViewer/ImageDatasetListContainer";
 
 const cacheStore = window.sessionStorage.getItem('redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
@@ -57,7 +57,7 @@ class App extends Component {
           <ErrorBoundaryContainer>
             <NavBar app='atlas' />
             <Switch>
-              <Route exact path="/spatial-viewer" component={SpatialViewerContainer} store={store} />
+              <Route exact path="/spatial-viewer" component={ImageDatasetListContainer} store={store} />
               <Route exact path="/oops" component={Oops} />
             </Switch>
             <NavFooter app='atlas' />

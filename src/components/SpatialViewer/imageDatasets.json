@@ -1,0 +1,52 @@
+{
+  "imageDatasets": [
+    {
+      "dataType": "3D Cytometry",
+      "participantID":  "1234-1245",
+      "tissueType": "AKI",
+      "imageType": "label-free",
+      "stainType": "PAS",
+      "url": "http://localhost:3000/img/TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif"
+    },
+    {
+      "dataType": "WSI",
+      "participantID":  "5-123",
+      "tissueType": "AKI",
+      "imageType": "label-free",
+      "stainType": "PAS",
+      "url": "http://localhost:3000/img/TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif"
+    },
+    {
+      "dataType": "WSI",
+      "participantID":  "346-1345",
+      "tissueType": "AKI",
+      "imageType": "Light microscopy",
+      "stainType": "H&E",
+      "url": "http://localhost:3000/img/TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif"
+    },
+    {
+      "dataType": "3D Cytometry",
+      "participantID":  "1564-345",
+      "tissueType": "HRT",
+      "imageType": "Electron microscopy",
+      "stainType": "PAS",
+      "url": "http://localhost:3000/img/TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif"
+    },
+    {
+      "dataType": "CODEX",
+      "participantID":  "122-42135",
+      "tissueType": "CKD",
+      "imageType": "Electron microscopy",
+      "stainType": "H&E",
+      "url": "http://localhost:3000/img/TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif"
+    },
+    {
+      "dataType": "WSI",
+      "participantID":  "034-2134",
+      "tissueType": "CKD",
+      "imageType": "CODEX",
+      "stainType": "PAS",
+      "url": "http://localhost:3000/img/TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif"
+    }
+  ]
+}
