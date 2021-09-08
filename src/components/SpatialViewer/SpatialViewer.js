@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Vitessce } from 'vitessce';
-import lmViewConfig from './lightMicroscopyViewConfig.json';
-import threeDCytometryViewConfig from './threeDCytometryViewConfig.json';
+
 import 'vitessce/dist/es/production/static/css/index.css';
 import { getViewConfig } from './viewConfigHelper';
 
@@ -10,7 +9,7 @@ class SpatialViewer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            viewConfig: threeDCytometryViewConfig
+            viewConfig: ''
         }
     }
 
