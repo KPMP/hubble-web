@@ -10,13 +10,13 @@
             {
                 "fileType": "raster.json",
                 "options": {
-                  "images": [
-                    {
-                      "name": "20-0009_20A_stained.ome.tif",
-                      "type": "ome-tiff",
-                      "url": "http://localhost:3000/img/TMA_82_4_1_3_3_1_cyc001_ch002_Blank.ome.tif"
-                    }
-                  ],
+                    "images": [
+                        {
+                            "name": "<IMAGE_NAME>",
+                            "type": "ome-tiff",
+                            "url": "<IMAGE_URL>"
+                        }
+                    ],
                     "schemaVersion": "0.0.2",
                     "usePhysicalSizeScaling": false
                 },
@@ -27,7 +27,7 @@
         "uid": "A"
     }
 ],
-    "description": "",
+    "description": "<DATASET_INFO>",
     "initStrategy": "auto",
     "layout": [
     {
