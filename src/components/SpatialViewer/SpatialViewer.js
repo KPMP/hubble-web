@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Vitessce } from 'vitessce';
 import 'vitessce/dist/es/production/static/css/index.css';
+import { Row, Col} from "reactstrap";
+import { baseURL } from '../../../package.json';
 import { getViewConfig, populateViewConfig } from './viewConfigHelper';
 
 class SpatialViewer extends Component {
@@ -18,7 +20,6 @@ class SpatialViewer extends Component {
         if (this.props.selectedImageDataset) {
             let viewConfig = getViewConfig(this.props.selectedImageDataset.dataType);
             viewConfig = populateViewConfig(viewConfig, this.props.selectedImageDataset);
-
             this.setState({viewConfig: viewConfig, noData: false});
         }
     }
@@ -26,17 +27,24 @@ class SpatialViewer extends Component {
     render() {
 
         return (
-            <div>
+            <div className="container-fluid">
+                <div id="vitessce-container" className="rounded border shadow-sm mt-2 mx-3 p-3">
             {!this.state.noData ?
                 <div>
-                <span>Viewing {this.props.selectedImageDataset.dataType} images for {this.props.selectedImageDataset.participantID}</span>
-                <Vitessce
+                <Row xs='12'>
+                    <Col xs='10'><h5>Viewing {this.props.selectedImageDataset.dataType} images for {this.props.selectedImageDataset.participantID}</h5></Col>
+                    <Col xs='2' className="text-right text-primary ">
+                        <button onClick={() => {window.location.href=baseURL}} type='button' className='btn btn-link'>
+                            <h5><span style={{"font-size":"26px"}}>&larr;</span> Close viewer</h5></button></Col>
+                </Row>
+                    <Vitessce
                     config={this.state.viewConfig}
                     height={800}
                     theme="light" />
                 </div>
-                : <span> please select some data</span>
+                : <span> Please select some data</span>
             }
+                </div>
             </div>
         )
     }
