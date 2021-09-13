@@ -44,6 +44,7 @@ class ImageDatasetList extends Component {
     async componentDidMount() {
         let spatialData = await getSpatialDataAsJSON();
         this.setState({"tableData": spatialData});
+        this.tableFilterNode.reset(spatialData, true);
     }
 
     render() {
@@ -56,7 +57,8 @@ class ImageDatasetList extends Component {
                             <thead>
                         <TableFilter
                             rows={this.state.tableData}
-                            onFilterUpdate={this.filterUpdated}>
+                            onFilterUpdate={this.filterUpdated}
+                            ref={ (node) => {this.tableFilterNode = node;}}>
                             <th filterkey="Data Type">
                                 DATA TYPE
                             </th>
