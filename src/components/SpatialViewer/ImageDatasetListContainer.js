@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch, props) =>
     ({
         setSelectedImageDataset(selectedImageDataset) {
              dispatch(setSelectedImageDataset(selectedImageDataset));
-             dispatch((dispatch) => props.history.push("/vitessce"));
+             dispatch((dispatch) => props.history.push("/view"));
          }
     });
 

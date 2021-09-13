@@ -60,7 +60,7 @@ class App extends Component {
             <NavBar app='atlas' />
             <Switch>
               <Route exact path="/" component={ImageDatasetListContainer} store={store} />
-              <Route exact path="/vitessce" component={SpatialViewerContainer} store={store} />
+              <Route exact path="/view" component={SpatialViewerContainer} store={store} />
               <Route exact path="/oops" component={Oops} />
             </Switch>
             <NavFooter app='atlas' />
