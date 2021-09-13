@@ -33,9 +33,8 @@ describe('getViewConfig', () => {
 describe ('populateViewConfig', () => {
     it('should replace all of the placeholder values with the values passed in', () => {
         let selectedDataset = {
-            'imageName': 'imageName.tiff',
-            'url': 'http://google.com',
-            'description': 'description'
+            'Source File': 'imageName.tiff',
+            'Dataset Information': 'description'
         };
         let result = populateViewConfig(threeDCytometryViewConfig, selectedDataset);
         let resultString = JSON.stringify(result);
@@ -43,13 +42,12 @@ describe ('populateViewConfig', () => {
 
         expect(index).toBe(-1);
         expect(result.datasets[0].files[0].options.images[0].name).toEqual('imageName.tiff');
-        expect(result.datasets[0].files[0].options.images[0].url).toEqual('http://google.com');
+        expect(result.datasets[0].files[0].options.images[0].url).toEqual('imageName.tiff');
         expect(result.description).toEqual('description');
     });
     it('should handle missing description', () => {
         let selectedDataset = {
-            'imageName': 'imageName.tiff',
-            'url': 'http://google.com'
+            'Source File': 'imageName.tiff',
         };
         let result = populateViewConfig(threeDCytometryViewConfig, selectedDataset);
         let resultString = JSON.stringify(result);

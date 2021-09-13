@@ -17,9 +17,14 @@ export const getViewConfig = (type) => {
 export const populateViewConfig = (viewConfig, selectedDataset) => {
     let stringifiedConfig = JSON.stringify(viewConfig);
 
-    stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', selectedDataset.imageName);
-    stringifiedConfig = stringifiedConfig.replace('<IMAGE_URL>', selectedDataset.url);
-    stringifiedConfig = stringifiedConfig.replace('<DATASET_INFO>', selectedDataset.description ? selectedDataset.description: '');
+    stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', selectedDataset["Source File"]);
+    stringifiedConfig = stringifiedConfig.replace('<IMAGE_URL>',
+        process.env.REACT_APP_IMAGE_PATH + selectedDataset["Package ID"] + '/derived/' + getDerivedImageName(selectedDataset["Source File"]));
+    stringifiedConfig = stringifiedConfig.replace('<DATASET_INFO>', selectedDataset["Dataset Information"] ? selectedDataset["Dataset Information"]: '');
 
     return JSON.parse(stringifiedConfig);
+}
+
+export const getDerivedImageName = (imageName) => {
+    return imageName.split('.')[0] + '-ome.tif'
 }

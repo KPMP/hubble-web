@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import {Col, Container, Row} from "reactstrap";
 import TableFilter from "react-table-filter";
-import { imageDatasets } from './imageDatasets.json'
 import 'react-table-filter/lib/styles.css';
+import { getSpatialDataAsJSON } from "../../helpers/dataHelper";
 
 class ImageDatasetList extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            tableData: imageDatasets
+            tableData: []
         }
     }
 
@@ -24,25 +24,27 @@ class ImageDatasetList extends Component {
             return (
                 <tr key={'row_' + index}>
                     <td>
-                        { item.dataType }
+                        { item["Data Type"] }
                     </td>
                     <td>
-                        <button onClick={() => this.props.setSelectedImageDataset(item)} type='button' className='table-column btn btn-link text-left p-0'>{item.participantID}</button>
+                        <button onClick={() => this.props.setSelectedImageDataset(item)} type='button' className='table-column btn btn-link text-left p-0'>{item["Participant ID"]}</button>
                     </td>
                     <td>
-                        { item.tissueType }
+                        { item["Tissue Type"] }
                     </td>
                     <td>
-                        { item.imageType }
-                    </td>
-                    <td>
-                        { item.stainType }
+                        { item["Image Type"] }
                     </td>
                 </tr>
             );
         });
 
     };
+
+    async componentDidMount() {
+        let spatialData = await getSpatialDataAsJSON();
+        this.setState({"tableData": spatialData});
+    }
 
     render() {
         return (
@@ -55,20 +57,17 @@ class ImageDatasetList extends Component {
                         <TableFilter
                             rows={this.state.tableData}
                             onFilterUpdate={this.filterUpdated}>
-                            <th filterkey="dataType">
+                            <th filterkey="Data Type">
                                 DATA TYPE
                             </th>
-                            <th filterkey="participantID">
+                            <th filterkey="Participant ID">
                                 PARTICIPANT ID
                             </th>
-                            <th filterkey="tissueType">
+                            <th filterkey="Tissue Type">
                                 TISSUE TYPE
                             </th>
-                            <th filterkey="imageType">
+                            <th filterkey="Image Type">
                                 IMAGE TYPE
-                            </th>
-                            <th filterkey="stainType">
-                                STAIN TYPE
                             </th>
                         </TableFilter>
                             </thead>
