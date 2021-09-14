@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Col, Container, Row} from "reactstrap";
+import { Col, Container, Row } from "reactstrap";
 import TableFilter from "react-table-filter";
 import 'react-table-filter/lib/styles.css';
 import { getSpatialDataAsJSON } from "../../helpers/dataHelper";
@@ -24,16 +24,16 @@ class ImageDatasetList extends Component {
             return (
                 <tr key={'row_' + index}>
                     <td>
-                        { item["Data Type"] }
+                        {item["Data Type"]}
                     </td>
                     <td>
                         <button onClick={() => this.props.setSelectedImageDataset(item)} type='button' className='table-column btn btn-link text-left p-0'>{item["Participant ID"]}</button>
                     </td>
                     <td>
-                        { item["Tissue Type"] }
+                        {item["Tissue Type"]}
                     </td>
                     <td>
-                        { item["Image Type"] }
+                        {item["Image Type"]}
                     </td>
                 </tr>
             );
@@ -43,7 +43,7 @@ class ImageDatasetList extends Component {
 
     async componentDidMount() {
         let spatialData = await getSpatialDataAsJSON();
-        this.setState({"tableData": spatialData});
+        this.setState({ "tableData": spatialData });
         this.tableFilterNode.reset(spatialData, true);
     }
 
@@ -52,31 +52,39 @@ class ImageDatasetList extends Component {
             <Container id='outer-wrapper'>
                 <Row>
                     <Col md={12}>
+                        <Container className="mt-3 rounded border p-3 shadow-sm">
+                            <Row><Col><h5>Welcome to the Kidney Tissue Atlas Spatial Viewer</h5></Col></Row>
+                            <Row><Col><p>Select a spatial dataset from the list below to visualize it in the vitessce visual integration tool.</p></Col></Row>
+                        </Container>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={12}>
                         <Container className='rounded border shadow-sm mt-3 pl-0 pr-0 pb-0'>
-                        <table className="table table-hover table-bordered table-striped mb-0">
-                            <thead>
-                        <TableFilter
-                            rows={this.state.tableData}
-                            onFilterUpdate={this.filterUpdated}
-                            ref={ (node) => {this.tableFilterNode = node;}}>
-                            <th filterkey="Data Type">
-                                DATA TYPE
-                            </th>
-                            <th filterkey="Participant ID">
-                                PARTICIPANT ID
-                            </th>
-                            <th filterkey="Tissue Type">
-                                TISSUE TYPE
-                            </th>
-                            <th filterkey="Image Type">
-                                IMAGE TYPE
-                            </th>
-                        </TableFilter>
-                            </thead>
-                        <tbody>
-                        { this.getCells(this.state.tableData) }
-                        </tbody>
-                    </table>
+                            <table className="table table-hover table-bordered table-striped mb-0">
+                                <thead>
+                                    <TableFilter
+                                        rows={this.state.tableData}
+                                        onFilterUpdate={this.filterUpdated}
+                                        ref={(node) => { this.tableFilterNode = node; }}>
+                                        <th filterkey="Data Type">
+                                            DATA TYPE
+                                        </th>
+                                        <th filterkey="Participant ID">
+                                            PARTICIPANT ID
+                                        </th>
+                                        <th filterkey="Tissue Type">
+                                            TISSUE TYPE
+                                        </th>
+                                        <th filterkey="Image Type">
+                                            IMAGE TYPE
+                                        </th>
+                                    </TableFilter>
+                                </thead>
+                                <tbody>
+                                    {this.getCells(this.state.tableData)}
+                                </tbody>
+                            </table>
                         </Container>
                     </Col>
                 </Row>
