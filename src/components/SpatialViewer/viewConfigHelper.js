@@ -1,5 +1,6 @@
 import lmViewConfig from './lightMicroscopyViewConfig.json';
 import threeDCytometryViewConfig from './threeDCytometryViewConfig.json';
+import {getFileLink} from "../../helpers/Api";
 
 export const getViewConfig = (type) => {
     switch (type) {
@@ -14,14 +15,13 @@ export const getViewConfig = (type) => {
     }
 };
 
-export const populateViewConfig = (viewConfig, selectedDataset) => {
+export const populateViewConfig = async (viewConfig, selectedDataset) => {
     let stringifiedConfig = JSON.stringify(viewConfig);
-
+    let response = await getFileLink(selectedDataset["Package ID"] + '/' + getDerivedImageName(selectedDataset["Source File"]))
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', selectedDataset["Source File"]);
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_URL>',
-        process.env.REACT_APP_IMAGE_PATH + selectedDataset["Package ID"] + '/derived/' + getDerivedImageName(selectedDataset["Source File"]));
+        response.data);
     stringifiedConfig = stringifiedConfig.replace('<DATASET_INFO>', selectedDataset["Dataset Information"] ? selectedDataset["Dataset Information"]: '');
-
     return JSON.parse(stringifiedConfig);
 }
 

@@ -7,3 +7,7 @@ export default class Api {
     });
   }
 }
+
+export const getFileLink = async (queryString) => {
+  return Api.getInstance().get("http://localhost:5000/v1/derived/downloadps/" + queryString)
+};
