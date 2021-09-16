@@ -29,8 +29,8 @@ class SpatialViewer extends Component {
         return (
             <div className="container-fluid">
                 <div id="vitessce-container" className="rounded border shadow-sm mt-2 mx-3 p-3">
-            {!this.state.noData ?
-                <div>
+                {!this.state.noData &&
+                    <div>
                 <Row xs='12'>
                     <Col xs='10'><h5>Viewing {this.props.selectedImageDataset.dataType} images for {this.props.selectedImageDataset.participantID}</h5></Col>
                     <Col xs='2' className="text-right text-primary ">
@@ -42,7 +42,6 @@ class SpatialViewer extends Component {
                     height={800}
                     theme="light" />
                 </div>
-                : <span> Please select some data</span>
             }
                 </div>
             </div>
