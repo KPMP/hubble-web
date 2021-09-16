@@ -53,8 +53,8 @@ class ImageDatasetList extends Component {
                 <Row>
                     <Col md={12}>
                         <Container className="mt-3 rounded border p-3 shadow-sm">
-                            <Row><Col><h5>Welcome to the Kidney Tissue Atlas Spatial Viewer</h5></Col></Row>
-                            <Row><Col><p>Select a spatial dataset from the list below to visualize it in the Vitessce visual integration tool.</p></Col></Row>
+                            <Row><Col><h5>Welcome to the Kidney Tissue Atlas Spatial Viewer (beta)</h5></Col></Row>
+                            <Row><Col><p>Select a spatial dataset from the list below to visualize it in the <a href="http://vitessce.io/">Vitessce</a> visual integration tool.</p></Col></Row>
                         </Container>
                     </Col>
                 </Row>
