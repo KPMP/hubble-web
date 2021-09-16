@@ -4,11 +4,11 @@ import { getFileLink } from "../../helpers/Api";
 
 export const getViewConfig = (type) => {
     switch (type) {
-        case '3D Cytometry':
+        case '3D Tissue Imaging and Cytometry':
             return threeDCytometryViewConfig;
         case 'CODEX':
             return threeDCytometryViewConfig;
-        case 'WSI':
+        case 'Light Microscopic Whole Slide Images':
             return lmViewConfig;
         default:
             return threeDCytometryViewConfig
