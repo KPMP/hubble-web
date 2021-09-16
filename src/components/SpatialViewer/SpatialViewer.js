@@ -18,7 +18,7 @@ class SpatialViewer extends Component {
     async componentDidMount() {
         console.log(this.props)
         if (this.props.selectedImageDataset) {
-            let viewConfig = getViewConfig(this.props.selectedImageDataset.dataType);
+            let viewConfig = getViewConfig(this.props.selectedImageDataset["Data Type"]);
             viewConfig = await populateViewConfig(viewConfig, this.props.selectedImageDataset);
             this.setState({viewConfig: viewConfig, noData: false});
         }
@@ -32,7 +32,7 @@ class SpatialViewer extends Component {
                 {!this.state.noData &&
                     <div>
                 <Row xs='12'>
-                    <Col xs='10'><h5>Viewing {this.props.selectedImageDataset.dataType} images for {this.props.selectedImageDataset.participantID}</h5></Col>
+                    <Col xs='10'><h5>Viewing {this.props.selectedImageDataset["Data Type"]} images for {this.props.selectedImageDataset["Participant ID"]}</h5></Col>
                     <Col xs='2' className="text-right text-primary ">
                         <button onClick={() => {window.location.href=baseURL}} type='button' className='btn btn-link'>
                             <h5><span style={{"font-size":"26px"}}>&larr;</span> Close viewer</h5></button></Col>
