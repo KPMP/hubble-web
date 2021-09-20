@@ -3,6 +3,8 @@ import { Col, Container, Row } from "reactstrap";
 import TableFilter from "react-table-filter";
 import 'react-table-filter/lib/styles.css';
 import { getSpatialDataAsJSON } from "../../helpers/dataHelper";
+import { getDerivedImageName } from "./viewConfigHelper";
+
 
 class ImageDatasetList extends Component {
 
@@ -34,6 +36,12 @@ class ImageDatasetList extends Component {
                     </td>
                     <td>
                         {item["Image Type"]}
+                    </td>
+                    <td>
+                        {item["Level"]}
+                    </td>
+                    <td>
+                        {getDerivedImageName(item["Source File"])}
                     </td>
                 </tr>
             );
@@ -78,6 +86,12 @@ class ImageDatasetList extends Component {
                                         </th>
                                         <th filterkey="Image Type">
                                             IMAGE TYPE
+                                        </th>
+                                        <th filterkey="Level">
+                                            LEVEL
+                                        </th>
+                                        <th filterkey="Source File">
+                                            FILE NAME
                                         </th>
                                     </TableFilter>
                                 </thead>
