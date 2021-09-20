@@ -24,3 +24,6 @@
     text-decoration: none;
 }
 
+.title > span.details > span > button:first-child {
+    display: none;
+}
