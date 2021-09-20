@@ -4,6 +4,7 @@ import 'vitessce/dist/es/production/static/css/index.css';
 import { Row, Col} from "reactstrap";
 import { baseURL } from '../../../package.json';
 import { getViewConfig, populateViewConfig } from './viewConfigHelper';
+import { createHeaderString } from './spatialHelper';
 
 class SpatialViewer extends Component {
 
@@ -11,7 +12,8 @@ class SpatialViewer extends Component {
         super(props);
         this.state = {
             viewConfig: '',
-            noData: true
+            noData: true,
+            headerString: '',
         }
     }
 
@@ -20,11 +22,14 @@ class SpatialViewer extends Component {
         if (this.props.selectedImageDataset) {
             let viewConfig = getViewConfig(this.props.selectedImageDataset["Data Type"]);
             viewConfig = await populateViewConfig(viewConfig, this.props.selectedImageDataset);
-            this.setState({viewConfig: viewConfig, noData: false});
+            const headerString = createHeaderString(this.props.selectedImageDataset);
+            this.setState({viewConfig: viewConfig, noData: false, headerString});
         }
     }
 
     render() {
+        
+        
 
         return (
             <div className="container-fluid">
@@ -32,7 +37,9 @@ class SpatialViewer extends Component {
                 {!this.state.noData &&
                     <div>
                 <Row xs='12'>
-                    <Col xs='10'><h5>Viewing {this.props.selectedImageDataset["Data Type"]} images for {this.props.selectedImageDataset["Participant ID"]}</h5></Col>
+                    <Col xs='10'><h5>
+                        {this.state.headerString}
+                    </h5></Col>
                     <Col xs='2' className="text-right text-primary ">
                         <button onClick={() => {window.location.href=baseURL}} type='button' className='btn btn-link'>
                             <h5><span style={{"font-size":"26px"}}>&larr;</span> Close viewer</h5></button></Col>
