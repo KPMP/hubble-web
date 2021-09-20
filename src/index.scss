@@ -24,6 +24,10 @@
     text-decoration: none;
 }
 
+.title > span.details > span > button:first-child {
+    display: none;
+}
+
 .layer-controller-container > div:last-child > button {
     display: none;
 }
@@ -31,3 +35,4 @@
 .layer-controller-container > div:first-child > div:first-child > div:last-child > div:first-child> div:first-child> div:first-child> div:first-child> button:last-child {
     display: none;
 }
+
