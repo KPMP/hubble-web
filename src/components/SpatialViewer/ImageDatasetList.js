@@ -26,10 +26,10 @@ class ImageDatasetList extends Component {
             return (
                 <tr key={'row_' + index}>
                     <td>
-                        {item["Data Type"]}
+                        <button onClick={() => this.props.setSelectedImageDataset(item)} type='button' className='table-column btn btn-link text-left p-0'>{item["Participant ID"]}</button>
                     </td>
                     <td>
-                        <button onClick={() => this.props.setSelectedImageDataset(item)} type='button' className='table-column btn btn-link text-left p-0'>{item["Participant ID"]}</button>
+                        {item["Data Type"]}
                     </td>
                     <td>
                         {item["Tissue Type"]}
@@ -75,11 +75,11 @@ class ImageDatasetList extends Component {
                                         rows={this.state.tableData}
                                         onFilterUpdate={this.filterUpdated}
                                         ref={(node) => { this.tableFilterNode = node; }}>
-                                        <th filterkey="Data Type">
-                                            DATA TYPE
-                                        </th>
                                         <th filterkey="Participant ID">
                                             PARTICIPANT ID
+                                        </th>
+                                        <th filterkey="Data Type">
+                                            DATA TYPE
                                         </th>
                                         <th filterkey="Tissue Type">
                                             TISSUE TYPE
