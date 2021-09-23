@@ -28,6 +28,10 @@
     display: none;
 }
 
+.title > span.details > span > button:last-child {
+    display: none;
+}
+
 .layer-controller-container > div:last-child > button {
     display: none;
 }
