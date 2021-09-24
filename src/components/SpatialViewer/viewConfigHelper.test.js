@@ -1,4 +1,4 @@
-import { getViewConfig, populateViewConfig, getDerivedImageName } from './viewConfigHelper';
+import { getViewConfig, populateViewConfig, getDatasetInfo, getDerivedImageName } from './viewConfigHelper';
 import lmViewConfig from './lightMicroscopyViewConfig.json';
 import threeDCytometryViewConfig from './threeDCytometryViewConfig.json';
 import * as helpers from '../../helpers/Api';
@@ -71,6 +71,63 @@ describe ('populateViewConfig', () => {
 
 });
 
+describe ('getDatasetInfo', () => {
+    it('should return whole slide image string with level included', () => {
+        const selectedDataset = {
+            "Data Type": "Light Microscopic Whole Slide Images",
+            "Image Type": "Jones' Methenamine Silver (SIL) histochemical stain",
+            "Level": "L12"
+          }
+
+        let datasetInfo = getDatasetInfo(selectedDataset);
+        let expectedInfo = "Jones' Methenamine Silver (SIL) histochemical stain L12";
+
+        expect(datasetInfo).toBe(expectedInfo);
+    });
+    it('should return whole slide image string without level included', () => {
+        const selectedDataset = {
+            "Data Type": "Light Microscopic Whole Slide Images",
+            "Image Type": "Jones' Methenamine Silver (SIL) histochemical stain",
+          }
+
+        let datasetInfo = getDatasetInfo(selectedDataset);
+        let expectedInfo = "Jones' Methenamine Silver (SIL) histochemical stain";
+
+        expect(datasetInfo).toBe(expectedInfo);
+    });
+    it('should return a Label-free auto-fluorescent image', () => {
+        const selectedDataset = {
+            "Data Type": "Label-free auto-fluorescent image",
+            "Image Type": "Jones' Methenamine Silver (SIL) histochemical stain",
+          }
+
+        let datasetInfo = getDatasetInfo(selectedDataset);
+        let expectedInfo = "Jones' Methenamine Silver (SIL) histochemical stain";
+
+        expect(datasetInfo).toBe(expectedInfo);
+    });
+    it('should return an empty string if image type not present for 3d Cyto', () => {
+        const selectedDataset = {
+            "Data Type": "Label-free auto-fluorescent image",
+          }
+
+        let datasetInfo = getDatasetInfo(selectedDataset);
+        let expectedInfo = "";
+
+        expect(datasetInfo).toBe(expectedInfo);
+    });
+    it('should return an empty string if image type not present for Whole slide image', () => {
+        const selectedDataset = {
+            "Data Type": "Light Microscopic Whole Slide Images",
+          }
+
+        let datasetInfo = getDatasetInfo(selectedDataset);
+        let expectedInfo = "";
+
+        expect(datasetInfo).toBe(expectedInfo);
+    });
+})
+
 describe('getDerivedImageName',() => {
     it('should add -ome.tif as an extnesion', () => {
         let derivedName = getDerivedImageName('bigBooty.tif');
@@ -81,3 +138,4 @@ describe('getDerivedImageName',() => {
         expect(derivedName).toBe('babyGot-ome.tif');
     })
 });
+
