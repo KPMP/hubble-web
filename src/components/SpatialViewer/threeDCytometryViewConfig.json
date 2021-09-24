@@ -45,12 +45,11 @@
         "coordinationScopes": {
           "dataset": "A"
         },
-        "h": 9,
         "props": {
-          "disable3d": [],
-          "disableChannelsIfRgbDetected": true,
-          "globalDisable3d": true
+            "globalDisable3d": false,
+            "disableChannelsIfRgbDetected": true
         },
+        "h": 9,
         "w": 3,
         "x": 0,
         "y": 2
@@ -66,6 +65,6 @@
         "y": 0
     }
 ],
-    "name": "HuBMAP Data Portal",
-    "version": "1.0.1"
+    "name": "KPMP Spatial Viewer",
+    "version": "1.0.4"
 }
