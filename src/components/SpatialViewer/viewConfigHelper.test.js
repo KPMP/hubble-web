@@ -1,6 +1,7 @@
-import { getViewConfig, populateViewConfig, getDatasetInfo } from './viewConfigHelper';
+import { getViewConfig, populateViewConfig, getDatasetInfo, getDerivedImageName } from './viewConfigHelper';
 import lmViewConfig from './lightMicroscopyViewConfig.json';
 import threeDCytometryViewConfig from './threeDCytometryViewConfig.json';
+import * as helpers from '../../helpers/Api';
 
 describe('getViewConfig', () => {
     it('should return 3dCyto config when 3D Cytometry', () => {
@@ -10,8 +11,8 @@ describe('getViewConfig', () => {
         expect(config).toEqual(expectedConfig);
 
     });
-    it ('should return light microscopy config when WSI', () => {
-        let config = getViewConfig('WSI');
+    it ('should return light microscopy config when Light Microscopic Whole Slide Images', () => {
+        let config = getViewConfig('Light Microscopic Whole Slide Images');
         let expectedConfig = lmViewConfig;
 
         expect(config).toEqual(expectedConfig);
@@ -31,25 +32,37 @@ describe('getViewConfig', () => {
 });
 
 describe ('populateViewConfig', () => {
-    it('should replace all of the placeholder values with the values passed in', () => {
+    beforeEach(() => {
+
+        let mockUtilFunction = jest.spyOn(helpers, 'getFileLink').mockImplementation(() => {
+            let result = {};
+            result.data='url/returned/from/service';
+            return result;
+        });
+    });
+
+    it('should replace all of the placeholder values with the values passed in', async () => {
         let selectedDataset = {
             'Source File': 'imageName.tiff',
-            'Dataset Information': 'description'
+            'Package ID': '123',
+            'Image Type': 'stuff'
         };
-        let result = populateViewConfig(threeDCytometryViewConfig, selectedDataset);
+        let result = await populateViewConfig(threeDCytometryViewConfig, selectedDataset);
         let resultString = JSON.stringify(result);
         let index = resultString.search('<*>');
 
         expect(index).toBe(-1);
-        expect(result.datasets[0].files[0].options.images[0].name).toEqual('imageName.tiff');
-        expect(result.datasets[0].files[0].options.images[0].url).toEqual('imageName.tiff');
-        expect(result.description).toEqual('description');
+        
+        expect(result.datasets[0].files[0].options.images[0].name).toEqual('imageName-ome.tif');
+        expect(result.datasets[0].files[0].options.images[0].url).toEqual('url/returned/from/service');
+        expect(result.description).toEqual('stuff');
     });
-    it('should handle missing description', () => {
+
+    it('should handle missing Image Type', async () => {
         let selectedDataset = {
             'Source File': 'imageName.tiff',
         };
-        let result = populateViewConfig(threeDCytometryViewConfig, selectedDataset);
+        let result = await populateViewConfig(threeDCytometryViewConfig, selectedDataset);
         let resultString = JSON.stringify(result);
         let index = resultString.search('<*>');
         expect(index).toBe(-1);
@@ -114,3 +127,15 @@ describe ('getDatasetInfo', () => {
         expect(datasetInfo).toBe(expectedInfo);
     });
 })
+
+describe('getDerivedImageName',() => {
+    it('should add -ome.tif as an extnesion', () => {
+        let derivedName = getDerivedImageName('bigBooty.tif');
+        expect(derivedName).toBe('bigBooty-ome.tif');
+    });
+    it('should strip any extension and add -ome.tif', () => {
+        let derivedName = getDerivedImageName('babyGot.back');
+        expect(derivedName).toBe('babyGot-ome.tif');
+    })
+});
+
