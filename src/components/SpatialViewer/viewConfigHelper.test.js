@@ -80,7 +80,7 @@ describe ('getDatasetInfo', () => {
           }
 
         let datasetInfo = getDatasetInfo(selectedDataset);
-        let expectedInfo = "Jones' Methenamine Silver (SIL) histochemical stain L12";
+        let expectedInfo = "Jones' Methenamine Silver (SIL) histochemical stain (L12)";
 
         expect(datasetInfo).toBe(expectedInfo);
     });
