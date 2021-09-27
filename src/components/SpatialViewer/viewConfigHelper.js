@@ -19,7 +19,7 @@ export const getDatasetInfo = (selectedDataset) => {
     let datasetInfo = '';
     if(selectedDataset["Image Type"]) {
         if(selectedDataset["Data Type"] == "Light Microscopic Whole Slide Images" && selectedDataset["Level"]) {
-            datasetInfo = selectedDataset["Image Type"] + ' ' + selectedDataset["Level"]
+            datasetInfo = `${selectedDataset["Image Type"]} (${selectedDataset["Level"]})`
         } else {
             datasetInfo = selectedDataset["Image Type"]
         }
@@ -33,6 +33,7 @@ export const populateViewConfig = async (viewConfig, selectedDataset) => {
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', getDerivedImageName(selectedDataset["Source File"]));
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_URL>', response.data);
     stringifiedConfig = stringifiedConfig.replace('<DATASET_INFO>', getDatasetInfo(selectedDataset));
+    console.log(stringifiedConfig);
     return JSON.parse(stringifiedConfig);
 }
 
