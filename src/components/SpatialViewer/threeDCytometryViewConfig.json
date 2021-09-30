@@ -46,7 +46,7 @@
           "dataset": "A"
         },
         "props": {
-            "globalDisable3d": false,
+            "globalDisable3d": true,
             "disableChannelsIfRgbDetected": true
         },
         "h": 9,
