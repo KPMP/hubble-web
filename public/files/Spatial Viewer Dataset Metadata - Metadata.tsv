@@ -1,32 +1,32 @@
 Package ID	Folder Lineage	Source File		Data Type	Participant ID	Tissue Type	Image Type	Level	Dataset Information	Associated Control Sample	(Internal Notes)
-c90c6596-2282-47ad-a284-d96db43c119a		20-0043_04_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	32-10034	AKI	Label-free auto-fluorescent image		lorem ipsum	N/A	
+c90c6596-2282-47ad-a284-d96db43c119a		20-0043_04_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	32-10034	AKI	Label-free autofluorescence image		lorem ipsum	N/A	
 c90c6596-2282-47ad-a284-d96db43c119a		20-0043_04_stained.tif	In S3	3D Tissue Imaging and Cytometry	32-10034	AKI	8-channel fluorescence image volume		lorem ipsum	N/A	
-249095d1-20e4-4580-9dec-51d62629a929	20-0042-04_040621/	20-0042_04_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	33-10005	AKI	Label-free auto-fluorescent image		lorem ipsum	N/A	
+249095d1-20e4-4580-9dec-51d62629a929	20-0042-04_040621/	20-0042_04_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	33-10005	AKI	Label-free autofluorescence image		lorem ipsum	N/A	
 249095d1-20e4-4580-9dec-51d62629a929	20-0042-04_040621/	20-0042_04_stained.tif	In S3	3D Tissue Imaging and Cytometry	33-10005	AKI	8-channel fluorescence image volume		lorem ipsum	N/A	
-36ab80fe-39c1-46a2-9154-65ffda65bb58	20-0041-4_033021/20-0041-4A/	20-0041_04A_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	30-10034	AKI	Label-free auto-fluorescent image		lorem ipsum	N/A	
-36ab80fe-39c1-46a2-9154-65ffda65bb58	20-0041-4_033021/20-0041-4B/	20-0041_04B_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	30-10034	AKI	Label-free auto-fluorescent image		lorem ipsum	N/A	
+36ab80fe-39c1-46a2-9154-65ffda65bb58	20-0041-4_033021/20-0041-4A/	20-0041_04A_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	30-10034	AKI	Label-free autofluorescence image		lorem ipsum	N/A	
+36ab80fe-39c1-46a2-9154-65ffda65bb58	20-0041-4_033021/20-0041-4B/	20-0041_04B_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	30-10034	AKI	Label-free autofluorescence image		lorem ipsum	N/A	
 36ab80fe-39c1-46a2-9154-65ffda65bb58	20-0041-4_033021/20-0041-4A/	20-0041_04A_stained.tif	In S3	3D Tissue Imaging and Cytometry	30-10034	AKI	8-channel fluorescence image volume		lorem ipsum	N/A	
 36ab80fe-39c1-46a2-9154-65ffda65bb58	20-0041-4_033021/20-0041-4B/	20-0041_04B_stained.tif	In S3	3D Tissue Imaging and Cytometry	30-10034	AKI	8-channel fluorescence image volume		lorem ipsum	N/A	
-378dda96-86d7-4644-8d27-9364f43634cc	20-0008_19_040421/	20-0008_19_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	30-10044	AKI	Label-free auto-fluorescent image		lorem ipsum	N/A	
+378dda96-86d7-4644-8d27-9364f43634cc	20-0008_19_040421/	20-0008_19_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	30-10044	AKI	Label-free autofluorescence image		lorem ipsum	N/A	
 378dda96-86d7-4644-8d27-9364f43634cc	20-0008_19_040421/	20-0008_19_stained.tif	In S3	3D Tissue Imaging and Cytometry	30-10044	AKI	8-channel fluorescence image volume		lorem ipsum	N/A	
-ddae7ae1-b630-4309-ba06-7bf174a437a2	20-0039-22_040521/	20-0039_22_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	31-10042	CKD	Label-free auto-fluorescent image		lorem ipsum	N/A	
+ddae7ae1-b630-4309-ba06-7bf174a437a2	20-0039-22_040521/	20-0039_22_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	31-10042	CKD	Label-free autofluorescence image		lorem ipsum	N/A	
 ddae7ae1-b630-4309-ba06-7bf174a437a2	20-0039-22_040521/	20-0039_22_stained.tif	In S3	3D Tissue Imaging and Cytometry	31-10042	CKD	8-channel fluorescence image volume		lorem ipsum	N/A	
 6af5c4a2-dc47-4246-90af-3e091078367d	20-0010_04_040521/	20-0010_04_IF_102320_stained.tif	In S3	3D Tissue Imaging and Cytometry	31-10006	CKD	8-channel fluorescence image volume		lorem ipsum	N/A	
-6af5c4a2-dc47-4246-90af-3e091078367d	20-0010_04_040521/	20-0010_04_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	31-10006	CKD	Label-free auto-fluorescent image		lorem ipsum	N/A	
-77d58458-6624-430e-a024-0561557b5b3d	20-0009_20A_040421/	20-0009_20A_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	29-10011	CKD	Label-free auto-fluorescent image		lorem ipsum	N/A	"Only 3 channels when inspected by hand, no Autofluorescence 3"
+6af5c4a2-dc47-4246-90af-3e091078367d	20-0010_04_040521/	20-0010_04_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	31-10006	CKD	Label-free autofluorescence image		lorem ipsum	N/A	
+77d58458-6624-430e-a024-0561557b5b3d	20-0009_20A_040421/	20-0009_20A_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	29-10011	CKD	Label-free autofluorescence image		lorem ipsum	N/A	Only 3 channels when inspected by hand, no Autofluorescence 3
 77d58458-6624-430e-a024-0561557b5b3d	20-0009_20A_040421/	20-0009_20A_stained.tif	In S3	3D Tissue Imaging and Cytometry	29-10011	CKD	8-channel fluorescence image volume		lorem ipsum	N/A	
-a0674b77-65e1-4d91-811b-076f0a84431b	20-0007_20_040221/	20-0007_20_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	34-10050	AKI	Label-free auto-fluorescent image		lorem ipsum	N/A	
+a0674b77-65e1-4d91-811b-076f0a84431b	20-0007_20_040221/	20-0007_20_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	34-10050	AKI	Label-free autofluorescence image		lorem ipsum	N/A	
 a0674b77-65e1-4d91-811b-076f0a84431b	20-0007_20_040221/	20-0007_20_stained.tif	In S3	3D Tissue Imaging and Cytometry	34-10050	AKI	8-channel fluorescence image volume		lorem ipsum	N/A	
 f4011dd2-565f-4b2f-b63c-5db5530b72ea	19-0001-16_040121/	19-0001_16_112219_stained.tif	In S3	3D Tissue Imaging and Cytometry	29-10006	CKD	8-channel fluorescence image volume		lorem ipsum	N/A	good - Need to ask TIS why they have two in there
 f4011dd2-565f-4b2f-b63c-5db5530b72ea	19-0001-16_040121/	19-0001_16_112519_stained.tif	In S3	3D Tissue Imaging and Cytometry	29-10006	CKD	8-channel fluorescence image volume		lorem ipsum	N/A	
-f4011dd2-565f-4b2f-b63c-5db5530b72ea	19-0001-16_040121/	19-0001_16_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	29-10006	CKD	Label-free auto-fluorescent image		lorem ipsum	N/A	
-9c1fea50-67c5-4d22-9cac-e21b72ac17e5	19-0002-16_033121/	19-0002_16_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	29-10007	CKD	Label-free auto-fluorescent image		lorem ipsum	N/A	
+f4011dd2-565f-4b2f-b63c-5db5530b72ea	19-0001-16_040121/	19-0001_16_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	29-10006	CKD	Label-free autofluorescence image		lorem ipsum	N/A	
+9c1fea50-67c5-4d22-9cac-e21b72ac17e5	19-0002-16_033121/	19-0002_16_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	29-10007	CKD	Label-free autofluorescence image		lorem ipsum	N/A	
 9c1fea50-67c5-4d22-9cac-e21b72ac17e5	19-0002-16_033121/	19-0002_16_stained.tif	In S3	3D Tissue Imaging and Cytometry	29-10007	CKD	8-channel fluorescence image volume		lorem ipsum	N/A	
-35db83ab-b7bd-47c6-b6a4-0fd7e66fce74	19-0004_20_033021/	19-0004_20A_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	32-2	AKI	Label-free auto-fluorescent image		lorem ipsum	N/A	
+35db83ab-b7bd-47c6-b6a4-0fd7e66fce74	19-0004_20_033021/	19-0004_20A_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	32-2	AKI	Label-free autofluorescence image		lorem ipsum	N/A	
 35db83ab-b7bd-47c6-b6a4-0fd7e66fce74	19-0004_20_033021/	19-0004_20_stained.tif	In S3	3D Tissue Imaging and Cytometry	32-2	AKI	8-channel fluorescence image volume		lorem ipsum	N/A	
-aff51fcd-1c86-4bc4-b200-d40849b62595	19-0003-20A_033021/	19-0003_20A_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	31-10000	CKD	Label-free auto-fluorescent image		lorem ipsum	N/A	
+aff51fcd-1c86-4bc4-b200-d40849b62595	19-0003-20A_033021/	19-0003_20A_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	31-10000	CKD	Label-free autofluorescence image		lorem ipsum	N/A	
 aff51fcd-1c86-4bc4-b200-d40849b62595	19-0003-20A_033021/	19-0003_20A_stained.tif	In S3	3D Tissue Imaging and Cytometry	31-10000	CKD	8-channel fluorescence image volume		lorem ipsum	N/A	
-78b87ee7-ddea-46a6-8a3b-1bfba0a9f797	20-0044_04_012121/	20-0044_04_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	31-10035	CKD	Label-free auto-fluorescent image		lorem ipsum	N/A	
+78b87ee7-ddea-46a6-8a3b-1bfba0a9f797	20-0044_04_012121/	20-0044_04_labelfree.tif	In S3	3D Tissue Imaging and Cytometry	31-10035	CKD	Label-free autofluorescence image		lorem ipsum	N/A	
 78b87ee7-ddea-46a6-8a3b-1bfba0a9f797	20-0044_04_012121/	20-0044_04_stained.tif	In S3	3D Tissue Imaging and Cytometry	31-10035	CKD	8-channel fluorescence image volume		lorem ipsum	N/A	
 6a835203-9031-4d27-b024-f051cc6dbfe5		S-1908-010098_HE_1of2.svs	In S3	Light Microscopic Whole Slide Images	32-10034	AKI	Hematoxylin and eosin (H&E) histochemical stain	L01	lorem ipsum	N/A	
 6a835203-9031-4d27-b024-f051cc6dbfe5		S-1908-010099_HE_2of2.svs	In S3	Light Microscopic Whole Slide Images	32-10034	AKI	Hematoxylin and eosin (H&E) histochemical stain	L09	lorem ipsum	N/A	
@@ -134,7 +134,3 @@ fb4ec971-50f6-4d04-88f7-9144a82b4667		S-1908-000897_TRI_2of2.svs	In S3	Light Mic
 387f28b5-91bc-4b61-92e6-9ee01018ee78		S-1910-000183_PAS_2of2.svs	In S3	Light Microscopic Whole Slide Images	31-10035	CKD	Periodic acid-Schiff (PAS) histochemical stain	L10	lorem ipsum	N/A	
 387f28b5-91bc-4b61-92e6-9ee01018ee78		S-1910-000187_TRI_2of2.svs	In S3	Light Microscopic Whole Slide Images	31-10035	CKD	Trichrome (TRI) histochemical stain	L11	lorem ipsum	N/A	
 387f28b5-91bc-4b61-92e6-9ee01018ee78		S-1910-000185_SIL_2of2.svs	In S3	Light Microscopic Whole Slide Images	31-10035	CKD	Jones' Methenamine Silver (SIL) histochemical stain	L12	lorem ipsum	N/A	
-babdf186-68b2-4531-aa63-eeead8897a3e		babdf186-68b2-4531-aa63-eeead8897a3e.tif	In S3	CODEX	3828_UCSF_1	CKD	CODEX		lorem ipsum	N/A	
-26191c64-a074-4d17-8907-20a17cecbb8c		28 CODEX 30plex experiment on 5 um Native Lupus 1 reg_1 reg_2_reg002.tif	In S3	CODEX	3212_UCSF_1	CKD	CODEX		lorem ipsum	N/A	
-26191c64-a074-4d17-8907-20a17cecbb8c		Native_Lupus_1_reg_1_reg_2_reg002.tif	In S3	CODEX	3212_UCSF_1	CKD	CODEX		lorem ipsum	N/A
-babdf186-68b2-4531-aa63-eeead8897a3e		final_tif.tif	In S3	CODEX	3828_UCSF_1	CKD	CODEX		lorem ipsum	N/A
