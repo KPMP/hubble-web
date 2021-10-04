@@ -69,8 +69,6 @@ class ImageDatasetList extends Component {
                 <Row>
                     <Col md={12}>
                         <Container className='rounded border shadow-sm my-3 pl-0 pr-0 pb-0 overflow-auto'>
-                            <Row>
-                                <Col xs={12}>
                             <table className="table table-hover table-bordered table-striped mb-0" width="100%">
                                 <thead>
                                     <TableFilter
@@ -101,8 +99,6 @@ class ImageDatasetList extends Component {
                                     {this.getCells(this.state.tableData)}
                                 </tbody>
                             </table>
-                            </Col>
-                            </Row>
                         </Container>
                     </Col>
                 </Row>
