@@ -57,7 +57,7 @@ class ImageDatasetList extends Component {
 
     render() {
         return (
-            <Container id='outer-wrapper'>
+            <Container id='outer-wrapper' className="multi-container-container">
                 <Row>
                     <Col md={12}>
                         <Container className="mt-3 rounded border p-3 shadow-sm">
