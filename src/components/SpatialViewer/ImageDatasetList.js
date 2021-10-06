@@ -57,7 +57,7 @@ class ImageDatasetList extends Component {
 
     render() {
         return (
-            <Container id='outer-wrapper'>
+            <Container id='outer-wrapper' className="multi-container-container">
                 <Row>
                     <Col md={12}>
                         <Container className="mt-3 rounded border p-3 shadow-sm">
@@ -69,29 +69,29 @@ class ImageDatasetList extends Component {
                 <Row>
                     <Col md={12}>
                         <Container className='rounded border shadow-sm my-3 pl-0 pr-0 pb-0 overflow-auto'>
-                            <table className="table table-hover table-bordered table-striped mb-0" width="100%">
+                            <table className="table table-hover table-striped mb-0" width="100%">
                                 <thead>
                                     <TableFilter
                                         rows={this.state.tableData}
                                         onFilterUpdate={this.filterUpdated}
                                         ref={(node) => { this.tableFilterNode = node; }}>
                                         <th filterkey="Participant ID">
-                                            PARTICIPANT ID
+                                            <span className="mr-3"> PARTICIPANT ID</span>
                                         </th>
                                         <th filterkey="Data Type">
-                                            DATA TYPE
+                                            <span className="mr-3">DATA TYPE</span>
                                         </th>
                                         <th filterkey="Tissue Type">
-                                            TISSUE TYPE
+                                            <span className="mr-3">TISSUE TYPE</span>
                                         </th>
                                         <th filterkey="Image Type">
-                                            IMAGE TYPE
+                                            <span className="mr-3">IMAGE TYPE</span>
                                         </th>
                                         <th filterkey="Level">
-                                            LEVEL
+                                            <span className="mr-3">LEVEL</span>
                                         </th>
                                         <th filterkey="Source File">
-                                            FILE NAME
+                                            <span className="mr-3">FILE NAME</span>
                                         </th>
                                     </TableFilter>
                                 </thead>
