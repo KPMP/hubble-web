@@ -57,7 +57,7 @@ class ImageDatasetList extends Component {
 
     render() {
         return (
-            <Container id='outer-wrapper'>
+            <Container id='outer-wrapper' className="multi-container-container">
                 <Row>
                     <Col md={12}>
                         <Container className="mt-3 rounded border p-3 shadow-sm">
@@ -69,7 +69,7 @@ class ImageDatasetList extends Component {
                 <Row>
                     <Col md={12}>
                         <Container className='rounded border shadow-sm my-3 pl-0 pr-0 pb-0 overflow-auto'>
-                            <table className="table table-hover table-bordered table-striped mb-0" width="100%">
+                            <table className="table table-hover table-striped mb-0" width="100%">
                                 <thead>
                                     <TableFilter
                                         rows={this.state.tableData}
