@@ -76,22 +76,22 @@ class ImageDatasetList extends Component {
                                         onFilterUpdate={this.filterUpdated}
                                         ref={(node) => { this.tableFilterNode = node; }}>
                                         <th filterkey="Participant ID">
-                                            <span className="mr-2"> PARTICIPANT ID</span>
+                                            <span className="mr-3"> PARTICIPANT ID</span>
                                         </th>
                                         <th filterkey="Data Type">
-                                            <span className="mr-2">DATA TYPE</span>
+                                            <span className="mr-3">DATA TYPE</span>
                                         </th>
                                         <th filterkey="Tissue Type">
-                                            <span className="mr-2">TISSUE TYPE</span>
+                                            <span className="mr-3">TISSUE TYPE</span>
                                         </th>
                                         <th filterkey="Image Type">
-                                            <span className="mr-2">IMAGE TYPE</span>
+                                            <span className="mr-3">IMAGE TYPE</span>
                                         </th>
                                         <th filterkey="Level">
-                                            <span className="mr-2">LEVEL</span>
+                                            <span className="mr-3">LEVEL</span>
                                         </th>
                                         <th filterkey="Source File">
-                                            <span className="mr-2">FILE NAME</span>
+                                            <span className="mr-3">FILE NAME</span>
                                         </th>
                                     </TableFilter>
                                 </thead>
