@@ -9,5 +9,5 @@ export default class Api {
 }
 
 export const getFileLink = async (queryString) => {
-  return Api.getInstance().get("https://qa-atlas.kpmp.org/api/v1/derived/download/" + queryString)
+  return Api.getInstance().get("/api/v1/derived/download/" + queryString)
 };

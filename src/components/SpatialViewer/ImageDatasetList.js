@@ -76,22 +76,22 @@ class ImageDatasetList extends Component {
                                         onFilterUpdate={this.filterUpdated}
                                         ref={(node) => { this.tableFilterNode = node; }}>
                                         <th filterkey="Participant ID">
-                                            PARTICIPANT ID
+                                            <span className="mr-2"> PARTICIPANT ID</span>
                                         </th>
                                         <th filterkey="Data Type">
-                                            DATA TYPE
+                                            <span className="mr-2">DATA TYPE</span>
                                         </th>
                                         <th filterkey="Tissue Type">
-                                            TISSUE TYPE
+                                            <span className="mr-2">TISSUE TYPE</span>
                                         </th>
                                         <th filterkey="Image Type">
-                                            IMAGE TYPE
+                                            <span className="mr-2">IMAGE TYPE</span>
                                         </th>
                                         <th filterkey="Level">
-                                            LEVEL
+                                            <span className="mr-2">LEVEL</span>
                                         </th>
                                         <th filterkey="Source File">
-                                            FILE NAME
+                                            <span className="mr-2">FILE NAME</span>
                                         </th>
                                     </TableFilter>
                                 </thead>
