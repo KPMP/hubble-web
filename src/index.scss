@@ -45,3 +45,10 @@
     display: none;
 }
 
+th[title='Acquisition Date'] {
+    display:none;
+}
+
+th[title='Pixels Type'], th[title='Pixels Type'] + td {
+    display:none;
+}
