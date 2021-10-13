@@ -45,7 +45,7 @@ class SpatialViewer extends Component {
                 </Row>
                     <Vitessce
                     config={this.state.viewConfig}
-                    height={800}
+                    height={window.innerHeight - 200}
                     theme="light" />
                 </div>
             }
