@@ -7,6 +7,11 @@
   "dependencies": {
     "axios": "0.21.1",
     "bootstrap-css-only": "4.4.1",
+    "@fortawesome/fontawesome-svg-core": "1.2.25",
+    "@fortawesome/free-brands-svg-icons": "5.11.2",
+    "@fortawesome/free-regular-svg-icons": "5.11.2",
+    "@fortawesome/free-solid-svg-icons": "5.11.2",
+    "@fortawesome/react-fontawesome": "0.1.7",
     "history": "5.0.1",
     "kpmp-common-components": "1.1.4",
     "kpmp-common-styles": "1.0.6",
