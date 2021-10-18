@@ -36,11 +36,11 @@ class ImageDatasetList extends Component {
                         {item["Tissue Type"]}
                     </td>
                     <td>
-                        <Row>
-                        <Col md={11}>
+                        <Row className='icon-row'>
+                        <Col>
                         <span>{item["Image Type"]}</span>
                         </Col>
-                        {getImageTypeTooltipCopy(item["Image Type"]) !== "3" &&
+                        {getImageTypeTooltipCopy(item["Image Type"]) !== "" &&
                             <div>
                             <span className="icon-info">
                                 <FontAwesomeIcon className='kpmp-light-blue'  id='fold-change-tt' icon={faInfoCircle} />
@@ -83,7 +83,7 @@ class ImageDatasetList extends Component {
                 </Row>
                 <Row>
                     <Col md={12}>
-                        <Container className='rounded border shadow-sm my-3 p-3 overflow-visible'>
+                        <Container className='rounded border shadow-sm my-3 p-3 overflow-auto'>
                             <table className="table table-hover table-striped mb-0" width="100%">
                                 <thead>
                                     <TableFilter
