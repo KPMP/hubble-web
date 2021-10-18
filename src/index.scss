@@ -43,3 +43,20 @@
 .layer-controller-container > div:last-child > button {
     display: none;
 }
+
+.icon-info {
+    color: #0275d8;
+    cursor: pointer;
+}
+
+.tooltip-parent {
+    white-space: normal;
+    position: absolute;
+    background-color: #fff;
+    display: none;
+    width: 10rem;
+}
+
+.icon-info:hover + .tooltip-parent {
+    display: block;
+}
