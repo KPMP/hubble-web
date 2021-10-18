@@ -33,10 +33,28 @@ export const populateViewConfig = async (viewConfig, selectedDataset) => {
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', getDerivedImageName(selectedDataset["Source File"]));
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_URL>', response.data);
     stringifiedConfig = stringifiedConfig.replace('<DATASET_INFO>', getDatasetInfo(selectedDataset));
-    console.log(stringifiedConfig);
     return JSON.parse(stringifiedConfig);
 }
 
 export const getDerivedImageName = (imageName) => {
     return imageName.split('.')[0] + '-ome.tif'
 }
+
+export const getImageTypeTooltipCopy = (imageType) => {
+    console.log('imageType:', imageType)
+    const availableCopy = {
+        "RGB max projection of 8-channel immunofluorescence image volume": "8-channel volume combined into a single maximum projection and converted to RGB color space.",
+        "Composite max projection of 8-channel immunofluorescence image volume": "8-channel volume combined into a single maximum projection; composite image consists of 8 channels.",
+        "Composite 3D 8-channel immunofluorescence image volume": "3D volume completely represented as a stack of individual, 8-channel images. Every focal plane image and every channel can be independently inspected.",
+        "RGB max projection of 2-channel (autofluorescence and second harmonic generation) image volume": "Projection of 3D volume collected prior to labeling; channels cannot be controlled.",
+        "CODEX": '',
+    };
+    
+    let copy = availableCopy[imageType];
+
+    if (!copy) {
+        copy = '';
+    }
+    return copy;
+}
+

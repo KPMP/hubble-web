@@ -3,7 +3,7 @@ import { Col, Container, Row } from "reactstrap";
 import TableFilter from "react-table-filter";
 import 'react-table-filter/lib/styles.css';
 import { getSpatialDataAsJSON } from "../../helpers/dataHelper";
-import { getDerivedImageName } from "./viewConfigHelper";
+import { getDerivedImageName, getImageTypeTooltipCopy } from "./viewConfigHelper";
 
 class ImageDatasetList extends Component {
 
@@ -22,7 +22,7 @@ class ImageDatasetList extends Component {
 
     getCells = (data) => {
         return data.map((item, index) => {
-            return (
+        return (
                 <tr key={'row_' + index}>
                     <td>
                         <button onClick={() => this.props.setSelectedImageDataset(item)} type='button' className='table-column btn btn-link text-left p-0'>{item["Participant ID"]}</button>
@@ -34,7 +34,21 @@ class ImageDatasetList extends Component {
                         {item["Tissue Type"]}
                     </td>
                     <td>
-                        {item["Image Type"]}
+                        <Row className='icon-row'>
+                        <Col>
+                        <span>{item["Image Type"]}</span>
+                        </Col>
+                        {getImageTypeTooltipCopy(item["Image Type"]) !== "" &&
+                            <div>
+                            <span className="icon-info">
+                                   <i className="fas fa-info-circle"></i>
+                            </span>
+                            <div className='tooltip-parent rounded border shadow-sm mt-1 p-2'>
+                                <span className='tooltip-child'>{getImageTypeTooltipCopy(item["Image Type"])}</span>
+                            </div>
+                            </div>
+                        }
+                        </Row>
                     </td>
                     <td>
                         {item["Level"]}
@@ -67,7 +81,7 @@ class ImageDatasetList extends Component {
                 </Row>
                 <Row>
                     <Col md={12}>
-                        <Container className='rounded border shadow-sm my-3 p-3 overflow-visible'>
+                        <Container className='rounded border shadow-sm my-3 p-3 overflow-auto'>
                             <table className="table table-hover table-striped mb-0" width="100%">
                                 <thead>
                                     <TableFilter
