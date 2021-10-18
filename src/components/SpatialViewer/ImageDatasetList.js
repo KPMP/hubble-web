@@ -4,8 +4,6 @@ import TableFilter from "react-table-filter";
 import 'react-table-filter/lib/styles.css';
 import { getSpatialDataAsJSON } from "../../helpers/dataHelper";
 import { getDerivedImageName, getImageTypeTooltipCopy } from "./viewConfigHelper";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
 class ImageDatasetList extends Component {
 
@@ -43,7 +41,7 @@ class ImageDatasetList extends Component {
                         {getImageTypeTooltipCopy(item["Image Type"]) !== "" &&
                             <div>
                             <span className="icon-info">
-                                <FontAwesomeIcon className='kpmp-light-blue'  id='fold-change-tt' icon={faInfoCircle} />
+                                   <i className="fas fa-info-circle"></i>
                             </span>
                             <div className='tooltip-parent rounded border shadow-sm mt-1 p-2'>
                                 <span className='tooltip-child'>{getImageTypeTooltipCopy(item["Image Type"])}</span>
