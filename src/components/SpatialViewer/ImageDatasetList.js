@@ -101,7 +101,14 @@ class ImageDatasetList extends Component {
                                             <span className="mr-3">IMAGE TYPE</span>
                                         </th>
                                         <th filterkey="Level">
-                                            <span className="mr-3">LEVEL</span>
+                                            <span className="mr-3">LEVEL&nbsp;
+                                                <span className="icon-info">
+                                                    <i className="fas fa-info-circle"></i>
+                                                </span>
+                                                <div className='tooltip-parent rounded border shadow-sm mt-1 p-2'>
+                                                    <span className='tooltip-child'>Identifier of the section of the FFPE tissue block used in light microscopy.</span>
+                                                </div>
+                                            </span>
                                         </th>
                                         <th filterkey="Source File">
                                             <span className="mr-3">FILE NAME</span>
