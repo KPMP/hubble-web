@@ -1,11 +1,14 @@
 import lmViewConfig from './lightMicroscopyViewConfig.json';
 import threeDCytometryViewConfig from './threeDCytometryViewConfig.json';
+import threeDCytometryViewNoChannelsConfig from './threeDCytometryViewNoChannelsConfig.json';
 import { getFileLink } from "../../helpers/Api";
 
 export const getViewConfig = (type) => {
     switch (type) {
         case '3D Tissue Imaging and Cytometry':
             return threeDCytometryViewConfig;
+        case '3D Tissue Imaging and Cytometry No Channels':
+            return threeDCytometryViewNoChannelsConfig;
         case 'CODEX':
             return threeDCytometryViewConfig;
         case 'Light Microscopic Whole Slide Images':
