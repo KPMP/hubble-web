@@ -7,7 +7,6 @@
   "dependencies": {
     "axios": "0.21.1",
     "bootstrap-css-only": "4.4.1",
-    "bootstrap-css-only": "4.4.1",
     "history": "5.0.1",
     "kpmp-common-components": "1.1.4",
     "kpmp-common-styles": "1.0.6",
