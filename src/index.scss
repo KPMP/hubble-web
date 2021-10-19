@@ -44,6 +44,19 @@
     display: none;
 }
 
+
+.layer-controller-container > div:first-child > div:first-child > div:last-child > div:first-child> div:first-child> div:first-child> div:first-child> button:last-child {
+    display: none;
+}
+
+th[title='Acquisition Date'] {
+    display:none;
+}
+
+th[title='Pixels Type'], th[title='Pixels Type'] + td {
+    display:none;
+}
+
 .icon-info {
     color: #0275d8;
     cursor: pointer !important;
@@ -66,3 +79,4 @@
 .icon-row .col {
     max-width: 90%;
 }
+
