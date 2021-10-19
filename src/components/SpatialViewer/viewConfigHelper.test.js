@@ -1,4 +1,4 @@
-import { getViewConfig, populateViewConfig, getDatasetInfo, getDerivedImageName } from './viewConfigHelper';
+import { getViewConfig, populateViewConfig, getDatasetInfo, getDerivedImageName, getImageTypeTooltipCopy } from './viewConfigHelper';
 import lmViewConfig from './lightMicroscopyViewConfig.json';
 import threeDCytometryViewConfig from './threeDCytometryViewConfig.json';
 import * as helpers from '../../helpers/Api';
@@ -138,4 +138,44 @@ describe('getDerivedImageName',() => {
         expect(derivedName).toBe('babyGot-ome.tif');
     })
 });
+
+describe('getImageTypeTooltipCopy',() => {
+     it('should return empty when copy not available', () => {
+        const expectedCopy = '';
+        const copy = getImageTypeTooltipCopy('');
+        expect(copy).toBe(expectedCopy);
+    });
+
+    it('should return empty when copy not available', () => {
+        const expectedCopy = '';
+        const copy = getImageTypeTooltipCopy('AS(DJ9asdjasd');
+        expect(copy).toBe(expectedCopy);
+    });
+
+
+     it('should return copy for RGB max projection of 8-channel immunofluorescence image volume', () => {
+        const expectedCopy = '8-channel volume combined into a single maximum projection and converted to RGB color space.';
+        const copy = getImageTypeTooltipCopy('RGB max projection of 8-channel immunofluorescence image volume');
+        expect(copy).toBe(expectedCopy);
+    });
+
+     it('should return copy for Composite max projection of 8-channel immunofluorescence image volume', () => {
+        const expectedCopy = '8-channel volume combined into a single maximum projection; composite image consists of 8 channels.';
+        const copy = getImageTypeTooltipCopy('Composite max projection of 8-channel immunofluorescence image volume');
+        expect(copy).toBe(expectedCopy);
+    });
+
+     it('should return copy for Composite 3D 8-channel immunofluorescence image volume', () => {
+        const expectedCopy = '3D volume completely represented as a stack of individual, 8-channel images. Every focal plane image and every channel can be independently inspected.';
+        const copy = getImageTypeTooltipCopy('Composite 3D 8-channel immunofluorescence image volume');
+        expect(copy).toBe(expectedCopy);
+    });
+
+     it('should return copy for RGB max projection of 2-channel (autofluorescence and second harmonic generation) image volume', () => {
+        const expectedCopy = 'Projection of 3D volume collected prior to labeling; channels cannot be controlled.';
+        const copy = getImageTypeTooltipCopy('RGB max projection of 2-channel (autofluorescence and second harmonic generation) image volume');
+        expect(copy).toBe(expectedCopy);
+    });
+
+    });
 

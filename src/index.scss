@@ -44,6 +44,7 @@
     display: none;
 }
 
+
 .layer-controller-container > div:first-child > div:first-child > div:last-child > div:first-child> div:first-child> div:first-child> div:first-child> button:last-child {
     display: none;
 }
@@ -55,3 +56,27 @@ th[title='Acquisition Date'] {
 th[title='Pixels Type'], th[title='Pixels Type'] + td {
     display:none;
 }
+
+.icon-info {
+    color: #0275d8;
+    cursor: pointer !important;
+}
+
+.tooltip-parent {
+    z-index: 10;
+    cursor: pointer;
+    white-space: normal;
+    position: absolute;
+    background-color: #fff;
+    display: none;
+    width: 10rem;
+}
+
+.icon-info:hover + .tooltip-parent {
+    display: block;
+}
+
+.icon-row .col {
+    max-width: 90%;
+}
+
