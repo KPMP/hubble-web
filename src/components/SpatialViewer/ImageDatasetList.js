@@ -101,7 +101,7 @@ class ImageDatasetList extends Component {
                                             <span className="mr-3">IMAGE TYPE</span>
                                         </th>
                                         <th filterkey="Level">
-                                            <span className="mr-3">LEVEL&nbsp;
+                                            <span className="mr-4">LEVEL&nbsp;
                                                 <span className="icon-info">
                                                     <i className="fas fa-info-circle"></i>
                                                 </span>
