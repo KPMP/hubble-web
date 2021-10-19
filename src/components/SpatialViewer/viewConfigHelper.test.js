@@ -1,6 +1,7 @@
 import { getViewConfig, populateViewConfig, getDatasetInfo, getDerivedImageName, getImageTypeTooltipCopy } from './viewConfigHelper';
 import lmViewConfig from './lightMicroscopyViewConfig.json';
 import threeDCytometryViewConfig from './threeDCytometryViewConfig.json';
+import threeDCytometryViewNoChannelsConfig from './threeDCytometryViewNoChannelsConfig.json';
 import * as helpers from '../../helpers/Api';
 
 describe('getViewConfig', () => {
@@ -14,6 +15,12 @@ describe('getViewConfig', () => {
     it ('should return light microscopy config when Light Microscopic Whole Slide Images', () => {
         let config = getViewConfig('Light Microscopic Whole Slide Images');
         let expectedConfig = lmViewConfig;
+
+        expect(config).toEqual(expectedConfig);
+    });
+    it ('should return no channel 3dcyto config when given 3d cyto no channel', () => {
+        let config = getViewConfig('3D Tissue Imaging and Cytometry No Channels');
+        let expectedConfig = threeDCytometryViewNoChannelsConfig;
 
         expect(config).toEqual(expectedConfig);
     });
