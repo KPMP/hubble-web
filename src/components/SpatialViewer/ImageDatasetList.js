@@ -24,16 +24,16 @@ class ImageDatasetList extends Component {
         return data.map((item, index) => {
         return (
                 <tr key={'row_' + index}>
-                    <td>
+                    <td className='participant-id'>
                         <button onClick={() => this.props.setSelectedImageDataset(item)} type='button' className='table-column btn btn-link text-left p-0'>{item["Participant ID"]}</button>
                     </td>
-                    <td>
+                    <td className='data-type'>
                         {item["Data Type"]}
                     </td>
-                    <td>
+                    <td className='tissue-type'>
                         {item["Tissue Type"]}
                     </td>
-                    <td>
+                    <td className='icon-row'>
                         <Row className='icon-row'>
                         <Col>
                         <span>{item["Image Type"]}</span>
@@ -50,10 +50,10 @@ class ImageDatasetList extends Component {
                         }
                         </Row>
                     </td>
-                    <td>
+                    <td className='level'>
                         {item["Level"]}
                     </td>
-                    <td>
+                    <td className='source-file'>
                         {getDerivedImageName(item["Source File"])}
                     </td>
                 </tr>
@@ -82,25 +82,26 @@ class ImageDatasetList extends Component {
                 <Row>
                     <Col md={12}>
                         <Container className='rounded border shadow-sm my-3 p-3 overflow-auto'>
+                            <div className="spatial-data-table">
                             <table className="table table-hover table-striped mb-0" width="100%">
                                 <thead>
                                     <TableFilter
                                         rows={this.state.tableData}
                                         onFilterUpdate={this.filterUpdated}
                                         ref={(node) => { this.tableFilterNode = node; }}>
-                                        <th filterkey="Participant ID">
+                                        <th className='participant-id' filterkey="Participant ID">
                                             <span className="mr-3"> PARTICIPANT ID</span>
                                         </th>
-                                        <th filterkey="Data Type">
+                                        <th className='data-type' filterkey="Data Type">
                                             <span className="mr-3">DATA TYPE</span>
                                         </th>
-                                        <th filterkey="Tissue Type">
+                                        <th className='tissue-type' filterkey="Tissue Type">
                                             <span className="mr-3">TISSUE TYPE</span>
                                         </th>
-                                        <th filterkey="Image Type">
+                                        <th className='image-type' filterkey="Image Type">
                                             <span className="mr-3">IMAGE TYPE</span>
                                         </th>
-                                        <th filterkey="Level">
+                                        <th className='level' filterkey="Level">
                                             <span className="mr-4">LEVEL&nbsp;
                                                 <span className="icon-info">
                                                     <i className="fas fa-info-circle"></i>
@@ -110,7 +111,7 @@ class ImageDatasetList extends Component {
                                                 </div>
                                             </span>
                                         </th>
-                                        <th filterkey="Source File">
+                                        <th className='source-file' filterkey="Source File">
                                             <span className="mr-3">FILE NAME</span>
                                         </th>
                                     </TableFilter>
@@ -119,6 +120,7 @@ class ImageDatasetList extends Component {
                                     {this.getCells(this.state.tableData)}
                                 </tbody>
                             </table>
+                            </div>
                         </Container>
                     </Col>
                 </Row>
