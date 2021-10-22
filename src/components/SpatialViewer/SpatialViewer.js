@@ -36,10 +36,10 @@ class SpatialViewer extends Component {
                 {!this.state.noData &&
                     <div>
                 <Row xs='12'>
-                    <Col xs='10'><h5>
+                    <Col xs='8'><h5>
                         {this.state.headerString}
                     </h5></Col>
-                    <Col xs='2' className="text-right text-primary ">
+                    <Col xs='4' className="text-right text-primary ">
                         <button onClick={() => {window.location.href=baseURL}} type='button' className='btn btn-link'>
                             <h5><span style={{"font-size":"26px"}}>&larr;</span> Close viewer</h5></button></Col>
                 </Row>
