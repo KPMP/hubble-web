@@ -29,12 +29,12 @@ body {
   overflow-y: scroll;
   /* xs to sm */
   top: calc(59px);
-  height: calc(100vh + 10px - 59px - 32px);
+  height: calc(100vh + 10px - 59px - 40px);
   /* md and up */ }
   @media (min-width: 768px) {
     #root {
       top: calc(59px);
-      height: calc(100vh + 10px - 59px - 32px); } }
+      height: calc(100vh + 10px - 59px - 40px); } }
 
 #oops-content {
   margin-top: 150px; }
