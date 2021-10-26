@@ -95,27 +95,75 @@ th[title='Pixels Type'], th[title='Pixels Type'] + td {
 
 
 .participant-id {
+    min-width: 110px;
     width: 110px;
     max-width: 110px;
 }
 
 .data-type {
+    min-width: 155px;
     width: 155px;
     max-width: 155px;
 }
 
 .tissue-type {
+    min-width: 100px;
     width: 100px;
     max-width: 100px;
 }
 
 .image-type {
+    min-width: 350px;
     width: 350px;
     max-width: 350px;
 }
 
 .level {
+    min-width: 80px;
     width: 80px;
     max-width: 80px;
 }
+.source-file {
+    min-width: 400px;
+    width: 400px;
+    max-width: 400px;
+}
+@media only screen and (max-width: 1200px) {
+    .tissue-type {
+        background-color: blue;
+    }
 
+    .image-type {
+        width: 300px;
+        max-width: 300px;
+    }
+
+    .participant-id {
+        min-width: 110px;
+        width: 110px;
+        max-width: 110px;
+    }
+
+    .data-type {
+        min-width: 200px;
+        width: 200px;
+        max-width: 200px;
+    }
+
+    .tissue-type {
+        min-width: 100px;
+        width: 100px;
+        max-width: 100px;
+    }
+
+    .level {
+        min-width: 80px;
+        width: 80px;
+        max-width: 80px;
+    }
+    .source-file {
+        min-width: 450px;
+        width: 450px;
+        max-width: 450px;
+    }
+}
