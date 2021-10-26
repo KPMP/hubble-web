@@ -10,6 +10,7 @@ import { createBrowserHistory } from 'history';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import ErrorBoundaryContainer from './components/Error/ErrorBoundaryContainer';
 import Oops from './components/Error/Oops';
+import NotFoundPage from './components/Error/NotFoundPage';
 import ImageDatasetListContainer from "./components/SpatialViewer/ImageDatasetListContainer";
 import SpatialViewerContainer from "./components/SpatialViewer/SpatialViewerContainer";
 import { baseURL } from '../package.json';
@@ -62,6 +63,7 @@ class App extends Component {
               <Route exact path="/" component={ImageDatasetListContainer} store={store} />
               <Route exact path="/view" component={SpatialViewerContainer} store={store} />
               <Route exact path="/oops" component={Oops} />
+              <Route path='*' component={NotFoundPage} />
             </Switch>
             <NavFooter app='atlas' />
           </ErrorBoundaryContainer>
