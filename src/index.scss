@@ -129,11 +129,7 @@ th[title='Pixels Type'], th[title='Pixels Type'] + td {
     max-width: 400px;
 }
 @media only screen and (max-width: 1200px) {
-    .tissue-type {
-        background-color: blue;
-    }
-
-    .image-type {
+   .image-type {
         width: 300px;
         max-width: 300px;
     }
