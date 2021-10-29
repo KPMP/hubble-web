@@ -21,7 +21,7 @@ export const getViewConfig = (type) => {
 export const getDatasetInfo = (selectedDataset) => {
     let datasetInfo = '';
     if(selectedDataset["Image Type"]) {
-        if(selectedDataset["Data Type"] == "Light Microscopic Whole Slide Images" && selectedDataset["Level"]) {
+        if(selectedDataset["Data Type"] === "Light Microscopic Whole Slide Images" && selectedDataset["Level"]) {
             datasetInfo = `${selectedDataset["Image Type"]} (${selectedDataset["Level"]})`
         } else {
             datasetInfo = selectedDataset["Image Type"]
