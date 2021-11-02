@@ -1,0 +1,165 @@
+@import "kpmp-base.scss";
+@import "../node_modules/kpmp-common-styles/index.scss";
+
+#navbar .navbar-brand img.logo {
+    width: 80px;
+    min-width: 80px;
+}
+
+.vitessce-container {
+    .card-body {
+        background-color: #FAFBFC !important;
+    }
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #color;
+}
+
+.table th {
+    white-space: nowrap;
+}
+
+.spatial-data-table {
+    height: 650px;
+    overflow: auto;
+}
+
+.spatial-data-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background-color: #fff;
+}
+
+.spatial-data-table .filter-list {
+    top: 223%;
+    background-color: #fff;
+}
+
+#vitessce-container {
+    height: auto;
+    background: #fff;
+    .react-grid-layout {
+        position: relative;
+    }
+}
+
+.btn-link:hover {
+    text-decoration: none;
+}
+
+.title > span.details > span > button:first-child {
+    display: none;
+}
+
+.title > span.details > span > button:last-child {
+    display: none;
+}
+
+.layer-controller-container > div:last-child > button {
+    display: none;
+}
+
+th[title='Acquisition Date'] {
+    display:none;
+}
+
+th[title='Pixels Type'], th[title='Pixels Type'] + td {
+    display:none;
+}
+
+.icon-info {
+    color: #0275d8;
+    cursor: pointer !important;
+    font-size: 14px;
+}
+
+.tooltip-parent {
+    z-index: 10;
+    cursor: pointer;
+    white-space: normal;
+    position: absolute;
+    background-color: #fff;
+    display: none;
+    width: 10rem;
+}
+
+.icon-info:hover + .tooltip-parent {
+    display: block;
+}
+
+.icon-row .col {
+    max-width: 90%;
+}
+
+
+.participant-id {
+    min-width: 120px;
+    width: 120px;
+    max-width: 120px;
+}
+
+.data-type {
+    min-width: 155px;
+    width: 155px;
+    max-width: 155px;
+}
+
+.tissue-type {
+    min-width: 100px;
+    width: 100px;
+    max-width: 100px;
+}
+
+.image-type {
+    min-width: 350px;
+    width: 350px;
+    max-width: 350px;
+}
+
+.level {
+    min-width: 80px;
+    width: 80px;
+    max-width: 80px;
+}
+.source-file {
+    min-width: 380px;
+    width: 380px;
+    max-width: 380px;
+}
+@media only screen and (max-width: 1200px) {
+   .image-type {
+        width: 300px;
+        max-width: 300px;
+    }
+
+    .participant-id {
+        min-width: 120px;
+        width: 120px;
+        max-width: 120px;
+    }
+
+    .data-type {
+        min-width: 200px;
+        width: 200px;
+        max-width: 200px;
+    }
+
+    .tissue-type {
+        min-width: 100px;
+        width: 100px;
+        max-width: 100px;
+    }
+
+    .level {
+        min-width: 80px;
+        width: 80px;
+        max-width: 80px;
+    }
+    .source-file {
+        min-width: 450px;
+        width: 450px;
+        max-width: 450px;
+    }
+}

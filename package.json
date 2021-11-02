@@ -1,0 +1,58 @@
+{
+  "name": "hubble-web",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "/spatial-viewer",
+  "baseURL": "/spatial-viewer",
+  "dependencies": {
+    "axios": "0.21.1",
+    "bootstrap-css-only": "4.4.1",
+    "history": "5.0.1",
+    "kpmp-common-components": "1.1.4",
+    "kpmp-common-styles": "1.0.9",
+    "node-sass-chokidar": "1.5.0",
+    "npm-run-all": "4.1.5",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-ga": "3.3.0",
+    "react-papaparse": "^3.17.2",
+    "react-redux": "7.2.4",
+    "react-router-dom": "5.2.1",
+    "react-scripts": "4.0.3",
+    "react-table-filter": "^2.0.2",
+    "reactstrap": "^8.9.0",
+    "redux": "4.1.1",
+    "redux-thunk": "2.3.0",
+    "vitessce": "file:vitessce-1.1.15.tgz"
+  },
+  "scripts": {
+    "start": "npm-run-all -p watch-css start-js",
+    "build": "npm-run-all build-css build-js",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "start-js": "craco start --max_old_space_size=4096",
+    "build-js": "craco build --max_old_space_size=4096",
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "yarn build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@craco/craco": "^6.3.0",
+    "craco-alias": "^3.0.1",
+    "yarn": "^1.22.11"
+  }
+}

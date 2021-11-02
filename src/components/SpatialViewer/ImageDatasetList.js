@@ -1,0 +1,133 @@
+import React, { Component } from 'react';
+import { Col, Container, Row } from "reactstrap";
+import TableFilter from "react-table-filter";
+import 'react-table-filter/lib/styles.css';
+import { getSpatialDataAsJSON } from "../../helpers/dataHelper";
+import { getDerivedImageName, getImageTypeTooltipCopy } from "./viewConfigHelper";
+
+class ImageDatasetList extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            tableData: []
+        }
+    }
+
+    filterUpdated = (newData, filterConfiguration) => {
+        this.setState({
+            "tableData": newData
+        });
+    };
+
+    getCells = (data) => {
+        return data.map((item, index) => {
+        return (
+                <tr key={'row_' + index}>
+                    <td className='participant-id'>
+                        <button onClick={() => this.props.setSelectedImageDataset(item)} type='button' className='table-column btn btn-link text-left p-0'>{item["Participant ID"]}</button>
+                    </td>
+                    <td className='data-type'>
+                        {item["Data Type"]}
+                    </td>
+                    <td className='tissue-type'>
+                        {item["Tissue Type"]}
+                    </td>
+                    <td className='icon-row'>
+                        <Row className='icon-row'>
+                        <Col>
+                        <span>{item["Image Type"]}</span>
+                        </Col>
+                        {getImageTypeTooltipCopy(item["Image Type"]) !== "" &&
+                            <div>
+                            <span className="icon-info">
+                                   <i className="fas fa-info-circle"></i>
+                            </span>
+                            <div className='tooltip-parent rounded border shadow-sm mt-1 p-2'>
+                                <span className='tooltip-child'>{getImageTypeTooltipCopy(item["Image Type"])}</span>
+                            </div>
+                            </div>
+                        }
+                        </Row>
+                    </td>
+                    <td className='level'>
+                        {item["Level"]}
+                    </td>
+                    <td className='source-file'>
+                        {getDerivedImageName(item["Source File"])}
+                    </td>
+                </tr>
+            );
+        });
+
+    };
+
+    async componentDidMount() {
+        let spatialData = await getSpatialDataAsJSON();
+        this.setState({ "tableData": spatialData });
+        this.tableFilterNode.reset(spatialData, true);
+    }
+
+    render() {
+        return (
+            <Container id='outer-wrapper' className="multi-container-container">
+                <Row>
+                    <Col md={12}>
+                        <Container className="mt-3 rounded border p-3 shadow-sm">
+                            <Row><Col><h5>Welcome to the Kidney Tissue Atlas Spatial Viewer (beta)</h5></Col></Row>
+                            <Row><Col><p>Select a spatial dataset from the list below to visualize it in the <a target="_blank" rel="noreferrer" href="http://vitessce.io/">Vitessce</a> visual integration tool.</p></Col></Row>
+                        </Container>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={12}>
+                        <Container className='rounded border shadow-sm my-3 p-3 overflow-auto'>
+                            <div className="spatial-data-table">
+                            <table className="table table-hover table-striped mb-0" width="100%">
+                                <thead>
+                                    <TableFilter
+                                        rows={this.state.tableData}
+                                        onFilterUpdate={this.filterUpdated}
+                                        ref={(node) => { this.tableFilterNode = node; }}>
+                                        <th className='participant-id' filterkey="Participant ID">
+                                            <span className="mr-3"> PARTICIPANT ID</span>
+                                        </th>
+                                        <th className='data-type' filterkey="Data Type">
+                                            <span className="mr-3">DATA TYPE</span>
+                                        </th>
+                                        <th className='tissue-type' filterkey="Tissue Type">
+                                            <span className="mr-3">TISSUE TYPE</span>
+                                        </th>
+                                        <th className='image-type' filterkey="Image Type">
+                                            <span className="mr-3">IMAGE TYPE</span>
+                                        </th>
+                                        <th className='level' filterkey="Level">
+                                            <span className="mr-4">LEVEL&nbsp;
+                                                <span className="icon-info">
+                                                    <i className="fas fa-info-circle"></i>
+                                                </span>
+                                                <div className='tooltip-parent rounded border shadow-sm mt-1 p-2'>
+                                                    <span className='tooltip-child'>Identifier of the section of the FFPE tissue block used in light microscopy.</span>
+                                                </div>
+                                            </span>
+                                        </th>
+                                        <th className='source-file' filterkey="Source File">
+                                            <span className="mr-3">FILE NAME</span>
+                                        </th>
+                                    </TableFilter>
+                                </thead>
+                                <tbody>
+                                    {this.getCells(this.state.tableData)}
+                                </tbody>
+                            </table>
+                            </div>
+                        </Container>
+                    </Col>
+                </Row>
+            </Container>
+        )
+    }
+
+}
+
+export default ImageDatasetList;
