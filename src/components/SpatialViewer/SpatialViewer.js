@@ -5,6 +5,7 @@ import { Row, Col} from "reactstrap";
 import { baseURL } from '../../../package.json';
 import { getViewConfig, populateViewConfig } from './viewConfigHelper';
 import { createHeaderString } from './spatialHelper';
+import { Redirect } from 'react-router-dom';
 
 class SpatialViewer extends Component {
 
@@ -27,9 +28,10 @@ class SpatialViewer extends Component {
     }
 
     render() {
+        if (!this.props.selectedImageDataset || (this.props.selectedImageDataset && Object.keys(this.props.selectedImageDataset).length == 0)) {
+            return <Redirect to='/' />
+        }
         
-        
-
         return (
             <div className="container-fluid">
                 <div id="vitessce-container" className="rounded border shadow-sm mt-2 mx-3 p-3">
