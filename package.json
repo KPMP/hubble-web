@@ -23,7 +23,7 @@
     "reactstrap": "8.9.0",
     "redux": "4.1.1",
     "redux-thunk": "2.3.0",
-    "vitessce": "file:vitessce-1.1.15.tgz"
+    "vitessce": "1.1.16"
   },
   "scripts": {
     "start": "npm-run-all -p watch-css start-js",
