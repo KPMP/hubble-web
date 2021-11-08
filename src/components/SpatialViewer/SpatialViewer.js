@@ -28,7 +28,7 @@ class SpatialViewer extends Component {
     }
 
     render() {
-        if (!this.props.selectedImageDataset || (this.props.selectedImageDataset && Object.keys(this.props.selectedImageDataset).length == 0)) {
+        if (!this.props.selectedImageDataset || (this.props.selectedImageDataset && Object.keys(this.props.selectedImageDataset).length === 0)) {
             return <Redirect to='/' />
         }
         
