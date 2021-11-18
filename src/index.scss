@@ -49,11 +49,8 @@
     text-decoration: none;
 }
 
-.title > span.details > span > button:first-child {
-    display: none;
-}
-
-.title > span.details > span > button:last-child {
+.title > span.details > span > button:last-child,
+.title > span.details > span > button:nth-last-child(3) { 
     display: none;
 }
 
