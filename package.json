@@ -7,8 +7,8 @@
   "dependencies": {
     "axios": "0.24.0",
     "bootstrap-css-only": "4.4.1",
-    "history": "5.1.0",
-    "kpmp-common-components": "1.1.7",
+    "history": "5.0.1",
+    "kpmp-common-components": "1.1.4",
     "kpmp-common-styles": "1.0.9",
     "node-sass-chokidar": "1.5.0",
     "npm-run-all": "4.1.5",
@@ -23,7 +23,7 @@
     "reactstrap": "8.9.0",
     "redux": "4.1.1",
     "redux-thunk": "2.3.0",
-    "vitessce": "1.1.16"
+    "vitessce": "file:vitessce-1.1.17.tgz"
   },
   "scripts": {
     "start": "npm-run-all -p watch-css start-js",
