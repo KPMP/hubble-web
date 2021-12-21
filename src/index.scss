@@ -49,24 +49,24 @@
     text-decoration: none;
 }
 
-.title > span.details > span > button:first-child {
-    display: none;
-}
-
-.title > span.details > span > button:last-child {
-    display: none;
-}
-
-.layer-controller-container > div:last-child > button {
-    display: none;
-}
-
 th[title='Acquisition Date'] {
     display:none;
 }
 
 th[title='Pixels Type'], th[title='Pixels Type'] + td {
     display:none;
+}
+
+.title-buttons > div:first-child  > button{
+    display: none
+}
+
+.title-buttons > button:last-child {
+    display: none
+}
+
+.layer-controller-container .MuiButtonBase-root-12 .MuiIconButton-root-3 {
+    top: -15.4px;
 }
 
 .icon-info {
