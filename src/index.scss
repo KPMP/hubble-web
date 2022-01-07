@@ -57,7 +57,7 @@ th[title='Pixels Type'], th[title='Pixels Type'] + td {
     display:none;
 }
 
-.title-buttons > div:first-child  > button{
+.title-buttons > div:nth-last-child(3) > button{
     display: none
 }
 
