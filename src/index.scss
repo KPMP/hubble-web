@@ -24,6 +24,7 @@
     height: 650px;
     overflow: auto;
     position: relative;
+    padding-bottom: 80px;
 }
 
 .spatial-data-table thead th {
@@ -76,6 +77,16 @@ th[title='Pixels Type'], th[title='Pixels Type'] + td {
     font-size: 14px;
 }
 
+
+tr:nth-last-of-type(1) .tooltip-parent,
+tr:nth-last-of-type(2) .tooltip-parent,
+tr:nth-last-of-type(3) .tooltip-parent {
+    cursor: pointer !important;
+    font-size: 14px;
+    margin-top: -7.75rem !important;
+    margin-left: 2rem !important;
+
+}
 .tooltip-parent {
     z-index: 10;
     cursor: pointer;
