@@ -92,8 +92,6 @@ class ImageDatasetList extends Component {
         ]
     };
 
-
-
     render() {
         return (
             <Container id='outer-wrapper' className="multi-container-container">
@@ -118,7 +116,7 @@ class ImageDatasetList extends Component {
                                     />
                                     <IntegratedSorting />
                                     <DragDropProvider />
-                                    <Table cellComponent={this.getCell} />
+                                    <Table />
                                     <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} />
                                     <TableColumnReordering
                                         defaultOrder={this.getColumns().map(item => item.name)}
