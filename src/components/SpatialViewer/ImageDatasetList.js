@@ -92,11 +92,7 @@ class ImageDatasetList extends Component {
         ]
     };
 
-    getCell = ({style, ...restProps}) => {
-        return <Table.Cell {...restProps} style={{
-            ...style,
-        }}/>;
-    };
+
 
     render() {
         return (
