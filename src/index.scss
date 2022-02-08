@@ -83,7 +83,7 @@ tr:nth-last-of-type(2) .tooltip-parent,
 tr:nth-last-of-type(3) .tooltip-parent {
     cursor: pointer !important;
     font-size: 14px;
-    margin-top: -7.75rem !important;
+    margin-bottom: -7.75rem !important;
     margin-left: 2rem !important;
 
 }
@@ -173,5 +173,13 @@ tr:nth-last-of-type(3) .tooltip-parent {
         min-width: 450px;
         width: 450px;
         max-width: 450px;
+    }
+}
+
+
+//This hides the tooltip info icon on the column selector
+.dropdown-item {
+    .tooltip-icon {
+        display: none;
     }
 }

@@ -1,9 +1,23 @@
 import React, { Component } from 'react';
 import { Col, Container, Row } from "reactstrap";
-import TableFilter from "react-table-filter";
-import 'react-table-filter/lib/styles.css';
 import { getSpatialDataAsJSON } from "../../helpers/dataHelper";
 import { getDerivedImageName, getImageTypeTooltipCopy } from "./viewConfigHelper";
+import {
+    SortingState,
+    IntegratedSorting,
+} from '@devexpress/dx-react-grid';
+import {
+    Grid,
+    Table,
+    TableHeaderRow,
+    TableColumnResizing,
+    ColumnChooser,
+    TableColumnVisibility,
+    Toolbar,
+    DragDropProvider,
+    TableColumnReordering,
+} from '@devexpress/dx-react-grid-bootstrap4';
+import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
 class ImageDatasetList extends Component {
 
@@ -14,59 +28,69 @@ class ImageDatasetList extends Component {
         }
     }
 
-    filterUpdated = (newData, filterConfiguration) => {
-        this.setState({
-            "tableData": newData
-        });
-    };
-
-    getCells = (data) => {
-        return data.map((item, index) => {
-        return (
-                <tr key={'row_' + index}>
-                    <td className='participant-id'>
-                        <button onClick={() => this.props.setSelectedImageDataset(item)} type='button' className='table-column btn btn-link text-left p-0'>{item["Participant ID"]}</button>
-                    </td>
-                    <td className='data-type'>
-                        {item["Data Type"]}
-                    </td>
-                    <td className='tissue-type'>
-                        {item["Tissue Type"]}
-                    </td>
-                    <td className='icon-row'>
-                        <Row className='icon-row'>
-                        <Col>
-                        <span>{item["Image Type"]}</span>
-                        </Col>
-                        {getImageTypeTooltipCopy(item["Image Type"]) !== "" &&
-                            <div>
-                            <span className="icon-info">
-                                   <i className="fas fa-info-circle"></i>
-                            </span>
-                            <div className='tooltip-parent rounded border shadow-sm mt-1 p-2'>
-                                <span className='tooltip-child'>{getImageTypeTooltipCopy(item["Image Type"])}</span>
-                            </div>
-                            </div>
-                        }
-                        </Row>
-                    </td>
-                    <td className='level'>
-                        {item["Level"]}
-                    </td>
-                    <td className='source-file'>
-                        {getDerivedImageName(item["Source File"])}
-                    </td>
-                </tr>
-            );
-        });
-
-    };
-
     async componentDidMount() {
         let spatialData = await getSpatialDataAsJSON();
         this.setState({ "tableData": spatialData });
-        this.tableFilterNode.reset(spatialData, true);
     }
+
+    // This is used for column ordering too.766
+    getColumns = () => {
+        return [
+            {
+                name: 'Participant ID',
+                title: 'PARTICIPANT ID',
+                getCellValue: row => <button onClick={() => this.props.setSelectedImageDataset(row)} type='button' className='table-column btn btn-link text-left p-0'>{row["Participant ID"]}</button>
+            },
+            { name: 'Data Type', title: 'DATA TYPE' },
+            { name: 'Tissue Type', title: 'TISSUE TYPE' },
+            {
+                name: 'Image Type',
+                title: 'IMAGE TYPE',
+                getCellValue: this.getImageTypeCell
+            },
+            {
+                name: 'Level',
+                title:
+                    <span>LEVEL&nbsp;
+                        <span className='tooltip-icon'>
+                        <span className="icon-info"><i className="fas fa-info-circle"></i></span>
+                        <div className='tooltip-parent rounded border shadow-sm mt-1 p-2'>
+                            <span className='tooltip-child'>Identifier of the section of the FFPE tissue block used in light microscopy.</span>
+                        </div>
+                        </span>
+                    </span>
+            },
+            {
+                name: 'Source File',
+                title: 'FILE NAME',
+                getCellValue: row => getDerivedImageName(row["Source File"])
+            }
+        ];
+    };
+
+    getImageTypeCell = (row) => {
+        return getImageTypeTooltipCopy(row["Image Type"]) !== "" &&
+                <div>
+                        <span className='mr-1'>{row["Image Type"]}</span>
+                    <span className="icon-info">
+                        <i className="fas fa-info-circle"></i>
+                    </span>
+                        <div className='tooltip-parent rounded border shadow-sm mt-1 p-2'>
+                            <span className='tooltip-child'>{getImageTypeTooltipCopy(row["Image Type"])}</span>
+                        </div>
+                    </div>
+    };
+
+    getDefaultColumnWidths = () => {
+        return [
+            { columnName: 'Participant ID', width: 120 },
+            { columnName: 'Data Type', width: 155 },
+            { columnName: 'Tissue Type', width: 100 },
+            { columnName: 'Image Type', width: 270 },
+            { columnName: 'Level', width: 100 },
+            { columnName: 'Source File', width: 250 }
+        ]
+    };
 
     render() {
         return (
@@ -83,43 +107,27 @@ class ImageDatasetList extends Component {
                     <Col md={12}>
                         <Container className='rounded border shadow-sm my-3 p-3 overflow-auto'>
                             <div className="spatial-data-table">
-                            <table className="table table-hover table-striped mb-0" width="100%">
-                                <thead>
-                                    <TableFilter
-                                        rows={this.state.tableData}
-                                        onFilterUpdate={this.filterUpdated}
-                                        ref={(node) => { this.tableFilterNode = node; }}>
-                                        <th className='participant-id' filterkey="Participant ID">
-                                            <span className="mr-3"> PARTICIPANT ID</span>
-                                        </th>
-                                        <th className='data-type' filterkey="Data Type">
-                                            <span className="mr-3">DATA TYPE</span>
-                                        </th>
-                                        <th className='tissue-type' filterkey="Tissue Type">
-                                            <span className="mr-3">TISSUE TYPE</span>
-                                        </th>
-                                        <th className='image-type' filterkey="Image Type">
-                                            <span className="mr-3">IMAGE TYPE</span>
-                                        </th>
-                                        <th className='level' filterkey="Level">
-                                            <span className="mr-4">LEVEL&nbsp;
-                                                <span className="icon-info">
-                                                    <i className="fas fa-info-circle"></i>
-                                                </span>
-                                                <div className='tooltip-parent rounded border shadow-sm mt-1 p-2'>
-                                                    <span className='tooltip-child'>Identifier of the section of the FFPE tissue block used in light microscopy.</span>
-                                                </div>
-                                            </span>
-                                        </th>
-                                        <th className='source-file' filterkey="Source File">
-                                            <span className="mr-3">FILE NAME</span>
-                                        </th>
-                                    </TableFilter>
-                                </thead>
-                                <tbody>
-                                    {this.getCells(this.state.tableData)}
-                                </tbody>
-                            </table>
+                                <Grid
+                                    rows={this.state.tableData}
+                                    columns={this.getColumns()}
+                                >
+                                    <SortingState
+                                        defaultSorting={[]}
+                                    />
+                                    <IntegratedSorting />
+                                    <DragDropProvider />
+                                    <Table />
+                                    <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} />
+                                    <TableColumnReordering
+                                        defaultOrder={this.getColumns().map(item => item.name)}
+                                    />
+                                    <TableHeaderRow showSortingControls />
+                                    <TableColumnVisibility
+                                        defaultHiddenColumnNames={[]}
+                                    />
+                                    <Toolbar />
+                                    <ColumnChooser />
+                                </Grid>
                             </div>
                         </Container>
                     </Col>
