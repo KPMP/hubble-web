@@ -1,0 +1,87 @@
+{
+    "coordinationSpace": {
+    "dataset": {
+        "A": "A"
+    }
+},
+    "datasets": [
+    {
+        "files": [
+            {
+                "type": "cells",
+                "fileType": "anndata-cells.zarr",
+                "url": "http://localhost:3000/spatial-viewer/files/cells-py.zarr",
+                "options": {
+                    "xy": "obsm/xy",
+                    "mappings": {}
+                }
+            },
+            {
+                "type": "expression-matrix",
+                "fileType": "anndata-expression-matrix.zarr",
+                "url": "http://localhost:3000/spatial-viewer/files/cells-py.zarr",
+                "options": {
+                    "matrix": "X/data"
+                }
+            },
+            {
+                "fileType": "raster.json",
+                "options": {
+                    "images": [
+                        {
+                            "name": "image name",
+                            "type": "ome-tiff",
+                            "url": "http://localhost:3000/spatial-viewer/files/XY01_18-0006-rotated-ome.tif"
+                        }
+                    ],
+                    "schemaVersion": "0.0.2",
+                    "usePhysicalSizeScaling": false
+                },
+                "type": "raster"
+            }
+        ],
+        "name": "Visualization Files",
+        "uid": "A"
+    }
+],
+    "description": "ST Data Test",
+    "initStrategy": "auto",
+    "layout": [
+    {
+        "component": "spatial",
+        "coordinationScopes": {
+            "dataset": "A"
+        },
+        "h": 12,
+        "w": 9,
+        "x": 3,
+        "y": 0
+    },
+    {
+        "component": "description",
+        "coordinationScopes": {
+            "dataset": "A"
+        },
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 0
+    },
+    {
+        "component": "genes",
+        "x": 0,
+        "y": 3,
+        "w": 3,
+        "h": 5
+    },
+    {
+        "component": "expressionHistogram",
+        "x": 0,
+        "y": 7,
+        "w": 3,
+        "h": 4
+    }
+],
+    "name": "KPMP Spatial Viewer",
+    "version": "1.0.4"
+}

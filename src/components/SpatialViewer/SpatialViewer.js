@@ -6,6 +6,7 @@ import { baseURL } from '../../../package.json';
 import { getViewConfig, populateViewConfig } from './viewConfigHelper';
 import { createHeaderString } from './spatialHelper';
 import { Redirect } from 'react-router-dom';
+import stViewConfig from './spatialTranscriptomicsViewConfig'
 
 class SpatialViewer extends Component {
 
@@ -20,8 +21,9 @@ class SpatialViewer extends Component {
 
     async componentDidMount() {
         if (this.props.selectedImageDataset) {
-            let viewConfig = getViewConfig(this.props.selectedImageDataset["Config Type"]);
-            viewConfig = await populateViewConfig(viewConfig, this.props.selectedImageDataset);
+            // let viewConfig = getViewConfig(this.props.selectedImageDataset["Config Type"]);
+            // viewConfig = await populateViewConfig(viewConfig, this.props.selectedImageDataset);
+            let viewConfig = stViewConfig;
             const headerString = createHeaderString(this.props.selectedImageDataset);
             this.setState({viewConfig: viewConfig, noData: false, headerString});
         }
