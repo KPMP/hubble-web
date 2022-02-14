@@ -61,7 +61,7 @@
 }
 
 .spatial-data-table {
-    height: 450px;
+    height: 45vh;
     overflow: auto;
     position: relative;
     padding-bottom: 80px;
@@ -243,4 +243,14 @@ tr:nth-last-of-type(3) .tooltip-parent {
 }
 .container-max {
     max-width: 100%;
+}
+.filter-collapse {
+    position: relative;
+    top: 30px;
+    flex: 0 0 4.33%;
+    max-width: 4.33%;
+}
+
+.clickable {
+    cursor: pointer;
 }

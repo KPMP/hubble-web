@@ -108,8 +108,10 @@ class ImageDatasetList extends Component {
                     </Col>
                 </Row>
                 <Row>
+                    
                     <Col xl={3}>
-                        <div className="filter-panel-wrapper">
+                        <div className={`filter-panel-wrapper ${this.state.filterTabActive ? '': 'hidden'}`}>
+                        
                         <div className="filter-panel-tab-wrapper">
                             <div onClick={() => {this.setActiveFilterTab(tabEnum.DATASET)}}
                                 className={`filter-tab ${this.state.activeFilterTab === tabEnum.DATASET ? 'active' : ''} rounded border`}>DATASET</div>
@@ -117,10 +119,7 @@ class ImageDatasetList extends Component {
                                 className={`filter-tab ${this.state.activeFilterTab === tabEnum.PARTICIPANT ? 'active' : ''} rounded border`}>PARTICIPANT</div>
                             
                             <div className="filter-tab filter-tab-control-icon">
-                                {this.state.filterTabActive
-                                    ?<i onClick={() => {this.toggleFilterTab()}} className="fas fa-angles-left"></i>
-                                    :<i onClick={() => {this.toggleFilterTab()}} className="fas fa-angles-right"></i>
-                                }
+                                <i onClick={() => {this.toggleFilterTab()}} className="fas fa-angles-left clickable"></i>
                             </div>
                         </div>
                         <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
@@ -130,9 +129,12 @@ class ImageDatasetList extends Component {
                         </Container>
                         </div>
                     </Col>
-                    <Col xl={9}>
+                    <Col xl={`${this.state.filterTabActive ? 9 : 12 }`}>
                         <Row>
-                            <Col className='my-3 p-3'>
+                            <Col className={`filter-collapse ${this.state.filterTabActive ? 'hidden': ''}`}  xl={1}>
+                            <i onClick={() => {this.toggleFilterTab()}} className={`fas fa-angles-right clickable`}></i>
+                            </Col>
+                            <Col xl={11} className='my-0 p-3'>
                                 <div className="border rounded activeFilter">
                                     <span>
                                         Active filter appears here
