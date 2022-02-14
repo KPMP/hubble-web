@@ -56,7 +56,7 @@ body {
 		- #{$footer-height-padded});
 
 	/* md and up */
-	@media (min-width: 1060px) {
+	@media (min-width: 768px) {
 		top: calc(#{$header-height-padded});
 		height: calc(100vh + 10px
 			- #{$header-height-padded}
@@ -88,4 +88,8 @@ body {
 	@media only screen and (max-width: 767px) {
 		display: none;
 	}
+}
+
+.hidden {
+	display: none !important;
 }
