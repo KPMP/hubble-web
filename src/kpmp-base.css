@@ -31,7 +31,7 @@ body {
   top: calc(59px);
   height: calc(100vh + 10px - 59px - 40px);
   /* md and up */ }
-  @media (min-width: 768px) {
+  @media (min-width: 1060px) {
     #root {
       top: calc(59px);
       height: calc(100vh + 10px - 59px - 40px); } }

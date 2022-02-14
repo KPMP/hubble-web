@@ -20,8 +20,48 @@
     white-space: nowrap;
 }
 
+.filter-panel-wrapper {
+    contain: content;
+}
+
+.filter-panel-tab-wrapper {
+    position: fixed;
+    width: 100%;
+}
+
+.spatial-filter-panel {
+    min-height: 450px;
+    margin-top: 3.5rem !important;
+    border-top-left-radius: 0px !important;
+}
+
+.filter-tab-control-icon {
+    float: right;
+    background-color: rgba(1,1,1,0) !important;
+}
+
+.filter-tab {
+    margin-top: 1rem !important;
+    text-align: center;
+    background-color: rgba(1,1,1,0);
+    border: 0px !important;
+    width:auto;
+    padding: 10px;
+    display: inline-block;
+    height: 41px;
+
+    cursor: pointer;
+}
+.filter-tab.active {
+    background-color: white;
+    border: 1px solid #dee2e6 !important;
+    border-bottom: 0px solid black !important;
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
 .spatial-data-table {
-    height: 650px;
+    height: 450px;
     overflow: auto;
     position: relative;
     padding-bottom: 80px;
@@ -199,7 +239,7 @@ tr:nth-last-of-type(3) .tooltip-parent {
 }
 
 .container-xxl {
-    max-width: 98%;
+    max-width: 97%;
 }
 .container-max {
     max-width: 100%;
