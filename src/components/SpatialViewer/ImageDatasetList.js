@@ -5,6 +5,8 @@ import { getImageTypeTooltipCopy } from "./viewConfigHelper";
 import {
     SortingState,
     IntegratedSorting,
+    IntegratedPaging,
+    PagingState,
 } from '@devexpress/dx-react-grid';
 import {
     Grid,
@@ -16,6 +18,7 @@ import {
     Toolbar,
     DragDropProvider,
     TableColumnReordering,
+    PagingPanel,
 } from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
@@ -51,7 +54,7 @@ class ImageDatasetList extends Component {
             },
             {
                 name: 'Info',
-                title: '',
+                title: 'INFO',
                 getCellValue: row => { 
                     return <span className="icon-info">
                      <i className="fas fa-info-circle"></i>
@@ -196,7 +199,7 @@ class ImageDatasetList extends Component {
                                 </div>
                             </Col>
                         </Row>
-                        <Container className='rounded border shadow-sm p-3 overflow-auto container-max'>
+                        <Container className='rounded border shadow-sm p-3 container-max spatial-data-table-wrapper'>
                             <div className="spatial-data-table">
                                 <Grid
                                     rows={this.state.tableData}
@@ -205,19 +208,31 @@ class ImageDatasetList extends Component {
                                     <SortingState
                                         defaultSorting={[]}
                                     />
-                                    <IntegratedSorting />
+                                    
                                     <DragDropProvider />
+                                    <IntegratedSorting />
+                                    <PagingState
+                                        defaultCurrentPage={0}
+                                        defaultPageSize={10}
+                                        pageSize={10}
+                                        
+                                    />
+                                    <IntegratedPaging />
+                                    <PagingPanel />
+                                    <Toolbar />
                                     <Table />
                                     <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} />
                                     <TableColumnReordering
                                         defaultOrder={this.getColumns().map(item => item.name)}
                                     />
+                                    
                                     <TableHeaderRow showSortingControls />
+
                                     <TableColumnVisibility
                                         defaultHiddenColumnNames={[]}
                                     />
-                                    <Toolbar />
                                     <ColumnChooser />
+
                                 </Grid>
                             </div>
                         </Container>

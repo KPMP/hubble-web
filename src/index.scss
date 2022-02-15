@@ -60,11 +60,19 @@
     border-bottom-right-radius: 0px !important;
 }
 
+.spatial-data-table-wrapper {
+    margin-bottom: 30px;
+}
 .spatial-data-table {
-    height: 45vh;
-    overflow: auto;
+    height: 59vh;
     position: relative;
-    padding-bottom: 80px;
+    padding: 20px;
+    padding-top: 0px;
+}
+
+.spatial-data-table .card-header,
+.spatial-data-table .card-footer {
+    background-color: #fff;
 }
 
 .spatial-data-table thead th {
