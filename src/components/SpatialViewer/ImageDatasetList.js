@@ -220,7 +220,7 @@ class ImageDatasetList extends Component {
                                     <Toolbar />
                                     <ToolbarFilterState columnName="Data Type" defaultFilterValue="" />
                                     <Table />
-                                    <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} />
+                                    <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={120} />
                                     <TableColumnReordering
                                         defaultOrder={this.getColumns().map(item => item.name)}
                                     />
