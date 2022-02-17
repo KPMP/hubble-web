@@ -22,6 +22,12 @@ import {
 } from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
+import { ToolbarFilterState } from './Plugins/toolbar-filter-state.js';
+import { ToolbarFilter } from './Plugins/toolbar-filter.js';
+
+import { PaginationState } from './Plugins/pagination-state.js';
+import { Pagination } from './Plugins/pagination.js';
+
 class ImageDatasetList extends Component {
 
     constructor(props) {
@@ -44,7 +50,7 @@ class ImageDatasetList extends Component {
             {
                 name: 'Participant ID',
                 title: 'PARTICIPANT ID',
-                getCellValue: row => <button onClick={() => this.props.setSelectedImageDataset(row)} type='button' className='table-column btn btn-link text-left p-0'>{row["Participant ID"]}</button>
+                getCellValue: row => <button onClick={() => this.props.setSelectedImageDataset(row)} type='button' data-toggle="popover" title="Popover title And here's some amazing content. It's very engaging. Right?" data-content="" className='table-column btn btn-link text-left p-0'>{row["Participant ID"]}</button>
             },
             { name: 'Data Type', title: 'DATA TYPE' },
             {
@@ -52,34 +58,27 @@ class ImageDatasetList extends Component {
                 title: 'IMAGE TYPE',
                 getCellValue: this.getImageTypeCell
             },
-            {
-                name: 'Info',
-                title: 'INFO',
-                getCellValue: row => { 
-                    return <span className="icon-info">
-                     <i className="fas fa-info-circle"></i>
-                    </span>
-                }
-            },
         ];
     };
 
     getImageTypeCell = (row) => {
         return getImageTypeTooltipCopy(row["Image Type"]) !== "" &&
-                <div>
-                        <span className='mr-1'>{row["Image Type"]}</span>
-                        <div className='tooltip-parent rounded border shadow-sm mt-1 p-2'>
-                            <span className='tooltip-child'>{getImageTypeTooltipCopy(row["Image Type"])}</span>
-                        </div>
-                    </div>
+            <div>
+                <span className='mr-1'>{row["Image Type"]}</span>
+                <span className="icon-info spatial-info-cell">
+                    <i className="fas fa-info-circle"></i>
+                </span>
+                <div className='tooltip-parent rounded border shadow-sm mt-1 p-2'>
+                    <span className='tooltip-child'>{getImageTypeTooltipCopy(row["Image Type"])}</span>
+                </div>
+            </div>
     };
 
     getDefaultColumnWidths = () => {
         return [
             { columnName: 'Participant ID', width: 120 },
             { columnName: 'Data Type', width: 250 },
-            { columnName: 'Image Type', width: 650 },
-            { columnName: 'Info', width: 25 },
+            { columnName: 'Image Type', width: 685 },
         ]
     };
 
@@ -91,7 +90,6 @@ class ImageDatasetList extends Component {
         }
     }
     setActiveFilterTab = (tabName) => {
-        console.log('foo',tabName)
         this.setState({activeFilterTab: tabName});
     }
     
@@ -214,25 +212,27 @@ class ImageDatasetList extends Component {
                                     <PagingState
                                         defaultCurrentPage={0}
                                         defaultPageSize={10}
-                                        pageSize={10}
                                         
                                     />
                                     <IntegratedPaging />
-                                    <PagingPanel />
+                                    <PagingPanel 
+                                        pageSizes={[10,20,40,60,80,100]}/>
                                     <Toolbar />
+                                    <ToolbarFilterState columnName="Data Type" defaultFilterValue="" />
                                     <Table />
                                     <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} />
                                     <TableColumnReordering
                                         defaultOrder={this.getColumns().map(item => item.name)}
                                     />
-                                    
                                     <TableHeaderRow showSortingControls />
-
                                     <TableColumnVisibility
                                         defaultHiddenColumnNames={[]}
                                     />
                                     <ColumnChooser />
-
+                                    
+                                    <ToolbarFilter />
+                                    <PaginationState />
+                                    <Pagination />
                                 </Grid>
                             </div>
                         </Container>
