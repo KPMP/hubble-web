@@ -10,9 +10,6 @@ export class PaginationState extends React.PureComponent {
       pagingSize: 10
     };
     this.changePagingSize = this.changePagingSize.bind(this);
-
-    this.toggleArrangeColumnsDialogState = this.toggleArrangeColumnsDialogState.bind(this);
-
   }
   changePagingSize(value) {
     this.setState({
@@ -20,23 +17,14 @@ export class PaginationState extends React.PureComponent {
     })
   }
 
-  toggleArrangeColumnsDialogState() {
-    console.log('bar')
-    return 20
-  }  
-
-
   render() {
-    const { pagingSize, sortDialogOpen, arrangeColumnsDialogOpen } = this.state;
+    const { pagingSize } = this.state;
 
     return (
-      <Plugin name="PaginationState">
-        {/* <Getter name="totalCount"  value={0} /> */}
-        
+      <Plugin name="PaginationState">       
         <Getter name="pagingSizeValue" value={pagingSize} />
-
+        
         <Action name="changePagingSizeValue" action={this.changePagingSize} />
-        <Action name="setCurrentPage" action={this.setCurrentPage} />
       </Plugin>
     );
   }

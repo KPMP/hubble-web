@@ -93,11 +93,15 @@ class ImageDatasetList extends Component {
         this.setState({activeFilterTab: tabName});
     }
     
+    getGageSizes = () => {
+        return [10,20,40,80,100]
+    }
     render() {
         const tabEnum = {
             DATASET: 'DATASET',
             PARTICIPANT: 'PARTICIPANT',
         }
+        
         return (
             <Container id='outer-wrapper' className="multi-container-container container-xxl">
                 <Row>
@@ -216,7 +220,7 @@ class ImageDatasetList extends Component {
                                     />
                                     <IntegratedPaging />
                                     <PagingPanel 
-                                        pageSizes={[10,20,40,60,80,100]}/>
+                                        pageSizes={this.getGageSizes()}/>
                                     <Toolbar />
                                     <ToolbarFilterState columnName="Data Type" defaultFilterValue="" />
                                     <Table />
@@ -232,7 +236,7 @@ class ImageDatasetList extends Component {
                                     
                                     <ToolbarFilter />
                                     <PaginationState />
-                                    <Pagination />
+                                    <Pagination pageSizes={this.getGageSizes()} />
                                 </Grid>
                             </div>
                         </Container>

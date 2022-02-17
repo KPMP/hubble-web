@@ -12,8 +12,7 @@ import {
 
 const pluginDependencies = [
   { name: 'PagingPanel' },
-  { name: "PaginationState" }
-
+  { name: "PaginationState" },
 ];
 
 export class Pagination extends React.PureComponent {
@@ -35,7 +34,7 @@ export class Pagination extends React.PureComponent {
                 changePagingSizeValue
               }
             ) => (
-            <div>
+            <div className="pagination-size-wrapper">
                 Show <Select
                   value={pagingSizeValue}
                   onChange={event => {
@@ -47,21 +46,16 @@ export class Pagination extends React.PureComponent {
                     id: "filter-field"
                   }}
                 >
-                  {[20,40,80,100].map((item, index) => (
+                  {this.props.pageSizes.map((item, index) => (
                     <MenuItem key={index} value={item}>
                       {item}
                     </MenuItem>
                   ))}
-                  
-
-
-
+                 
                 </Select>
                 entries
-            {/* <button type="button" onClick={()=>{setPageSize(20)}} class="btn btn-outline-secondary border-0"><span class="oi oi-eye"></span></button> */}
            </div>
           )}
-
           </TemplateConnector>
         </Template>
       </Plugin>
