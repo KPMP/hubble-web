@@ -20,6 +20,9 @@ export class ToolbarFilterState extends React.PureComponent {
 
     this.toggleArrangeColumnsDialogState = this.toggleArrangeColumnsDialogState.bind(this);
     this.toggleSortDialogState = this.toggleSortDialogState.bind(this);
+
+    this.toggleSort = this.toggleSort.bind(this);
+    this.getSortedRows = this.getSortedRows.bind(this);
   }
   changeValue(value) {
     this.setState({
@@ -76,11 +79,28 @@ export class ToolbarFilterState extends React.PureComponent {
     }
     return newFilterExpression;
   }
+  getSortedRows({rows}){
+  console.log('sorted rowes', rows);
+  return rows
+  }
+  toggleSort(){
+    return [{columnName: 'Data Type', direction: 'desc'}]
+  }
   render() {
     const { filterValue, sortDialogOpen, arrangeColumnsDialogOpen } = this.state;
 
     return (
       <Plugin name="ToolbarFilterState">
+
+        <Getter
+        name="sorting"
+        computed={this.toggleSort}
+        />
+        <Getter
+          name="rows"
+          computed={this.getSortedRows}
+        />
+
         <Getter
           name="toolbarFilterColumnTitle"
           computed={this.filterColumnTitleComputed}
