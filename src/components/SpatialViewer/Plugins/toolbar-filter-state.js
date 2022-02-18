@@ -14,16 +14,19 @@ export class ToolbarFilterState extends React.PureComponent {
     this.changeValue = this.changeValue.bind(this);
     this.clearValue = this.clearValue.bind(this);
     this.getColumns = this.getColumns.bind(this);
+    this.getSortableToolbarColumns = this.getSortableToolbarColumns.bind(this);
     this.filterColumnTitleComputed = this.filterColumnTitleComputed.bind(this);
     this.filterDataItemsComputed = this.filterDataItemsComputed.bind(this);
     this.filterExpressionComputed = this.filterExpressionComputed.bind(this);
 
     this.toggleArrangeColumnsDialogState = this.toggleArrangeColumnsDialogState.bind(this);
     this.toggleSortDialogState = this.toggleSortDialogState.bind(this);
+    this.closeDialogs = this.closeDialogs.bind(this);
 
     this.toggleSort = this.toggleSort.bind(this);
     this.getSortedRows = this.getSortedRows.bind(this);
   }
+
   changeValue(value) {
     this.setState({
       filterValue: value
@@ -36,20 +39,32 @@ export class ToolbarFilterState extends React.PureComponent {
   }
   toggleArrangeColumnsDialogState() {
     this.setState({
-      arrangeColumnsDialogOpen: this.state.arrangeColumnsDialogOpen ? false : true
+      arrangeColumnsDialogOpen: this.state.arrangeColumnsDialogOpen ? false : true,
+      sortDialogOpen: false
     });
   }
 
   toggleSortDialogState() {
     this.setState({
-      sortDialogOpen: this.state.sortDialogOpen ? false : true
+      sortDialogOpen: this.state.sortDialogOpen ? false : true,
+      arrangeColumnsDialogOpen: false
     });
+  }
+  closeDialogs() {
+    this.setState({
+      sortDialogOpen: false,
+      arrangeColumnsDialogOpen: false
+    });
+  }
+  
+  getSortableToolbarColumns ({ columns }){
+    return columns.filter(col => col.sortable === true);
   }
 
   getColumns({columns}){
-    console.log('cols', columns)
     return columns
   }
+
   filterColumnTitleComputed({ columns }) {
     const column = columns.find(col => col.name === this.props.columnName);
     return column ? column.title : "";
@@ -80,8 +95,7 @@ export class ToolbarFilterState extends React.PureComponent {
     return newFilterExpression;
   }
   getSortedRows({rows}){
-  console.log('sorted rowes', rows);
-  return rows
+    return rows
   }
   toggleSort(){
     return [{columnName: 'Data Type', direction: 'desc'}]
@@ -105,12 +119,15 @@ export class ToolbarFilterState extends React.PureComponent {
           name="toolbarFilterColumnTitle"
           computed={this.filterColumnTitleComputed}
         />
-
+        
+        <Getter
+          name="sortableToolbarColumns"
+          computed={this.getSortableToolbarColumns}
+        />
         <Getter
           name="toolbarColumns"
           computed={this.getColumns}
         />
-
 
         <Getter
           name="toolbarSortDialogState"
@@ -138,6 +155,8 @@ export class ToolbarFilterState extends React.PureComponent {
 
         <Action name="toggleArrangeColumnsDialog" action={this.toggleArrangeColumnsDialogState} />
         <Action name="toggleSortTableDialog" action={this.toggleSortDialogState} />
+        <Action name="closeDialogs" action={this.closeDialogs} />
+        
       </Plugin>
     );
   }

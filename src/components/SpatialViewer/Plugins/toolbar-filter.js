@@ -13,9 +13,6 @@ const pluginDependencies = [
 ];
 
 export class ToolbarFilter extends React.PureComponent {
-  foo(foob) {
-    console.log('foo..', foob.target.value)
-  }
   render() {
     return (
       <Plugin name="ToolbarFilter" dependencies={pluginDependencies}>
@@ -25,11 +22,13 @@ export class ToolbarFilter extends React.PureComponent {
               {
                 arrangeColumnsDialogOpen,
                 sortDialogOpenValue,
-                toolbarColumns
+                toolbarColumns,
+                sortableToolbarColumns
               },
               {
                 toggleArrangeColumnsDialog,
                 toggleSortTableDialog,
+                closeDialogs,
               }
             ) => (
               <div className="ml-auto">
@@ -45,44 +44,53 @@ export class ToolbarFilter extends React.PureComponent {
                   </span>
                 </Button>
 
-                {arrangeColumnsDialogOpen ?
-                  <div className="sort-dialog border rounded">
-                        {toolbarColumns.map((item, index) => {
-                          return (
-                            <div className="sort-dialog-option-wrapper">
-                              <div className="sort-dialog-options">
-                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></input>
-                                <span key={index}>{item.name}</span>
-                              </div>
-                              <div class="sort-dialog-radio-wrapper">
-                                <span><i className="fas fa-arrow-up"></i><input type="radio" id="vehicle2" name="vehicle1" value="Bike"></input></span>
-                                <span><i className="fas fa-arrow-down"></i><input type="radio" id="vehicle3" name="vehicle1" value="Bike"></input></span>
-                              </div>
-                            </div>
-                          )
-                        })}
+                {arrangeColumnsDialogOpen &&
+                  <div>
+                    <div className="modal-backdrop" onClick={() => {closeDialogs()}}></div>
+                      <div className="sort-dialog border rounded">
+                            {toolbarColumns.map((item, index) => {
+                              return (
+                                <div className="sort-dialog-option-wrapper">
+                                  <div className="sort-dialog-options">
+                                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></input>
+                                    <span key={index}>{item.name}</span>
+                                  </div>
+                                  <div class="sort-dialog-radio-wrapper">
+                                    <span><i className="fas fa-arrow-up"></i><input type="radio" id="vehicle2" name="vehicle1" value="Bike"></input></span>
+                                    <span><i className="fas fa-arrow-down"></i><input type="radio" id="vehicle3" name="vehicle1" value="Bike"></input></span>
+                                  </div>
+                                </div>
+                              )
+                            })}
+                      </div>
                   </div>
-                  : <div></div>
                 }
 
-                {sortDialogOpenValue ?
-                  <div className="sort-dialog border rounded">
-                        {toolbarColumns.map((item, index) => { 
-                          return (
-                            <div className="sort-dialog-option-wrapper">
-                              <div className="sort-dialog-options">
-                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></input>
-                                <span key={index}>{item.name}</span>
-                              </div>
-                              <div onChange={event => this.foo(event)} class="sort-dialog-radio-wrapper">
-                                <span><i className="fas fa-arrow-up"></i><input type="radio" id="vehicle2" name="vehicle1" value="Bike"></input></span>
-                                <span><i className="fas fa-arrow-down"></i><input type="radio" id="vehicle3" name="vehicle1" value="Bike"></input></span>
-                              </div>
-                            </div>
-                          )
-                        })}
+                {sortDialogOpenValue &&
+                  <div>
+                    <div className="modal-backdrop" onClick={() => {closeDialogs()}}></div>
+                      <div className="sort-dialog border rounded">
+                        {sortableToolbarColumns && sortableToolbarColumns.length > 0 ?
+                          <div className="dialog-content" onClick={e => {e.stopPropagation();}}>
+                            {sortableToolbarColumns.map((item, index) => { 
+                              return (
+                                <div className="sort-dialog-option-wrapper">
+                                  <div className="sort-dialog-options">
+                                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></input>
+                                    <span key={index}>{item.name}</span>
+                                  </div>
+                                  <div class="sort-dialog-radio-wrapper">
+                                    <span><i className="fas fa-arrow-up"></i><input type="radio" id="vehicle2" name="vehicle1" value="Bike"></input></span>
+                                    <span><i className="fas fa-arrow-down"></i><input type="radio" id="vehicle3" name="vehicle1" value="Bike"></input></span>
+                                  </div>
+                                </div>
+                              )
+                            })}
+                          </div>
+                        : <div className="sort-dialog-option-wrapper"><span>No sortable columns</span></div>
+                        }
+                    </div>
                   </div>
-                  : <div></div>
                 }
               </div>
             )}
