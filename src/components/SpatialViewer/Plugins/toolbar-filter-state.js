@@ -7,6 +7,7 @@ export class ToolbarFilterState extends React.PureComponent {
     super(props);
     const { defaultFilterValue } = props;
     this.state = {
+      sortedColumns: [],
       filterValue: defaultFilterValue,
       sortDialogOpen: false,
       arrangeColumnsDialogOpen: false,
@@ -16,17 +17,24 @@ export class ToolbarFilterState extends React.PureComponent {
     this.getColumns = this.getColumns.bind(this);
     this.getSortableToolbarColumns = this.getSortableToolbarColumns.bind(this);
     this.filterColumnTitleComputed = this.filterColumnTitleComputed.bind(this);
+    this.sortOrderComputed = this.sortOrderComputed.bind(this);
     this.filterDataItemsComputed = this.filterDataItemsComputed.bind(this);
     this.filterExpressionComputed = this.filterExpressionComputed.bind(this);
 
     this.toggleArrangeColumnsDialogState = this.toggleArrangeColumnsDialogState.bind(this);
     this.toggleSortDialogState = this.toggleSortDialogState.bind(this);
     this.closeDialogs = this.closeDialogs.bind(this);
-
+    this.changeColumnSorting = this.changeColumnSorting.bind(this);
     this.toggleSort = this.toggleSort.bind(this);
     this.getSortedRows = this.getSortedRows.bind(this);
+    this.getSortedColumns = this.getSortedColumns.bind(this);
+    this.addSortedColumn = this.addSortedColumn.bind(this);
+    this.removeSortedColumn = this.removeSortedColumn.bind(this);
   }
 
+  componentDidUpdate(){
+    console.log('this,.state', this.state)
+  }
   changeValue(value) {
     this.setState({
       filterValue: value
@@ -49,6 +57,7 @@ export class ToolbarFilterState extends React.PureComponent {
       sortDialogOpen: this.state.sortDialogOpen ? false : true,
       arrangeColumnsDialogOpen: false
     });
+    console.log('this.statesortedColumns', this.state.sortedColumns)
   }
   closeDialogs() {
     this.setState({
@@ -71,7 +80,6 @@ export class ToolbarFilterState extends React.PureComponent {
   }
 
   filterDataItemsComputed({ rows }) {
-    console.log('rows,', rows)
     return rows.reduce((acc, row) => {
       if (!acc.includes(row[this.props.columnName])) {
         acc.push(row[this.props.columnName]);
@@ -97,19 +105,59 @@ export class ToolbarFilterState extends React.PureComponent {
   getSortedRows({rows}){
     return rows
   }
-  toggleSort(){
-    return [{columnName: 'Data Type', direction: 'desc'}]
+  toggleSort(sortOrder){
+    
+    this.setState({columnName: sortOrder.columnName, direction: sortOrder.direction})
   }
+
+  changeColumnSorting(){
+    console.log('called', this.state.sortedColumns)
+
+  }
+  sortOrderComputed({columnExtensions}) {
+    console.log('sortOrderComputed called',columnExtensions)
+    const columnName = this.state.columnName
+    const direction = this.state.direction
+    const sortOrder = {}
+    sortOrder[columnName] = direction
+    return [sortOrder]
+  }
+
+  addSortedColumn(sortObj) {
+    console.log('addSortedColumn',sortObj.columnName, sortObj.direction)
+    const sortedColumns = this.state.sortedColumns;
+    if(sortedColumns.findIndex((el)=>{if(el.columnName===sortObj.columnName){return true}}) === -1 ){
+      console.log('added...')
+      sortedColumns.push(sortObj);
+      this.setState({sortedColumns});
+    }else{
+      sortedColumns[sortedColumns.findIndex((el)=>{if(el.columnName===sortObj.columnName){return true}})].direction = sortObj.direction
+      this.setState({sortedColumns})
+      console.log('not  added')
+    }
+  }
+
+  removeSortedColumn(columnName) {
+    const sortedColumns = this.state.sortedColumns
+    sortedColumns.splice(
+      sortedColumns.findIndex((el)=>{if(el.columnName===columnName){return true}}), 1
+    )
+    this.setState({sortedColumns})
+  }
+
+  clearSortedColumns() {
+    this.setState({sortedColumns: []})
+  }
+
+  getSortedColumns() {
+    return this.state.sortedColumns
+  }
+
   render() {
-    const { filterValue, sortDialogOpen, arrangeColumnsDialogOpen } = this.state;
+    const { filterValue, sortDialogOpen, arrangeColumnsDialogOpen, sortedColumns } = this.state;
 
     return (
       <Plugin name="ToolbarFilterState">
-
-        <Getter
-        name="sorting"
-        computed={this.toggleSort}
-        />
         <Getter
           name="rows"
           computed={this.getSortedRows}
@@ -119,11 +167,15 @@ export class ToolbarFilterState extends React.PureComponent {
           name="toolbarFilterColumnTitle"
           computed={this.filterColumnTitleComputed}
         />
-        
         <Getter
           name="sortableToolbarColumns"
           computed={this.getSortableToolbarColumns}
         />
+        <Getter
+          name="sortedColumns"
+          computed={this.getSortedColumns}
+        />
+
         <Getter
           name="toolbarColumns"
           computed={this.getColumns}
@@ -155,7 +207,18 @@ export class ToolbarFilterState extends React.PureComponent {
 
         <Action name="toggleArrangeColumnsDialog" action={this.toggleArrangeColumnsDialogState} />
         <Action name="toggleSortTableDialog" action={this.toggleSortDialogState} />
+        <Action name="toggleSortOrder" action={this.toggleSort} />
+        
+        <Action name="addSortedColumn" action={this.addSortedColumn} />
+        <Action name="removeSortedColumn" action={this.removeSortedColumn} />
+
+        <Action name="changeColumnSorting" action={this.changeColumnSorting} />
+
+        
+        <Action name="changeColumnSorting" action={this.sortOrderComputed} />
         <Action name="closeDialogs" action={this.closeDialogs} />
+
+        
         
       </Plugin>
     );
