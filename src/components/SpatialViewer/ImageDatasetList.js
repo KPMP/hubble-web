@@ -51,13 +51,20 @@ class ImageDatasetList extends Component {
                 name: 'Participant ID',
                 title: 'PARTICIPANT ID',
                 sortable: true,
+                hideable: false,
                 getCellValue: row => <button onClick={() => this.props.setSelectedImageDataset(row)} type='button' data-toggle="popover" title="Popover title And here's some amazing content. It's very engaging. Right?" data-content="" className='table-column btn btn-link text-left p-0'>{row["Participant ID"]}</button>
             },
-            { name: 'Data Type', title: 'DATA TYPE', sortable: true },
+            {
+                name: 'Data Type',
+                title: 'DATA TYPE',
+                sortable: true,
+                hideable: true
+            },
             {
                 name: 'Image Type',
                 title: 'IMAGE TYPE',
                 sortable: true,
+                hideable: true,
                 getCellValue: this.getImageTypeCell
             },
         ];
@@ -218,7 +225,6 @@ class ImageDatasetList extends Component {
                                     <PagingState
                                         defaultCurrentPage={0}
                                         defaultPageSize={10}
-                                        
                                     />
                                     <IntegratedPaging />
                                     <PagingPanel />

@@ -343,3 +343,19 @@ tr:nth-last-of-type(3) .tooltip-parent {
     background-color: rgba(0, 0, 0, 0.0);
     z-index: 100;
 }
+
+.fake-link {
+    color: rgb(0, 91, 124);
+    cursor:pointer;
+}
+.fake-link:hover {
+    text-decoration: underline;
+}
+
+.column-arrage-dialog .column-filter-wrapper {
+    background-color: #dedede;
+}
+.column-arrage-dialog .column-filter-wrapper i {
+    padding: 0px 5px 5px 5px;
+    
+}

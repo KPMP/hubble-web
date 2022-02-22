@@ -45,7 +45,7 @@ function SortDialog(props) {
                             forceUpdate()
                             }}><i className="fas fa-arrow-up"></i>
                             <input checked={
-                              props.sortedColumns.findIndex((el)=>{console.log('ELLLLL', el);if(el.columnName===item.name && el.direction === 'asc'){return true}}) >= 0 ? true : false
+                              props.sortedColumns.findIndex((el)=>{if(el.columnName===item.name && el.direction === 'asc'){return true}}) >= 0 ? true : false
                               } type="radio" name={item.name} value='asc'>
                             </input>
                           </span>
