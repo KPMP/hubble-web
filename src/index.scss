@@ -323,12 +323,15 @@ tr:nth-last-of-type(3) .tooltip-parent {
 .sort-dialog-radio-wrapper i {
     padding-right: 2px;
 }
-
+.card-footer {
+    z-index: 5;
+}
 .card-footer .d-inline-block {
     display: none !important;
 }
 
 .pagination-size-wrapper {
+    z-index: 10;
     margin-bottom: -50px;
     position: relative;
     top: -45px;

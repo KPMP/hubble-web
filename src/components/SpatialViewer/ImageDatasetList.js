@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Col, Container, Row } from "reactstrap";
 import { getSpatialDataAsJSON } from "../../helpers/dataHelper";
 import { getImageTypeTooltipCopy } from "./viewConfigHelper";
@@ -210,6 +212,8 @@ class ImageDatasetList extends Component {
                                 </div>
                             </Col>
                         </Row>
+                        <DndProvider backend={HTML5Backend}>
+
                         <Container className='rounded border shadow-sm p-3 container-max spatial-data-table-wrapper'>
                             <div className="spatial-data-table">
                                 <Grid
@@ -247,6 +251,7 @@ class ImageDatasetList extends Component {
                                 </Grid>
                             </div>
                         </Container>
+                        </DndProvider>
                     </Col>
                 </Row>
             </Container>

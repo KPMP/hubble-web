@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react'
+import { Card } from './Card';
+import update from 'immutability-helper';
 function useForceUpdate(){
   const [value, setValue] = useState(0);
   return () => setValue(value => value + 1);
 }
-
 
 function ColumnArrangementDialog(props) {
   let forceUpdate = useForceUpdate();
@@ -13,6 +14,29 @@ function ColumnArrangementDialog(props) {
     setFilterValue(event.target.value);
   };
   
+    const [cards, setCards] = useState([
+        {
+            id: 1,
+            text: 'Write a cool JS library',
+        },
+        {
+            id: 2,
+            text: 'Make it generic enough',
+        },
+
+    ]);
+    const moveCard = useCallback((dragIndex, hoverIndex) => {
+        setCards((prevCards) => update(prevCards, {
+            $splice: [
+                [dragIndex, 1],
+                [hoverIndex, 0, prevCards[dragIndex]],
+            ],
+        }));
+    }, []);
+    const renderCard = useCallback((card, index) => {
+        return (<Card key={card.id} index={index} id={card.id} text={card.text} moveCard={moveCard}/>);
+    }, []);
+
   return(
     <div className='column-arrage-dialog'>
     {(props.arrangeColumnsDialogOpen) &&
@@ -31,7 +55,12 @@ function ColumnArrangementDialog(props) {
               <div className="sort-dialog-options fake-link">
                 <span onClick={()=>{setFilterValue('')}}>Restore Defaults</span>
               </div>
-       
+              
+              <div>{cards.map((card, i) => {
+                
+                return renderCard(card, i ) 
+                
+              })}</div>
               {props.toolbarColumns && props.toolbarColumns.length > 0 ?
                 <div className="dialog-content" onClick={e => {e.stopPropagation();}}>
                   {props.toolbarColumns.map((item, index) => { 
@@ -44,13 +73,13 @@ function ColumnArrangementDialog(props) {
                             if(item.hideable === false){
                               e.stopPropagation()
                             } else {
-                              props.toggleColumnVisibility(item.name) 
+                              props.toggleColumnVisibility(item.name)
                             }
                             forceUpdate()
                           }}
                           key={props.sortedColumns}
                           type="checkbox"
-                           checked={
+                          checked={
                             props.hiddenColumnNames.findIndex((columnName)=>{if(columnName===item.name){return true}}) >= 0 ? false : true
                           }
                           name={item.name}
