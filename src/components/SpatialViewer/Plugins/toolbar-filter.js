@@ -15,6 +15,10 @@ const pluginDependencies = [
 ];
 
 export class ToolbarFilter extends React.PureComponent {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <Plugin name="ToolbarFilter" dependencies={pluginDependencies}>
@@ -52,12 +56,14 @@ export class ToolbarFilter extends React.PureComponent {
                       <i alt="Sort Columns" className="fas fa-sort-amount-down-alt"></i>
                   </span>
                 </Button>
-                {console.log('hiddenColumnNames', hiddenColumnNames)}
+                {console.log('========', this.props)}
                 <ColumnArrangementDialog
                   arrangeColumnsDialogOpen={arrangeColumnsDialogOpen}
                   closeDialogs={closeDialogs}
                   toolbarColumns={toolbarColumns}
                   sortedColumns={sortedColumns}
+                  cards={this.props.cards}
+                  setCards={this.props.setCards}
                   hiddenColumnNames={hiddenColumnNames}
                   toggleColumnVisibility={toggleColumnVisibility}
                   addSortedColumn={addSortedColumn}

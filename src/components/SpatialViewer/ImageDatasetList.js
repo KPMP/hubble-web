@@ -34,16 +34,30 @@ class ImageDatasetList extends Component {
 
     constructor(props) {
         super(props);
+        const columnCards = this.getColumns().map((item, index) => {
+            return {id: index, text: item.name, name: item.name, hideable: item.hideable}
+        })
         this.state = {
             filterTabActive: true,
             activeFilterTab: 'DATASET',
-            tableData: []
+            tableData: [],
+            cards: columnCards
         }
     }
 
     async componentDidMount() {
         let spatialData = await getSpatialDataAsJSON();
         this.setState({ "tableData": spatialData });
+    }
+    componentDidUpdate(){
+        console.log(this.state)
+    }
+
+    setCards = (cards) => {
+        console.log('state, this.state', this.state)
+
+        this.setState({cards})
+
     }
 
     // This is used for column ordering too.766
@@ -69,6 +83,33 @@ class ImageDatasetList extends Component {
                 hideable: true,
                 getCellValue: this.getImageTypeCell
             },
+        ];
+    };
+    // This is used for column ordering too.766
+    getReverseColumns = () => {
+        return [
+            {
+                name: 'Image Type',
+                title: 'IMAGE TYPE',
+                sortable: true,
+                hideable: true,
+                getCellValue: this.getImageTypeCell
+            },
+            {
+                name: 'Data Type',
+                title: 'DATA TYPE',
+                sortable: true,
+                hideable: true
+            },
+            {
+                name: 'Participant ID',
+                title: 'PARTICIPANT ID',
+                sortable: true,
+                hideable: false,
+                getCellValue: row => <button onClick={() => this.props.setSelectedImageDataset(row)} type='button' data-toggle="popover" title="Popover title And here's some amazing content. It's very engaging. Right?" data-content="" className='table-column btn btn-link text-left p-0'>{row["Participant ID"]}</button>
+            },
+
+
         ];
     };
 
@@ -113,6 +154,12 @@ class ImageDatasetList extends Component {
             PARTICIPANT: 'PARTICIPANT',
         }
         
+        {console.log('xx', this.state.cards,'xx');}
+        {console.log('yy', ((this.state.cards).map(item => item.name)))}
+        // setTimeout(()=>{
+        //     console.log('called')
+        //     this.setCards(this.getReverseColumns())
+        // }, 10000)
         return (
             <Container id='outer-wrapper' className="multi-container-container container-xxl">
                 <Row>
@@ -232,11 +279,15 @@ class ImageDatasetList extends Component {
                                     />
                                     <IntegratedPaging />
                                     <PagingPanel />
-                                    <Toolbar />
-                                    <ToolbarFilterState columnName="Data Type" defaultFilterValue="" />
+                                    <Toolbar
+                                        cards={this.state.cards}
+                                        setCards={this.state.setCards}
+                                    />
+                                    <ToolbarFilterState columnName="Data Type" defaultFilterValue=""  />
                                     <Table />
                                     <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={120} />
                                     <TableColumnReordering
+                                        order={(this.state.cards).map(item => item.name)}
                                         defaultOrder={this.getColumns().map(item => item.name)}
                                     />
                                     <TableHeaderRow showSortingControls />
@@ -245,7 +296,10 @@ class ImageDatasetList extends Component {
                                     />
                                     <ColumnChooser />
                                     
-                                    <ToolbarFilter />
+                                    <ToolbarFilter 
+                                        cards={this.state.cards}
+                                        setCards={this.setCards}
+/>
                                     <PaginationState />
                                     <Pagination pageSizes={this.getPageSizes()} />
                                 </Grid>

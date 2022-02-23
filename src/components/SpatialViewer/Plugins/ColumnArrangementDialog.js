@@ -7,26 +7,27 @@ function useForceUpdate(){
 }
 
 function ColumnArrangementDialog(props) {
-  
+  console.log('props',props)
   let forceUpdate = useForceUpdate();
   const [filterValue, setFilterValue] = useState('');
 
   const onChangeHandler = event => {
     setFilterValue(event.target.value);
   };
-  const columnCards = props.toolbarColumns.map((item, index) => {
-    return {id: index, text: item.name, hideable: item.hideable}
-  })
-  const [cards, setCards] = useState(columnCards);
 
-  const moveCard = useCallback((dragIndex, hoverIndex) => {
-      setCards((prevCards) => update(prevCards, {
-          $splice: [
-              [dragIndex, 1],
-              [hoverIndex, 0, prevCards[dragIndex]],
-          ],
-      }));
-  }, []);
+  const moveCard = (dragIndex, hoverIndex) => {
+    console.log('props',props)
+    console.log(dragIndex, hoverIndex)
+    props.setCards(update(props.cards, {
+      $splice: [
+          [dragIndex, 1],
+          [hoverIndex, 0, props.cards[dragIndex]],
+      ],
+  }
+  
+  ))
+
+  };
 
   return(
     <div className='column-arrage-dialog'>
@@ -37,17 +38,17 @@ function ColumnArrangementDialog(props) {
             <div className="column-filter-wrapper">
                 <i alt="Arrange Columns" className="fas fa-magnifying-glass"></i>
                 <input
-                type="text"
-                value={filterValue}
-                onChange={onChangeHandler}
-                placeholder="Filter Columns"
+                  type="text"
+                  value={filterValue}
+                  onChange={onChangeHandler}
+                  placeholder="Filter Columns"
                 />
               </div>
               <div className="sort-dialog-options fake-link">
                 <span onClick={()=>{setFilterValue('')}}>Restore Defaults</span>
               </div>
               
-              <div>{cards.map((card, index) => {
+              <div>{props.cards.map((card, index) => {
                 return (<div>{ (((card.text).toLowerCase()).indexOf(filterValue.toLowerCase()) >= 0 || filterValue == '' )? <Card
                   key={card.id}
                   index={index}
@@ -59,7 +60,6 @@ function ColumnArrangementDialog(props) {
                   toggleColumnVisibility={props.toggleColumnVisibility}
                   forceUpdate={forceUpdate}
                   /> : <div></div>}</div>)
-                // return 
               })}</div>
 
           </div>
