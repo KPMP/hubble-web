@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 const style = {
     // border: '1px dashed gray',
@@ -10,8 +10,17 @@ const style = {
 export const ItemTypes = {
     CARD: 'card',
   }
-  
-export const Card = ({ id, text, index, moveCard }) => {
+
+function useForceUpdate(){
+  const [value, setValue] = useState(0);
+  return () => setValue(value => value + 1);
+}
+
+
+
+export const Card = ({ id, text, index, moveCard, hideable, hiddenColumnNames, toggleColumnVisibility }) => {
+  let forceUpdate = useForceUpdate();
+
     const ref = useRef(null);
     const [{ handlerId }, drop] = useDrop({
         accept: ItemTypes.CARD,
@@ -69,12 +78,27 @@ export const Card = ({ id, text, index, moveCard }) => {
     });
     const opacity = isDragging ? 0 : 1;
     drag(drop(ref));
+    console.log('hcn',hiddenColumnNames, hideable, text, forceUpdate)
     return (<div ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}>
        
           <div className="sort-dialog-option-wrapper">
             <div className="sort-dialog-options">
-              <input 
+
+              
+              <input onClick={(e)=> {
+                if(hideable === false){
+                  e.stopPropagation()
+                } else {
+                  toggleColumnVisibility(text)
+                }
+                forceUpdate()
+              }}
+              key={index}
               type="checkbox"
+              checked={
+                hiddenColumnNames.findIndex((columnName)=>{if(columnName===text){return true}}) >= 0 ? false : true
+              }
+              name={text}
               value="sort"></input>
               <span>{text}</span>
             </div>
