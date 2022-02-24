@@ -1,87 +1,108 @@
 {
     "coordinationSpace": {
-    "dataset": {
-        "A": "A"
-    }
-},
+        "embeddingZoom": {
+            "UMAP": 0
+        },
+        "dataset": {
+            "A": "A"
+        },
+        "embeddingType": {
+            "UMAP": "UMAP"
+        }
+    },
     "datasets": [
-    {
-        "files": [
-            {
-                "type": "cells",
-                "fileType": "anndata-cells.zarr",
-                "url": "http://localhost:3000/spatial-viewer/files/cells-py.zarr",
-                "options": {
-                    "xy": "obsm/xy",
-                    "mappings": {}
-                }
-            },
-            {
-                "type": "expression-matrix",
-                "fileType": "anndata-expression-matrix.zarr",
-                "url": "http://localhost:3000/spatial-viewer/files/cells-py.zarr",
-                "options": {
-                    "matrix": "X/data"
-                }
-            },
-            {
-                "fileType": "raster.json",
-                "options": {
-                    "images": [
-                        {
-                            "name": "image name",
-                            "type": "ome-tiff",
-                            "url": "http://localhost:3000/spatial-viewer/files/XY01_18-0006-rotated-ome.tif"
-                        }
-                    ],
-                    "schemaVersion": "0.0.2",
-                    "usePhysicalSizeScaling": false
+        {
+            "files": [
+                {
+                    "type": "cells",
+                    "fileType": "anndata-cells.zarr",
+                    "url": "https://dev-atlas.kpmp.org/spatial-viewer/files/cells-py.zarr",
+                    "options": {
+                        "xy": "obsm/spatial",
+                        "mappings": {
+
+                            "UMAP": {
+                                "key": "obsm/X_umap",
+                                "dims": [ 0, 1 ]
+                            }                        }                    }
                 },
-                "type": "raster"
-            }
-        ],
-        "name": "Visualization Files",
-        "uid": "A"
-    }
-],
+                {
+                    "type": "expression-matrix",
+                    "fileType": "anndata-expression-matrix.zarr",
+                    "url": "https://dev-atlas.kpmp.org/spatial-viewer/files/cells-py.zarr",
+                    "options": {
+                        "matrix": "X"
+                    }
+                },
+                {
+                    "fileType": "raster.json",
+                    "options": {
+                        "images": [
+                            {
+                                "name": "image name",
+                                "type": "ome-tiff",
+                                "url": "https://dev-atlas.kpmp.org/spatial-viewer/files/XY01_18-0006-ome.tif"
+                            }
+                        ],
+                        "schemaVersion": "0.0.2",
+                        "usePhysicalSizeScaling": false
+                    },
+                    "type": "raster"
+                }
+            ],
+            "name": "Visualization Files",
+            "uid": "A"
+        }
+    ],
     "description": "ST Data Test",
     "initStrategy": "auto",
     "layout": [
-    {
-        "component": "spatial",
-        "coordinationScopes": {
-            "dataset": "A"
+        {
+            "component": "description",
+            "coordinationScopes": {
+                "dataset": "A"
+            },
+            "h": 3,
+            "w": 3,
+            "x": 0,
+            "y": 0
         },
-        "h": 12,
-        "w": 9,
-        "x": 3,
-        "y": 0
-    },
-    {
-        "component": "description",
-        "coordinationScopes": {
-            "dataset": "A"
+        {
+            "component": "spatial",
+            "coordinationScopes": {
+                "dataset": "A"
+            },
+            "h": 12,
+            "w": 5,
+            "x": 3,
+            "y": 0
         },
-        "h": 3,
-        "w": 3,
-        "x": 0,
-        "y": 0
-    },
-    {
-        "component": "genes",
-        "x": 0,
-        "y": 3,
-        "w": 3,
-        "h": 5
-    },
-    {
-        "component": "expressionHistogram",
-        "x": 0,
-        "y": 7,
-        "w": 3,
-        "h": 4
-    }
-],
+        {
+            "component": "scatterplot",
+            "coordinationScopes": {
+                "embeddingType": "UMAP",
+                "embeddingZoom": "UMAP"
+            },
+            "h": 12,
+            "w": 4,
+            "x": 8,
+            "y": 0
+        },
+        {
+            "component": "genes",
+            "x": 0,
+            "y": 3,
+            "w": 3,
+            "h": 5
+        },
+        {
+            "component": "expressionHistogram",
+            "x": 0,
+            "y": 7,
+            "w": 3,
+            "h": 4
+        }
+    ],
     "name": "KPMP Spatial Viewer",
     "version": "1.0.4"
 }
