@@ -56,7 +56,7 @@ export class ToolbarFilter extends React.PureComponent {
                       <i alt="Sort Columns" className="fas fa-sort-amount-down-alt"></i>
                   </span>
                 </Button>
-                {console.log('========', this.props)}
+
                 <ColumnArrangementDialog
                   arrangeColumnsDialogOpen={arrangeColumnsDialogOpen}
                   closeDialogs={closeDialogs}

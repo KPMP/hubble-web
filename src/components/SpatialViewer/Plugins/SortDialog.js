@@ -30,7 +30,7 @@ function SortDialog(props) {
                             forceUpdate()
                           }}
                           key={props.sortedColumns} 
-                          onChange={(event)=>{console.log('changerd', event.target.checked, item.name)}} 
+                          onChange={()=>{}} 
                           type="checkbox" checked={
                             props.sortedColumns.findIndex((el)=>{if(el.columnName===item.name){return true}}) >= 0 ? true : false
                           }

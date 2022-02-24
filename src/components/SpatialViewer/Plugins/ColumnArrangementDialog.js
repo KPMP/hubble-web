@@ -7,7 +7,6 @@ function useForceUpdate(){
 }
 
 function ColumnArrangementDialog(props) {
-  console.log('props',props)
   let forceUpdate = useForceUpdate();
   const [filterValue, setFilterValue] = useState('');
 
@@ -16,8 +15,6 @@ function ColumnArrangementDialog(props) {
   };
 
   const moveCard = (dragIndex, hoverIndex) => {
-    console.log('props',props)
-    console.log(dragIndex, hoverIndex)
     props.setCards(update(props.cards, {
       $splice: [
           [dragIndex, 1],

@@ -49,15 +49,9 @@ class ImageDatasetList extends Component {
         let spatialData = await getSpatialDataAsJSON();
         this.setState({ "tableData": spatialData });
     }
-    componentDidUpdate(){
-        console.log(this.state)
-    }
 
     setCards = (cards) => {
-        console.log('state, this.state', this.state)
-
         this.setState({cards})
-
     }
 
     // This is used for column ordering too.766
@@ -153,13 +147,6 @@ class ImageDatasetList extends Component {
             DATASET: 'DATASET',
             PARTICIPANT: 'PARTICIPANT',
         }
-        
-        {console.log('xx', this.state.cards,'xx');}
-        {console.log('yy', ((this.state.cards).map(item => item.name)))}
-        // setTimeout(()=>{
-        //     console.log('called')
-        //     this.setCards(this.getReverseColumns())
-        // }, 10000)
         return (
             <Container id='outer-wrapper' className="multi-container-container container-xxl">
                 <Row>
