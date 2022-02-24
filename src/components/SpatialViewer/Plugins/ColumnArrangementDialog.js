@@ -6,6 +6,10 @@ function useForceUpdate(){
   return () => setValue(value => value + 1);
 }
 
+function isFiltered(value, filterValue) {
+  return (((value).toLowerCase()).indexOf(filterValue.toLowerCase()) >= 0 || filterValue == '' )
+}
+
 function ColumnArrangementDialog(props) {
   let forceUpdate = useForceUpdate();
   const [filterValue, setFilterValue] = useState('');
@@ -20,10 +24,7 @@ function ColumnArrangementDialog(props) {
           [dragIndex, 1],
           [hoverIndex, 0, props.cards[dragIndex]],
       ],
-  }
-  
-  ))
-
+    }))
   };
 
   return(
@@ -46,17 +47,18 @@ function ColumnArrangementDialog(props) {
               </div>
               
               <div>{props.cards.map((card, index) => {
-                return (<div>{ (((card.text).toLowerCase()).indexOf(filterValue.toLowerCase()) >= 0 || filterValue == '' )? <Card
-                  key={card.id}
-                  index={index}
-                  id={card.id}
-                  text={card.text}
-                  moveCard={moveCard}
-                  hideable={card.hideable}
-                  hiddenColumnNames={props.hiddenColumnNames}
-                  toggleColumnVisibility={props.toggleColumnVisibility}
-                  forceUpdate={forceUpdate}
-                  /> : <div></div>}</div>)
+                return (<div key={card.text}>{ isFiltered(card.text, filterValue)
+                  ?
+                  <Card
+                    index={index}
+                    id={card.text}
+                    text={card.text}
+                    moveCard={moveCard}
+                    hideable={card.hideable}
+                    hiddenColumnNames={props.hiddenColumnNames}
+                    toggleColumnVisibility={props.toggleColumnVisibility}
+                    forceUpdate={forceUpdate} />
+                  : <div></div>}</div>)
               })}</div>
 
           </div>

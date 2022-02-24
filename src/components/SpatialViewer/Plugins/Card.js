@@ -89,7 +89,6 @@ export const Card = ({ id, text, index, moveCard, hideable, hiddenColumnNames, t
     <div className="sort-dialog-option-wrapper">
       <div className="sort-dialog-options">
         <input onClick={(event)=> {handleColumnVisibilityClick(event,forceUpdate,toggleColumnVisibility, hideable, text)}}
-          key={text}
           onChange={()=>{}}
           type="checkbox"
           checked={isChecked(hiddenColumnNames, text)}
