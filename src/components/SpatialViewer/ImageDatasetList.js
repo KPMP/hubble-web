@@ -18,7 +18,6 @@ import {
     ColumnChooser,
     TableColumnVisibility,
     Toolbar,
-    DragDropProvider,
     TableColumnReordering,
     PagingPanel,
 } from '@devexpress/dx-react-grid-bootstrap4';
@@ -53,8 +52,15 @@ class ImageDatasetList extends Component {
     setCards = (cards) => {
         this.setState({cards})
     }
+    
+    setDefaultCards = () => {
+        const cards = this.getColumns().map((item, index) => {
+            return {id: index, text: item.name, name: item.name, hideable: item.hideable}
+        })
+        this.setState({cards})
+    }
 
-    // This is used for column ordering too.766
+    // This is used for column ordering too.
     getColumns = () => {
         return [
             {
@@ -62,51 +68,34 @@ class ImageDatasetList extends Component {
                 title: 'PARTICIPANT ID',
                 sortable: true,
                 hideable: false,
+                defaultHidden: false,
                 getCellValue: row => <button onClick={() => this.props.setSelectedImageDataset(row)} type='button' data-toggle="popover" title="Popover title And here's some amazing content. It's very engaging. Right?" data-content="" className='table-column btn btn-link text-left p-0'>{row["Participant ID"]}</button>
             },
             {
                 name: 'Data Type',
                 title: 'DATA TYPE',
                 sortable: true,
-                hideable: true
+                hideable: true,
+                defaultHidden: false,
             },
             {
                 name: 'Image Type',
                 title: 'IMAGE TYPE',
                 sortable: true,
                 hideable: true,
+                defaultHidden: true,
                 getCellValue: this.getImageTypeCell
             },
         ];
     };
-    // This is used for column ordering too.766
-    getReverseColumns = () => {
-        return [
-            {
-                name: 'Image Type',
-                title: 'IMAGE TYPE',
-                sortable: true,
-                hideable: true,
-                getCellValue: this.getImageTypeCell
-            },
-            {
-                name: 'Data Type',
-                title: 'DATA TYPE',
-                sortable: true,
-                hideable: true
-            },
-            {
-                name: 'Participant ID',
-                title: 'PARTICIPANT ID',
-                sortable: true,
-                hideable: false,
-                getCellValue: row => <button onClick={() => this.props.setSelectedImageDataset(row)} type='button' data-toggle="popover" title="Popover title And here's some amazing content. It's very engaging. Right?" data-content="" className='table-column btn btn-link text-left p-0'>{row["Participant ID"]}</button>
-            },
-
-
-        ];
-    };
-
+    getDefaultHiddenColumnNames = (columns) => {
+        return columns.filter((column) => {
+            return column.defaultHidden == true
+          }).map((column) => {
+            return column.name;
+          })
+    }
+    
     getImageTypeCell = (row) => {
         return getImageTypeTooltipCopy(row["Image Type"]) !== "" &&
             <div>
@@ -257,8 +246,7 @@ class ImageDatasetList extends Component {
                                     <SortingState
                                         defaultSorting={[]}
                                     />
-                                    
-                                    <DragDropProvider />
+
                                     <IntegratedSorting />
                                     <PagingState
                                         defaultCurrentPage={0}
@@ -279,13 +267,14 @@ class ImageDatasetList extends Component {
                                     />
                                     <TableHeaderRow showSortingControls />
                                     <TableColumnVisibility
-                                        defaultHiddenColumnNames={[]}
+                                        defaultHiddenColumnNames={this.getDefaultHiddenColumnNames(this.getColumns())}
                                     />
                                     <ColumnChooser />
                                     
                                     <ToolbarFilter 
                                         cards={this.state.cards}
                                         setCards={this.setCards}
+                                        setDefaultCards={this.setDefaultCards}
 />
                                     <PaginationState />
                                     <Pagination pageSizes={this.getPageSizes()} />

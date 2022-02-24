@@ -64,6 +64,7 @@ export class ToolbarFilter extends React.PureComponent {
                   sortedColumns={sortedColumns}
                   cards={this.props.cards}
                   setCards={this.props.setCards}
+                  setDefaultCards={this.props.setDefaultCards}
                   hiddenColumnNames={hiddenColumnNames}
                   toggleColumnVisibility={toggleColumnVisibility}
                   addSortedColumn={addSortedColumn}

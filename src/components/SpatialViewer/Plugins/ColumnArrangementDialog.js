@@ -6,6 +6,7 @@ function useForceUpdate(){
   return () => setValue(value => value + 1);
 }
 
+
 function isFiltered(value, filterValue) {
   return (((value).toLowerCase()).indexOf(filterValue.toLowerCase()) >= 0 || filterValue == '' )
 }
@@ -27,9 +28,22 @@ function ColumnArrangementDialog(props) {
     }))
   };
 
+  const restoreDefaults = () => {
+    setFilterValue('')
+    props.setDefaultCards()
+    props.toolbarColumns.forEach(column => {
+      if(!column.defaultHidden && props.hiddenColumnNames.includes(column.name)){
+        props.toggleColumnVisibility(column.name)
+      } else if (column.defaultHidden && !props.hiddenColumnNames.includes(column.name)) {
+        props.toggleColumnVisibility(column.name)
+      }
+    });
+    
+  }
+
   return(
     <div className='column-arrage-dialog'>
-    {(props.arrangeColumnsDialogOpen) &&
+    {(props.arrangeColumnsDialogOpen) && 
         <div>
           <div className="modal-backdrop" onClick={() => {props.closeDialogs()}}></div>
             <div className="sort-dialog border rounded">
@@ -43,7 +57,7 @@ function ColumnArrangementDialog(props) {
                 />
               </div>
               <div className="sort-dialog-options fake-link">
-                <span onClick={()=>{setFilterValue('')}}>Restore Defaults</span>
+                <span onClick={()=>{restoreDefaults()}}>Restore Defaults</span>
               </div>
               
               <div>{props.cards.map((card, index) => {
