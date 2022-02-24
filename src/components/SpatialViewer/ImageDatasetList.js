@@ -224,7 +224,7 @@ class ImageDatasetList extends Component {
                                     <IntegratedPaging />
                                     <PagingPanel />
                                     <Toolbar />
-                                    <ToolbarFilterState columnName="Data Type" defaultFilterValue="" />
+                                    <ToolbarFilterState />
                                     <Table />
                                     <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={120} />
                                     <TableColumnReordering
