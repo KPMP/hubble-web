@@ -21,9 +21,8 @@ class SpatialViewer extends Component {
 
     async componentDidMount() {
         if (this.props.selectedImageDataset) {
-            // let viewConfig = getViewConfig(this.props.selectedImageDataset["Config Type"]);
-            // viewConfig = await populateViewConfig(viewConfig, this.props.selectedImageDataset);
-            let viewConfig = stViewConfig;
+            let viewConfig = getViewConfig(this.props.selectedImageDataset["Config Type"]);
+            viewConfig = await populateViewConfig(viewConfig, this.props.selectedImageDataset);
             const headerString = createHeaderString(this.props.selectedImageDataset);
             this.setState({viewConfig: viewConfig, noData: false, headerString});
         }
