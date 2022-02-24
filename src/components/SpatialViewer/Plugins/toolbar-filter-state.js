@@ -53,7 +53,6 @@ export class ToolbarFilterState extends React.PureComponent {
       sortDialogOpen: this.state.sortDialogOpen ? false : true,
       arrangeColumnsDialogOpen: false
     });
-    console.log('this.statesortedColumns', this.state.sortedColumns)
   }
 
   closeDialogs() {
@@ -112,13 +111,11 @@ export class ToolbarFilterState extends React.PureComponent {
   addSortedColumn(sortObj) {
     const sortedColumns = this.state.sortedColumns;
     if(sortedColumns.findIndex((el)=>{if(el.columnName===sortObj.columnName){return true}}) === -1 ){
-      console.log('added...')
       sortedColumns.push(sortObj);
       this.setState({sortedColumns});
     }else{
       sortedColumns[sortedColumns.findIndex((el)=>{if(el.columnName===sortObj.columnName){return true}})].direction = sortObj.direction
       this.setState({sortedColumns})
-      console.log('not  added')
     }
   }
 
