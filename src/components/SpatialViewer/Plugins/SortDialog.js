@@ -43,7 +43,7 @@ function SortDialog(props) {
                             props.changeColumnSorting({columnName: item.name, direction: 'asc', keepOther: true, sortIndex: -1});
                             props.addSortedColumn({columnName: item.name, direction: 'asc'});
                             forceUpdate()
-                            }}><i className="fas fa-arrow-up"></i>
+                            }}><i alt="Sort Column Ascending" className="fas fa-arrow-up"></i>
                             <input checked={
                               props.sortedColumns.findIndex((el)=>{if(el.columnName===item.name && el.direction === 'asc'){return true}}) >= 0 ? true : false
                               } type="radio" name={item.name} value='asc'>
@@ -54,7 +54,7 @@ function SortDialog(props) {
                             props.changeColumnSorting({columnName: item.name, direction: 'desc', keepOther: true, sortIndex: -1});
                             props.addSortedColumn({columnName: item.name, direction: 'desc'});
                             forceUpdate()
-                          }}><i className="fas fa-arrow-down"></i>
+                          }}><i alt="Sort Column Descending" className="fas fa-arrow-down"></i>
                           <input checked={
                             props.sortedColumns.findIndex((el)=>{if(el.columnName===item.name && el.direction === 'desc'){return true}}) >= 0 ? true : false
                           } type="radio" name={item.name} value='desc'>

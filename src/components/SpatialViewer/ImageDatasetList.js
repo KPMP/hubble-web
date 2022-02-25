@@ -102,7 +102,7 @@ class ImageDatasetList extends Component {
             <div>
                 <span className='mr-1'>{row["Image Type"]}</span>
                 <span className="icon-info spatial-info-cell">
-                    <i className="fas fa-info-circle"></i>
+                    <i alt="info icon" className="fas fa-info-circle"></i>
                 </span>
                 <div className='tooltip-parent rounded border shadow-sm mt-1 p-2'>
                     <span className='tooltip-child'>{getImageTypeTooltipCopy(row["Image Type"])}</span>
@@ -159,7 +159,7 @@ class ImageDatasetList extends Component {
                                 className={`filter-tab ${this.state.activeFilterTab === tabEnum.PARTICIPANT ? 'active' : ''} rounded border`}>PARTICIPANT</div>
                             
                             <div className="filter-tab filter-tab-control-icon">
-                                <i onClick={() => {this.toggleFilterTab()}} className="fas fa-angles-left clickable"></i>
+                                <i alt="Close Filter Tab" onClick={() => {this.toggleFilterTab()}} className="fas fa-angles-left clickable"></i>
                             </div>
                         </div>
                         <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
@@ -172,14 +172,14 @@ class ImageDatasetList extends Component {
                     <Col xl={`${this.state.filterTabActive ? 9 : 12 }`}>
                         <Row>
                             <Col className={`filter-collapse ${this.state.filterTabActive ? 'hidden': ''}`}  xl={1}>
-                            <i onClick={() => {this.toggleFilterTab()}} className={`fas fa-angles-right clickable`}></i>
+                            <i alt="Open Filter Tab" onClick={() => {this.toggleFilterTab()}} className={`fas fa-angles-right clickable`}></i>
                             </Col>
                             <Col xl={11} className='my-0 p-3'>
                                 <div className="border rounded activeFilter">
                                     <span>
                                         Active filter appears here
                                         &nbsp; &nbsp; &nbsp;
-                                        <i className="close-button fas fa-xmark"></i>
+                                        <i alt="Turn off filter" className="close-button fas fa-xmark"></i>
                                     </span>
                                 </div>
 

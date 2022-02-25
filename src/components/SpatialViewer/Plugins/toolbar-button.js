@@ -6,7 +6,7 @@ import {
 } from "@devexpress/dx-react-core";
 import Button from "@material-ui/core/Button";
 import SortDialog from './SortDialog/sortDialog';
-import ColumnArrangementDialog from './ColumnArrangementDialog';
+import ColumnArrangementDialog from './ColumnArrangmentDialog/columnArrangementDialog';
 
 const pluginDependencies = [
   { name: "Toolbar" },
@@ -15,10 +15,6 @@ const pluginDependencies = [
 ];
 
 export class ToolbarButton extends React.PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Plugin name="ToolbarButton" dependencies={pluginDependencies}>

@@ -64,7 +64,9 @@ function SortDialog({
                               changeColumnSorting,
                               addSortedColumn,
                               forceUpdate)}>
-                            <i className="fas fa-arrow-up"></i>
+                            <i
+                            alt="Sort Column Descending"
+                            className="fas fa-arrow-up"></i>
                             <input checked={
                               isRadioChecked(
                                 sortedColumns,
@@ -83,7 +85,9 @@ function SortDialog({
                               changeColumnSorting,
                               addSortedColumn,
                               forceUpdate)}>
-                            <i className="fas fa-arrow-down"></i>
+                            <i
+                            alt="Sort Column Descending"
+                            className="fas fa-arrow-down"></i>
                             <input checked={
                               isRadioChecked(
                                 sortedColumns,

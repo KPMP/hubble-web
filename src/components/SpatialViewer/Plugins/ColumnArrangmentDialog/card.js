@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd'; //https://react-dnd.github.io/react-dnd/about
+
 function useForceUpdate(){
-  const [value, setValue] = useState(0);
-  return () => setValue(value => value + 1);
+  const [value, setValue] = useState(0) // eslint-disable-line
+  return () => setValue(value => value + 1) 
 }
 
 function handleColumnVisibilityClick(event,forceUpdate, toggleColumnVisibility, hideable, text) {
@@ -16,8 +17,10 @@ function handleColumnVisibilityClick(event,forceUpdate, toggleColumnVisibility, 
 
 function isChecked(hiddenColumnNames, text) {
   return hiddenColumnNames.findIndex((columnName)=>{
-    if(columnName===text){
+    if(columnName === text){
       return true
+    } else {
+      return false
     }
   }) >= 0 ? false : true
 }
@@ -70,6 +73,7 @@ export const Card = ({ id, text, index, moveCard, hideable, hiddenColumnNames, t
           item.index = hoverIndex;
       },
   });
+
   const [{ isDragging }, drag] = useDrag({
       type: 'card',
       item: () => {
@@ -85,10 +89,20 @@ export const Card = ({ id, text, index, moveCard, hideable, hiddenColumnNames, t
 
   const opacity = isDragging ? 0 : 1;
   const style = {cursor: 'move'}
-  return (<div ref={ref} style={{ ...style, opacity }} data-handler-id={handlerId}>
+  return (<div ref={ref}
+    style={{ ...style, opacity }}
+    data-handler-id={handlerId}>
     <div className="sort-dialog-option-wrapper">
       <div className="sort-dialog-options">
-        <input onClick={(event)=> {handleColumnVisibilityClick(event,forceUpdate,toggleColumnVisibility, hideable, text)}}
+        <input
+          onClick={(event)=> {
+            handleColumnVisibilityClick(
+              event,
+              forceUpdate,
+              toggleColumnVisibility,
+              hideable,
+              text) }
+          }
           onChange={()=>{}}
           type="checkbox"
           checked={isChecked(hiddenColumnNames, text)}
