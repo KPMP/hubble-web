@@ -22,8 +22,8 @@ import {
 } from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
-import { ToolbarFilterState } from './Plugins/toolbar-filter-state.js';
-import { ToolbarFilter } from './Plugins/toolbar-filter.js';
+import { ToolbarButtonState } from './Plugins/toolbar-button-state.js';
+import { ToolbarButton } from './Plugins/toolbar-button.js';
 
 import { PaginationState } from './Plugins/pagination-state.js';
 import { Pagination } from './Plugins/pagination.js';
@@ -208,35 +208,34 @@ class ImageDatasetList extends Component {
                             <div className="spatial-data-table">
                                 <Grid
                                     rows={this.state.tableData}
-                                    columns={this.getColumns()}
-                                >
+                                    columns={this.getColumns()} >
+
                                     <SortingState
-                                        defaultSorting={[]}
-                                    />
-                                    
+                                        defaultSorting={[]} />
+
                                     <DragDropProvider />
                                     <IntegratedSorting />
                                     <PagingState
                                         defaultCurrentPage={0}
-                                        defaultPageSize={10}
-                                        
-                                    />
+                                        defaultPageSize={10} />
+
                                     <IntegratedPaging />
                                     <PagingPanel />
                                     <Toolbar />
-                                    <ToolbarFilterState />
+                                    <ToolbarButtonState />
                                     <Table />
-                                    <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={120} />
+                                    <TableColumnResizing
+                                        defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={120} />
+
                                     <TableColumnReordering
-                                        defaultOrder={this.getColumns().map(item => item.name)}
-                                    />
+                                        defaultOrder={this.getColumns().map(item => item.name)} />
+
                                     <TableHeaderRow showSortingControls />
                                     <TableColumnVisibility
-                                        defaultHiddenColumnNames={[]}
-                                    />
-                                    <ColumnChooser />
-                                    
-                                    <ToolbarFilter />
+                                        defaultHiddenColumnNames={[]} />
+
+                                    <ColumnChooser />                                    
+                                    <ToolbarButton />
                                     <PaginationState />
                                     <Pagination pageSizes={this.getPageSizes()} />
                                 </Grid>
@@ -247,7 +246,6 @@ class ImageDatasetList extends Component {
             </Container>
         )
     }
-
 }
 
 export default ImageDatasetList;

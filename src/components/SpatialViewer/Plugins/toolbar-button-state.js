@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Plugin, Getter, Action } from "@devexpress/dx-react-core";
 
-export class ToolbarFilterState extends React.PureComponent {
+export class ToolbarButtonState extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,70 +9,49 @@ export class ToolbarFilterState extends React.PureComponent {
       sortDialogOpen: false,
       arrangeColumnsDialogOpen: false,
     };
-    this.getColumns = this.getColumns.bind(this);
-    this.getSortableToolbarColumns = this.getSortableToolbarColumns.bind(this);
-    this.toggleArrangeColumnsDialogState = this.toggleArrangeColumnsDialogState.bind(this);
-    this.toggleSortDialogState = this.toggleSortDialogState.bind(this);
-    this.closeDialogs = this.closeDialogs.bind(this);
-    this.toggleSort = this.toggleSort.bind(this);
-    this.getSortedColumns = this.getSortedColumns.bind(this);
-    this.addSortedColumn = this.addSortedColumn.bind(this);
-    this.removeSortedColumn = this.removeSortedColumn.bind(this);
   }
 
-  toggleArrangeColumnsDialogState() {
+  toggleArrangeColumnsDialogState = () => {
     this.setState({
       arrangeColumnsDialogOpen: this.state.arrangeColumnsDialogOpen ? false : true,
       sortDialogOpen: false
     });
   }
 
-  toggleSortDialogState() {
+  toggleSortDialogState = () => {
     this.setState({
       sortDialogOpen: this.state.sortDialogOpen ? false : true,
       arrangeColumnsDialogOpen: false
     });
   }
 
-  closeDialogs() {
+  closeDialogs = () => {
     this.setState({
       sortDialogOpen: false,
       arrangeColumnsDialogOpen: false
     });
   }
 
-  getSortableToolbarColumns ({ columns }){
-    return columns.filter(col => col.sortable === true);
-  }
-
-  getColumns({columns}){
-    return columns
-  }
-
-  toggleSort(sortOrder){
-    this.setState({columnName: sortOrder.columnName, direction: sortOrder.direction})
-  }
-
-  addSortedColumn(sortObj) {
+  addSortedColumn = (sortObj) => {
     const sortedColumns = this.state.sortedColumns;
-    if(sortedColumns.findIndex((el)=>{if(el.columnName===sortObj.columnName){return true}}) === -1 ){
+    if(sortedColumns.findIndex((el)=>{if(el.columnName===sortObj.columnName){return true}else{return false}}) === -1 ){
       sortedColumns.push(sortObj);
       this.setState({sortedColumns});
     }else{
-      sortedColumns[sortedColumns.findIndex((el)=>{if(el.columnName===sortObj.columnName){return true}})].direction = sortObj.direction
+      sortedColumns[sortedColumns.findIndex((el)=>{if(el.columnName===sortObj.columnName){return true}else{return false}})].direction = sortObj.direction
       this.setState({sortedColumns})
     }
   }
 
-  removeSortedColumn(columnName) {
+  removeSortedColumn = (columnName) => {
     const sortedColumns = this.state.sortedColumns
     sortedColumns.splice(
-      sortedColumns.findIndex((el)=>{if(el.columnName===columnName){return true}}), 1
+      sortedColumns.findIndex((el)=>{if(el.columnName===columnName){return true}else{return false}}), 1
     )
     this.setState({sortedColumns})
   }
 
-  getSortedColumns({sorting, columns}) {
+  getComputedSortedColumns = ({sorting, columns}) => {
     const result1 = sorting.filter((o1)=>{
       return (this.state.sortedColumns).some((o2)=>{
          return ( o1.columnName === o2.columnName && o1.direction === o2.direction );
@@ -90,13 +69,21 @@ export class ToolbarFilterState extends React.PureComponent {
     return this.state.sortedColumns
   }
 
+  getSortableToolbarColumns = ({ columns }) => {
+    return columns.filter(col => col.sortable === true);
+  }
+
+  getColumns = ({columns}) => {
+    return columns
+  }
+  
   render() {
     const { sortDialogOpen, arrangeColumnsDialogOpen } = this.state;
 
     return (
-      <Plugin name="ToolbarFilterState">
+      <Plugin name="ToolbarButtonState">
         <Getter name="sortableToolbarColumns" computed={this.getSortableToolbarColumns} />
-        <Getter name="sortedColumns" computed={this.getSortedColumns} />
+        <Getter name="sortedColumns" computed={this.getComputedSortedColumns} />
         <Getter name="toolbarColumns" computed={this.getColumns} />
         <Getter name="arrangeColumnsDialogOpen" value={arrangeColumnsDialogOpen} />
         <Getter name="sortDialogOpenValue" value={sortDialogOpen} />

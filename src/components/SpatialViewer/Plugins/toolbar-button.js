@@ -5,17 +5,17 @@ import {
   TemplateConnector
 } from "@devexpress/dx-react-core";
 import Button from "@material-ui/core/Button";
-import SortDialog from './SortDialog';
+import SortDialog from './SortDialog/sortDialog';
 const pluginDependencies = [
   { name: "Toolbar" },
   { name: "IntegratedSorting" }, 
-  { name: "ToolbarFilterState" }
+  { name: "ToolbarButtonState" }
 ];
 
-export class ToolbarFilter extends React.PureComponent {
+export class ToolbarButton extends React.PureComponent {
   render() {
     return (
-      <Plugin name="ToolbarFilter" dependencies={pluginDependencies}>
+      <Plugin name="ToolbarButton" dependencies={pluginDependencies}>
         <Template name="toolbarContent">
           <TemplateConnector>
             {(
@@ -29,7 +29,6 @@ export class ToolbarFilter extends React.PureComponent {
               {
                 toggleArrangeColumnsDialog,
                 toggleSortTableDialog,
-                toggleSortOrder,
                 closeDialogs,
                 changeColumnSorting,
                 addSortedColumn,
@@ -72,9 +71,9 @@ export class ToolbarFilter extends React.PureComponent {
                 }
                 <SortDialog
                   sortDialogOpenValue={sortDialogOpenValue}
-                  closeDialogs={closeDialogs}
-                  sortableToolbarColumns={sortableToolbarColumns}
                   sortedColumns={sortedColumns}
+                  sortableToolbarColumns={sortableToolbarColumns}
+                  closeDialogs={closeDialogs}
                   changeColumnSorting={changeColumnSorting}
                   addSortedColumn={addSortedColumn}
                   removeSortedColumn={removeSortedColumn}

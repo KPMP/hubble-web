@@ -1,11 +1,9 @@
 import * as React from "react";
 import { Plugin, Getter, Action } from "@devexpress/dx-react-core";
-import * as PropTypes from "prop-types";
 
 export class PaginationState extends React.PureComponent {
   constructor(props) {
     super(props);
-    const { } = props;
     this.state = {
       pagingSize: 10
     };
@@ -29,13 +27,3 @@ export class PaginationState extends React.PureComponent {
     );
   }
 }
-
-PaginationState.propTypes = {
-  defaultFilterValue: PropTypes.string,
-  columnName: PropTypes.string
-};
-
-PaginationState.defaultProps = {
-  defaultFilterValue: "",
-  columnName: ""
-};
