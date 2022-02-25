@@ -323,12 +323,15 @@ tr:nth-last-of-type(3) .tooltip-parent {
 .sort-dialog-radio-wrapper i {
     padding-right: 2px;
 }
-
+.card-footer {
+    z-index: 5;
+}
 .card-footer .d-inline-block {
     display: none !important;
 }
 
 .pagination-size-wrapper {
+    z-index: 10;
     margin-bottom: -50px;
     position: relative;
     top: -45px;
@@ -342,4 +345,20 @@ tr:nth-last-of-type(3) .tooltip-parent {
     display: block;
     background-color: rgba(0, 0, 0, 0.0);
     z-index: 100;
+}
+
+.fake-link {
+    color: rgb(0, 91, 124);
+    cursor:pointer;
+}
+.fake-link:hover {
+    text-decoration: underline;
+}
+
+.column-arrage-dialog .column-filter-wrapper {
+    background-color: #dedede;
+}
+.column-arrage-dialog .column-filter-wrapper i {
+    padding: 0px 5px 5px 5px;
+    
 }

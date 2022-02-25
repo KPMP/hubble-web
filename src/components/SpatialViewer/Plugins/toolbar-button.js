@@ -2,10 +2,12 @@ import * as React from "react";
 import {
   Template,
   Plugin,
-  TemplateConnector
+  TemplateConnector,
 } from "@devexpress/dx-react-core";
 import Button from "@material-ui/core/Button";
 import SortDialog from './SortDialog/sortDialog';
+import ColumnArrangementDialog from './ColumnArrangmentDialog/columnArrangementDialog';
+
 const pluginDependencies = [
   { name: "Toolbar" },
   { name: "IntegratedSorting" }, 
@@ -25,12 +27,15 @@ export class ToolbarButton extends React.PureComponent {
                 toolbarColumns,
                 sortableToolbarColumns,
                 sortedColumns,
+                hiddenColumnNames,
+                rows
               },
               {
                 toggleArrangeColumnsDialog,
                 toggleSortTableDialog,
                 closeDialogs,
                 changeColumnSorting,
+                toggleColumnVisibility,
                 addSortedColumn,
                 removeSortedColumn,
               }
@@ -48,27 +53,19 @@ export class ToolbarButton extends React.PureComponent {
                   </span>
                 </Button>
 
-                {arrangeColumnsDialogOpen &&
-                  <div>
-                    <div className="modal-backdrop" onClick={() => {closeDialogs()}}></div>
-                      <div className="sort-dialog border rounded dialog-content" onClick={e => {e.stopPropagation();}}>
-                        {toolbarColumns.map((item, index) => {
-                          return (
-                            <div className="sort-dialog-option-wrapper">
-                              <div className="sort-dialog-options">
-                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></input>
-                                <span key={index}>{item.name}</span>
-                              </div>
-                              <div class="sort-dialog-radio-wrapper">
-                                <span><i className="fas fa-arrow-up"></i><input type="radio" id="vehicle2" name="vehicle1" value="Bike"></input></span>
-                                <span><i className="fas fa-arrow-down"></i><input type="radio" id="vehicle3" name="vehicle1" value="Bike"></input></span>
-                              </div>
-                            </div>
-                          )
-                        })}
-                      </div>
-                  </div>
-                }
+                <ColumnArrangementDialog
+                  arrangeColumnsDialogOpen={arrangeColumnsDialogOpen}
+                  closeDialogs={closeDialogs}
+                  toolbarColumns={toolbarColumns}
+                  sortedColumns={sortedColumns}
+                  cards={this.props.cards}
+                  setCards={this.props.setCards}
+                  setDefaultCards={this.props.setDefaultCards}
+                  hiddenColumnNames={hiddenColumnNames}
+                  toggleColumnVisibility={toggleColumnVisibility}
+                  addSortedColumn={addSortedColumn}
+                  removeSortedColumn={removeSortedColumn}
+                />
                 <SortDialog
                   sortDialogOpenValue={sortDialogOpenValue}
                   sortedColumns={sortedColumns}
@@ -77,6 +74,7 @@ export class ToolbarButton extends React.PureComponent {
                   changeColumnSorting={changeColumnSorting}
                   addSortedColumn={addSortedColumn}
                   removeSortedColumn={removeSortedColumn}
+                  rows={rows}
                 />
               </div>
             )}
