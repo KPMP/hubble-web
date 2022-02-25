@@ -23,8 +23,8 @@ import {
 } from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
-import { ToolbarFilterState } from './Plugins/toolbar-filter-state.js';
-import { ToolbarFilter } from './Plugins/toolbar-filter.js';
+import { ToolbarButtonState } from './Plugins/toolbar-button-state.js';
+import { ToolbarButton } from './Plugins/toolbar-button.js';
 
 import { PaginationState } from './Plugins/pagination-state.js';
 import { Pagination } from './Plugins/pagination.js';
@@ -62,6 +62,7 @@ class ImageDatasetList extends Component {
 
     // This is used for column ordering too.
     getColumns = () => {
+        const { setSelectedImageDataset } = this.props;
         return [
             {
                 name: 'Participant ID',
@@ -69,7 +70,7 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: false,
                 defaultHidden: false,
-                getCellValue: row => <button onClick={() => this.props.setSelectedImageDataset(row)} type='button' data-toggle="popover" title="Popover title And here's some amazing content. It's very engaging. Right?" data-content="" className='table-column btn btn-link text-left p-0'>{row["Participant ID"]}</button>
+                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="popover" title="Popover title And here's some amazing content. It's very engaging. Right?" data-content="" className='table-column btn btn-link text-left p-0'>{row["Participant ID"]}</button>
             },
             {
                 name: 'Data Type',
@@ -90,7 +91,7 @@ class ImageDatasetList extends Component {
     };
     getDefaultHiddenColumnNames = (columns) => {
         return columns.filter((column) => {
-            return column.defaultHidden == true
+            return column.defaultHidden === true
           }).map((column) => {
             return column.name;
           })
@@ -241,12 +242,9 @@ class ImageDatasetList extends Component {
                             <div className="spatial-data-table">
                                 <Grid
                                     rows={this.state.tableData}
-                                    columns={this.getColumns()}
-                                >
-                                    <SortingState
-                                        defaultSorting={[]}
-                                    />
+                                    columns={this.getColumns()} >
 
+                                    <SortingState defaultSorting={[]} />
                                     <IntegratedSorting />
                                     <PagingState
                                         defaultCurrentPage={0}
@@ -258,9 +256,12 @@ class ImageDatasetList extends Component {
                                         cards={this.state.cards}
                                         setCards={this.state.setCards}
                                     />
-                                    <ToolbarFilterState columnName="Data Type" defaultFilterValue=""  />
+
+                                    <ToolbarButtonState />
                                     <Table />
-                                    <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={120} />
+                                    <TableColumnResizing
+                                        defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={120} />
+
                                     <TableColumnReordering
                                         order={(this.state.cards).map(item => item.name)}
                                         defaultOrder={this.getColumns().map(item => item.name)}
@@ -271,11 +272,12 @@ class ImageDatasetList extends Component {
                                     />
                                     <ColumnChooser />
                                     
-                                    <ToolbarFilter 
+                                    <ToolbarButton 
                                         cards={this.state.cards}
                                         setCards={this.setCards}
                                         setDefaultCards={this.setDefaultCards}
-/>
+                                        defaultOrder={this.getColumns().map(item => item.name)} />
+
                                     <PaginationState />
                                     <Pagination pageSizes={this.getPageSizes()} />
                                 </Grid>
@@ -287,7 +289,6 @@ class ImageDatasetList extends Component {
             </Container>
         )
     }
-
 }
 
 export default ImageDatasetList;

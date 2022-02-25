@@ -16,7 +16,9 @@ const pluginDependencies = [
 ];
 
 export class Pagination extends React.PureComponent {
+  
   render() {
+    const { pageSizes } = this.props;
     return (
       <Plugin
         name="Pagination"
@@ -46,7 +48,7 @@ export class Pagination extends React.PureComponent {
                     id: "filter-field"
                   }}
                 >
-                  {this.props.pageSizes.map((item, index) => (
+                  {pageSizes.map((item, index) => (
                     <MenuItem key={index} value={item}>
                       {item}
                     </MenuItem>
