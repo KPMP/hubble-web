@@ -84,7 +84,7 @@ class ImageDatasetList extends Component {
                 title: 'IMAGE TYPE',
                 sortable: true,
                 hideable: true,
-                defaultHidden: true,
+                defaultHidden: false,
                 getCellValue: this.getImageTypeCell
             },
         ];
