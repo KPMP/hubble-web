@@ -219,7 +219,7 @@ class ImageDatasetList extends Component {
                         </Row>
                         <DndProvider backend={HTML5Backend}>
 
-                        <Container className='rounded border shadow-sm p-3 container-max spatial-data-table-wrapper'>
+                        <div className='p-3 container-max spatial-data-table-wrapper'>
                             <div className="spatial-data-table">
                                 <Grid
                                     rows={this.state.tableData}
@@ -263,7 +263,7 @@ class ImageDatasetList extends Component {
                                     <Pagination pageSizes={this.getPageSizes()} />
                                 </Grid>
                             </div>
-                        </Container>
+                        </div>
                         </DndProvider>
                     </Col>
                 </Row>
