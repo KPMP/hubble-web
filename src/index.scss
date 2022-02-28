@@ -32,6 +32,7 @@
 .spatial-filter-panel {
     margin-top: 3.5rem !important;
     border-top-left-radius: 0px !important;
+    height: 70vh;
 }
 
 .filter-tab-control-icon {
@@ -124,6 +125,9 @@ th[title='Pixels Type'], th[title='Pixels Type'] + td {
 }
 .spatial-info-cell.icon-info {
     float: right;
+}
+.spatial-button.icon-info {
+    color: #212529;
 }
 
 tr:nth-last-of-type(1) .tooltip-parent,
@@ -292,6 +296,14 @@ tr:nth-last-of-type(3) .tooltip-parent {
     position: relative;
     outline: currentcolor none medium;
     padding: 5px;
+    border-right: 2px solid rgba(0, 0, 0, 0);
+}
+.sort-dialog-option-wrapper:hover {
+    background-color: rgb(245, 245, 245);
+    border-right: 2px solid rgb(23, 132, 172);
+}
+.sort-dialog-option-wrapper input:hover {
+    cursor: pointer;
 }
 
 .sort-dialog-options {

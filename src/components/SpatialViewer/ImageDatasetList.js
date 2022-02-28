@@ -114,7 +114,7 @@ class ImageDatasetList extends Component {
         return [
             { columnName: 'Participant ID', width: 120 },
             { columnName: 'Data Type', width: 250 },
-            { columnName: 'Image Type', width: 685 },
+            { columnName: 'Image Type', width: 660 },
         ]
     };
 
@@ -220,20 +220,7 @@ class ImageDatasetList extends Component {
                                         <i className="close-button fas fa-xmark"></i>
                                     </span>
                                 </div>
-                                <div className="border rounded activeFilter ">                                    
-                                    <span>
-                                        Really long active filter appears here
-                                        &nbsp; &nbsp; &nbsp;
-                                        <i className="close-button fas fa-xmark"></i>
-                                    </span>
-                                </div>
-                                <div className="border rounded activeFilter ">                                    
-                                    <span>
-                                        Really long active filter appears here
-                                        &nbsp; &nbsp; &nbsp;
-                                        <i className="close-button fas fa-xmark"></i>
-                                    </span>
-                                </div>
+       
                             </Col>
                         </Row>
                         <DndProvider backend={HTML5Backend}>
