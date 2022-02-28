@@ -101,18 +101,12 @@ class ImageDatasetList extends Component {
         return getImageTypeTooltipCopy(row["Image Type"]) !== "" &&
             <div>
                 <span className='mr-1'>{row["Image Type"]}</span>
-                <span className="icon-info spatial-info-cell">
-                    <i alt="info icon" className="fas fa-info-circle"></i>
-                </span>
-                <div className='tooltip-parent rounded border shadow-sm mt-1 p-2'>
-                    <span className='tooltip-child'>{getImageTypeTooltipCopy(row["Image Type"])}</span>
-                </div>
             </div>
     };
 
     getDefaultColumnWidths = () => {
         return [
-            { columnName: 'Participant ID', width: 120 },
+            { columnName: 'Participant ID', width: 145 },
             { columnName: 'Data Type', width: 250 },
             { columnName: 'Image Type', width: 660 },
         ]
@@ -247,7 +241,7 @@ class ImageDatasetList extends Component {
                                     <ToolbarButtonState />
                                     <Table />
                                     <TableColumnResizing
-                                        defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={120} />
+                                        defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={145} />
 
                                     <TableColumnReordering
                                         order={(this.state.cards).map(item => item.name)}
