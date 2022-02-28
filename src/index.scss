@@ -223,6 +223,11 @@ tr:nth-last-of-type(3) .tooltip-parent {
         display: none;
     }
 }
+@media only screen and (max-width: 1200px) {
+    .activeFilter-colulmn {
+        padding: 1rem 3rem !important
+    }
+}
 
 .activeFilter {
     background-color: white;

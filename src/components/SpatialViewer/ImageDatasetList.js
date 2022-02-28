@@ -134,7 +134,7 @@ class ImageDatasetList extends Component {
                             <Col className={`filter-collapse ${this.state.filterTabActive ? 'hidden': ''}`}  xl={1}>
                             <i onClick={() => {this.toggleFilterTab()}} className={`fas fa-angles-right clickable`}></i>
                             </Col>
-                            <Col xl={11} className='my-0 p-3'>
+                            <Col xl={11} className='activeFilter-colulmn my-0 p-3'>
                                 <div className="border rounded activeFilter">
                                     <span>
                                         Active filter appears here
