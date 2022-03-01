@@ -70,6 +70,9 @@
     padding: 20px;
     padding-top: 0px;
 }
+.spatial-data-table table {
+    position: relative
+}
 
 .spatial-data-table .card-header,
 .spatial-data-table .card-footer {
@@ -130,6 +133,18 @@ th[title='Pixels Type'], th[title='Pixels Type'] + td {
 }
 .spatial-button.icon-info {
     color: #212529;
+}
+.tooltip-parent-parent {
+    position: relative;
+}
+
+tr:nth-last-of-type(1) .tooltip-parent-parent,
+tr:nth-last-of-type(2) .tooltip-parent-parent,
+tr:nth-last-of-type(3) .tooltip-parent-parent {
+    cursor: pointer !important;
+    font-size: 14px;
+    margin-bottom: -5.75rem !important;
+    margin-left: 2rem !important;
 }
 
 .tooltip-parent {

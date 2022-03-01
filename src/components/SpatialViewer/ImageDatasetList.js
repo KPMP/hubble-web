@@ -101,7 +101,8 @@ class ImageDatasetList extends Component {
         return getImageTypeTooltipCopy(row["Image Type"]) !== "" &&
             <div className="image-type-cell">
                 <span className='mr-1'>{row["Image Type"]}</span>
-                <div className='tooltip-parent rounded border shadow-sm mt-1 p-2'>
+                <div className='tooltip-parent-parent'></div>
+                <div className='tooltip-parent rounded border shadow mt-2 p-2'>
                     <span className='tooltip-child'>{getImageTypeTooltipCopy(row["Image Type"])}</span>
                 </div>
             </div>
