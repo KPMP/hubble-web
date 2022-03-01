@@ -70,7 +70,7 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: false,
                 defaultHidden: false,
-                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="popover" title="Popover title And here's some amazing content. It's very engaging. Right?" data-content="" className='table-column btn btn-link text-left p-0'>{row["Participant ID"]}</button>
+                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="popover" data-content="" className='table-column btn btn-link text-left p-0'>{row["Participant ID"]}</button>
             },
             {
                 name: 'Data Type',
@@ -98,9 +98,13 @@ class ImageDatasetList extends Component {
     }
     
     getImageTypeCell = (row) => {
-        return getImageTypeTooltipCopy(row["Image Type"]) !== "" &&
-            <div>
+        return getImageTypeTooltipCopy(row["Image Type"]) !== "" && 
+            <div className="image-type-cell">
                 <span className='mr-1'>{row["Image Type"]}</span>
+                <div className='tooltip-parent-sibling'></div>
+                <div className='tooltip-parent rounded border shadow mt-2 p-2'>
+                    <span className='tooltip-child'>{getImageTypeTooltipCopy(row["Image Type"])}</span>
+                </div>
             </div>
     };
 
@@ -218,52 +222,50 @@ class ImageDatasetList extends Component {
                             </Col>
                         </Row>
                         <DndProvider backend={HTML5Backend}>
+                            <div className='p-3 container-max spatial-data-table-wrapper'>
+                                <div className="spatial-data-table">
+                                    <Grid
+                                        rows={this.state.tableData}
+                                        columns={this.getColumns()} >
 
-                        <div className='p-3 container-max spatial-data-table-wrapper'>
-                            <div className="spatial-data-table">
-                                <Grid
-                                    rows={this.state.tableData}
-                                    columns={this.getColumns()} >
+                                        <SortingState defaultSorting={[]} />
+                                        <IntegratedSorting />
+                                        <PagingState
+                                            defaultCurrentPage={0}
+                                            defaultPageSize={10}
+                                        />
+                                        <IntegratedPaging />
+                                        <PagingPanel />
+                                        <Toolbar
+                                            cards={this.state.cards}
+                                            setCards={this.state.setCards}
+                                        />
+                                        <ToolbarButtonState />
+                                        <Table />
+                                        <TableColumnResizing
+                                            defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={145} />
 
-                                    <SortingState defaultSorting={[]} />
-                                    <IntegratedSorting />
-                                    <PagingState
-                                        defaultCurrentPage={0}
-                                        defaultPageSize={10}
-                                    />
-                                    <IntegratedPaging />
-                                    <PagingPanel />
-                                    <Toolbar
-                                        cards={this.state.cards}
-                                        setCards={this.state.setCards}
-                                    />
+                                        <TableColumnReordering
+                                            order={(this.state.cards).map(item => item.name)}
+                                            defaultOrder={this.getColumns().map(item => item.name)}
+                                        />
+                                        <TableHeaderRow showSortingControls />
+                                        <TableColumnVisibility
+                                            defaultHiddenColumnNames={this.getDefaultHiddenColumnNames(this.getColumns())}
+                                        />
+                                        <ColumnChooser />
+                                        
+                                        <ToolbarButton 
+                                            cards={this.state.cards}
+                                            setCards={this.setCards}
+                                            setDefaultCards={this.setDefaultCards}
+                                            defaultOrder={this.getColumns().map(item => item.name)} />
 
-                                    <ToolbarButtonState />
-                                    <Table />
-                                    <TableColumnResizing
-                                        defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={145} />
-
-                                    <TableColumnReordering
-                                        order={(this.state.cards).map(item => item.name)}
-                                        defaultOrder={this.getColumns().map(item => item.name)}
-                                    />
-                                    <TableHeaderRow showSortingControls />
-                                    <TableColumnVisibility
-                                        defaultHiddenColumnNames={this.getDefaultHiddenColumnNames(this.getColumns())}
-                                    />
-                                    <ColumnChooser />
-                                    
-                                    <ToolbarButton 
-                                        cards={this.state.cards}
-                                        setCards={this.setCards}
-                                        setDefaultCards={this.setDefaultCards}
-                                        defaultOrder={this.getColumns().map(item => item.name)} />
-
-                                    <PaginationState />
-                                    <Pagination pageSizes={this.getPageSizes()} />
-                                </Grid>
+                                        <PaginationState />
+                                        <Pagination pageSizes={this.getPageSizes()} />
+                                    </Grid>
+                                </div>
                             </div>
-                        </div>
                         </DndProvider>
                     </Col>
                 </Row>

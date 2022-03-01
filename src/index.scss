@@ -70,42 +70,15 @@
     padding: 20px;
     padding-top: 0px;
 }
-
-.spatial-data-table .card-header {
-    background-color: rgba(0, 0, 0, 0);
-    border-bottom: 0px solid rgba(0,0,0,0);
-    padding: .5rem 0 !important;
+.spatial-data-table table {
+    position: relative
 }
 
-.spatial-data-table .card-header .btn.btn-light {
+.spatial-data-table .card-header,
+.spatial-data-table .card-footer {
     background-color: #fff;
 }
 
-.spatial-data-table .card-header .btn.btn-light:hover {
-    background-color: rgb(245, 245, 245);
-    cursor: pointer;
-}
-.spatial-data-table .table-responsive {
-    padding: 1rem !important;
-    background-color: transparent;
-    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
-    border-radius: .25rem !important;
-    border: 1px solid #dee2e6 !important;
-}
-
-.spatial-data-table .card-footer {
-    padding: 1rem 0px !important;
-    background-color: transparent;
-    margin-top: 20px;
-    border-top: 0px solid rgba(0,0,0,0);
-}
-
-.card-footer {
-    z-index: 5;
-}
-.card-footer .d-inline-block {
-    display: none !important;
-}
 .spatial-data-table thead th {
     position: sticky;
     top: 0;
@@ -161,16 +134,19 @@ th[title='Pixels Type'], th[title='Pixels Type'] + td {
 .spatial-button.icon-info {
     color: #212529;
 }
+.tooltip-parent-sibling {
+    position: relative;
+}
 
-tr:nth-last-of-type(1) .tooltip-parent,
-tr:nth-last-of-type(2) .tooltip-parent,
-tr:nth-last-of-type(3) .tooltip-parent {
+tr:nth-last-of-type(1) .tooltip-parent-sibling,
+tr:nth-last-of-type(2) .tooltip-parent-sibling,
+tr:nth-last-of-type(3) .tooltip-parent-sibling {
     cursor: pointer !important;
     font-size: 14px;
-    margin-bottom: -7.75rem !important;
+    margin-bottom: -5.75rem !important;
     margin-left: 2rem !important;
-
 }
+
 .tooltip-parent {
     z-index: 10;
     cursor: pointer;
@@ -178,11 +154,17 @@ tr:nth-last-of-type(3) .tooltip-parent {
     position: absolute;
     background-color: #fff;
     display: none;
-    width: 10rem;
+    width: 23rem;
 }
 
-.icon-info:hover + .tooltip-parent {
-    display: block;
+td .image-type-cell{
+    cursor: pointer;
+}
+
+td:hover {
+    .tooltip-parent {
+        display: block !important;
+    }
 }
 
 .icon-row .col {
@@ -267,11 +249,6 @@ tr:nth-last-of-type(3) .tooltip-parent {
         display: none;
     }
 }
-@media only screen and (max-width: 1200px) {
-    .activeFilter-column {
-        padding: 1rem 3rem !important
-    }
-}
 
 .activeFilter {
     background-color: white;
@@ -344,6 +321,8 @@ tr:nth-last-of-type(3) .tooltip-parent {
 }
 
 .sort-dialog-options {
+    display: flex;
+    flex-direction: row;
     box-sizing: border-box;
     position: relative;
     outline: currentcolor none medium;
@@ -370,14 +349,19 @@ tr:nth-last-of-type(3) .tooltip-parent {
 .sort-dialog-radio-wrapper i {
     padding-right: 2px;
 }
-
+.card-footer {
+    z-index: 5;
+}
+.card-footer .d-inline-block {
+    display: none !important;
+}
 
 .pagination-size-wrapper {
     z-index: 10;
+    margin-bottom: -50px;
     position: relative;
-    top: -70px;
+    top: -45px;
     width: fit-content;
-    margin: 1rem;
 }
 
 .pagination {
@@ -402,5 +386,5 @@ tr:nth-last-of-type(3) .tooltip-parent {
     background-color: #dedede;
 }
 .column-arrage-dialog .column-filter-wrapper i {
-    padding: 0px 5px 5px 5px;
+    padding: 0px 5px 5px 5px;    
 }
