@@ -70,7 +70,7 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: false,
                 defaultHidden: false,
-                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="popover" title="Popover title And here's some amazing content. It's very engaging. Right?" data-content="" className='table-column btn btn-link text-left p-0'>{row["Participant ID"]}</button>
+                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="popover" data-content="" className='table-column btn btn-link text-left p-0'>{row["Participant ID"]}</button>
             },
             {
                 name: 'Data Type',
@@ -98,7 +98,7 @@ class ImageDatasetList extends Component {
     }
     
     getImageTypeCell = (row) => {
-        return getImageTypeTooltipCopy(row["Image Type"]) !== "" &&
+        return getImageTypeTooltipCopy(row["Image Type"]) !== "" && 
             <div className="image-type-cell">
                 <span className='mr-1'>{row["Image Type"]}</span>
                 <div className='tooltip-parent-sibling'></div>
@@ -172,7 +172,7 @@ class ImageDatasetList extends Component {
                             <Col className={`filter-collapse ${this.state.filterTabActive ? 'hidden': ''}`}  xl={1}>
                             <i alt="Open Filter Tab" onClick={() => {this.toggleFilterTab()}} className={`fas fa-angles-right clickable`}></i>
                             </Col>
-                            <Col xl={11} className='my-0 p-3'>
+                            <Col xl={11} className='activeFilter-column my-0 p-3'>
                                 <div className="border rounded activeFilter">
                                     <span>
                                         Active filter appears here
@@ -222,7 +222,7 @@ class ImageDatasetList extends Component {
                             </Col>
                         </Row>
                         <DndProvider backend={HTML5Backend}>
-                            <Container className='rounded border shadow-sm p-3 container-max spatial-data-table-wrapper'>
+                            <div className='p-3 container-max spatial-data-table-wrapper'>
                                 <div className="spatial-data-table">
                                     <Grid
                                         rows={this.state.tableData}
@@ -240,7 +240,6 @@ class ImageDatasetList extends Component {
                                             cards={this.state.cards}
                                             setCards={this.state.setCards}
                                         />
-
                                         <ToolbarButtonState />
                                         <Table />
                                         <TableColumnResizing
@@ -266,7 +265,7 @@ class ImageDatasetList extends Component {
                                         <Pagination pageSizes={this.getPageSizes()} />
                                     </Grid>
                                 </div>
-                            </Container>
+                            </div>
                         </DndProvider>
                     </Col>
                 </Row>
