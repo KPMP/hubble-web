@@ -15,7 +15,9 @@
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
     background-color: #color;
 }
-
+.table thead th {
+    font-size: 14px;
+}
 .table th {
     white-space: nowrap;
 }
@@ -32,6 +34,7 @@
 .spatial-filter-panel {
     margin-top: 3.5rem !important;
     border-top-left-radius: 0px !important;
+    height: 70vh;
 }
 
 .filter-tab-control-icon {
@@ -68,11 +71,41 @@
     padding-top: 0px;
 }
 
-.spatial-data-table .card-header,
-.spatial-data-table .card-footer {
+.spatial-data-table .card-header {
+    background-color: rgba(0, 0, 0, 0);
+    border-bottom: 0px solid rgba(0,0,0,0);
+    padding: .5rem 0 !important;
+}
+
+.spatial-data-table .card-header .btn.btn-light {
     background-color: #fff;
 }
 
+.spatial-data-table .card-header .btn.btn-light:hover {
+    background-color: rgb(245, 245, 245);
+    cursor: pointer;
+}
+.spatial-data-table .table-responsive {
+    padding: 1rem !important;
+    background-color: transparent;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
+    border-radius: .25rem !important;
+    border: 1px solid #dee2e6 !important;
+}
+
+.spatial-data-table .card-footer {
+    padding: 1rem 0px !important;
+    background-color: transparent;
+    margin-top: 20px;
+    border-top: 0px solid rgba(0,0,0,0);
+}
+
+.card-footer {
+    z-index: 5;
+}
+.card-footer .d-inline-block {
+    display: none !important;
+}
 .spatial-data-table thead th {
     position: sticky;
     top: 0;
@@ -124,6 +157,9 @@ th[title='Pixels Type'], th[title='Pixels Type'] + td {
 }
 .spatial-info-cell.icon-info {
     float: right;
+}
+.spatial-button.icon-info {
+    color: #212529;
 }
 
 tr:nth-last-of-type(1) .tooltip-parent,
@@ -297,11 +333,17 @@ tr:nth-last-of-type(3) .tooltip-parent {
     position: relative;
     outline: currentcolor none medium;
     padding: 5px;
+    border-right: 2px solid rgba(0, 0, 0, 0);
+}
+.sort-dialog-option-wrapper:hover {
+    background-color: rgb(245, 245, 245);
+    border-right: 2px solid rgb(23, 132, 172);
+}
+.sort-dialog-option-wrapper input:hover {
+    cursor: pointer;
 }
 
 .sort-dialog-options {
-    display: flex;
-    flex-direction: row;
     box-sizing: border-box;
     position: relative;
     outline: currentcolor none medium;
@@ -328,18 +370,14 @@ tr:nth-last-of-type(3) .tooltip-parent {
 .sort-dialog-radio-wrapper i {
     padding-right: 2px;
 }
-.card-footer {
-    z-index: 5;
-}
-.card-footer .d-inline-block {
-    display: none !important;
-}
+
 
 .pagination-size-wrapper {
     z-index: 10;
-    margin-bottom: -50px;
     position: relative;
-    top: -45px;
+    top: -70px;
+    width: fit-content;
+    margin: 1rem;
 }
 
 .pagination {

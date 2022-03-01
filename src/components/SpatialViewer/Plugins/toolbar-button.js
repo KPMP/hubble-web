@@ -4,7 +4,8 @@ import {
   Plugin,
   TemplateConnector,
 } from "@devexpress/dx-react-core";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
+// import Button from '@devexpress/dx-react-grid-bootstrap4';
 import SortDialog from './SortDialog/sortDialog';
 import ColumnArrangementDialog from './ColumnArrangmentDialog/columnArrangementDialog';
 
@@ -41,17 +42,17 @@ export class ToolbarButton extends React.PureComponent {
               }
             ) => (
               <div className="ml-auto">
-                <Button className="border rounded" onClick={toggleArrangeColumnsDialog}>
-                  <span className="icon-info spatial-info-cell">
+                <button type="button" className="btn btn-light border rounded" onClick={toggleArrangeColumnsDialog}>
+                  <span className="icon-info spatial-info-cell spatial-button">
                       <i alt="Arrange Columns" className="fas fa-bars"></i>
                   </span>
-                </Button>
+                </button>
                 &nbsp;
-                <Button className="border rounded" onClick={toggleSortTableDialog}>
-                  <span className="icon-info spatial-info-cell">
+                <button type="button" className="btn btn-light border rounded" onClick={toggleSortTableDialog}>
+                  <span className="icon-info spatial-info-cell spatial-button">
                       <i alt="Sort Columns" className="fas fa-sort-amount-down-alt"></i>
                   </span>
-                </Button>
+                </button>
 
                 <ColumnArrangementDialog
                   arrangeColumnsDialogOpen={arrangeColumnsDialogOpen}

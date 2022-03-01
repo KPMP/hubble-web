@@ -101,20 +101,14 @@ class ImageDatasetList extends Component {
         return getImageTypeTooltipCopy(row["Image Type"]) !== "" &&
             <div>
                 <span className='mr-1'>{row["Image Type"]}</span>
-                <span className="icon-info spatial-info-cell">
-                    <i alt="info icon" className="fas fa-info-circle"></i>
-                </span>
-                <div className='tooltip-parent rounded border shadow-sm mt-1 p-2'>
-                    <span className='tooltip-child'>{getImageTypeTooltipCopy(row["Image Type"])}</span>
-                </div>
             </div>
     };
 
     getDefaultColumnWidths = () => {
         return [
-            { columnName: 'Participant ID', width: 120 },
+            { columnName: 'Participant ID', width: 145 },
             { columnName: 'Data Type', width: 250 },
-            { columnName: 'Image Type', width: 685 },
+            { columnName: 'Image Type', width: 660 },
         ]
     };
 
@@ -220,25 +214,12 @@ class ImageDatasetList extends Component {
                                         <i className="close-button fas fa-xmark"></i>
                                     </span>
                                 </div>
-                                <div className="border rounded activeFilter ">                                    
-                                    <span>
-                                        Really long active filter appears here
-                                        &nbsp; &nbsp; &nbsp;
-                                        <i className="close-button fas fa-xmark"></i>
-                                    </span>
-                                </div>
-                                <div className="border rounded activeFilter ">                                    
-                                    <span>
-                                        Really long active filter appears here
-                                        &nbsp; &nbsp; &nbsp;
-                                        <i className="close-button fas fa-xmark"></i>
-                                    </span>
-                                </div>
+       
                             </Col>
                         </Row>
                         <DndProvider backend={HTML5Backend}>
 
-                        <Container className='rounded border shadow-sm p-3 container-max spatial-data-table-wrapper'>
+                        <div className='p-3 container-max spatial-data-table-wrapper'>
                             <div className="spatial-data-table">
                                 <Grid
                                     rows={this.state.tableData}
@@ -260,7 +241,7 @@ class ImageDatasetList extends Component {
                                     <ToolbarButtonState />
                                     <Table />
                                     <TableColumnResizing
-                                        defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={120} />
+                                        defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={145} />
 
                                     <TableColumnReordering
                                         order={(this.state.cards).map(item => item.name)}
@@ -282,7 +263,7 @@ class ImageDatasetList extends Component {
                                     <Pagination pageSizes={this.getPageSizes()} />
                                 </Grid>
                             </div>
-                        </Container>
+                        </div>
                         </DndProvider>
                     </Col>
                 </Row>
