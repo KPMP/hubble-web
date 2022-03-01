@@ -218,52 +218,51 @@ class ImageDatasetList extends Component {
                             </Col>
                         </Row>
                         <DndProvider backend={HTML5Backend}>
+                            <Container className='rounded border shadow-sm p-3 container-max spatial-data-table-wrapper'>
+                                <div className="spatial-data-table">
+                                    <Grid
+                                        rows={this.state.tableData}
+                                        columns={this.getColumns()} >
 
-                        <Container className='rounded border shadow-sm p-3 container-max spatial-data-table-wrapper'>
-                            <div className="spatial-data-table">
-                                <Grid
-                                    rows={this.state.tableData}
-                                    columns={this.getColumns()} >
+                                        <SortingState defaultSorting={[]} />
+                                        <IntegratedSorting />
+                                        <PagingState
+                                            defaultCurrentPage={0}
+                                            defaultPageSize={10}
+                                        />
+                                        <IntegratedPaging />
+                                        <PagingPanel />
+                                        <Toolbar
+                                            cards={this.state.cards}
+                                            setCards={this.state.setCards}
+                                        />
 
-                                    <SortingState defaultSorting={[]} />
-                                    <IntegratedSorting />
-                                    <PagingState
-                                        defaultCurrentPage={0}
-                                        defaultPageSize={10}
-                                    />
-                                    <IntegratedPaging />
-                                    <PagingPanel />
-                                    <Toolbar
-                                        cards={this.state.cards}
-                                        setCards={this.state.setCards}
-                                    />
+                                        <ToolbarButtonState />
+                                        <Table />
+                                        <TableColumnResizing
+                                            defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={145} />
 
-                                    <ToolbarButtonState />
-                                    <Table />
-                                    <TableColumnResizing
-                                        defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={145} />
+                                        <TableColumnReordering
+                                            order={(this.state.cards).map(item => item.name)}
+                                            defaultOrder={this.getColumns().map(item => item.name)}
+                                        />
+                                        <TableHeaderRow showSortingControls />
+                                        <TableColumnVisibility
+                                            defaultHiddenColumnNames={this.getDefaultHiddenColumnNames(this.getColumns())}
+                                        />
+                                        <ColumnChooser />
+                                        
+                                        <ToolbarButton 
+                                            cards={this.state.cards}
+                                            setCards={this.setCards}
+                                            setDefaultCards={this.setDefaultCards}
+                                            defaultOrder={this.getColumns().map(item => item.name)} />
 
-                                    <TableColumnReordering
-                                        order={(this.state.cards).map(item => item.name)}
-                                        defaultOrder={this.getColumns().map(item => item.name)}
-                                    />
-                                    <TableHeaderRow showSortingControls />
-                                    <TableColumnVisibility
-                                        defaultHiddenColumnNames={this.getDefaultHiddenColumnNames(this.getColumns())}
-                                    />
-                                    <ColumnChooser />
-                                    
-                                    <ToolbarButton 
-                                        cards={this.state.cards}
-                                        setCards={this.setCards}
-                                        setDefaultCards={this.setDefaultCards}
-                                        defaultOrder={this.getColumns().map(item => item.name)} />
-
-                                    <PaginationState />
-                                    <Pagination pageSizes={this.getPageSizes()} />
-                                </Grid>
-                            </div>
-                        </Container>
+                                        <PaginationState />
+                                        <Pagination pageSizes={this.getPageSizes()} />
+                                    </Grid>
+                                </div>
+                            </Container>
                         </DndProvider>
                     </Col>
                 </Row>
