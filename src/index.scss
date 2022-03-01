@@ -134,13 +134,13 @@ th[title='Pixels Type'], th[title='Pixels Type'] + td {
 .spatial-button.icon-info {
     color: #212529;
 }
-.tooltip-parent-parent {
+.tooltip-parent-sibling {
     position: relative;
 }
 
-tr:nth-last-of-type(1) .tooltip-parent-parent,
-tr:nth-last-of-type(2) .tooltip-parent-parent,
-tr:nth-last-of-type(3) .tooltip-parent-parent {
+tr:nth-last-of-type(1) .tooltip-parent-sibling,
+tr:nth-last-of-type(2) .tooltip-parent-sibling,
+tr:nth-last-of-type(3) .tooltip-parent-sibling {
     cursor: pointer !important;
     font-size: 14px;
     margin-bottom: -5.75rem !important;
