@@ -44,7 +44,6 @@ export const getDerivedImageName = (imageName) => {
 }
 
 export const getImageTypeTooltipCopy = (imageType) => {
-    console.log('imageType:', imageType)
     const availableCopy = {
         "RGB max projection of 8-channel immunofluorescence image volume": "8-channel volume combined into a single maximum projection and converted to RGB color space.",
         "Composite max projection of 8-channel immunofluorescence image volume": "8-channel volume combined into a single maximum projection; composite image consists of 8 channels.",

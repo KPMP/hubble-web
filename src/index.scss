@@ -26,11 +26,10 @@
 
 .filter-panel-tab-wrapper {
     position: fixed;
-    width: 100%;
+    width: 100%;   
 }
 
 .spatial-filter-panel {
-    min-height: 450px;
     margin-top: 3.5rem !important;
     border-top-left-radius: 0px !important;
 }
@@ -60,11 +59,18 @@
     border-bottom-right-radius: 0px !important;
 }
 
+.spatial-data-table-wrapper {
+    margin-bottom: 30px;
+}
 .spatial-data-table {
-    height: 45vh;
-    overflow: auto;
     position: relative;
-    padding-bottom: 80px;
+    padding: 20px;
+    padding-top: 0px;
+}
+
+.spatial-data-table .card-header,
+.spatial-data-table .card-footer {
+    background-color: #fff;
 }
 
 .spatial-data-table thead th {
@@ -116,7 +122,9 @@ th[title='Pixels Type'], th[title='Pixels Type'] + td {
     cursor: pointer !important;
     font-size: 14px;
 }
-
+.spatial-info-cell.icon-info {
+    float: right;
+}
 
 tr:nth-last-of-type(1) .tooltip-parent,
 tr:nth-last-of-type(2) .tooltip-parent,
@@ -258,4 +266,103 @@ tr:nth-last-of-type(3) .tooltip-parent {
 
 .clickable {
     cursor: pointer;
+}
+
+.sort-dialog {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: absolute;
+    outline: currentcolor none medium;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 5px 0px, rgba(0, 0, 0, 0.12) 0px 2px 10px 0px;
+    z-index: 200;
+    min-width: 165px;
+    background-color: white;
+    text-align: left;
+    right: 0px;
+    border-radius: 5px;
+    top: 100%;
+    margin-top: 5px;
+    white-space: nowrap;
+}
+
+.sort-dialog .sort-dialog-option:hover{
+    background-color: rgb(245, 245, 245);
+}
+
+.sort-dialog-option-wrapper {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    position: relative;
+    outline: currentcolor none medium;
+    padding: 5px;
+}
+
+.sort-dialog-options {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    position: relative;
+    outline: currentcolor none medium;
+    flex: 1 1 auto;
+    padding: 0.3rem 0.6rem;
+}
+
+.sort-dialog-options input {
+    margin-right: 5px;
+}
+
+.sort-dialog-radio-wrapper {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    position: relative;
+    outline: currentcolor none medium;
+    padding: 0.3rem 0.6rem;
+}
+
+.sort-dialog-radio-wrapper span {
+    padding-right: 2px;
+}
+.sort-dialog-radio-wrapper i {
+    padding-right: 2px;
+}
+.card-footer {
+    z-index: 5;
+}
+.card-footer .d-inline-block {
+    display: none !important;
+}
+
+.pagination-size-wrapper {
+    z-index: 10;
+    margin-bottom: -50px;
+    position: relative;
+    top: -45px;
+}
+
+.pagination {
+    z-index: 999;
+}
+
+.modal-backdrop {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.0);
+    z-index: 100;
+}
+
+.fake-link {
+    color: rgb(0, 91, 124);
+    cursor:pointer;
+}
+.fake-link:hover {
+    text-decoration: underline;
+}
+
+.column-arrage-dialog .column-filter-wrapper {
+    background-color: #dedede;
+}
+.column-arrage-dialog .column-filter-wrapper i {
+    padding: 0px 5px 5px 5px;
 }

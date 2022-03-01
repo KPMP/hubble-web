@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Col, Container, Row } from "reactstrap";
 import { getSpatialDataAsJSON } from "../../helpers/dataHelper";
 import { getImageTypeTooltipCopy } from "./viewConfigHelper";
 import {
     SortingState,
     IntegratedSorting,
+    IntegratedPaging,
+    PagingState,
 } from '@devexpress/dx-react-grid';
 import {
     Grid,
@@ -14,19 +18,29 @@ import {
     ColumnChooser,
     TableColumnVisibility,
     Toolbar,
-    DragDropProvider,
     TableColumnReordering,
+    PagingPanel,
 } from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
+
+import { ToolbarButtonState } from './Plugins/toolbar-button-state.js';
+import { ToolbarButton } from './Plugins/toolbar-button.js';
+
+import { PaginationState } from './Plugins/pagination-state.js';
+import { Pagination } from './Plugins/pagination.js';
 
 class ImageDatasetList extends Component {
 
     constructor(props) {
         super(props);
+        const columnCards = this.getColumns().map((item, index) => {
+            return {id: index, text: item.name, name: item.name, hideable: item.hideable}
+        })
         this.state = {
             filterTabActive: true,
             activeFilterTab: 'DATASET',
-            tableData: []
+            tableData: [],
+            cards: columnCards
         }
     }
 
@@ -35,48 +49,72 @@ class ImageDatasetList extends Component {
         this.setState({ "tableData": spatialData });
     }
 
-    // This is used for column ordering too.766
+    setCards = (cards) => {
+        this.setState({cards})
+    }
+    
+    setDefaultCards = () => {
+        const cards = this.getColumns().map((item, index) => {
+            return {id: index, text: item.name, name: item.name, hideable: item.hideable}
+        })
+        this.setState({cards})
+    }
+
+    // This is used for column ordering too.
     getColumns = () => {
+        const { setSelectedImageDataset } = this.props;
         return [
             {
                 name: 'Participant ID',
                 title: 'PARTICIPANT ID',
-                getCellValue: row => <button onClick={() => this.props.setSelectedImageDataset(row)} type='button' className='table-column btn btn-link text-left p-0'>{row["Participant ID"]}</button>
+                sortable: true,
+                hideable: false,
+                defaultHidden: false,
+                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="popover" title="Popover title And here's some amazing content. It's very engaging. Right?" data-content="" className='table-column btn btn-link text-left p-0'>{row["Participant ID"]}</button>
             },
-            { name: 'Data Type', title: 'DATA TYPE' },
+            {
+                name: 'Data Type',
+                title: 'DATA TYPE',
+                sortable: true,
+                hideable: true,
+                defaultHidden: false,
+            },
             {
                 name: 'Image Type',
                 title: 'IMAGE TYPE',
+                sortable: true,
+                hideable: true,
+                defaultHidden: false,
                 getCellValue: this.getImageTypeCell
-            },
-            {
-                name: 'Info',
-                title: '',
-                getCellValue: row => { 
-                    return <span className="icon-info">
-                     <i className="fas fa-info-circle"></i>
-                    </span>
-                }
             },
         ];
     };
-
+    getDefaultHiddenColumnNames = (columns) => {
+        return columns.filter((column) => {
+            return column.defaultHidden === true
+          }).map((column) => {
+            return column.name;
+          })
+    }
+    
     getImageTypeCell = (row) => {
         return getImageTypeTooltipCopy(row["Image Type"]) !== "" &&
-                <div>
-                        <span className='mr-1'>{row["Image Type"]}</span>
-                        <div className='tooltip-parent rounded border shadow-sm mt-1 p-2'>
-                            <span className='tooltip-child'>{getImageTypeTooltipCopy(row["Image Type"])}</span>
-                        </div>
-                    </div>
+            <div>
+                <span className='mr-1'>{row["Image Type"]}</span>
+                <span className="icon-info spatial-info-cell">
+                    <i alt="info icon" className="fas fa-info-circle"></i>
+                </span>
+                <div className='tooltip-parent rounded border shadow-sm mt-1 p-2'>
+                    <span className='tooltip-child'>{getImageTypeTooltipCopy(row["Image Type"])}</span>
+                </div>
+            </div>
     };
 
     getDefaultColumnWidths = () => {
         return [
             { columnName: 'Participant ID', width: 120 },
             { columnName: 'Data Type', width: 250 },
-            { columnName: 'Image Type', width: 650 },
-            { columnName: 'Info', width: 25 },
+            { columnName: 'Image Type', width: 685 },
         ]
     };
 
@@ -88,10 +126,12 @@ class ImageDatasetList extends Component {
         }
     }
     setActiveFilterTab = (tabName) => {
-        console.log('foo',tabName)
         this.setState({activeFilterTab: tabName});
     }
     
+    getPageSizes = () => {
+        return [10,20,40,80,100]
+    }
     render() {
         const tabEnum = {
             DATASET: 'DATASET',
@@ -119,7 +159,7 @@ class ImageDatasetList extends Component {
                                 className={`filter-tab ${this.state.activeFilterTab === tabEnum.PARTICIPANT ? 'active' : ''} rounded border`}>PARTICIPANT</div>
                             
                             <div className="filter-tab filter-tab-control-icon">
-                                <i onClick={() => {this.toggleFilterTab()}} className="fas fa-angles-left clickable"></i>
+                                <i alt="Close Filter Tab" onClick={() => {this.toggleFilterTab()}} className="fas fa-angles-left clickable"></i>
                             </div>
                         </div>
                         <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
@@ -132,14 +172,14 @@ class ImageDatasetList extends Component {
                     <Col xl={`${this.state.filterTabActive ? 9 : 12 }`}>
                         <Row>
                             <Col className={`filter-collapse ${this.state.filterTabActive ? 'hidden': ''}`}  xl={1}>
-                            <i onClick={() => {this.toggleFilterTab()}} className={`fas fa-angles-right clickable`}></i>
+                            <i alt="Open Filter Tab" onClick={() => {this.toggleFilterTab()}} className={`fas fa-angles-right clickable`}></i>
                             </Col>
                             <Col xl={11} className='activeFilter-column my-0 p-3'>
                                 <div className="border rounded activeFilter">
                                     <span>
                                         Active filter appears here
                                         &nbsp; &nbsp; &nbsp;
-                                        <i className="close-button fas fa-xmark"></i>
+                                        <i alt="Turn off filter" className="close-button fas fa-xmark"></i>
                                     </span>
                                 </div>
 
@@ -196,37 +236,59 @@ class ImageDatasetList extends Component {
                                 </div>
                             </Col>
                         </Row>
-                        <Container className='rounded border shadow-sm p-3 overflow-auto container-max'>
+                        <DndProvider backend={HTML5Backend}>
+
+                        <Container className='rounded border shadow-sm p-3 container-max spatial-data-table-wrapper'>
                             <div className="spatial-data-table">
                                 <Grid
                                     rows={this.state.tableData}
-                                    columns={this.getColumns()}
-                                >
-                                    <SortingState
-                                        defaultSorting={[]}
-                                    />
+                                    columns={this.getColumns()} >
+
+                                    <SortingState defaultSorting={[]} />
                                     <IntegratedSorting />
-                                    <DragDropProvider />
+                                    <PagingState
+                                        defaultCurrentPage={0}
+                                        defaultPageSize={10}
+                                    />
+                                    <IntegratedPaging />
+                                    <PagingPanel />
+                                    <Toolbar
+                                        cards={this.state.cards}
+                                        setCards={this.state.setCards}
+                                    />
+
+                                    <ToolbarButtonState />
                                     <Table />
-                                    <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} />
+                                    <TableColumnResizing
+                                        defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={120} />
+
                                     <TableColumnReordering
+                                        order={(this.state.cards).map(item => item.name)}
                                         defaultOrder={this.getColumns().map(item => item.name)}
                                     />
                                     <TableHeaderRow showSortingControls />
                                     <TableColumnVisibility
-                                        defaultHiddenColumnNames={[]}
+                                        defaultHiddenColumnNames={this.getDefaultHiddenColumnNames(this.getColumns())}
                                     />
-                                    <Toolbar />
                                     <ColumnChooser />
+                                    
+                                    <ToolbarButton 
+                                        cards={this.state.cards}
+                                        setCards={this.setCards}
+                                        setDefaultCards={this.setDefaultCards}
+                                        defaultOrder={this.getColumns().map(item => item.name)} />
+
+                                    <PaginationState />
+                                    <Pagination pageSizes={this.getPageSizes()} />
                                 </Grid>
                             </div>
                         </Container>
+                        </DndProvider>
                     </Col>
                 </Row>
             </Container>
         )
     }
-
 }
 
 export default ImageDatasetList;
