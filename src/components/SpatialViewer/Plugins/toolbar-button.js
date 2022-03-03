@@ -8,6 +8,8 @@ import {
 // import Button from '@devexpress/dx-react-grid-bootstrap4';
 import SortDialog from './SortDialog/sortDialog';
 import ColumnArrangementDialog from './ColumnArrangmentDialog/columnArrangementDialog';
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const pluginDependencies = [
   { name: "Toolbar" },
@@ -44,7 +46,7 @@ export class ToolbarButton extends React.PureComponent {
               <div className="ml-auto">
                 <button type="button" className="btn btn-light border rounded" onClick={toggleArrangeColumnsDialog}>
                   <span className="icon-info spatial-info-cell spatial-button">
-                      <i alt="Arrange Columns" className="fas fa-bars"></i>
+                      <FontAwesomeIcon alt="Arrange Columns" className="fas fa-bars" icon={faBars} />
                   </span>
                 </button>
                 &nbsp;
