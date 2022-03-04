@@ -4,6 +4,8 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Col, Container, Row } from "reactstrap";
 import { getSpatialDataAsJSON } from "../../helpers/dataHelper";
 import { getImageTypeTooltipCopy } from "./viewConfigHelper";
+import { faXmark, faAnglesRight, faAnglesLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     SortingState,
     IntegratedSorting,
@@ -156,8 +158,11 @@ class ImageDatasetList extends Component {
                             <div onClick={() => {this.setActiveFilterTab(tabEnum.PARTICIPANT)}}
                                 className={`filter-tab ${this.state.activeFilterTab === tabEnum.PARTICIPANT ? 'active' : ''} rounded border`}>PARTICIPANT</div>
                             
-                            <div className="filter-tab filter-tab-control-icon">
-                                <i alt="Close Filter Tab" onClick={() => {this.toggleFilterTab()}} className="fas fa-angles-left clickable"></i>
+                            <div className="filter-tab filter-tab-control-icon">                                
+                                <FontAwesomeIcon
+                                    alt="Close Filter Tab"
+                                    onClick={() => {this.toggleFilterTab()}}
+                                    className="fas fa-angles-left clickable" icon={faAnglesLeft} />
                             </div>
                         </div>
                         <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
@@ -170,14 +175,17 @@ class ImageDatasetList extends Component {
                     <Col xl={`${this.state.filterTabActive ? 9 : 12 }`}>
                         <Row>
                             <Col className={`filter-collapse ${this.state.filterTabActive ? 'hidden': ''}`}  xl={1}>
-                            <i alt="Open Filter Tab" onClick={() => {this.toggleFilterTab()}} className={`fas fa-angles-right clickable`}></i>
+                            <FontAwesomeIcon
+                                    alt="Open Filter Tab"
+                                    onClick={() => {this.toggleFilterTab()}}
+                                    className="fas fa-angles-left clickable" icon={faAnglesRight} />
                             </Col>
                             <Col xl={11} className='activeFilter-column my-0 p-3'>
                                 <div className="border rounded activeFilter">
                                     <span>
                                         Active filter appears here
                                         &nbsp; &nbsp; &nbsp;
-                                        <i alt="Turn off filter" className="close-button fas fa-xmark"></i>
+                                        <FontAwesomeIcon alt="Arrange Columns" className="close-button fas fa-xmark" icon={faXmark} />
                                     </span>
                                 </div>
 
@@ -185,7 +193,7 @@ class ImageDatasetList extends Component {
                                     <span>
                                         Active filter appears here
                                         &nbsp; &nbsp; &nbsp;
-                                        <i className="close-button fas fa-xmark"></i>
+                                        <FontAwesomeIcon alt="Arrange Columns" className="close-button fas fa-xmark" icon={faXmark} />
                                     </span>
                                 </div>
                                 
@@ -193,7 +201,7 @@ class ImageDatasetList extends Component {
                                     <span>
                                         Active filter appears here
                                         &nbsp; &nbsp; &nbsp;
-                                        <i className="close-button fas fa-xmark"></i>
+                                        <FontAwesomeIcon alt="Arrange Columns" className="close-button fas fa-xmark" icon={faXmark} />
                                     </span>
                                 </div>
                                 
@@ -201,21 +209,21 @@ class ImageDatasetList extends Component {
                                     <span>
                                         Really long active filter appears here
                                         &nbsp; &nbsp; &nbsp;
-                                        <i className="close-button fas fa-xmark"></i>
+                                        <FontAwesomeIcon alt="Arrange Columns" className="close-button fas fa-xmark" icon={faXmark} />
                                     </span>
                                 </div>
                                 <div className="border rounded activeFilter ">                                    
                                     <span>
                                         Really long active filter appears here
                                         &nbsp; &nbsp; &nbsp;
-                                        <i className="close-button fas fa-xmark"></i>
+                                        <FontAwesomeIcon alt="Arrange Columns" className="close-button fas fa-xmark" icon={faXmark} />
                                     </span>
                                 </div>
                                 <div className="border rounded activeFilter ">                                    
                                     <span>
                                         Really long active filter appears here
                                         &nbsp; &nbsp; &nbsp;
-                                        <i className="close-button fas fa-xmark"></i>
+                                        <FontAwesomeIcon alt="Arrange Columns" className="close-button fas fa-xmark" icon={faXmark} />
                                     </span>
                                 </div>
        
