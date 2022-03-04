@@ -1,11 +1,14 @@
 import {connect} from "react-redux";
 import ImageDatasetList from "./ImageDatasetList";
 import { withRouter } from 'react-router';
-import {setSelectedImageDataset} from "../../actions/Images/imageDatasetActions";
+import {setSelectedImageDataset, setTableSettings} from "../../actions/Images/imageDatasetActions";
+import compose from "recompose/compose";
+import { withSearch } from "@elastic/react-search-ui";
 
 const mapStateToProps = (state, props) =>
     ({
-        selectedImageDataset: state.selectedImageDataset
+        selectedImageDataset: state.selectedImageDataset,
+        tableSettings: state.tableSettings
     });
 
 const mapDispatchToProps = (dispatch, props) =>
@@ -13,7 +16,20 @@ const mapDispatchToProps = (dispatch, props) =>
         setSelectedImageDataset(selectedImageDataset) {
              dispatch(setSelectedImageDataset(selectedImageDataset));
              dispatch((dispatch) => props.history.push("/view"));
+         },
+         setTableSettings(componentState) {
+            dispatch(setTableSettings(componentState))
          }
     });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ImageDatasetList))
+const mapSearchToProps = (context) => ({
+    searchContext: context,
+    results: context.results,
+    searchTerm: context.searchTerm,
+    setResultsPerPage: context.setResultsPerPage,
+    filters: context.filters
+});
+
+export default withRouter(compose(
+    withSearch(mapSearchToProps),
+    connect(mapStateToProps, mapDispatchToProps))(ImageDatasetList))

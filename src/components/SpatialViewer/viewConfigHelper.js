@@ -20,11 +20,11 @@ export const getViewConfig = (type) => {
 
 export const getDatasetInfo = (selectedDataset) => {
     let datasetInfo = '';
-    if(selectedDataset["Image Type"]) {
-        if(selectedDataset["Data Type"] === "Light Microscopic Whole Slide Images" && selectedDataset["Level"]) {
-            datasetInfo = `${selectedDataset["Image Type"]} (${selectedDataset["Level"]})`
+    if(selectedDataset["imagetype"]) {
+        if(selectedDataset["datatype"] === "Light Microscopic Whole Slide Images" && selectedDataset["level"]) {
+            datasetInfo = `${selectedDataset["imagetype"]} (${selectedDataset["level"]})`
         } else {
-            datasetInfo = selectedDataset["Image Type"]
+            datasetInfo = selectedDataset["imagetype"]
         }
     }
     return datasetInfo;
@@ -32,8 +32,8 @@ export const getDatasetInfo = (selectedDataset) => {
 
 export const populateViewConfig = async (viewConfig, selectedDataset) => {
     let stringifiedConfig = JSON.stringify(viewConfig);
-    let response = await getFileLink(selectedDataset["Package ID"] + '/' + getDerivedImageName(selectedDataset["Source File"]))
-    stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', getDerivedImageName(selectedDataset["Source File"]));
+    let response = await getFileLink(selectedDataset["packageid"] + '/' + getDerivedImageName(selectedDataset["filename"]))
+    stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', getDerivedImageName(selectedDataset["filename"]));
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_URL>', response.data);
     stringifiedConfig = stringifiedConfig.replace('<DATASET_INFO>', getDatasetInfo(selectedDataset));
     return JSON.parse(stringifiedConfig);

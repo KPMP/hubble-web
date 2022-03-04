@@ -14,6 +14,8 @@ import NotFoundPage from './components/Error/NotFoundPage';
 import ImageDatasetListContainer from "./components/SpatialViewer/ImageDatasetListContainer";
 import SpatialViewerContainer from "./components/SpatialViewer/SpatialViewerContainer";
 import { baseURL } from '../package.json';
+import AppSearchAPIConnector from "@elastic/search-ui-app-search-connector";
+import { SearchProvider } from "@elastic/react-search-ui";
 
 const cacheStore = window.sessionStorage.getItem('redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
@@ -48,6 +50,26 @@ store.subscribe(function () {
 
 store.subscribe(saveState);
 
+const connector = new AppSearchAPIConnector({
+  searchKey: "search-rnfokg6zjnees7wnv42yxvw2",
+  engineName: "spatial-viewer",
+  endpointBase: "http://100.24.249.214:3002/",
+  cacheResponses: false
+})
+
+const searchConfig = {
+  apiConnector: connector,
+  searchQuery: {
+      disjunctiveFacets: ["imagetype", "datatype", "configtype"],
+      facets: {
+        imagetype: { type: "value"},
+        datatype: { type: "value" },
+        configtype: { type: "value", size: 30 },
+      }
+  },
+  alwaysSearchOnInitialLoad: true
+}
+
 class App extends Component {
   componentWillMount() {
     logPageView(window.location, '');
@@ -56,9 +78,10 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
+        <SearchProvider config={searchConfig}>
         <BrowserRouter history={history} basename={baseURL}>
           <ErrorBoundaryContainer>
-            <NavBar app='atlas' />
+            <NavBar app='atlas' />s
             <Switch>
               <Route exact path="/" component={ImageDatasetListContainer} store={store} />
               <Route exact path="/view" component={SpatialViewerContainer} store={store} />
@@ -68,6 +91,7 @@ class App extends Component {
             <NavFooter app='atlas' />
           </ErrorBoundaryContainer>
         </BrowserRouter>
+        </SearchProvider>
       </Provider>
     );
   }
