@@ -81,7 +81,7 @@ class App extends Component {
         <SearchProvider config={searchConfig}>
         <BrowserRouter history={history} basename={baseURL}>
           <ErrorBoundaryContainer>
-            <NavBar app='atlas' />s
+            <NavBar app='atlas' />
             <Switch>
               <Route exact path="/" component={ImageDatasetListContainer} store={store} />
               <Route exact path="/view" component={SpatialViewerContainer} store={store} />

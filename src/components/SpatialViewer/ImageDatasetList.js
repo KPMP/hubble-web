@@ -167,7 +167,8 @@ class ImageDatasetList extends Component {
             DATASET: 'DATASET',
             PARTICIPANT: 'PARTICIPANT',
         };
-        const { currentPage, pagingSize, columnWidths, hiddenColumnNames } = this.props.tableSettings;
+        const { currentPage, pagingSize, columnWidths, hiddenColumnNames, sorting } = this.props.tableSettings;
+        console.log(this.props.searchContext)
         return (
             <Container id='outer-wrapper' className="multi-container-container container-xxl">
                 <Row>
@@ -214,8 +215,10 @@ class ImageDatasetList extends Component {
                                     <Grid
                                         rows={this.state.tableData}
                                         columns={this.getColumns()}>
-
-                                        <SortingState defaultSorting={[]} />
+                                        <SortingState
+                                            defaultSorting={[]}
+                                            onSortingChange={(sorting) =>  this.props.setTableSettings({sorting: sorting})}
+                                            sorting={sorting}/>
                                         <IntegratedSorting />
                                         <PagingState
                                             defaultPageSize={pagingSize}
