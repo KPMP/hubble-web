@@ -1,5 +1,7 @@
 import { useRef, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd'; //https://react-dnd.github.io/react-dnd/about
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function useForceUpdate(){
   const [value, setValue] = useState(0) // eslint-disable-line
@@ -111,7 +113,8 @@ export const Card = ({ id, text, index, moveCard, hideable, hiddenColumnNames, t
           <span>{text}</span>
       </div>
       <div className="sort-dialog-radio-wrapper">
-        <i alt="Arrange Columns" className="fas fa-bars"></i>
+        <FontAwesomeIcon alt="Arrange Columns" className="fas fa-bars" icon={faBars} />
+
       </div>
     </div>
   </div>);

@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   useForceUpdate,
   hasSortableColumns,
@@ -64,9 +67,10 @@ function SortDialog({
                               changeColumnSorting,
                               addSortedColumn,
                               forceUpdate)}>
-                            <i
-                            alt="Sort Column Descending"
-                            className="fas fa-arrow-up"></i>
+                              <FontAwesomeIcon
+                                alt="Sort Column Descending"
+                                className="fas fa-arrow-up"
+                                icon={faArrowUp} />
                             <input checked={
                               isRadioChecked(
                                 sortedColumns,
@@ -85,9 +89,10 @@ function SortDialog({
                               changeColumnSorting,
                               addSortedColumn,
                               forceUpdate)}>
-                            <i
-                            alt="Sort Column Descending"
-                            className="fas fa-arrow-down"></i>
+                            <FontAwesomeIcon
+                              alt="Sort Column Descending"
+                              className="fas fa-arrow-down"
+                              icon={faArrowDown} />
                             <input checked={
                               isRadioChecked(
                                 sortedColumns,

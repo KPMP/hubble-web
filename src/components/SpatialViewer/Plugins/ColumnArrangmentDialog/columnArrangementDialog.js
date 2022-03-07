@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Card } from './card';
 import update from 'immutability-helper';
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function useForceUpdate(){
   const [value, setValue] = useState(0) // eslint-disable-line
@@ -56,8 +58,7 @@ function ColumnArrangementDialog(
           </div>
           <div className="sort-dialog border rounded">
             <div className="column-filter-wrapper">
-                <i alt="Arrange Columns Button"
-                  className="fas fa-magnifying-glass"></i>
+                <FontAwesomeIcon className="fas fa-magnifying-glass" alt="Arrange Columns Button" icon={faMagnifyingGlass} />
                 <input
                   type="text"
                   value={filterValue}
