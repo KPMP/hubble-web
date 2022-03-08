@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Col, Container, Row } from "reactstrap";
-import { getSpatialDataAsJSON, resultConverter } from "../../helpers/dataHelper";
+import { getSpatialDataAsJSON, resultConverter, pushTableSettingsToHistory, paramsToTableSettings } from "../../helpers/dataHelper";
 import { getImageTypeTooltipCopy } from "./viewConfigHelper";
 import {
     SortingState,
@@ -57,13 +57,18 @@ class ImageDatasetList extends Component {
     };
 
     async componentDidMount() {
-        this.props.setResultsPerPage(1000);
         this.getSearchResults();
+        this.props.setTableSettings(paramsToTableSettings());
     };
 
     async componentDidUpdate(prevProps, prevState, snapShot) {
         if (this.props !== prevProps) {
-            this.getSearchResults();
+            if (this.props.results !== prevProps.results) {
+                this.getSearchResults();
+            }
+            if (this.props.tableSettings !== prevProps.tableSettings) {
+                pushTableSettingsToHistory(this.props.history, this.props.tableSettings)
+            }
         }
     };
 
@@ -168,7 +173,6 @@ class ImageDatasetList extends Component {
             PARTICIPANT: 'PARTICIPANT',
         };
         const { currentPage, pagingSize, columnWidths, hiddenColumnNames, sorting } = this.props.tableSettings;
-        console.log(this.props.searchContext)
         return (
             <Container id='outer-wrapper' className="multi-container-container container-xxl">
                 <Row>
