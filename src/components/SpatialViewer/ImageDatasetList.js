@@ -159,7 +159,7 @@ class ImageDatasetList extends Component {
             filter => {
                 return filter.values.map(value => {
                     return (<div className="border rounded activeFilter">
-                                <span>{value}<i alt="Turn off filter" className="close-button fas fa-xmark ml-2"></i></span>
+                                <span>{value}<FontAwesomeIcon alt="Arrange Columns" className="close-button fas fa-xmark ml-2" icon={faXmark} /></span>
                              </div>)
                 })
             })
