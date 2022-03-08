@@ -26,7 +26,8 @@ const mapSearchToProps = (context) => ({
     searchContext: context,
     results: context.results,
     setResultsPerPage: context.setResultsPerPage,
-    filters: context.filters
+    filters: context.filters,
+    removeFilter: context.removeFilter
 });
 
 export default withRouter(compose(
