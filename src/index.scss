@@ -273,6 +273,11 @@ td:hover {
         display: none;
     }
 }
+@media only screen and (max-width: 1200px) {
+    .activeFilter-column {
+        padding: 1rem 3rem !important
+    }
+}
 
 .activeFilter {
     background-color: white;
