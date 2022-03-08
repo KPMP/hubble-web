@@ -70,15 +70,42 @@
     padding: 20px;
     padding-top: 0px;
 }
-.spatial-data-table table {
-    position: relative
+
+.spatial-data-table .card-header {
+    background-color: rgba(0, 0, 0, 0);
+    border-bottom: 0px solid rgba(0,0,0,0);
+    padding: .5rem 0 !important;
 }
 
-.spatial-data-table .card-header,
-.spatial-data-table .card-footer {
+.spatial-data-table .card-header .btn.btn-light {
     background-color: #fff;
 }
 
+.spatial-data-table .card-header .btn.btn-light:hover {
+    background-color: rgb(245, 245, 245);
+    cursor: pointer;
+}
+.spatial-data-table .table-responsive {
+    padding: 1rem !important;
+    background-color: #fff;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
+    border-radius: .25rem !important;
+    border: 1px solid #dee2e6 !important;
+}
+
+.spatial-data-table .card-footer {
+    padding: 1rem 0px !important;
+    background-color: transparent;
+    margin-top: 20px;
+    border-top: 0px solid rgba(0,0,0,0);
+}
+
+.card-footer {
+    z-index: 5;
+}
+.card-footer .d-inline-block {
+    display: none !important;
+}
 .spatial-data-table thead th {
     position: sticky;
     top: 0;
@@ -134,9 +161,6 @@ th[title='Pixels Type'], th[title='Pixels Type'] + td {
 .spatial-button.icon-info {
     color: #212529;
 }
-.tooltip-parent-sibling {
-    position: relative;
-}
 
 tr:nth-last-of-type(1) .tooltip-parent-sibling,
 tr:nth-last-of-type(2) .tooltip-parent-sibling,
@@ -146,7 +170,6 @@ tr:nth-last-of-type(3) .tooltip-parent-sibling {
     margin-bottom: -5.75rem !important;
     margin-left: 2rem !important;
 }
-
 .tooltip-parent {
     z-index: 10;
     cursor: pointer;
@@ -321,8 +344,6 @@ td:hover {
 }
 
 .sort-dialog-options {
-    display: flex;
-    flex-direction: row;
     box-sizing: border-box;
     position: relative;
     outline: currentcolor none medium;
@@ -346,7 +367,7 @@ td:hover {
 .sort-dialog-radio-wrapper span {
     padding-right: 2px;
 }
-.sort-dialog-radio-wrapper i {
+.sort-dialog-radio-wrapper svg {
     padding-right: 2px;
 }
 .card-footer {
@@ -358,10 +379,10 @@ td:hover {
 
 .pagination-size-wrapper {
     z-index: 10;
-    margin-bottom: -50px;
     position: relative;
-    top: -45px;
+    top: -70px;
     width: fit-content;
+    margin: 1rem;
 }
 
 .pagination {
