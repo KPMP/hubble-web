@@ -41,7 +41,7 @@ class ImageDatasetList extends Component {
     constructor(props) {
         super(props);
         const columnCards = this.getColumns().map((item, index) => {
-            return {id: index, text: item.name, name: item.name, hideable: item.hideable}
+            return {id: index, text: item.title, name: item.name, hideable: item.hideable}
         });
 
         this.state = {
@@ -77,7 +77,7 @@ class ImageDatasetList extends Component {
     
     setDefaultCards = () => {
         const cards = this.getColumns().map((item, index) => {
-            return {id: index, text: item.name, name: item.name, hideable: item.hideable}
+            return {id: index, text: item.title, name: item.name, hideable: item.hideable}
         });
         this.setCards(cards)
     };
@@ -88,7 +88,7 @@ class ImageDatasetList extends Component {
         return [
             {
                 name: 'participantid',
-                title: 'PARTICIPANT ID',
+                title: 'Participant ID',
                 sortable: true,
                 hideable: false,
                 defaultHidden: false,
@@ -96,14 +96,14 @@ class ImageDatasetList extends Component {
             },
             {
                 name: 'datatype',
-                title: 'DATA TYPE',
+                title: 'Data Type',
                 sortable: true,
                 hideable: true,
                 defaultHidden: false,
             },
             {
                 name: 'imagetype',
-                title: 'IMAGE TYPE',
+                title: 'Image Type',
                 sortable: true,
                 hideable: true,
                 defaultHidden: false,

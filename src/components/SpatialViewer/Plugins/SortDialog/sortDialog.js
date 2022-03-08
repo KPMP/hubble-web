@@ -56,7 +56,7 @@ function SortDialog({
                               sortedColumns, item.name)}
                             name={item.name}
                             value="sort"></input>
-                          <span>{item.name}</span>
+                          <span>{item.title}</span>
                         </div>
                         
                         <div className="sort-dialog-radio-wrapper">

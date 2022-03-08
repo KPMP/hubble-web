@@ -27,7 +27,7 @@ function isChecked(hiddenColumnNames, text) {
   }) >= 0 ? false : true
 }
 
-export const Card = ({ id, text, index, moveCard, hideable, hiddenColumnNames, toggleColumnVisibility }) => {
+export const Card = ({ id, text, name, index, moveCard, hideable, hiddenColumnNames, toggleColumnVisibility }) => {
   let forceUpdate = useForceUpdate();
   
   const [{ handlerId }, drop] = useDrop({
@@ -103,12 +103,12 @@ export const Card = ({ id, text, index, moveCard, hideable, hiddenColumnNames, t
               forceUpdate,
               toggleColumnVisibility,
               hideable,
-              text) }
+              name) }
           }
           onChange={()=>{}}
           type="checkbox"
-          checked={isChecked(hiddenColumnNames, text)}
-          name={text}
+          checked={isChecked(hiddenColumnNames, name)}
+          name={name}
           value="sort"></input>
           <span>{text}</span>
       </div>
