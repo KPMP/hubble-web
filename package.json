@@ -5,6 +5,8 @@
   "homepage": "/spatial-viewer",
   "baseURL": "/spatial-viewer",
   "dependencies": {
+    "@elastic/react-search-ui": "1.9.0",
+    "@elastic/search-ui-app-search-connector": "1.9.0",
     "@devexpress/dx-react-core": "3.0.0",
     "@devexpress/dx-react-grid": "3.0.0",
     "@devexpress/dx-react-grid-bootstrap4": "3.0.0",
@@ -32,6 +34,7 @@
     "react-router-dom": "5.2.1",
     "react-scripts": "4.0.3",
     "reactstrap": "8.9.0",
+    "recompose": "0.30.0",
     "redux": "4.1.1",
     "redux-thunk": "2.3.0",
     "vitessce": "file:vitessce-1.1.17.tgz"
@@ -41,8 +44,8 @@
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-js": "craco start --max_old_space_size=4096",
-    "build-js": "craco build --max_old_space_size=4096",
+    "start-js": "craco start --max_old_space_size=5120",
+    "build-js": "craco build --max_old_space_size=5120",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "yarn build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
   },

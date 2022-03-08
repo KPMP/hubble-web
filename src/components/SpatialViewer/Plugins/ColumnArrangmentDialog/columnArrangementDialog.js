@@ -82,6 +82,7 @@ function ColumnArrangementDialog(
                         index={index}
                         id={card.text}
                         text={card.text}
+                        name={card.name}
                         moveCard={moveCard}
                         hideable={card.hideable}
                         hiddenColumnNames={hiddenColumnNames}

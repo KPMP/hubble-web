@@ -5,14 +5,21 @@ export class PaginationState extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      pagingSize: 10
+      pagingSize: props.pagingSize || 10
     };
     this.changePagingSize = this.changePagingSize.bind(this);
   }
+
   changePagingSize(value) {
     this.setState({
       pagingSize: value
     })
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.state !== prevState) {
+      this.props.setTableSettings(this.state);
+    }
   }
 
   render() {

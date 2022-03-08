@@ -1,8 +1,8 @@
 export const createHeaderString = (selectedImageDataset) => {
 
-    const dataType = selectedImageDataset["Data Type"]
-    const tissueType = selectedImageDataset["Tissue Type"]
-    const participantId = selectedImageDataset["Participant ID"]
+    const dataType = selectedImageDataset["datatype"]
+    const tissueType = selectedImageDataset["tissuetype"]
+    const participantId = selectedImageDataset["participantid"]
     
 
     if(dataType && tissueType && participantId) {

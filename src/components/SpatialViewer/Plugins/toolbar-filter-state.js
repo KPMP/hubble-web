@@ -137,6 +137,12 @@ export class ToolbarFilterState extends React.PureComponent {
     return this.state.sortedColumns
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.state !== prevState) {
+      this.props.setTableSettings(this.state);
+    }
+  }
+
   render() {
     const { filterValue, sortDialogOpen, arrangeColumnsDialogOpen, sortedColumns } = this.state;
 

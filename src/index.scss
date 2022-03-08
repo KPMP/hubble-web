@@ -70,7 +70,9 @@
     padding: 20px;
     padding-top: 0px;
 }
-
+.spatial-data-table tr {
+    text-transform: uppercase;
+}
 .spatial-data-table .card-header {
     background-color: rgba(0, 0, 0, 0);
     border-bottom: 0px solid rgba(0,0,0,0);
@@ -193,7 +195,6 @@ td:hover {
 .icon-row .col {
     max-width: 90%;
 }
-
 
 .participant-id {
     min-width: 120px;
@@ -408,4 +409,9 @@ td:hover {
 }
 .column-arrage-dialog .column-filter-wrapper i {
     padding: 0px 5px 5px 5px;    
+}
+
+.sui-facet__title {
+    color: black !important;
+    font-weight: bold !important;
 }
