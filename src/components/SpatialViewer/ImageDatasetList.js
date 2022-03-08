@@ -59,7 +59,6 @@ class ImageDatasetList extends Component {
     };
 
     async componentDidMount() {
-        //this.props.setResultsPerPage(0);
         this.getSearchResults();
     };
 
@@ -215,56 +214,7 @@ class ImageDatasetList extends Component {
                                     className="fas fa-angles-left clickable" icon={faAnglesRight} />
                             </Col>
                             <Col xl={11} className='activeFilter-column my-0 p-3'>
-<<<<<<< HEAD
                                 {this.getFilterPills(this.props.filters)}
-=======
-                                <div className="border rounded activeFilter">
-                                    <span>
-                                        Active filter appears here
-                                        &nbsp; &nbsp; &nbsp;
-                                        <FontAwesomeIcon alt="Arrange Columns" className="close-button fas fa-xmark" icon={faXmark} />
-                                    </span>
-                                </div>
-
-                                <div className="border rounded activeFilter ">
-                                    <span>
-                                        Active filter appears here
-                                        &nbsp; &nbsp; &nbsp;
-                                        <FontAwesomeIcon alt="Arrange Columns" className="close-button fas fa-xmark" icon={faXmark} />
-                                    </span>
-                                </div>
-                                
-                                <div className="border rounded activeFilter ">
-                                    <span>
-                                        Active filter appears here
-                                        &nbsp; &nbsp; &nbsp;
-                                        <FontAwesomeIcon alt="Arrange Columns" className="close-button fas fa-xmark" icon={faXmark} />
-                                    </span>
-                                </div>
-                                
-                                <div className="border rounded activeFilter ">
-                                    <span>
-                                        Really long active filter appears here
-                                        &nbsp; &nbsp; &nbsp;
-                                        <FontAwesomeIcon alt="Arrange Columns" className="close-button fas fa-xmark" icon={faXmark} />
-                                    </span>
-                                </div>
-                                <div className="border rounded activeFilter ">                                    
-                                    <span>
-                                        Really long active filter appears here
-                                        &nbsp; &nbsp; &nbsp;
-                                        <FontAwesomeIcon alt="Arrange Columns" className="close-button fas fa-xmark" icon={faXmark} />
-                                    </span>
-                                </div>
-                                <div className="border rounded activeFilter ">                                    
-                                    <span>
-                                        Really long active filter appears here
-                                        &nbsp; &nbsp; &nbsp;
-                                        <FontAwesomeIcon alt="Arrange Columns" className="close-button fas fa-xmark" icon={faXmark} />
-                                    </span>
-                                </div>
-       
->>>>>>> develop
                             </Col>
                         </Row>
                         <DndProvider backend={HTML5Backend}>
