@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Vitessce } from 'vitessce';
 import 'vitessce/dist/esm/index.css';
 import { Row, Col} from "reactstrap";
-import { baseURL } from '../../../package.json';
 import { getViewConfig, populateViewConfig } from './viewConfigHelper';
 import { createHeaderString } from './spatialHelper';
 import { Redirect } from 'react-router-dom';

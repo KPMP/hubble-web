@@ -67,6 +67,9 @@ const searchConfig = {
         configtype: { type: "value", size: 30 },
       }
   },
+  initialState: {
+    resultsPerPage: 1000
+  },
   alwaysSearchOnInitialLoad: true
 }
 

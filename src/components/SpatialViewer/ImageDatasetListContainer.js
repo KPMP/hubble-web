@@ -25,10 +25,8 @@ const mapDispatchToProps = (dispatch, props) =>
 const mapSearchToProps = (context) => ({
     searchContext: context,
     results: context.results,
-    searchTerm: context.searchTerm,
     setResultsPerPage: context.setResultsPerPage,
-    filters: context.filters,
-    facets: context.facets
+    filters: context.filters
 });
 
 export default withRouter(compose(

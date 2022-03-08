@@ -18,24 +18,4 @@ export const resultConverter = (results) => {
     })
 };
 
-export const tableSettingsToParams = (tableSettings) => {
-    let {cards, sorting, columnWidths, ...searchObj} = tableSettings;
-    let oldSearchParams = new URLSearchParams(window.location.search.replace("?", ""));
-    let oldSearchObj = Object.fromEntries(oldSearchParams.entries());
-    let searchParams = new URLSearchParams({...oldSearchObj, ...searchObj});
-    return searchParams;
-};
-
-export const pushTableSettingsToHistory = (history, tableSettings) => {
-    const tableSettingsParams = tableSettingsToParams(tableSettings);
-    history.replace({search: "?" + tableSettingsParams.toString()});
-};
-
-export const paramsToTableSettings = (params) => {
-    let searchParams = new URLSearchParams(window.location.search);
-    let searchParamObj = Object.fromEntries(searchParams.entries());
-    let { pagingSize, hiddenColumnNames } = searchParamObj;
-    return { pagingSize: pagingSize, hiddenColumnNames: hiddenColumnNames };
-};
-
 
