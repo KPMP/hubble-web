@@ -158,8 +158,18 @@ class ImageDatasetList extends Component {
         return filters.map(
             filter => {
                 return filter.values.map(value => {
-                    return (<div className="border rounded activeFilter">
-                                <span>{value}<FontAwesomeIcon alt="Arrange Columns" className="close-button fas fa-xmark ml-2" icon={faXmark} /></span>
+                    return (<div
+                                key={(filter.field).toString() + value.toString()}
+                                className="border rounded activeFilter">
+                                <span>{value}
+                                    <FontAwesomeIcon
+                                        alt="Close Filter"
+                                        onClick={()=>{
+                                            this.props.removeFilter(filter.field, value)
+                                        }}
+                                        className="close-button fas fa-xmark ml-2"
+                                        icon={faXmark} />
+                                </span>
                              </div>)
                 })
             })
