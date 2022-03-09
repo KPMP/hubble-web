@@ -87,7 +87,7 @@ class ImageDatasetList extends Component {
         const { setSelectedImageDataset } = this.props;
         return [
             {
-                name: 'participantid',
+                name: 'redcapid',
                 title: 'Participant ID',
                 sortable: true,
                 hideable: false,
@@ -132,7 +132,7 @@ class ImageDatasetList extends Component {
 
     getDefaultColumnWidths = () => {
         return [
-            { columnName: 'participantid', width: 145 },
+            { columnName: 'redcapid', width: 145 },
             { columnName: 'datatype', width: 250 },
             { columnName: 'imagetype', width: 660 },
         ]
