@@ -51,7 +51,7 @@ store.subscribe(function () {
 store.subscribe(saveState);
 
 const connector = new AppSearchAPIConnector({
-  searchKey: "search-rnfokg6zjnees7wnv42yxvw2",
+  searchKey: "search-tgjqr2c14mmg8cazoewx4q7j",
   engineName: "spatial-viewer",
   endpointBase: "http://100.24.249.214:3002/",
   cacheResponses: false
