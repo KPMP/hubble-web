@@ -60,11 +60,12 @@ const connector = new AppSearchAPIConnector({
 const searchConfig = {
   apiConnector: connector,
   searchQuery: {
-      disjunctiveFacets: ["imagetype", "datatype", "configtype"],
+      disjunctiveFacets: ["imagetype", "datatype", "configtype", "sampletype"],
       facets: {
         imagetype: { type: "value"},
         datatype: { type: "value" },
-        configtype: { type: "value", size: 30 },
+        configtype: { type: "value"},
+        sampletype: { type: "value"},
       }
   },
   initialState: {
