@@ -24,10 +24,11 @@ export class PaginationState extends React.PureComponent {
 
   render() {
     const { pagingSize } = this.state;
-
+    const { currentPage } = this.props;
     return (
       <Plugin name="PaginationState">       
         <Getter name="pagingSizeValue" value={pagingSize} />
+        <Getter name="currentPage" value={currentPage} />
         
         <Action name="changePagingSizeValue" action={this.changePagingSize} />
       </Plugin>
