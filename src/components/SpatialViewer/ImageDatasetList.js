@@ -67,6 +67,9 @@ class ImageDatasetList extends Component {
             if (this.props.results !== prevProps.results) {
                 this.getSearchResults();
             }
+            if (this.props.filters !== prevProps.filters) {
+                this.props.setTableSettings({currentPage: 0});
+            }
         }
     };
 
@@ -181,7 +184,6 @@ class ImageDatasetList extends Component {
             PARTICIPANT: 'PARTICIPANT',
         };
         const { pagingSize, columnWidths, hiddenColumnNames, sorting, currentPage} = this.props.tableSettings;
-        console.log('currentPage', currentPage)
         return (
             <Container id='outer-wrapper' className="multi-container-container container-xxl">
                 <Row>
