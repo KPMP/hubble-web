@@ -212,6 +212,7 @@ class ImageDatasetList extends Component {
                         <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
                             <Row className="mb-2"><Col><Facet field="datatype" label="Data Type" filterType="any" view={MultiCheckboxFacet} /></Col></Row>
                             <Row className="mb-2"><Col><Facet field="imagetype" label="Image Type" filterType="any" view={MultiCheckboxFacet} /></Col></Row>
+                            <Row className="mb-2"><Col><Facet field="sampletype" label="Sample Type" filterType="any" view={MultiCheckboxFacet} /></Col></Row>
                         </Container>
                         </div>
                     </Col>
