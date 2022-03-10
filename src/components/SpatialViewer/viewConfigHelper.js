@@ -1,6 +1,7 @@
 import lmViewConfig from './lightMicroscopyViewConfig.json';
 import threeDCytometryViewConfig from './threeDCytometryViewConfig.json';
 import threeDCytometryViewNoChannelsConfig from './threeDCytometryViewNoChannelsConfig.json';
+import stViewConfig from './spatialTranscriptomicsViewConfig.json'
 import { getFileLink } from "../../helpers/Api";
 
 export const getViewConfig = (type) => {
@@ -13,6 +14,8 @@ export const getViewConfig = (type) => {
             return threeDCytometryViewConfig;
         case 'Light Microscopic Whole Slide Images':
             return lmViewConfig;
+        case 'Spatial Transcriptomics':
+            return stViewConfig;
         default:
             return threeDCytometryViewConfig
     }
@@ -36,6 +39,7 @@ export const populateViewConfig = async (viewConfig, selectedDataset) => {
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', getDerivedImageName(selectedDataset["filename"]));
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_URL>', response.data);
     stringifiedConfig = stringifiedConfig.replace('<DATASET_INFO>', getDatasetInfo(selectedDataset));
+    stringifiedConfig = stringifiedConfig.replace('<DATA_FILE_URL>', selectedDataset["datafile"]);
     return JSON.parse(stringifiedConfig);
 }
 

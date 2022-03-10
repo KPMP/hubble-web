@@ -16,7 +16,7 @@
                 {
                     "type": "cells",
                     "fileType": "anndata-cells.zarr",
-                    "url": "https://dev-atlas.kpmp.org/spatial-viewer/files/cells-py.zarr",
+                    "url": "<DATA_FILE_URL>",
                     "options": {
                         "xy": "obsm/spatial",
                         "mappings": {
@@ -29,7 +29,7 @@
                 {
                     "type": "expression-matrix",
                     "fileType": "anndata-expression-matrix.zarr",
-                    "url": "https://dev-atlas.kpmp.org/spatial-viewer/files/cells-py.zarr",
+                    "url": "<DATA_FILE_URL>",
                     "options": {
                         "matrix": "X"
                     }
@@ -39,9 +39,9 @@
                     "options": {
                         "images": [
                             {
-                                "name": "image name",
+                                "name": "<IMAGE_NAME>",
                                 "type": "ome-tiff",
-                                "url": "https://dev-atlas.kpmp.org/spatial-viewer/files/XY01_18-0006-ome.tif"
+                                "url": "<IMAGE_URL>"
                             }
                         ],
                         "schemaVersion": "0.0.2",
@@ -54,7 +54,7 @@
             "uid": "A"
         }
     ],
-    "description": "ST Data Test",
+    "description": "<DATASET_INFO>",
     "initStrategy": "auto",
     "layout": [
         {
