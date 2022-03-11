@@ -35,16 +35,20 @@ export const getDatasetInfo = (selectedDataset) => {
 
 export const populateViewConfig = async (viewConfig, selectedDataset) => {
     let stringifiedConfig = JSON.stringify(viewConfig);
-    let response = await getFileLink(selectedDataset["packageid"] + '/' + getDerivedImageName(selectedDataset["filename"]))
+    let response = await getFileLink(selectedDataset["packageid"] + '/' + getDerivedImageName(selectedDataset["filename"]));
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', getDerivedImageName(selectedDataset["filename"]));
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_URL>', response.data);
     stringifiedConfig = stringifiedConfig.replace('<DATASET_INFO>', getDatasetInfo(selectedDataset));
-    stringifiedConfig = stringifiedConfig.replace('<DATA_FILE_URL>', selectedDataset["datafile"]);
+    stringifiedConfig = stringifiedConfig.replace('<DATA_FILE_URL>', getDerivedDataName(selectedDataset["filename"]));
     return JSON.parse(stringifiedConfig);
 }
 
 export const getDerivedImageName = (imageName) => {
     return imageName.split('.')[0] + '-ome.tif'
+}
+
+export const getDerivedDataName = (imageName) => {
+    return imageName.split('.')[0] + '.zarr'
 }
 
 export const getImageTypeTooltipCopy = (imageType) => {
