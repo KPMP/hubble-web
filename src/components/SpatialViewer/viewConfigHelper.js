@@ -1,6 +1,7 @@
 import lmViewConfig from './lightMicroscopyViewConfig.json';
 import threeDCytometryViewConfig from './threeDCytometryViewConfig.json';
 import threeDCytometryViewNoChannelsConfig from './threeDCytometryViewNoChannelsConfig.json';
+import stViewConfig from './spatialTranscriptomicsViewConfig.json'
 import { getFileLink } from "../../helpers/Api";
 
 export const getViewConfig = (type) => {
@@ -13,6 +14,8 @@ export const getViewConfig = (type) => {
             return threeDCytometryViewConfig;
         case 'Light Microscopic Whole Slide Images':
             return lmViewConfig;
+        case 'Spatial Transcriptomics':
+            return stViewConfig;
         default:
             return threeDCytometryViewConfig
     }
@@ -32,15 +35,20 @@ export const getDatasetInfo = (selectedDataset) => {
 
 export const populateViewConfig = async (viewConfig, selectedDataset) => {
     let stringifiedConfig = JSON.stringify(viewConfig);
-    let response = await getFileLink(selectedDataset["packageid"] + '/' + getDerivedImageName(selectedDataset["filename"]))
+    let response = await getFileLink(selectedDataset["packageid"] + '/' + getDerivedImageName(selectedDataset["filename"]));
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', getDerivedImageName(selectedDataset["filename"]));
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_URL>', response.data);
     stringifiedConfig = stringifiedConfig.replace('<DATASET_INFO>', getDatasetInfo(selectedDataset));
+    stringifiedConfig = stringifiedConfig.replace('<DATA_FILE_URL>', getDerivedDataName(selectedDataset["filename"]));
     return JSON.parse(stringifiedConfig);
 }
 
 export const getDerivedImageName = (imageName) => {
     return imageName.split('.')[0] + '-ome.tif'
+}
+
+export const getDerivedDataName = (imageName) => {
+    return imageName.split('.')[0] + '.zarr'
 }
 
 export const getImageTypeTooltipCopy = (imageType) => {
