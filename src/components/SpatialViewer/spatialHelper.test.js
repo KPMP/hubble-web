@@ -3,9 +3,9 @@ import { createHeaderString } from './spatialHelper';
 describe('createHeaderString', () => {
     it('should return a valid string given a choosen spatial image', () => {
         const selectedImageDataset = {
-            "Data Type": "Light Microscopic Whole Slide Images",
-            "Tissue Type": "AKI",
-            "Participant ID": "55-55555"
+            "datatype": "Light Microscopic Whole Slide Images",
+            "tissuetype": "AKI",
+            "participantid": "55-55555"
         }
         const expectedHeaderString = "Light Microscopic Whole Slide Images for AKI participant 55-55555"
         const headerString = createHeaderString(selectedImageDataset);

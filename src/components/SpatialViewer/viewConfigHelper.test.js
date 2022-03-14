@@ -50,9 +50,9 @@ describe ('populateViewConfig', () => {
 
     it('should replace all of the placeholder values with the values passed in', async () => {
         let selectedDataset = {
-            'Source File': 'imageName.tiff',
-            'Package ID': '123',
-            'Image Type': 'stuff'
+            'filename': 'imageName.tiff',
+            'packageid': '123',
+            'imagetype': 'stuff'
         };
         let result = await populateViewConfig(threeDCytometryViewConfig, selectedDataset);
         let resultString = JSON.stringify(result);
@@ -67,7 +67,7 @@ describe ('populateViewConfig', () => {
 
     it('should handle missing Image Type', async () => {
         let selectedDataset = {
-            'Source File': 'imageName.tiff',
+            'filename': 'imageName.tiff',
         };
         let result = await populateViewConfig(threeDCytometryViewConfig, selectedDataset);
         let resultString = JSON.stringify(result);
@@ -81,9 +81,9 @@ describe ('populateViewConfig', () => {
 describe ('getDatasetInfo', () => {
     it('should return whole slide image string with level included', () => {
         const selectedDataset = {
-            "Data Type": "Light Microscopic Whole Slide Images",
-            "Image Type": "Jones' Methenamine Silver (SIL) histochemical stain",
-            "Level": "L12"
+            "datatype": "Light Microscopic Whole Slide Images",
+            "imagetype": "Jones' Methenamine Silver (SIL) histochemical stain",
+            "level": "L12"
           }
 
         let datasetInfo = getDatasetInfo(selectedDataset);
@@ -93,8 +93,8 @@ describe ('getDatasetInfo', () => {
     });
     it('should return whole slide image string without level included', () => {
         const selectedDataset = {
-            "Data Type": "Light Microscopic Whole Slide Images",
-            "Image Type": "Jones' Methenamine Silver (SIL) histochemical stain",
+            "datatype": "Light Microscopic Whole Slide Images",
+            "imagetype": "Jones' Methenamine Silver (SIL) histochemical stain",
           }
 
         let datasetInfo = getDatasetInfo(selectedDataset);
@@ -104,10 +104,10 @@ describe ('getDatasetInfo', () => {
     });
     it('should return a Label-free auto-fluorescent image', () => {
         const selectedDataset = {
-            "Data Type": "Label-free auto-fluorescent image",
-            "Image Type": "Jones' Methenamine Silver (SIL) histochemical stain",
+            "datatype": "Label-free auto-fluorescent image",
+            "imagetype": "Jones' Methenamine Silver (SIL) histochemical stain",
           }
-
+          
         let datasetInfo = getDatasetInfo(selectedDataset);
         let expectedInfo = "Jones' Methenamine Silver (SIL) histochemical stain";
 
@@ -115,7 +115,7 @@ describe ('getDatasetInfo', () => {
     });
     it('should return an empty string if image type not present for 3d Cyto', () => {
         const selectedDataset = {
-            "Data Type": "Label-free auto-fluorescent image",
+            "datatype": "Label-free auto-fluorescent image",
           }
 
         let datasetInfo = getDatasetInfo(selectedDataset);
@@ -125,7 +125,7 @@ describe ('getDatasetInfo', () => {
     });
     it('should return an empty string if image type not present for Whole slide image', () => {
         const selectedDataset = {
-            "Data Type": "Light Microscopic Whole Slide Images",
+            "datatype": "Light Microscopic Whole Slide Images",
           }
 
         let datasetInfo = getDatasetInfo(selectedDataset);
