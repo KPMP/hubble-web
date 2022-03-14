@@ -43,12 +43,12 @@ class ImageDatasetList extends Component {
         const columnCards = this.getColumns().map((item, index) => {
             return {id: index, text: item.title, name: item.name, hideable: item.hideable}
         });
-
         this.state = {
             filterTabActive: true,
             activeFilterTab: 'DATASET',
             tableData: [],
-            cards: this.props.tableSettings.cards || columnCards
+            cards: this.props.tableSettings.cards || columnCards,
+            currentPage: this.props.tableSettings.currentPage
         };
 
     }
@@ -66,6 +66,9 @@ class ImageDatasetList extends Component {
         if (this.props !== prevProps) {
             if (this.props.results !== prevProps.results) {
                 this.getSearchResults();
+            }
+            if (this.props.filters !== prevProps.filters) {
+                this.props.setTableSettings({currentPage: 0});
             }
         }
     };
@@ -180,7 +183,7 @@ class ImageDatasetList extends Component {
             DATASET: 'DATASET',
             PARTICIPANT: 'PARTICIPANT',
         };
-        const { pagingSize, columnWidths, hiddenColumnNames, sorting } = this.props.tableSettings;
+        const { pagingSize, columnWidths, hiddenColumnNames, sorting, currentPage} = this.props.tableSettings;
         return (
             <Container id='outer-wrapper' className="multi-container-container container-xxl">
                 <Row>
@@ -275,7 +278,10 @@ class ImageDatasetList extends Component {
                                             setDefaultCards={this.setDefaultCards}
                                             defaultOrder={this.getColumns().map(item => item.name)} />
 
-                                        <PaginationState setTableSettings={this.props.setTableSettings} pagingSize={pagingSize}/>
+                                        <PaginationState
+                                            currentPage={currentPage}
+                                            setTableSettings={this.props.setTableSettings}
+                                            pagingSize={pagingSize}/>
                                         <Pagination pageSizes={this.getPageSizes()} />
                                     </Grid>
                                 </div>
