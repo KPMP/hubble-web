@@ -243,6 +243,7 @@ class ImageDatasetList extends Component {
                                             sorting={sorting}/>
                                         <IntegratedSorting />
                                         <PagingState
+                                            currentPage={currentPage}
                                             defaultPageSize={pagingSize}
                                             onCurrentPageChange={(page) => this.props.setTableSettings({currentPage: page})}
                                         />
