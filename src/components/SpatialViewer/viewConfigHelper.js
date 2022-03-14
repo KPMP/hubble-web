@@ -35,11 +35,12 @@ export const getDatasetInfo = (selectedDataset) => {
 
 export const populateViewConfig = async (viewConfig, selectedDataset) => {
     let stringifiedConfig = JSON.stringify(viewConfig);
-    let response = await getFileLink(selectedDataset["packageid"] + '/' + getDerivedImageName(selectedDataset["filename"]));
+    let imageUrlResponse = await getFileLink(selectedDataset["packageid"] + '/' + getDerivedImageName(selectedDataset["filename"]));
+    let dataUrlResponse = await getFileLink(selectedDataset["packageid"] + '/' + getDerivedDataName(selectedDataset["filename"]));
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', getDerivedImageName(selectedDataset["filename"]));
-    stringifiedConfig = stringifiedConfig.replace('<IMAGE_URL>', response.data);
+    stringifiedConfig = stringifiedConfig.replace('<IMAGE_URL>', imageUrlResponse.data);
     stringifiedConfig = stringifiedConfig.replace('<DATASET_INFO>', getDatasetInfo(selectedDataset));
-    stringifiedConfig = stringifiedConfig.replace('<DATA_FILE_URL>', getDerivedDataName(selectedDataset["filename"]));
+    stringifiedConfig = stringifiedConfig.replace(/<DATA_FILE_URL>/gi, dataUrlResponse.data);
     return JSON.parse(stringifiedConfig);
 }
 
