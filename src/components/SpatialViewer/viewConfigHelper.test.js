@@ -1,7 +1,15 @@
-import { getViewConfig, populateViewConfig, getDatasetInfo, getDerivedImageName, getImageTypeTooltipCopy } from './viewConfigHelper';
+import {
+    getViewConfig,
+    populateViewConfig,
+    getDatasetInfo,
+    getDerivedImageName,
+    getImageTypeTooltipCopy,
+    getDerivedDataName
+} from './viewConfigHelper';
 import lmViewConfig from './lightMicroscopyViewConfig.json';
 import threeDCytometryViewConfig from './threeDCytometryViewConfig.json';
 import threeDCytometryViewNoChannelsConfig from './threeDCytometryViewNoChannelsConfig.json';
+import stViewConfig from './spatialTranscriptomicsViewConfig.json';
 import * as helpers from '../../helpers/Api';
 
 describe('getViewConfig', () => {
@@ -15,6 +23,12 @@ describe('getViewConfig', () => {
     it ('should return light microscopy config when Light Microscopic Whole Slide Images', () => {
         let config = getViewConfig('Light Microscopic Whole Slide Images');
         let expectedConfig = lmViewConfig;
+
+        expect(config).toEqual(expectedConfig);
+    });
+    it ('should return spatial transcriptopmics config when Spatial Transcriptomics', () => {
+        let config = getViewConfig('Spatial Transcriptomics');
+        let expectedConfig = stViewConfig;
 
         expect(config).toEqual(expectedConfig);
     });
@@ -62,6 +76,25 @@ describe ('populateViewConfig', () => {
         
         expect(result.datasets[0].files[0].options.images[0].name).toEqual('imageName-ome.tif');
         expect(result.datasets[0].files[0].options.images[0].url).toEqual('url/returned/from/service');
+        expect(result.description).toEqual('stuff');
+    });
+
+    it('should replace all of the placeholder values with the values passed in for spatial transcriptomics', async () => {
+        let selectedDataset = {
+            'filename': 'imageName.tiff',
+            'packageid': '123',
+            'imagetype': 'stuff'
+        };
+        let result = await populateViewConfig(stViewConfig, selectedDataset);
+        let resultString = JSON.stringify(result);
+        let index = resultString.search('<*>');
+
+        expect(index).toBe(-1);
+
+        expect(result.datasets[0].files[2].options.images[0].name).toEqual('imageName-ome.tif');
+        expect(result.datasets[0].files[2].options.images[0].url).toEqual('url/returned/from/service');
+        expect(result.datasets[0].files[0].url).toEqual('url/returned/from/service');
+        expect(result.datasets[0].files[1].url).toEqual('url/returned/from/service');
         expect(result.description).toEqual('stuff');
     });
 
@@ -146,6 +179,13 @@ describe('getDerivedImageName',() => {
     })
 });
 
+describe('getDerivedDataName',() => {
+    it('should add .zarr as an extnesion', () => {
+        let derivedName = getDerivedDataName('bigBooty.tif');
+        expect(derivedName).toBe('bigBooty.zarr');
+    });
+});
+
 describe('getImageTypeTooltipCopy',() => {
      it('should return empty when copy not available', () => {
         const expectedCopy = '';
@@ -158,7 +198,6 @@ describe('getImageTypeTooltipCopy',() => {
         const copy = getImageTypeTooltipCopy('AS(DJ9asdjasd');
         expect(copy).toBe(expectedCopy);
     });
-
 
      it('should return copy for RGB max projection of 8-channel immunofluorescence image volume', () => {
         const expectedCopy = '8-channel volume combined into a single maximum projection and converted to RGB color space.';
