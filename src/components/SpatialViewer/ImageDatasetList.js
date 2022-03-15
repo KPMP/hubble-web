@@ -187,29 +187,19 @@ class ImageDatasetList extends Component {
         return (
             <Container id='outer-wrapper' className="multi-container-container container-xxl">
                 <Row>
-                    <Col xl={12}>
-                        <Container className="mt-2 rounded border p-3 shadow-sm container-max">
-                            <Row><Col><h5>Welcome to the Kidney Tissue Atlas Spatial Viewer</h5></Col></Row>
-                            <Row><Col><p>Select a spatial dataset from the list below to visualize it in the <a target="_blank" rel="noreferrer" href="http://vitessce.io/">Vitessce</a> visual integration tool.</p></Col></Row>
-                        </Container>
-                    </Col>
-                </Row>
-                <Row>
-                    
                     <Col xl={3}>
                         <div className={`filter-panel-wrapper ${this.state.filterTabActive ? '': 'hidden'}`}>
-                        
                         <div className="filter-panel-tab-wrapper">
                             <div onClick={() => {this.setActiveFilterTab(tabEnum.DATASET)}}
                                 className={`filter-tab ${this.state.activeFilterTab === tabEnum.DATASET ? 'active' : ''} rounded border`}>DATASET</div>
                             <div onClick={() => {this.setActiveFilterTab(tabEnum.PARTICIPANT)}}
                                 className={`filter-tab ${this.state.activeFilterTab === tabEnum.PARTICIPANT ? 'active' : ''} rounded border`}>PARTICIPANT</div>
                             
-                            <div className="filter-tab filter-tab-control-icon">                                
+                            <div className="filter-tab filter-tab-control-icon clickable"
+                                 alt="Close Filter Tab"
+                                 onClick={() => {this.toggleFilterTab()}}>                                
                                 <FontAwesomeIcon
-                                    alt="Close Filter Tab"
-                                    onClick={() => {this.toggleFilterTab()}}
-                                    className="fas fa-angles-left clickable" icon={faAnglesLeft} />
+                                    className="fas fa-angles-left " icon={faAnglesLeft} />
                             </div>
                         </div>
                         <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
@@ -221,18 +211,29 @@ class ImageDatasetList extends Component {
                     </Col>
                     <Col xl={`${this.state.filterTabActive ? 9 : 12 }`}>
                         <Row>
-                            <Col className={`filter-collapse ${this.state.filterTabActive ? 'hidden': ''}`}  xl={1}>
+                            <Col 
+                                className={`filter-collapse clickable ${this.state.filterTabActive ? 'hidden': ''}`}
+                                xl={1}
+                                alt="Open Filter Tab"
+                                onClick={() => {this.toggleFilterTab()}}>
                             <FontAwesomeIcon
-                                    alt="Open Filter Tab"
-                                    onClick={() => {this.toggleFilterTab()}}
-                                    className="fas fa-angles-left clickable" icon={faAnglesRight} />
+                                    className="fas fa-angles-left" icon={faAnglesRight} />
                             </Col>
-                            <Col xl={11} className='activeFilter-column my-0 p-3'>
-                                {this.getFilterPills(this.props.filters)}
+                            <Col xl={12} className={`my-0 activeFilter-column ${this.state.filterTabActive ? 'closed': ''}`}>
+                                {this.props.filters.length === 0 ?
+
+                                <Row className="filter-pill-row inactive-filters">
+                                    <span>Select a spatial dataset from the list below to visualize it in the <a target="_blank" rel="noreferrer" href="http://vitessce.io/">Vitessce</a> visual integration tool.</span>
+                                </Row>
+                                :
+                                <Row className="filter-pill-row">
+                                    {this.getFilterPills(this.props.filters)}
+                                </Row>}
+                                
                             </Col>
                         </Row>
                         <DndProvider backend={HTML5Backend}>
-                            <div className='p-3 container-max spatial-data-table-wrapper'>
+                            <div className='container-max spatial-data-table-wrapper'>
                                 <div className="spatial-data-table">
                                     <Grid
                                         rows={this.state.tableData}
