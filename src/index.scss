@@ -34,7 +34,8 @@
 .spatial-filter-panel {
     margin-top: 3.5rem !important;
     border-top-left-radius: 0px !important;
-    height: 70vh;
+    min-height: 70vh;
+    height: auto;
 }
 
 .filter-tab-control-icon {
@@ -67,7 +68,6 @@
 }
 .spatial-data-table {
     position: relative;
-    padding: 20px;
     padding-top: 0px;
 }
 .spatial-data-table tr {
