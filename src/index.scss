@@ -37,11 +37,6 @@
     height: 70vh;
 }
 
-.filter-tab-control-icon {
-    float: right;
-    background-color: rgba(1,1,1,0) !important;
-}
-
 .filter-tab {
     margin-top: 1rem !important;
     text-align: center;
@@ -51,9 +46,15 @@
     padding: 10px;
     display: inline-block;
     height: 41px;
-
     cursor: pointer;
 }
+
+.filter-tab-control-icon {
+    float: right;
+    background-color: rgba(1,1,1,0) !important;
+    padding: 10px 0px 0px 0px;
+}
+
 .filter-tab.active {
     background-color: white;
     border: 1px solid #dee2e6 !important;
@@ -273,12 +274,27 @@ td:hover {
         display: none;
     }
 }
-@media only screen and (max-width: 1200px) {
-    .activeFilter-column {
-        padding: 1rem 3rem !important
-    }
+
+.activeFilter-column .row {
+    margin-left: -9px;
+    margin-right: -15px;
 }
 
+.activeFilter-column.closed {
+    padding: 0rem .5rem 0rem 1.3rem !important;
+}
+.activeFilter-column {
+    padding: 0rem .5rem 0rem 4rem !important;
+}
+.filter-pill-row {
+    margin-top: 1rem;
+    width: 100%;
+}
+.inactive-filters {
+    background-color: rgb(237, 248, 251);
+    padding: 1rem;
+    width: 100%;
+}
 .activeFilter {
     background-color: white;
     padding: 10px;
@@ -293,18 +309,34 @@ td:hover {
     text-align: center;
 }
 
-.container-xxl {
-    max-width: 97%;
+.container-xxl.multi-container-container {
+    max-width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
 }
+
 .container-max {
     max-width: 100%;
 }
+
 .filter-collapse {
-    position: relative;
-    top: 30px;
-    flex: 0 0 4.33%;
-    max-width: 4.33%;
     z-index: 100;
+    background-color: #fff;
+    border-color: #c8c8c8 #c8c8c8 #c8c8c8 currentcolor;
+    border-style: solid solid solid none;
+    border-width: 1px 1px 1px medium;
+    border-image: none 100% / 1 / 0 stretch;
+    border-radius: 0px 0.4rem 0.4rem 0px;
+    flex: 0 0 auto;
+    margin: 1.1rem 4rem auto -2.5rem;
+    outline: currentcolor none medium;
+    padding: 10px;
+    max-height: 50px;
+    position: absolute;
+    left: 2.5rem !important;
+    width: 35px;
+    max-width: 35px;
+    min-width: 35px;
 }
 
 .clickable {
