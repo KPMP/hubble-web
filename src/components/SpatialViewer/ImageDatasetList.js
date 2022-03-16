@@ -105,6 +105,13 @@ class ImageDatasetList extends Component {
                 defaultHidden: false,
             },
             {
+                name: 'filename',
+                title: 'Filename',
+                sortable: true,
+                hideable: true,
+                defaultHidden: true,
+            },
+            {
                 name: 'imagetype',
                 title: 'Image Type',
                 sortable: true,
@@ -138,6 +145,7 @@ class ImageDatasetList extends Component {
             { columnName: 'redcapid', width: 145 },
             { columnName: 'datatype', width: 250 },
             { columnName: 'imagetype', width: 660 },
+            { columnName: 'filename', width: 250 },
         ]
     };
 
