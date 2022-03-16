@@ -178,6 +178,19 @@ class ImageDatasetList extends Component {
             })
     };
 
+    compareRedcapId = (a, b) => {
+        if(a && a.props && a.props.children && b && b.props && b.props.children) {
+            a = a.props.children
+            b = b.props.children
+            if (a === b) {
+                return 0;
+            }
+            return (a < b) ? -1 : 1;
+        } else {
+            return 1
+        }
+    };
+
     render() {
         const tabEnum = {
             DATASET: 'DATASET',
@@ -242,7 +255,8 @@ class ImageDatasetList extends Component {
                                             defaultSorting={[]}
                                             onSortingChange={(sorting) =>  this.props.setTableSettings({sorting: sorting})}
                                             sorting={sorting}/>
-                                        <IntegratedSorting />
+                                        <IntegratedSorting 
+                                            columnExtensions={[{ columnName: 'redcapid', compare: this.compareRedcapId }]} />
                                         <PagingState
                                             currentPage={currentPage}
                                             defaultPageSize={pagingSize}
