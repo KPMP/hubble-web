@@ -6,6 +6,7 @@ import { resultConverter } from "../../helpers/dataHelper";
 import { getImageTypeTooltipCopy } from "./viewConfigHelper";
 import { faXmark, faAnglesRight, faAnglesLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { compareTableStrings } from "./spatialHelper";
 import {
     SortingState,
     IntegratedSorting,
@@ -178,19 +179,6 @@ class ImageDatasetList extends Component {
             })
     };
 
-    compareRedcapId = (a, b) => {
-        if(a && a.props && a.props.children && b && b.props && b.props.children) {
-            a = a.props.children
-            b = b.props.children
-            if (a === b) {
-                return 0;
-            }
-            return (a < b) ? -1 : 1;
-        } else {
-            return 1
-        }
-    };
-
     render() {
         const tabEnum = {
             DATASET: 'DATASET',
@@ -256,7 +244,7 @@ class ImageDatasetList extends Component {
                                             onSortingChange={(sorting) =>  this.props.setTableSettings({sorting: sorting})}
                                             sorting={sorting}/>
                                         <IntegratedSorting 
-                                            columnExtensions={[{ columnName: 'redcapid', compare: this.compareRedcapId }]} />
+                                            columnExtensions={[{ columnName: 'redcapid', compare: compareTableStrings }]} />
                                         <PagingState
                                             currentPage={currentPage}
                                             defaultPageSize={pagingSize}
