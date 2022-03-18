@@ -129,15 +129,21 @@ class ImageDatasetList extends Component {
             return column.name;
           })
     };
+
+    
     
     getImageTypeCell = (row) => {
-        return getImageTypeTooltipCopy(row["imagetype"]) !== "" &&
-            <div className="image-type-cell">
+        return row["imagetype"] !== "" &&
+            <div className={`image-type-cell ${(getImageTypeTooltipCopy(row["imagetype"]) !== "") ? 'clickable': '' }`}>
                 <span className='mr-1'>{row["imagetype"]}</span>
-                <div className='tooltip-parent-sibling'></div>
-                <div className='tooltip-parent rounded border shadow mt-2 p-2'>
-                    <span className='tooltip-child'>{getImageTypeTooltipCopy(row["imagetype"])}</span>
+                {getImageTypeTooltipCopy(row["imagetype"]) !== "" &&
+                <div>
+                    <div className='tooltip-parent-sibling'></div>
+                    <div className='tooltip-parent rounded border shadow mt-2 p-2'>
+                        <span className='tooltip-child'>{getImageTypeTooltipCopy(row["imagetype"])}</span>
+                    </div>
                 </div>
+                }
             </div>
     };
 
