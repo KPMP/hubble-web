@@ -217,7 +217,7 @@ class ImageDatasetList extends Component {
                             <React.Fragment>
                             {this.state.activeFilterTab === tabEnum.DATASET &&
                             <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
-                                <Row className="mb-2"><Col><Facet field="datatype" label="Data Type" filterType="any"
+                                <Row className="mb-2"><Col><Facet field="datatype" label="Experimental Strategy" filterType="any"
                                                                   view={MultiCheckboxFacet}/></Col></Row>
                                 <Row className="mb-2"><Col><Facet field="imagetype" label="Image Type" filterType="any"
                                                                   view={MultiCheckboxFacet}/></Col></Row>
