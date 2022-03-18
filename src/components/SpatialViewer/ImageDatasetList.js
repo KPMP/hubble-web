@@ -92,7 +92,7 @@ class ImageDatasetList extends Component {
         return [
             {
                 name: 'redcapid',
-                title: 'Participant ID',
+                title: 'Sample ID',
                 sortable: true,
                 hideable: false,
                 defaultHidden: false,
@@ -234,7 +234,7 @@ class ImageDatasetList extends Component {
                             <Row className="mb-2"><Col><Facet field="tissuetype" label="Tissue Type"
                                                               filterType="any"
                                                               view={MultiCheckboxFacet}/></Col></Row>
-                            <Row className="mb-2"><Col><Facet inputProps={{ placeholder: "cusaceholder" }} isFilterable={true}  field="redcapid" label="Participant ID"
+                            <Row className="mb-2"><Col><Facet inputProps={{ placeholder: "cusaceholder" }} isFilterable={true}  field="redcapid" label="Sample ID"
                                                               filterType="any"
                                                               view={(props) => <MultiCheckboxFacet {...props} searchPlaceholder={"Search..."}/>}/></Col></Row>
                         </Container>
