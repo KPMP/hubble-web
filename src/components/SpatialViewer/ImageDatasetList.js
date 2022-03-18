@@ -186,6 +186,10 @@ class ImageDatasetList extends Component {
             })
     };
 
+    customPlaceholderFacet = (props, placeHolder) => {
+        return <MultiCheckboxFacet {...props} searchPlaceholder={placeHolder}/>
+    };
+
     render() {
         const tabEnum = {
             DATASET: 'DATASET',
@@ -196,7 +200,7 @@ class ImageDatasetList extends Component {
             <Container id='outer-wrapper' className="multi-container-container container-xxl">
                 <Row>
                     <Col xl={3}>
-                        <div className={`filter-panel-wrapper ${this.state.filterTabActive ? '': 'hidden'}`}>
+                        <React.Fragment className={`filter-panel-wrapper ${this.state.filterTabActive ? '': 'hidden'}`}>
                         <div className="filter-panel-tab-wrapper">
                             <div onClick={() => {this.setActiveFilterTab(tabEnum.DATASET)}}
                                 className={`filter-tab ${this.state.activeFilterTab === tabEnum.DATASET ? 'active' : ''} rounded border`}>DATASET</div>
@@ -210,12 +214,31 @@ class ImageDatasetList extends Component {
                                     className="fas fa-angles-left " icon={faAnglesLeft} />
                             </div>
                         </div>
+                            <React.Fragment>
+                            {this.state.activeFilterTab === tabEnum.DATASET &&
+                            <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
+                                <Row className="mb-2"><Col><Facet field="datatype" label="Data Type" filterType="any"
+                                                                  view={MultiCheckboxFacet}/></Col></Row>
+                                <Row className="mb-2"><Col><Facet field="imagetype" label="Image Type" filterType="any"
+                                                                  view={MultiCheckboxFacet}/></Col></Row>
+                            </Container>
+                            }{this.state.activeFilterTab === tabEnum.PARTICIPANT &&
                         <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
-                            <Row className="mb-2"><Col><Facet field="datatype" label="Data Type" filterType="any" view={MultiCheckboxFacet} /></Col></Row>
-                            <Row className="mb-2"><Col><Facet field="imagetype" label="Image Type" filterType="any" view={MultiCheckboxFacet} /></Col></Row>
-                            <Row className="mb-2"><Col><Facet field="sampletype" label="Sample Type" filterType="any" view={MultiCheckboxFacet} /></Col></Row>
+                            <Row className="mb-2"><Col><Facet field="sex" label="Sex" filterType="any"
+                                                              view={MultiCheckboxFacet}/></Col></Row>
+                            <Row className="mb-2"><Col><Facet field="age" label="Age" filterType="any"
+                                                              view={MultiCheckboxFacet}/></Col></Row>
+                            <Row className="mb-2"><Col><Facet field="tissuetype" label="Tissue Type"
+                                                              filterType="any"
+                                                              view={MultiCheckboxFacet}/></Col></Row>
+                            <Row className="mb-2"><Col><Facet inputProps={{ placeholder: "cusaceholder" }} isFilterable={true}  field="redcapid" label="Participant ID"
+                                                              filterType="any"
+                                                              view={(props) => <MultiCheckboxFacet {...props} searchPlaceholder={"Search..."}/>}/></Col></Row>
                         </Container>
-                        </div>
+                        }
+                            </React.Fragment>
+                        </React.Fragment>
+
                     </Col>
                     <Col xl={`${this.state.filterTabActive ? 9 : 12 }`}>
                         <Row>
