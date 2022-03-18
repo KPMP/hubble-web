@@ -186,10 +186,6 @@ class ImageDatasetList extends Component {
             })
     };
 
-    customPlaceholderFacet = (props, placeHolder) => {
-        return <MultiCheckboxFacet {...props} searchPlaceholder={placeHolder}/>
-    };
-
     render() {
         const tabEnum = {
             DATASET: 'DATASET',
