@@ -203,7 +203,7 @@ class ImageDatasetList extends Component {
             <Container id='outer-wrapper' className="multi-container-container container-xxl">
                 <Row>
                     <Col xl={3}>
-                        <React.Fragment className={`filter-panel-wrapper ${this.state.filterTabActive ? '': 'hidden'}`}>
+                        <div className={`filter-panel-wrapper ${this.state.filterTabActive ? '': 'hidden'}`}>
                         <div className="filter-panel-tab-wrapper">
                             <div onClick={() => {this.setActiveFilterTab(tabEnum.DATASET)}}
                                 className={`filter-tab ${this.state.activeFilterTab === tabEnum.DATASET ? 'active' : ''} rounded border`}>DATASET</div>
@@ -240,7 +240,7 @@ class ImageDatasetList extends Component {
                         </Container>
                         }
                             </React.Fragment>
-                        </React.Fragment>
+                        </div>
 
                     </Col>
                     <Col xl={`${this.state.filterTabActive ? 9 : 12 }`}>
