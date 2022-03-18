@@ -6,6 +6,7 @@ import { resultConverter } from "../../helpers/dataHelper";
 import { getImageTypeTooltipCopy } from "./viewConfigHelper";
 import { faXmark, faAnglesRight, faAnglesLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { compareTableStrings } from "./spatialHelper";
 import {
     SortingState,
     IntegratedSorting,
@@ -105,6 +106,13 @@ class ImageDatasetList extends Component {
                 defaultHidden: false,
             },
             {
+                name: 'filename',
+                title: 'Filename',
+                sortable: true,
+                hideable: true,
+                defaultHidden: true,
+            },
+            {
                 name: 'imagetype',
                 title: 'Image Type',
                 sortable: true,
@@ -138,6 +146,7 @@ class ImageDatasetList extends Component {
             { columnName: 'redcapid', width: 145 },
             { columnName: 'datatype', width: 250 },
             { columnName: 'imagetype', width: 660 },
+            { columnName: 'filename', width: 250 },
         ]
     };
 
@@ -242,7 +251,8 @@ class ImageDatasetList extends Component {
                                             defaultSorting={[]}
                                             onSortingChange={(sorting) =>  this.props.setTableSettings({sorting: sorting})}
                                             sorting={sorting}/>
-                                        <IntegratedSorting />
+                                        <IntegratedSorting 
+                                            columnExtensions={[{ columnName: 'redcapid', compare: compareTableStrings }]} />
                                         <PagingState
                                             currentPage={currentPage}
                                             defaultPageSize={pagingSize}
