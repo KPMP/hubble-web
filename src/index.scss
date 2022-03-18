@@ -39,6 +39,7 @@
 }
 
 .filter-tab {
+    font-size: 14px;
     margin-top: 1rem !important;
     text-align: center;
     background-color: rgba(1,1,1,0);
@@ -57,6 +58,8 @@
 }
 
 .filter-tab.active {
+    font-size: 13px;
+    line-height: 1;
     background-color: white;
     border: 1px solid #dee2e6 !important;
     border-bottom: 0px solid black !important;
@@ -71,7 +74,7 @@
     position: relative;
     padding-top: 0px;
 }
-.spatial-data-table head tr {
+.spatial-data-table thead tr {
     text-transform: uppercase;
 }
 .spatial-data-table .card-header {
@@ -97,16 +100,14 @@
 }
 
 .spatial-data-table .card-footer {
-    padding: 1rem 0px !important;
+    padding: 10px 0px 0px 0px;
     background-color: transparent;
     margin-top: 20px;
     border-top: 0px solid rgba(0,0,0,0);
-}
-
-.card-footer {
     z-index: 5;
 }
-.card-footer .d-inline-block {
+
+.spatial-data-table .card-footer .d-inline-block {
     display: none !important;
 }
 .spatial-data-table thead th {
@@ -114,6 +115,10 @@
     top: 0;
     z-index: 5;
     background-color: #fff;
+}
+
+.spatial-data-table td {
+    padding: 5px;
 }
 
 .spatial-data-table .filter-list {
@@ -278,6 +283,8 @@ td:hover {
 .activeFilter-column .row {
     margin-left: -9px;
     margin-right: -15px;
+    font-size: 14px;
+    line-height: 1;
 }
 
 .activeFilter-column.closed {
@@ -410,7 +417,7 @@ td:hover {
     padding-right: 2px;
 }
 .card-footer {
-    z-index: 5;
+    
 }
 .card-footer .d-inline-block {
     display: none !important;
@@ -422,10 +429,16 @@ td:hover {
     top: -70px;
     width: fit-content;
     margin: 1rem;
+    font-size: 13px;
+}
+
+.pagination-size-wrapper #mui-component-select-filter-field {
+    font-size: 13px;
 }
 
 .pagination {
     z-index: 999;
+    font-size: 13px;
 }
 
 .modal-backdrop {
@@ -452,4 +465,8 @@ td:hover {
 .sui-facet__title {
     color: black !important;
     font-weight: bold !important;
+}
+.sui-multi-checkbox-facet__option-input-wrapper {
+    padding-left: 23px;
+    text-indent: -23px; 
 }
