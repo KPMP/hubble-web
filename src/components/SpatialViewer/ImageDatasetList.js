@@ -91,20 +91,19 @@ class ImageDatasetList extends Component {
         const { setSelectedImageDataset } = this.props;
         return [
             {
-                name: 'redcapid',
+                name: 'spectrackSampleId',
                 title: 'Sample ID',
                 sortable: true,
                 hideable: false,
                 defaultHidden: false,
-                getCellValue: row => {console.log('row', row);return(<button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="popover" data-content="" className='table-column btn btn-link text-left p-0'>{row["redcapid"]}</button>)}
+                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="popover" data-content="" className='table-column btn btn-link text-left p-0'>{row["spectrackSampleId"]}</button>
             },
             {
-                name: 'participantid',
+                name: 'redcapid',
                 title: 'Participant ID',
                 sortable: true,
                 hideable: true,
                 defaultHidden: true,
-                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="popover" data-content="" className='table-column btn btn-link text-left p-0'>{row["participantid"]}</button>
             },
             {
                 name: 'datatype',
@@ -121,7 +120,6 @@ class ImageDatasetList extends Component {
                 defaultHidden: true,
             },
             {
-                
                 name: 'imagetype',
                 title: 'Image Type',
                 sortable: true,
@@ -158,10 +156,10 @@ class ImageDatasetList extends Component {
 
     getDefaultColumnWidths = () => {
         return [
-            { columnName: 'redcapid', width: 145 },
+            { columnName: 'spectrackSampleId', width: 145 },
             { columnName: 'datatype', width: 250 },
             { columnName: 'imagetype', width: 660 },
-            { columnName: 'participantid', width: 145 },
+            { columnName: 'redcapid', width: 145 },
             { columnName: 'filename', width: 250 },
         ]
     };

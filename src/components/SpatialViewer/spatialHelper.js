@@ -2,11 +2,10 @@ export const createHeaderString = (selectedImageDataset) => {
 
     const dataType = selectedImageDataset["datatype"]
     const tissueType = selectedImageDataset["tissuetype"]
-    const participantId = selectedImageDataset["redcapid"]
-    
+    const redcapid = selectedImageDataset["redcapid"]
 
-    if(dataType && tissueType && participantId) {
-        return dataType + " for " + tissueType + " participant " + participantId
+    if(dataType && tissueType && redcapid) {
+        return dataType + " for " + tissueType + " participant " + redcapid
     }
     
     return "Viewing Spatial Data"
