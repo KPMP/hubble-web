@@ -300,5 +300,32 @@ describe('compareTableStrings', () => {
 
         const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort a before b when 32-100b and 32-2a are compared', () => {
+        const a = {props: {children: 'a32-100b'}}
+        const b = {props: {children: 'a32-2a'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = -1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort a before b when 32-100b and 32-2a are compared', () => {
+        const a = {props: {children: 'a32-100b'}}
+        const b = {props: {children: 'b32-2a'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = -1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort a before b when 32-100b and 32-2a are compared', () => {
+        const a = {props: {children: 'b32-100b'}}
+        const b = {props: {children: 'a32-2a'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 1
+        expect(compareResult).toEqual(expectedresult)
     })
 });
