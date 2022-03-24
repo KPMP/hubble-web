@@ -1,4 +1,8 @@
-import { createHeaderString, compareTableStrings, includesLetter } from './spatialHelper';
+import { 
+    createHeaderString,
+    compareTableStrings,
+    includesLetter,
+    compareNumeric } from './spatialHelper';
 
 describe('createHeaderString', () => {
     it('should return a valid string given a choosen spatial image', () => {
@@ -26,32 +30,117 @@ describe('createHeaderString', () => {
 
 
 describe('includesLetter', () => {
-    it('should return true string 123abc123', () => {
+    it('should return true with string 123abc123', () => {
         const result = includesLetter('123abc123')
         const expected = true
         expect(result).toEqual(expected)
     }),
-    it('should return true string 123abc', () => {
+    it('should return true with string 123abc', () => {
         const result = includesLetter('123abc')
         const expected = true
         expect(result).toEqual(expected)
     }),
-    it('should return true string abc', () => {
+    it('should return true with string abc', () => {
         const result = includesLetter('abc')
         const expected = true
         expect(result).toEqual(expected)
     }),
-    it('should return false string 123', () => {
+    it('should return false with string 123', () => {
         const result = includesLetter('123')
         const expected = false
         expect(result).toEqual(expected)
+    }),
+    it('should return true with string aA', () => {
+        const result = includesLetter('aA')
+        const expected = true
+        expect(result).toEqual(expected)
+    }),
+    it('should return true with string A', () => {
+        const result = includesLetter('A')
+        const expected = true
+        expect(result).toEqual(expected)
     })
 });
+
+describe('compareNumeric', () => {
+    it('should be sorted when strings a equals b', () => {
+        const a = '1'
+        const b = '1'
+
+        const compareResult = compareNumeric(a,b);
+
+        const expectedresult = 0
+        expect(compareResult).toEqual(expectedresult);
+    }),
+    it('should be sorted a before b when strings are 2 and 1', () => {
+        const a = '2'
+        const b = '1'
+
+        const compareResult = compareNumeric(a,b);
+
+        const expectedresult = -1
+        expect(compareResult).toEqual(expectedresult);
+    }),
+    it('should be sorted b before a when strings are 1 and 2', () => {
+        const a = '1'
+        const b = '2'
+
+        const compareResult = compareNumeric(a,b);
+
+        const expectedresult = 1
+        expect(compareResult).toEqual(expectedresult);
+    }),
+    it('should be sorted a before b when strings are 100 and 2', () => {
+        const a = '100'
+        const b = '2'
+
+        const compareResult = compareNumeric(a,b);
+
+        const expectedresult = -1
+        expect(compareResult).toEqual(expectedresult);
+    })
+})
 
 describe('compareTableStrings', () => {
     it('should be sorted when strings a equals b', () => {
         const a = {props: {children: '1'}}
         const b = {props: {children: '1'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 0
+        expect(compareResult).toEqual(expectedresult);
+    }),
+    it('should be sorted when strings a equals b', () => {
+        const a = {props: {children: '1a'}}
+        const b = {props: {children: '1a'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 0
+        expect(compareResult).toEqual(expectedresult);
+    }),
+    it('should be sorted when strings a equals b', () => {
+        const a = {props: {children: 'A1'}}
+        const b = {props: {children: 'A1'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 0
+        expect(compareResult).toEqual(expectedresult);
+    }),
+    it('should be sorted when string A equals a', () => {
+        const a = {props: {children: 'A'}}
+        const b = {props: {children: 'a'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 0
+        expect(compareResult).toEqual(expectedresult);
+    }),
+    it('should be sorted when string a equals A', () => {
+        const a = {props: {children: 'a'}}
+        const b = {props: {children: 'A'}}
 
         const compareResult = compareTableStrings(a,b);
 
@@ -77,8 +166,8 @@ describe('compareTableStrings', () => {
         expect(compareResult).toEqual(expectedresult);
     }),
     it('should be sorted when a equals b with dashed letters and numbers', () => {
-        const a = {props: {children: 'abc-100-200'}}
-        const b = {props: {children: 'abc-100-200'}}
+        const a = {props: {children: 'abC-100-200'}}
+        const b = {props: {children: 'abC-100-200'}}
 
         const compareResult = compareTableStrings(a,b);
 
@@ -94,9 +183,9 @@ describe('compareTableStrings', () => {
         const expectedresult = -1
         expect(compareResult).toEqual(expectedresult);
     }),
-    it('should sort b before a when letters b and a are compared', () => {
-        const a = {props: {children: 'b'}}
-        const b = {props: {children: 'a'}}
+    it('should sort b before a when letters z and y are compared', () => {
+        const a = {props: {children: 'z'}}
+        const b = {props: {children: 'y'}}
 
         const compareResult = compareTableStrings(a,b);
 
@@ -301,7 +390,7 @@ describe('compareTableStrings', () => {
         const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
-    it('should sort a before b when 32-100b and 32-2a are compared', () => {
+    it('should sort a before b when a32-100b and a32-2a are compared', () => {
         const a = {props: {children: 'a32-100b'}}
         const b = {props: {children: 'a32-2a'}}
 
@@ -310,7 +399,7 @@ describe('compareTableStrings', () => {
         const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
-    it('should sort a before b when 32-100b and 32-2a are compared', () => {
+    it('should sort a before b when a32-100b and b32-2a are compared', () => {
         const a = {props: {children: 'a32-100b'}}
         const b = {props: {children: 'b32-2a'}}
 
@@ -319,7 +408,7 @@ describe('compareTableStrings', () => {
         const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
-    it('should sort a before b when 32-100b and 32-2a are compared', () => {
+    it('should sort a before b when b32-100b and a32-2a are compared', () => {
         const a = {props: {children: 'b32-100b'}}
         const b = {props: {children: 'a32-2a'}}
 

@@ -12,18 +12,9 @@ export const createHeaderString = (selectedImageDataset) => {
     return "Viewing Spatial Data"
 }
 
-export const includesLetter = (stringToCheck) => {
-    const alphabet = 'abcdefghijklmnopqstuvwxyz'.split('')
-    let contiansLetter = false;
-    for (const key in alphabet) {
-        if(stringToCheck.includes(alphabet[key])) {
-            contiansLetter = true
-        }
-    }
-    return contiansLetter
-}
+export const includesLetter = (stringToCheck) => { return /[a-zA-Z]/.test(stringToCheck); }
 
-const compareNumeric = (a, b) => {
+export const compareNumeric = (a, b) => {
     let numberA = a.replace(/[a-z]/g, '');
     let numberB = b.replace(/[a-z]/g, '');
     
@@ -34,10 +25,11 @@ const compareNumeric = (a, b) => {
     } else {
         return 0
     }
-
 }
 
 export const compareAlphaNumeric = (a, b) => {
+    a = a.toLowerCase()
+    b = b.toLowerCase()
     let letterA = a.replace(/[0-9]/g, '');
     let letterB = b.replace(/[0-9]/g, '');
 
