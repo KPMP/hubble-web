@@ -91,12 +91,19 @@ class ImageDatasetList extends Component {
         const { setSelectedImageDataset } = this.props;
         return [
             {
-                name: 'redcapid',
-                title: 'Participant ID',
+                name: 'spectrackSampleId',
+                title: 'Sample ID',
                 sortable: true,
                 hideable: false,
                 defaultHidden: false,
-                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="popover" data-content="" className='table-column btn btn-link text-left p-0'>{row["redcapid"]}</button>
+                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="popover" data-content="" className='table-column btn btn-link text-left p-0'>{row["spectrackSampleId"]}</button>
+            },
+            {
+                name: 'redcapid',
+                title: 'Participant ID',
+                sortable: true,
+                hideable: true,
+                defaultHidden: true,
             },
             {
                 name: 'datatype',
@@ -149,9 +156,10 @@ class ImageDatasetList extends Component {
 
     getDefaultColumnWidths = () => {
         return [
-            { columnName: 'redcapid', width: 145 },
+            { columnName: 'spectrackSampleId', width: 145 },
             { columnName: 'datatype', width: 250 },
             { columnName: 'imagetype', width: 660 },
+            { columnName: 'redcapid', width: 145 },
             { columnName: 'filename', width: 250 },
         ]
     };
@@ -234,7 +242,7 @@ class ImageDatasetList extends Component {
                             <Row className="mb-2"><Col><Facet field="tissuetype" label="Tissue Type"
                                                               filterType="any"
                                                               view={MultiCheckboxFacet}/></Col></Row>
-                            <Row className="mb-2"><Col><Facet inputProps={{ placeholder: "cusaceholder" }} isFilterable={true}  field="redcapid" label="Participant ID"
+                            <Row className="mb-2"><Col><Facet inputProps={{ placeholder: "cusaceholder" }} isFilterable={true}  field="redcapid" label="Sample ID"
                                                               filterType="any"
                                                               view={(props) => <MultiCheckboxFacet {...props} searchPlaceholder={"Search..."}/>}/></Col></Row>
                         </Container>
