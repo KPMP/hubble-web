@@ -12,23 +12,17 @@ export const getSpatialDataAsJSON = async () => {
     });
 };
 
-export const removeUUID = (text) => {
-    return text.substring(37);
-};
-
 export const resultConverter = (results) => {
     return results.map(row => {
-        return Object.keys(row).reduce(
-            (attrs, key) => {
-                let value = row[key].raw;
-                if (key === 'filename') {
-                    value = removeUUID(value);
-                }
-                return {...attrs, [key]:value}
-            }, {});
+        let newRow =  Object.keys(row).reduce((attrs, key)=> ({...attrs, [key]: row[key].raw}), {});
+        newRow["longfilename"] = newRow["filename"];
+        newRow["filename"] = removeUUID(newRow["filename"]);
+        return newRow;
     })
 };
 
-
+export const removeUUID = (text) => {
+    return text.substring(37);
+};
 
 
