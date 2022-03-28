@@ -3,7 +3,6 @@ import threeDCytometryViewConfig from './threeDCytometryViewConfig.json';
 import threeDCytometryViewNoChannelsConfig from './threeDCytometryViewNoChannelsConfig.json';
 import stViewConfig from './spatialTranscriptomicsViewConfig.json'
 import { getFileLink } from "../../helpers/Api";
-import { removeUUID } from "../../helpers/dataHelper"
 
 export const getViewConfig = (type) => {
     switch (type) {
