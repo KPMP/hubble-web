@@ -3,6 +3,7 @@ import threeDCytometryViewConfig from './threeDCytometryViewConfig.json';
 import threeDCytometryViewNoChannelsConfig from './threeDCytometryViewNoChannelsConfig.json';
 import stViewConfig from './spatialTranscriptomicsViewConfig.json'
 import { getFileLink } from "../../helpers/Api";
+import { removeUUID } from "../../helpers/dataHelper"
 
 export const getViewConfig = (type) => {
     switch (type) {
@@ -33,16 +34,20 @@ export const getDatasetInfo = (selectedDataset) => {
     return datasetInfo;
 }
 
+
+
 export const populateViewConfig = async (viewConfig, selectedDataset) => {
     let stringifiedConfig = JSON.stringify(viewConfig);
     let imageUrlResponse = await getFileLink(selectedDataset["packageid"] + '/' + selectedDataset["filename"]);
     let dataUrlResponse = await getFileLink(selectedDataset["packageid"] + '/' + getDerivedDataName(selectedDataset["filename"]));
-    stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', selectedDataset["filename"]);
+    stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', removeUUID(selectedDataset["filename"]));
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_URL>', imageUrlResponse.data);
     stringifiedConfig = stringifiedConfig.replace('<DATASET_INFO>', getDatasetInfo(selectedDataset));
     stringifiedConfig = stringifiedConfig.replace(/<DATA_FILE_URL>/gi, dataUrlResponse.data);
     return JSON.parse(stringifiedConfig);
 }
+
+
 
 export const getDerivedDataName = (imageName) => {
     return imageName.split('.')[0] + '.zarr'
