@@ -98,16 +98,18 @@ export const compareAlphaNumeric = (a, b) => {
 
 export const compareTableStrings = (a, b) => {
     if(a && a.props && a.props.children && b && b.props && b.props.children) {
-
         a = a.props.children.toString().split('-')
         b = b.props.children.toString().split('-')
-
-        let compareValue = 0
-        a.forEach((element, index) => {
-            if(compareValue === 0 && a[index] && b[index] ) {
-                compareValue = compareAlphaNumeric(a[index], b[index])
-            }
-        });
-        return compareValue
+    } else if (a && b) {
+        a = a.toString().split('-')
+        b = b.toString().split('-')
     }
+
+    let compareValue = 0
+    a.forEach((element, index) => {
+        if(compareValue === 0 && a[index] && b[index] ) {
+            compareValue = compareAlphaNumeric(a[index], b[index])
+        }
+    });
+    return compareValue
 }
