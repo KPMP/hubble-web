@@ -26,11 +26,49 @@ export const compareNumeric = (a, b) => {
     }
 }
 
+export const getCharVal = (char) => {
+    const charList = {
+        'a': -1,
+        'b': -2,
+        'c': -3,
+        'd': -4,
+        'e': -5,
+        'f': -6,
+        'g': -7,
+        'h': -8,
+        'i': -9,
+        'j': -10,
+        'k': -11,
+        'l': -12,
+        'm': -13,
+        'n': -14,
+        'o': -15,
+        'p': -16,
+        'q': -17,
+        'r': -18,
+        's': -19,
+        't': -20,
+        'u': -21,
+        'v': -22,
+        'w': -23,
+        'x': -24,
+        'y': -25,
+        'z': -26,
+    }
+    if(isNaN(char)) {
+        if (charList[char]) {
+            return charList[char]
+        } else {
+            return -100
+        }
+    } else {
+        return char
+    }
+}
+
 export const compareAlphaNumeric = (a, b) => {
     a = a.toLowerCase()
     b = b.toLowerCase()
-    let letterA = a.replace(/[0-9]/g, '');
-    let letterB = b.replace(/[0-9]/g, '');
 
     if (a === b) {
         return 0
@@ -41,27 +79,20 @@ export const compareAlphaNumeric = (a, b) => {
     if(comparedNumerics !== 0) {
         return comparedNumerics
     }
-
+    
     // a AND b contains letters
-    if (includesLetter(a) && includesLetter(b)) {
-        
-        let asplit = letterA.split('')
-        let bsplit = letterB.split('')
+    if (includesLetter(a) || includesLetter(b)) {
+        let asplit = a.split('')
+        let bsplit = b.split('')
         
         let index = 0
         for (let ele of asplit) { // eslint-disable-line
-            if(bsplit[index] !== undefined && asplit[index] > bsplit[index]) {
+            if(bsplit[index] !== undefined && getCharVal(asplit[index]) < getCharVal(bsplit[index])) {
                 return 1
             }
             index++
-        };
-    }
-    
-    // a OR b contains letters
-    if (includesLetter(a) || (includesLetter(b) && a < b ) ) {
+        }
         return -1
-    } else {
-        return 1
     }
 }
 
@@ -71,11 +102,12 @@ export const compareTableStrings = (a, b) => {
         a = a.props.children.toString().split('-')
         b = b.props.children.toString().split('-')
 
-        const initialCompare = compareAlphaNumeric(a[0],b[0])
-        if(initialCompare === 0 && a[1] && b[1]) {
-            return compareAlphaNumeric(a[1], b[1])
-        } else {
-            return initialCompare
-        }
+        let compareValue = 0
+        a.forEach((element, index) => {
+            if(compareValue === 0 && a[index] && b[index] ) {
+                compareValue = compareAlphaNumeric(a[index], b[index])
+            }
+        });
+        return compareValue
     }
 }
