@@ -242,7 +242,7 @@ class ImageDatasetList extends Component {
                             <Row className="mb-2"><Col><Facet field="tissuetype" label="Tissue Type"
                                                               filterType="any"
                                                               view={MultiCheckboxFacet}/></Col></Row>
-                            <Row className="mb-2"><Col><Facet inputProps={{ placeholder: "cusaceholder" }} isFilterable={true}  field="redcapid" label="Sample ID"
+                            <Row className="mb-2"><Col><Facet inputProps={{ placeholder: "cusaceholder" }} isFilterable={true}  field="redcapid" label="Participant ID"
                                                               filterType="any"
                                                               view={(props) => <MultiCheckboxFacet {...props} searchPlaceholder={"Search..."}/>}/></Col></Row>
                         </Container>
