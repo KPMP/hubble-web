@@ -35,17 +35,13 @@ export const getDatasetInfo = (selectedDataset) => {
 
 export const populateViewConfig = async (viewConfig, selectedDataset) => {
     let stringifiedConfig = JSON.stringify(viewConfig);
-    let imageUrlResponse = await getFileLink(selectedDataset["packageid"] + '/' + getDerivedImageName(selectedDataset["filename"]));
+    let imageUrlResponse = await getFileLink(selectedDataset["packageid"] + '/' + selectedDataset["filename"]);
     let dataUrlResponse = await getFileLink(selectedDataset["packageid"] + '/' + getDerivedDataName(selectedDataset["filename"]));
-    stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', getDerivedImageName(selectedDataset["filename"]));
+    stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', selectedDataset["filename"]);
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_URL>', imageUrlResponse.data);
     stringifiedConfig = stringifiedConfig.replace('<DATASET_INFO>', getDatasetInfo(selectedDataset));
     stringifiedConfig = stringifiedConfig.replace(/<DATA_FILE_URL>/gi, dataUrlResponse.data);
     return JSON.parse(stringifiedConfig);
-}
-
-export const getDerivedImageName = (imageName) => {
-    return imageName.split('.')[0] + '-ome.tif'
 }
 
 export const getDerivedDataName = (imageName) => {
