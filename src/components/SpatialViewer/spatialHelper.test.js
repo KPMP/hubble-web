@@ -9,9 +9,10 @@ describe('createHeaderString', () => {
         const selectedImageDataset = {
             "datatype": "Light Microscopic Whole Slide Images",
             "tissuetype": "AKI",
-            "spectracksampleid": "55-55555"
+            "spectracksampleid": "55-55555",
+            "redcapid": "12-234"
         }
-        const expectedHeaderString = "Light Microscopic Whole Slide Images for AKI sample 55-55555"
+        const expectedHeaderString = "Light Microscopic Whole Slide Images for AKI sample 55-55555 (participant 12-234)"
         const headerString = createHeaderString(selectedImageDataset);
 
         expect(headerString).toEqual(expectedHeaderString);
