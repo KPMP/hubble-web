@@ -543,5 +543,50 @@ describe('compareTableStrings', () => {
 
         const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort regardless of (), \' or spaces with Jones\' Methenamine Silver (SIL) histochemical stain and Trichrome (TRI) histochemical stain', () => {
+        const a = {props: {children: 'Trichrome (TRI) histochemical stain'}}
+        const b = {props: {children: 'Jones\' Methenamine Silver (SIL) histochemical stain'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should equal with \' not accounted for with Trichrome aaaaa and Trichrome\' aaaaa', () => {
+        const a = {props: {children: 'Trichrome aaaaa'}}
+        const b = {props: {children: 'Trichrome\' aaaaa'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 0
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort regardless of (), \' or spaces with Trichrome aaaaa and Trichrome\' bbbb', () => {
+        const a = {props: {children: 'Trichrome aaaaa'}}
+        const b = {props: {children: 'Trichrome\' bbbb'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = -1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort regardless of (), \' or spaces with Trichrome bbbb and Trichrome\' aaaa', () => {
+        const a = {props: {children: 'Trichrome bbbb'}}
+        const b = {props: {children: 'Trichrome\' aaaa'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should equal regardless of (), \' or spaces with Trichrome foo and Trichrome (\'-foo-\')', () => {
+        const a = {props: {children: 'Trichrome foo'}}
+        const b = {props: {children: 'Trichrome (\'-foo-\')'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 0
+        expect(compareResult).toEqual(expectedresult)
     })
 });

@@ -287,8 +287,11 @@ class ImageDatasetList extends Component {
                                         <IntegratedSorting 
                                             columnExtensions={[
                                                 { columnName: 'spectrackSampleId', compare: compareTableStrings },
+                                                { columnName: 'datatype',          compare: compareTableStrings },
+                                                { columnName: 'filename',          compare: compareTableStrings },
+                                                { columnName: 'imagetype',         compare: compareTableStrings },
                                                 { columnName: 'redcapid',          compare: compareTableStrings }]}
-                                                />
+                                        />
                                         <PagingState
                                             currentPage={currentPage}
                                             defaultPageSize={pagingSize}
