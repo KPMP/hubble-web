@@ -285,7 +285,10 @@ class ImageDatasetList extends Component {
                                             onSortingChange={(sorting) =>  this.props.setTableSettings({sorting: sorting})}
                                             sorting={sorting}/>
                                         <IntegratedSorting 
-                                            columnExtensions={[{ columnName: 'redcapid', compare: compareTableStrings }]} />
+                                            columnExtensions={[
+                                                { columnName: 'spectrackSampleId', compare: compareTableStrings },
+                                                { columnName: 'redcapid',          compare: compareTableStrings }]}
+                                                />
                                         <PagingState
                                             currentPage={currentPage}
                                             defaultPageSize={pagingSize}

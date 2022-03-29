@@ -417,5 +417,131 @@ describe('compareTableStrings', () => {
 
         const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort triple hyphen', () => {
+        const a = {props: {children: 'a-a-b'}}
+        const b = {props: {children: 'a-a-a'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort double and tripple hyphen', () => {
+        const a = {props: {children: 'a-1'}}
+        const b = {props: {children: 'a-a-a'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = -1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort identical triple hypen as equal', () => {
+        const a = {props: {children: 'a-a-a'}}
+        const b = {props: {children: 'a-a-a'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 0
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort triple hypen with numerics 1-1-100 and 1-1-20 ', () => {
+        const a = {props: {children: '1-1-100'}}
+        const b = {props: {children: '1-1-20'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = -1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort triple hypen with numerics 1-1-20 and 1-1-100', () => {
+        const a = {props: {children: '1-1-20'}}
+        const b = {props: {children: '1-1-100'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort double and triple hypen with 1-20 and 1-1-100', () => {
+        const a = {props: {children: '1-20'}}
+        const b = {props: {children: '1-1-100'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = -1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort double and triple hypen with 1-1-100 and 1-20', () => {
+        const a = {props: {children: '1-1-100'}}
+        const b = {props: {children: '1-20'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort numbers before letters with 19 and s', () => {
+        const a = {props: {children: '19'}}
+        const b = {props: {children: 'S'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = -1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort numbers before letters with s and 19', () => {
+        const a = {props: {children: 'S'}}
+        const b = {props: {children: '19'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort numbers before letters with external hypen with s-100 and 19-100', () => {
+        const a = {props: {children: 'S-100'}}
+        const b = {props: {children: '19-100'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort should sort numbers before letters with external hypen with 19-100 and s-100', () => {
+        const a = {props: {children: '19-100'}}
+        const b = {props: {children: 'a-100'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = -1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort should sort numbers before letters with triple hypen with S-1908-009689 and 19-0004-20', () => {
+        const a = {props: {children: 'S-1908-009689'}}
+        const b = {props: {children: '19-0004-20'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort by numbers after letters with aaa-bbb-100 and aaa-bbb-200', () => {
+        const a = {props: {children: 'aaa-bbb-100'}}
+        const b = {props: {children: 'aaa-bbb-200'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort by numbers after letters with 100-bbb-aaa and 200-bbb-aaa', () => {
+        const a = {props: {children: '100-bbb-aaa'}}
+        const b = {props: {children: '200-bbb-aaa'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 1
+        expect(compareResult).toEqual(expectedresult)
     })
 });
