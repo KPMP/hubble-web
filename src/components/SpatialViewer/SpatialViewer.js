@@ -5,6 +5,7 @@ import { Row, Col} from "reactstrap";
 import { getViewConfig, populateViewConfig } from './viewConfigHelper';
 import { createHeaderString } from './spatialHelper';
 import { Redirect } from 'react-router-dom';
+import { handleGoogleAnalyticsEvent } from "../../helpers/googleAnalyticsHelper";
 
 
 class SpatialViewer extends Component {
@@ -20,6 +21,10 @@ class SpatialViewer extends Component {
 
     async componentDidMount() {
         if (this.props.selectedImageDataset) {
+            handleGoogleAnalyticsEvent(
+                'Visualization',
+                this.props.selectedImageDataset["imagetype"],
+                this.props.selectedImageDataset["filename"]);
             let viewConfig = getViewConfig(this.props.selectedImageDataset["configtype"]);
             viewConfig = await populateViewConfig(viewConfig, this.props.selectedImageDataset);
             const headerString = createHeaderString(this.props.selectedImageDataset);
