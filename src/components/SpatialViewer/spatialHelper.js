@@ -108,14 +108,13 @@ export const compareTableStrings = (a, b) => {
             b = b.props.children
         }
     }
-    console.log('a-b', a,b)
+
     a = a.toString().split(/[-| |(|)|\']/)
     b = b.toString().split(/[-| |(|)|\']/)
 
     a = a.filter(x => x !== '');
     b = b.filter(x => x !== '');
 
-    console.log(a,b)
 
     let compareValue = 0
     a.forEach((element, index) => {
