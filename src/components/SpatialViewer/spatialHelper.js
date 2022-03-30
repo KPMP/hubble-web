@@ -109,8 +109,8 @@ export const compareTableStrings = (a, b) => {
         }
     }
 
-    a = a.toString().split(/[-| |(|)|\']/)
-    b = b.toString().split(/[-| |(|)|\']/)
+    a = a.toString().split(/[-| |(|)|']/)
+    b = b.toString().split(/[-| |(|)|']/)
 
     a = a.filter(x => x !== '');
     b = b.filter(x => x !== '');
@@ -122,5 +122,11 @@ export const compareTableStrings = (a, b) => {
             compareValue = compareAlphaNumeric(a[index], b[index])
         }
     });
+
+    // Flip value to correctly handle ascending/descending
+    if ( compareValue === 1 || compareValue === -1 ) {
+        compareValue =  compareValue * -1
+    }
+
     return compareValue
 }
