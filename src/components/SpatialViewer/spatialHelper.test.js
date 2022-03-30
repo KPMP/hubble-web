@@ -589,13 +589,40 @@ describe('compareTableStrings', () => {
         const expectedresult = 0
         expect(compareResult).toEqual(expectedresult)
     }),
-    it('should equal regardless of (), \' or spaces with Jones\' Methenamine Silver (SIL) histochemical stain and Composite 3D 8-channel immunofluorescence image volume', () => {
+    it('should sort regardless of (), \' or spaces with Jones\' Methenamine Silver (SIL) histochemical stain and Composite 3D 8-channel immunofluorescence image volume', () => {
         const a = {props: {children: 'Jones\' Methenamine Silver (SIL) histochemical stain'}}
         const b = {props: {children: 'Composite 3D 8-channel immunofluorescence image volume'}}
 
         const compareResult = compareTableStrings(a,b);
 
         const expectedresult = -1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort regardless of (), \' or spaces with Jones\' Methenamine Silver (SIL) histochemical stain and Periodic acid-Schiff (PAS) histochemical stain', () => {
+        const a = {props: {children: 'Periodic acid-Schiff (PAS) histochemical stain'}}
+        const b = {props: {children: 'Jones\' Methenamine Silver (SIL) histochemical stain'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = -1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort ', () => {
+        const a = {props: {children: 'a'}}
+        const b = {props: {children: 'b'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort regardless of (), \' or spaces with Composite 3d projection of 8-channel immunofluorescence image volumen and Composite max projection of 8-channel immunofluorescence image volumen', () => {
+        const a = {props: {children: 'Composite 3d projection of 8-channel immunofluorescence image volumen'}}
+        const b = {props: {children: 'Composite max projection of 8-channel immunofluorescence image volumen'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
     })
 });

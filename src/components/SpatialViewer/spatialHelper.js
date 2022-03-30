@@ -88,12 +88,13 @@ export const compareAlphaNumeric = (a, b) => {
         
         let index = 0
         for (let ele of asplit) { // eslint-disable-line
-            if(bsplit[index] !== undefined && getCharVal(asplit[index]) < getCharVal(bsplit[index])) {
+            if(bsplit[index] !== undefined && bsplit[index] !== undefined && getCharVal(asplit[index]) < getCharVal(bsplit[index])) {
                 return 1
+            } else if(bsplit[index] !== undefined && bsplit[index] !== undefined && getCharVal(asplit[index]) > getCharVal(bsplit[index])) {
+                return -1
             }
             index++
         }
-        return -1
     }
 }
 
@@ -125,7 +126,7 @@ export const compareTableStrings = (a, b) => {
 
     // Flip value to correctly handle ascending/descending
     if ( compareValue === 1 || compareValue === -1 ) {
-        compareValue =  compareValue * -1
+        compareValue = compareValue * -1
     }
 
     return compareValue
