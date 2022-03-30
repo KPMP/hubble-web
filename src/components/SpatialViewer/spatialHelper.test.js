@@ -181,7 +181,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult);
     }),
     it('should sort b before a when letters z and y are compared', () => {
@@ -190,7 +190,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult);
     }),
     it('should sort a before b when stringed numbers 1 and 0 are compared', () => {
@@ -199,7 +199,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult);
     })
     it('should sort b before a when stringed numbers 0 and 1 are compared', () => {
@@ -208,7 +208,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult);
     }),
     it('should sort a before b when strings 1-0 and 0-0 are compared', () => {
@@ -217,7 +217,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult);
     }),
     it('should sort a before b when strings 1-1 and 1-0 are compared', () => {
@@ -226,7 +226,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult);
     }),
     it('should sort a before b when integer numbers 2 and 1 are compared', () => {
@@ -235,7 +235,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort b before a when integer numbers 1 and 2 are compared', () => {
@@ -244,7 +244,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort a before b when 32-10034 and 32-2 are compared', () => {
@@ -253,7 +253,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort b before a when 32-2 and 32-10034 are compared', () => {
@@ -262,7 +262,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort a before b when 32-10034a and 32-2b are compared', () => {
@@ -271,7 +271,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort b before a when 32-2b and 32-10034a are compared', () => {
@@ -280,7 +280,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort b before a when 32-10034b and 32-200000a are compared', () => {
@@ -289,7 +289,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort b before a when 32-10034 and 32-20034 are compared', () => {
@@ -298,7 +298,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort a before b when 32-aa and 32-bb are compared', () => {
@@ -307,7 +307,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort b before a when 32-bb and 32-aa are compared', () => {
@@ -316,7 +316,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort b before a when 32-ab and 32-aa are compared', () => {
@@ -325,7 +325,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort a before b when 32-aaa and 32-aaa are compared', () => {
@@ -334,7 +334,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort a before b when 32-aaa and 32-aab are compared', () => {
@@ -343,7 +343,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort b before a when 32-aaa and 32-aab are compared', () => {
@@ -352,7 +352,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort a before b when 32-100aa and 32-100bb are compared', () => {
@@ -361,7 +361,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort a before b when 32-200aa and 32-100bb are compared', () => {
@@ -370,7 +370,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort b before b when 32-1a and 32-1bb are compared', () => {
@@ -379,7 +379,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort a before b when 32-100b and 32-2a are compared', () => {
@@ -388,7 +388,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort a before b when a32-100b and a32-2a are compared', () => {
@@ -397,7 +397,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort a before b when a32-100b and b32-2a are compared', () => {
@@ -406,7 +406,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort a before b when b32-100b and a32-2a are compared', () => {
@@ -415,7 +415,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort triple hyphen', () => {
@@ -424,7 +424,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort double and tripple hyphen', () => {
@@ -433,7 +433,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort identical triple hypen as equal', () => {
@@ -451,7 +451,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort triple hypen with numerics 1-1-20 and 1-1-100', () => {
@@ -460,7 +460,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort double and triple hypen with 1-20 and 1-1-100', () => {
@@ -469,7 +469,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort double and triple hypen with 1-1-100 and 1-20', () => {
@@ -478,7 +478,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort numbers before letters with 19 and s', () => {
@@ -487,7 +487,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort numbers before letters with s and 19', () => {
@@ -496,7 +496,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort numbers before letters with external hypen with s-100 and 19-100', () => {
@@ -505,7 +505,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort should sort numbers before letters with external hypen with 19-100 and s-100', () => {
@@ -514,7 +514,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort should sort numbers before letters with triple hypen with S-1908-009689 and 19-0004-20', () => {
@@ -523,7 +523,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort by numbers after letters with aaa-bbb-100 and aaa-bbb-200', () => {
@@ -532,7 +532,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort by numbers after letters with 100-bbb-aaa and 200-bbb-aaa', () => {
@@ -541,7 +541,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort regardless of (), \' or spaces with Jones\' Methenamine Silver (SIL) histochemical stain and Trichrome (TRI) histochemical stain', () => {
@@ -550,7 +550,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should equal with \' not accounted for with Trichrome aaaaa and Trichrome\' aaaaa', () => {
@@ -568,7 +568,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = -1
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should sort regardless of (), \' or spaces with Trichrome bbbb and Trichrome\' aaaa', () => {
@@ -577,7 +577,7 @@ describe('compareTableStrings', () => {
 
         const compareResult = compareTableStrings(a,b);
 
-        const expectedresult = 1
+        const expectedresult = -1
         expect(compareResult).toEqual(expectedresult)
     }),
     it('should equal regardless of (), \' or spaces with Trichrome foo and Trichrome (\'-foo-\')', () => {
@@ -587,6 +587,42 @@ describe('compareTableStrings', () => {
         const compareResult = compareTableStrings(a,b);
 
         const expectedresult = 0
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort regardless of (), \' or spaces with Jones\' Methenamine Silver (SIL) histochemical stain and Composite 3D 8-channel immunofluorescence image volume', () => {
+        const a = {props: {children: 'Jones\' Methenamine Silver (SIL) histochemical stain'}}
+        const b = {props: {children: 'Composite 3D 8-channel immunofluorescence image volume'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = -1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort regardless of (), \' or spaces with Jones\' Methenamine Silver (SIL) histochemical stain and Periodic acid-Schiff (PAS) histochemical stain', () => {
+        const a = {props: {children: 'Periodic acid-Schiff (PAS) histochemical stain'}}
+        const b = {props: {children: 'Jones\' Methenamine Silver (SIL) histochemical stain'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = -1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort ', () => {
+        const a = {props: {children: 'a'}}
+        const b = {props: {children: 'b'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 1
+        expect(compareResult).toEqual(expectedresult)
+    }),
+    it('should sort regardless of (), \' or spaces with Composite 3d projection of 8-channel immunofluorescence image volumen and Composite max projection of 8-channel immunofluorescence image volumen', () => {
+        const a = {props: {children: 'Composite 3d projection of 8-channel immunofluorescence image volumen'}}
+        const b = {props: {children: 'Composite max projection of 8-channel immunofluorescence image volumen'}}
+
+        const compareResult = compareTableStrings(a,b);
+
+        const expectedresult = 1
         expect(compareResult).toEqual(expectedresult)
     })
 });
