@@ -103,7 +103,7 @@ class ImageDatasetList extends Component {
                 title: 'Participant ID',
                 sortable: true,
                 hideable: true,
-                defaultHidden: true,
+                defaultHidden: false,
             },
             {
                 name: 'datatype',
