@@ -1,3 +1,7 @@
 {
-  "selectedImageDataset": {}
+  "selectedImageDataset": {},
+  "tableSettings": {
+    "pagingSize": 20,
+    "currentPage": 0
+  }
 }

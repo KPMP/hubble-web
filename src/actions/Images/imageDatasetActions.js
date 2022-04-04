@@ -6,3 +6,10 @@ export const setSelectedImageDataset = (imageDataset) => {
         payload: imageDataset
     }
 }
+
+export const setTableSettings = (tableSettings) => {
+    return {
+        type: actionNames.SET_TABLE_SETTINGS,
+        payload: tableSettings
+    }
+}

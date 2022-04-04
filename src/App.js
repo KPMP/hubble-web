@@ -14,6 +14,8 @@ import NotFoundPage from './components/Error/NotFoundPage';
 import ImageDatasetListContainer from "./components/SpatialViewer/ImageDatasetListContainer";
 import SpatialViewerContainer from "./components/SpatialViewer/SpatialViewerContainer";
 import { baseURL } from '../package.json';
+import AppSearchAPIConnector from "@elastic/search-ui-app-search-connector";
+import { SearchProvider } from "@elastic/react-search-ui";
 
 const cacheStore = window.sessionStorage.getItem('redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
@@ -48,6 +50,33 @@ store.subscribe(function () {
 
 store.subscribe(saveState);
 
+const connector = new AppSearchAPIConnector({
+  searchKey: process.env.REACT_APP_SEARCH_KEY,
+  engineName: "spatial-viewer",
+  endpointBase: "/spatial-viewer/search",
+  cacheResponses: false
+})
+
+const searchConfig = {
+  apiConnector: connector,
+  searchQuery: {
+      disjunctiveFacets: ["sex", "age", "redcapid", "tissuetype", "imagetype", "datatype", "configtype"],
+      facets: {
+        sex: { type: "value", size: 100},
+        age: { type: "value", size: 100},
+        redcapid: { type: "value", size: 100 },
+        tissuetype: { type: "value", size: 100},
+        imagetype: { type: "value", size: 100},
+        datatype: { type: "value", size: 100 },
+        configtype: { type: "value", size: 100},
+      }
+  },
+  initialState: {
+    resultsPerPage: 1000
+  },
+  alwaysSearchOnInitialLoad: true
+}
+
 class App extends Component {
   componentWillMount() {
     logPageView(window.location, '');
@@ -56,6 +85,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
+        <SearchProvider config={searchConfig}>
         <BrowserRouter history={history} basename={baseURL}>
           <ErrorBoundaryContainer>
             <NavBar app='atlas' />
@@ -68,6 +98,7 @@ class App extends Component {
             <NavFooter app='atlas' />
           </ErrorBoundaryContainer>
         </BrowserRouter>
+        </SearchProvider>
       </Provider>
     );
   }

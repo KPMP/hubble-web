@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { Vitessce } from 'vitessce';
 import 'vitessce/dist/esm/index.css';
 import { Row, Col} from "reactstrap";
-import { baseURL } from '../../../package.json';
 import { getViewConfig, populateViewConfig } from './viewConfigHelper';
 import { createHeaderString } from './spatialHelper';
 import { Redirect } from 'react-router-dom';
+import { handleGoogleAnalyticsEvent } from "../../helpers/googleAnalyticsHelper";
+
 
 class SpatialViewer extends Component {
 
@@ -20,7 +21,11 @@ class SpatialViewer extends Component {
 
     async componentDidMount() {
         if (this.props.selectedImageDataset) {
-            let viewConfig = getViewConfig(this.props.selectedImageDataset["Config Type"]);
+            handleGoogleAnalyticsEvent(
+                'Visualization',
+                this.props.selectedImageDataset["imagetype"],
+                this.props.selectedImageDataset["filename"]);
+            let viewConfig = getViewConfig(this.props.selectedImageDataset["configtype"]);
             viewConfig = await populateViewConfig(viewConfig, this.props.selectedImageDataset);
             const headerString = createHeaderString(this.props.selectedImageDataset);
             this.setState({viewConfig: viewConfig, noData: false, headerString});
@@ -31,7 +36,7 @@ class SpatialViewer extends Component {
         if (!this.props.selectedImageDataset || (this.props.selectedImageDataset && Object.keys(this.props.selectedImageDataset).length === 0)) {
             return <Redirect to='/' />
         }
-        
+
         return (
             <div className="container-fluid">
                 <div id="vitessce-container" className="rounded border shadow-sm mt-2 mx-3 p-3">
@@ -42,7 +47,7 @@ class SpatialViewer extends Component {
                         {this.state.headerString}
                     </h5></Col>
                     <Col xs='4' className="text-right text-primary ">
-                        <button onClick={() => {window.location.href=baseURL}} type='button' className='btn btn-link'>
+                        <button onClick={() => {this.props.history.goBack()}} type='button' className='btn btn-link'>
                             <h5><span style={{"font-size":"26px"}}>&larr;</span> Close viewer</h5></button></Col>
                 </Row>
                     <Vitessce

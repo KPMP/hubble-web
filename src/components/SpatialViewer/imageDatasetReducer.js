@@ -8,3 +8,13 @@ export const selectedImageDataset = ( state = {}, action ) => {
             return state;
     }
 };
+
+export const tableSettings = ( state = {}, action ) => {
+    switch(action.type) {
+        case actionNames.SET_TABLE_SETTINGS:
+            let newState = {...state, ...action.payload};
+            return newState;
+        default:
+            return state;
+    }
+};
