@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import { Col, Container, Row } from "reactstrap";
+import { Col, Container, Row, Spinner } from "reactstrap";
 import { resultConverter } from "../../helpers/dataHelper";
 import { getImageTypeTooltipCopy } from "./viewConfigHelper";
 import { faXmark, faAnglesRight, faAnglesLeft } from "@fortawesome/free-solid-svg-icons";
@@ -49,7 +49,8 @@ class ImageDatasetList extends Component {
             activeFilterTab: 'DATASET',
             tableData: [],
             cards: this.props.tableSettings.cards || columnCards,
-            currentPage: this.props.tableSettings.currentPage
+            currentPage: this.props.tableSettings.currentPage,
+            isLoaded: false
         };
 
     }
@@ -60,7 +61,8 @@ class ImageDatasetList extends Component {
     };
 
     async componentDidMount() {
-        this.getSearchResults();
+        await this.getSearchResults();
+        this.setState({isLoaded: true})
     };
 
     async componentDidUpdate(prevProps, prevState, snapShot) {
@@ -277,6 +279,8 @@ class ImageDatasetList extends Component {
                         <DndProvider backend={HTML5Backend}>
                             <div className='container-max spatial-data-table-wrapper'>
                                 <div className="spatial-data-table">
+                                    <React.Fragment>
+                                    { this.state.isLoaded ?
                                     <Grid
                                         rows={this.state.tableData}
                                         columns={this.getColumns()}>
@@ -322,13 +326,16 @@ class ImageDatasetList extends Component {
                                             setCards={this.setCards}
                                             setDefaultCards={this.setDefaultCards}
                                             defaultOrder={this.getColumns().map(item => item.name)} />
-
                                         <PaginationState
                                             currentPage={currentPage}
                                             setTableSettings={this.props.setTableSettings}
                                             pagingSize={pagingSize}/>
                                         <Pagination pageSizes={this.getPageSizes()} />
                                     </Grid>
+                                    : <Spinner animation="border" variant="primary">
+                                            <span className="visually-hidden">Loading...</span>
+                                        </Spinner> }
+                                        </React.Fragment>
                                 </div>
                             </div>
                         </DndProvider>
