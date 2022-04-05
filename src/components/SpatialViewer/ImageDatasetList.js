@@ -65,7 +65,7 @@ class ImageDatasetList extends Component {
         this.setState({isLoaded: true})
     };
 
-    async componentDidUpdate(prevProps, prevState, snapShot) {
+    componentDidUpdate(prevProps, prevState, snapShot) {
         if (this.props !== prevProps) {
             if (this.props.results !== prevProps.results) {
                 this.getSearchResults();
