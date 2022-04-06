@@ -17,7 +17,7 @@ import { baseURL } from '../package.json';
 import AppSearchAPIConnector from "@elastic/search-ui-app-search-connector";
 import { SearchProvider } from "@elastic/react-search-ui";
 
-const cacheStore = window.sessionStorage.getItem('redux-store');
+const cacheStore = window.sessionStorage.getItem('hubble-redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
 const store = applyMiddleware(thunk)(createStore)(
   appReducer,
@@ -26,7 +26,7 @@ const store = applyMiddleware(thunk)(createStore)(
 );
 const saveState = () => {
   window.sessionStorage.setItem(
-    'redux-store',
+    'hubble-redux-store',
     JSON.stringify(store.getState())
   );
 };
