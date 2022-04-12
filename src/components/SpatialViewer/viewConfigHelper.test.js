@@ -2,7 +2,6 @@ import {
     getViewConfig,
     populateViewConfig,
     getDatasetInfo,
-    getDerivedImageName,
     getImageTypeTooltipCopy,
     getDerivedDataName
 } from './viewConfigHelper';
@@ -74,7 +73,7 @@ describe ('populateViewConfig', () => {
 
         expect(index).toBe(-1);
         
-        expect(result.datasets[0].files[0].options.images[0].name).toEqual('imageName-ome.tif');
+        expect(result.datasets[0].files[0].options.images[0].name).toEqual('imageName.tiff');
         expect(result.datasets[0].files[0].options.images[0].url).toEqual('url/returned/from/service');
         expect(result.description).toEqual('stuff');
     });
@@ -91,7 +90,7 @@ describe ('populateViewConfig', () => {
 
         expect(index).toBe(-1);
 
-        expect(result.datasets[0].files[2].options.images[0].name).toEqual('imageName-ome.tif');
+        expect(result.datasets[0].files[2].options.images[0].name).toEqual('imageName.tiff');
         expect(result.datasets[0].files[2].options.images[0].url).toEqual('url/returned/from/service');
         expect(result.datasets[0].files[0].url).toEqual('url/returned/from/service');
         expect(result.datasets[0].files[1].url).toEqual('url/returned/from/service');
@@ -167,17 +166,6 @@ describe ('getDatasetInfo', () => {
         expect(datasetInfo).toBe(expectedInfo);
     });
 })
-
-describe('getDerivedImageName',() => {
-    it('should add -ome.tif as an extnesion', () => {
-        let derivedName = getDerivedImageName('bigBooty.tif');
-        expect(derivedName).toBe('bigBooty-ome.tif');
-    });
-    it('should strip any extension and add -ome.tif', () => {
-        let derivedName = getDerivedImageName('babyGot.back');
-        expect(derivedName).toBe('babyGot-ome.tif');
-    })
-});
 
 describe('getDerivedDataName',() => {
     it('should add .zarr as an extnesion', () => {
