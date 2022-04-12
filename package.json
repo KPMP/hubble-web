@@ -40,12 +40,12 @@
     "vitessce": "file:vitessce-1.1.17.tgz"
   },
   "scripts": {
-    "start": "npm-run-all -p watch-css start-js",
+    "start": "npm-run-all -p watch-css start-js --max_old_space_size=5120",
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-js": "craco start --max_old_space_size=5120",
-    "build-js": "craco build --max_old_space_size=5120",
+    "start-js": "craco --max_old_space_size=5120 start",
+    "build-js": "craco --max_old_space_size=5120 build",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "yarn build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
   },
