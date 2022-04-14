@@ -39,8 +39,9 @@ export const populateViewConfig = async (viewConfig, selectedDataset) => {
     let stringifiedConfig = JSON.stringify(viewConfig);
     let imageUrlResponse = await getFileLink(selectedDataset["packageid"] + '/' + selectedDataset["longfilename"]);
     if (selectedDataset["relatedfiles"].length > 0) {
-        let relatedFiles = selectedDataset['relatedfiles'].forEach(function (item, index) {
-            return JSON.parse(item)
+        let relatedFiles = [];
+        selectedDataset['relatedfiles'].forEach(function (item, index) {
+            relatedFiles.push(JSON.parse(item));
         });
         console.log(relatedFiles);
         let dataUrl = getPublicFileLink(selectedDataset["packageid"], relatedFiles[0]['filename']);
