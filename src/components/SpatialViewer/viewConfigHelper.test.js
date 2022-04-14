@@ -65,7 +65,8 @@ describe ('populateViewConfig', () => {
         let selectedDataset = {
             'filename': 'imageName.tiff',
             'packageid': '123',
-            'imagetype': 'stuff'
+            'imagetype': 'stuff',
+            'relatedfiles': []
         };
         let result = await populateViewConfig(threeDCytometryViewConfig, selectedDataset);
         let resultString = JSON.stringify(result);
@@ -82,7 +83,8 @@ describe ('populateViewConfig', () => {
         let selectedDataset = {
             'filename': 'imageName.tiff',
             'packageid': '123',
-            'imagetype': 'stuff'
+            'imagetype': 'stuff',
+            'relatedfiles': ['{"filename": "file.zarr"}']
         };
         let result = await populateViewConfig(stViewConfig, selectedDataset);
         let resultString = JSON.stringify(result);
@@ -92,14 +94,15 @@ describe ('populateViewConfig', () => {
 
         expect(result.datasets[0].files[2].options.images[0].name).toEqual('imageName.tiff');
         expect(result.datasets[0].files[2].options.images[0].url).toEqual('url/returned/from/service');
-        expect(result.datasets[0].files[0].url).toEqual('url/returned/from/service');
-        expect(result.datasets[0].files[1].url).toEqual('url/returned/from/service');
+        expect(result.datasets[0].files[0].url).toEqual('https://kpmp-knowledge-environment-public.s3.amazonaws.com/123/derived/file.zarr');
+        expect(result.datasets[0].files[1].url).toEqual('https://kpmp-knowledge-environment-public.s3.amazonaws.com/123/derived/file.zarr');
         expect(result.description).toEqual('stuff');
     });
 
     it('should handle missing Image Type', async () => {
         let selectedDataset = {
             'filename': 'imageName.tiff',
+            'relatedfiles': []
         };
         let result = await populateViewConfig(threeDCytometryViewConfig, selectedDataset);
         let resultString = JSON.stringify(result);
