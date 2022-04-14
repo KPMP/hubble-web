@@ -3,7 +3,7 @@ import {
     populateViewConfig,
     getDatasetInfo,
     getImageTypeTooltipCopy,
-    getDerivedDataName
+    getPublicFileLink
 } from './viewConfigHelper';
 import lmViewConfig from './lightMicroscopyViewConfig.json';
 import threeDCytometryViewConfig from './threeDCytometryViewConfig.json';
@@ -167,10 +167,10 @@ describe ('getDatasetInfo', () => {
     });
 })
 
-describe('getDerivedDataName',() => {
-    it('should add .zarr as an extnesion', () => {
-        let derivedName = getDerivedDataName('bigBooty.tif');
-        expect(derivedName).toBe('bigBooty.zarr');
+describe('getPublicFileLink',() => {
+    it('should generate the url', () => {
+        let fileLink = getPublicFileLink("12345", "filename");
+        expect(fileLink).toBe('https://kpmp-knowledge-environment-public.s3.amazonaws.com/12345/derived/filename');
     });
 });
 
