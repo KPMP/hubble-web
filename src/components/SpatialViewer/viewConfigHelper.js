@@ -43,7 +43,6 @@ export const populateViewConfig = async (viewConfig, selectedDataset) => {
         selectedDataset['relatedfiles'].forEach(function (item, index) {
             relatedFiles.push(JSON.parse(item));
         });
-        console.log(relatedFiles);
         let dataUrl = getPublicFileLink(selectedDataset["packageid"], relatedFiles[0]['filename']);
         stringifiedConfig = stringifiedConfig.replace(/<DATA_FILE_URL>/gi, dataUrl);
     }
@@ -54,8 +53,6 @@ export const populateViewConfig = async (viewConfig, selectedDataset) => {
 }
 
 export const getPublicFileLink = (packageId, fileName) => {
-    
-    console.log("https://kpmp-knowledge-environment-public.s3.amazonaws.com/" + packageId + "/derived/" + fileName);
     return "https://kpmp-knowledge-environment-public.s3.amazonaws.com/" + packageId + "/derived/" + fileName
 }
 
