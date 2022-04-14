@@ -38,19 +38,24 @@ export const getDatasetInfo = (selectedDataset) => {
 export const populateViewConfig = async (viewConfig, selectedDataset) => {
     let stringifiedConfig = JSON.stringify(viewConfig);
     let imageUrlResponse = await getFileLink(selectedDataset["packageid"] + '/' + selectedDataset["longfilename"]);
-    let dataUrlResponse = await getFileLink(selectedDataset["packageid"] + '/' + getDerivedDataName(selectedDataset["filename"]));
+    if (selectedDataset["relatedfiles"].length > 0) {
+        let relatedFiles = [];
+        selectedDataset['relatedfiles'].forEach(function (item, index) {
+            relatedFiles.push(JSON.parse(item));
+        });
+        let dataUrl = getPublicFileLink(selectedDataset["packageid"], relatedFiles[0]['filename']);
+        stringifiedConfig = stringifiedConfig.replace(/<DATA_FILE_URL>/gi, dataUrl);
+    }
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', selectedDataset["filename"]);
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_URL>', imageUrlResponse.data);
     stringifiedConfig = stringifiedConfig.replace('<DATASET_INFO>', getDatasetInfo(selectedDataset));
-    stringifiedConfig = stringifiedConfig.replace(/<DATA_FILE_URL>/gi, dataUrlResponse.data);
     return JSON.parse(stringifiedConfig);
 }
 
-
-
-export const getDerivedDataName = (imageName) => {
-    return imageName.split('.')[0] + '.zarr'
+export const getPublicFileLink = (packageId, fileName) => {
+    return "https://kpmp-knowledge-environment-public.s3.amazonaws.com/" + packageId + "/derived/" + fileName
 }
+
 
 export const getImageTypeTooltipCopy = (imageType) => {
     const availableCopy = {
