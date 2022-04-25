@@ -2,9 +2,8 @@ import {
     getViewConfig,
     populateViewConfig,
     getDatasetInfo,
-    getDerivedImageName,
     getImageTypeTooltipCopy,
-    getDerivedDataName
+    getPublicFileLink
 } from './viewConfigHelper';
 import lmViewConfig from './lightMicroscopyViewConfig.json';
 import threeDCytometryViewConfig from './threeDCytometryViewConfig.json';
@@ -66,7 +65,8 @@ describe ('populateViewConfig', () => {
         let selectedDataset = {
             'filename': 'imageName.tiff',
             'packageid': '123',
-            'imagetype': 'stuff'
+            'imagetype': 'stuff',
+            'relatedfiles': []
         };
         let result = await populateViewConfig(threeDCytometryViewConfig, selectedDataset);
         let resultString = JSON.stringify(result);
@@ -74,7 +74,7 @@ describe ('populateViewConfig', () => {
 
         expect(index).toBe(-1);
         
-        expect(result.datasets[0].files[0].options.images[0].name).toEqual('imageName-ome.tif');
+        expect(result.datasets[0].files[0].options.images[0].name).toEqual('imageName.tiff');
         expect(result.datasets[0].files[0].options.images[0].url).toEqual('url/returned/from/service');
         expect(result.description).toEqual('stuff');
     });
@@ -83,7 +83,8 @@ describe ('populateViewConfig', () => {
         let selectedDataset = {
             'filename': 'imageName.tiff',
             'packageid': '123',
-            'imagetype': 'stuff'
+            'imagetype': 'stuff',
+            'relatedfiles': ['{"filename": "file.zarr"}']
         };
         let result = await populateViewConfig(stViewConfig, selectedDataset);
         let resultString = JSON.stringify(result);
@@ -91,16 +92,17 @@ describe ('populateViewConfig', () => {
 
         expect(index).toBe(-1);
 
-        expect(result.datasets[0].files[2].options.images[0].name).toEqual('imageName-ome.tif');
+        expect(result.datasets[0].files[2].options.images[0].name).toEqual('imageName.tiff');
         expect(result.datasets[0].files[2].options.images[0].url).toEqual('url/returned/from/service');
-        expect(result.datasets[0].files[0].url).toEqual('url/returned/from/service');
-        expect(result.datasets[0].files[1].url).toEqual('url/returned/from/service');
+        expect(result.datasets[0].files[0].url).toEqual('https://kpmp-knowledge-environment-public.s3.amazonaws.com/123/derived/file.zarr');
+        expect(result.datasets[0].files[1].url).toEqual('https://kpmp-knowledge-environment-public.s3.amazonaws.com/123/derived/file.zarr');
         expect(result.description).toEqual('stuff');
     });
 
     it('should handle missing Image Type', async () => {
         let selectedDataset = {
             'filename': 'imageName.tiff',
+            'relatedfiles': []
         };
         let result = await populateViewConfig(threeDCytometryViewConfig, selectedDataset);
         let resultString = JSON.stringify(result);
@@ -168,21 +170,10 @@ describe ('getDatasetInfo', () => {
     });
 })
 
-describe('getDerivedImageName',() => {
-    it('should add -ome.tif as an extnesion', () => {
-        let derivedName = getDerivedImageName('bigBooty.tif');
-        expect(derivedName).toBe('bigBooty-ome.tif');
-    });
-    it('should strip any extension and add -ome.tif', () => {
-        let derivedName = getDerivedImageName('babyGot.back');
-        expect(derivedName).toBe('babyGot-ome.tif');
-    })
-});
-
-describe('getDerivedDataName',() => {
-    it('should add .zarr as an extnesion', () => {
-        let derivedName = getDerivedDataName('bigBooty.tif');
-        expect(derivedName).toBe('bigBooty.zarr');
+describe('getPublicFileLink',() => {
+    it('should generate the url', () => {
+        let fileLink = getPublicFileLink("12345", "filename");
+        expect(fileLink).toBe('https://kpmp-knowledge-environment-public.s3.amazonaws.com/12345/derived/filename');
     });
 });
 
