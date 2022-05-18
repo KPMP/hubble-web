@@ -47,7 +47,8 @@
     "start-js": "craco --max_old_space_size=5120 start",
     "build-js": "craco --max_old_space_size=5120 build",
     "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "yarn build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
+    "watch-css": "yarn build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "analyze": "REACT_APP_RUN_ANALYZER=true npm run build" 
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -65,8 +66,9 @@
     ]
   },
   "devDependencies": {
-    "@craco/craco": "^6.3.0",
-    "craco-alias": "^3.0.1",
+    "@craco/craco": "6.3.0",
+    "craco-alias": "3.0.1",
+    "webpack-bundle-analyzer": "4.5.0",
     "yarn": "^1.22.11"
   }
 }

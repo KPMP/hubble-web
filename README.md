@@ -7,3 +7,6 @@
 - `$ npm i` // install required dependencies
 - `$ cp .env.example .env`
 - `$ npm run start`
+
+# Run bundle profiler
+- `$ npm run analyze`
