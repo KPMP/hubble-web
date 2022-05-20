@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import { Vitessce } from 'vitessce';
+import React, { Component, Suspense } from 'react';
 import 'vitessce/dist/esm/index.css';
 import { Row, Col} from "reactstrap";
 import { getViewConfig, populateViewConfig } from './viewConfigHelper';
 import { createHeaderString } from './spatialHelper';
-import { Redirect } from 'react-router-dom';
-import { handleGoogleAnalyticsEvent } from "../../helpers/googleAnalyticsHelper";
+import { Redirect  } from 'react-router-dom';
+const handleGoogleAnalyticsEvent = React.lazy(() => import('../../helpers/googleAnalyticsHelper'));
+const Vitessce = React.lazy(() => import('Vitessce'));
+
 
 
 class SpatialViewer extends Component {
@@ -39,6 +40,7 @@ class SpatialViewer extends Component {
 
         return (
             <div className="container-fluid">
+                <Suspense fallback={<div>Loading...</div>}>
                 <div id="vitessce-container" className="rounded border shadow-sm mt-2 mx-3 p-3">
                 {!this.state.noData &&
                     <div>
@@ -50,13 +52,17 @@ class SpatialViewer extends Component {
                         <button onClick={() => {this.props.history.goBack()}} type='button' className='btn btn-link'>
                             <h5><span style={{"font-size":"26px"}}>&larr;</span> Close viewer</h5></button></Col>
                 </Row>
-                    <Vitessce
-                    config={this.state.viewConfig}
-                    height={window.innerHeight - 200}
-                    theme="light" />
+                    
+                        <Vitessce
+                        config={this.state.viewConfig}
+                        height={window.innerHeight - 200}
+                        theme="light" />
+                    
+                   
                 </div>
             }
                 </div>
+                </Suspense>
             </div>
         )
     }
