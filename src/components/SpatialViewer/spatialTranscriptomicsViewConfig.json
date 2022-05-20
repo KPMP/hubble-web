@@ -81,7 +81,9 @@
             "component": "scatterplot",
             "coordinationScopes": {
                 "embeddingType": "UMAP",
-                "embeddingZoom": "UMAP"
+                "embeddingZoom": "UMAP",
+                "embeddingCellRadius": 3
+
             },
             "h": 12,
             "w": 4,
