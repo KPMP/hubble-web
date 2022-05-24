@@ -8,6 +8,12 @@
         },
         "embeddingType": {
             "UMAP": "UMAP"
+        },
+        "embeddingCellRadiusMode": {
+            "UMAP": "manual"
+        },
+        "embeddingCellRadius": {
+            "UMAP": 3
         }
     },
     "datasets": [
@@ -82,8 +88,8 @@
             "coordinationScopes": {
                 "embeddingType": "UMAP",
                 "embeddingZoom": "UMAP",
-                "embeddingCellRadius": 3
-
+                "embeddingCellRadiusMode": "UMAP",
+                "embeddingCellRadius": "UMAP"
             },
             "h": 12,
             "w": 4,
