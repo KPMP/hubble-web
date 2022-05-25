@@ -37,7 +37,7 @@
     "recompose": "0.30.0",
     "redux": "4.1.1",
     "redux-thunk": "2.3.0",
-    "vitessce": "file:vitessce-1.1.17.tgz"
+    "vitessce": "1.1.21"
   },
   "scripts": {
     "start": "npm-run-all -p watch-css start-js --max_old_space_size=5120",
@@ -48,7 +48,7 @@
     "build-js": "craco --max_old_space_size=5120 build",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "yarn build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "analyze": "REACT_APP_RUN_ANALYZER=true npm run build" 
+    "analyze": "REACT_APP_RUN_ANALYZER=true npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
