@@ -120,14 +120,7 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: true,
                 defaultHidden: true,
-            },
-            {
-                name: 'level',
-                title: 'Level',
-                sortable: true,
-                hideable: true,
-                defaultHidden: true,
-            },
+            },            
             {
                 name: 'imagetype',
                 title: 'Image Type',
@@ -135,6 +128,13 @@ class ImageDatasetList extends Component {
                 hideable: true,
                 defaultHidden: false,
                 getCellValue: this.getImageTypeCell
+            },
+            {
+                name: 'level',
+                title: 'Level',
+                sortable: true,
+                hideable: true,
+                defaultHidden: false,
             },
         ];
     };
@@ -167,10 +167,10 @@ class ImageDatasetList extends Component {
         return [
             { columnName: 'spectrackSampleId', width: 145 },
             { columnName: 'datatype', width: 250 },
-            { columnName: 'imagetype', width: 660 },
+            { columnName: 'imagetype', width: 350 },
             { columnName: 'redcapid', width: 145 },
-            { columnName: 'level', width: 145 },
             { columnName: 'filename', width: 250 },
+            { columnName: 'level', width: 100 },
         ]
     };
 
