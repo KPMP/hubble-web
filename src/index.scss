@@ -466,3 +466,10 @@ td:hover {
     padding-left: 23px;
     text-indent: -23px; 
 }
+
+.image-type-cell {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden
+}
