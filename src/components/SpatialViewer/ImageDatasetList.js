@@ -134,7 +134,7 @@ class ImageDatasetList extends Component {
                 title: 'Level',
                 sortable: true,
                 hideable: true,
-                defaultHidden: false,
+                defaultHidden: true,
             },
         ];
     };
