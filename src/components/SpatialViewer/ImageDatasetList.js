@@ -137,11 +137,6 @@ class ImageDatasetList extends Component {
                 defaultHidden: true,
             },
         ];
-
-        const SHOW_LEVEL_COLUMN = false;
-        if(SHOW_LEVEL_COLUMN === false) {
-            columns = columns.filter(col => col.name !== 'level');
-        }
         return columns;
     };
     getDefaultHiddenColumnNames = (columns) => {
