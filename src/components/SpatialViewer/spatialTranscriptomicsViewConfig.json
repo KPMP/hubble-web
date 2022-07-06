@@ -8,6 +8,12 @@
         },
         "embeddingType": {
             "UMAP": "UMAP"
+        },
+        "embeddingCellRadiusMode": {
+            "UMAP": "manual"
+        },
+        "embeddingCellRadius": {
+            "UMAP": 3
         }
     },
     "datasets": [
@@ -81,7 +87,9 @@
             "component": "scatterplot",
             "coordinationScopes": {
                 "embeddingType": "UMAP",
-                "embeddingZoom": "UMAP"
+                "embeddingZoom": "UMAP",
+                "embeddingCellRadiusMode": "UMAP",
+                "embeddingCellRadius": "UMAP"
             },
             "h": 12,
             "w": 4,

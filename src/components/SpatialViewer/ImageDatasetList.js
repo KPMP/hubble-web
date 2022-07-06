@@ -91,7 +91,7 @@ class ImageDatasetList extends Component {
     // This is used for column ordering too.
     getColumns = () => {
         const { setSelectedImageDataset } = this.props;
-        return [
+        let columns = [
             {
                 name: 'spectrackSampleId',
                 title: 'Sample ID',
@@ -120,7 +120,7 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: true,
                 defaultHidden: true,
-            },
+            },            
             {
                 name: 'imagetype',
                 title: 'Image Type',
@@ -129,7 +129,15 @@ class ImageDatasetList extends Component {
                 defaultHidden: false,
                 getCellValue: this.getImageTypeCell
             },
+            {
+                name: 'level',
+                title: 'Level',
+                sortable: true,
+                hideable: true,
+                defaultHidden: true,
+            },
         ];
+        return columns;
     };
     getDefaultHiddenColumnNames = (columns) => {
         return columns.filter((column) => {
@@ -160,9 +168,10 @@ class ImageDatasetList extends Component {
         return [
             { columnName: 'spectrackSampleId', width: 145 },
             { columnName: 'datatype', width: 250 },
-            { columnName: 'imagetype', width: 660 },
+            { columnName: 'imagetype', width: 350 },
             { columnName: 'redcapid', width: 145 },
             { columnName: 'filename', width: 250 },
+            { columnName: 'level', width: 100 },
         ]
     };
 
