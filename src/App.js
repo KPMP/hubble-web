@@ -53,7 +53,7 @@ store.subscribe(saveState);
 const connector = new AppSearchAPIConnector({
   searchKey: process.env.REACT_APP_SEARCH_KEY,
   engineName: "spatial-viewer",
-  endpointBase: "https://qa-atlas.kpmp.org/spatial-viewer/search",
+  endpointBase: "/spatial-viewer/search",
   cacheResponses: false
 })
 
