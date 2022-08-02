@@ -1,7 +1,7 @@
 import actionNames from '../actionNames'
 
 export const setSelectedImageDataset = (imageDataset) => {
-    if (imageDataset['config_type'] === 'external_link') {
+    if (imageDataset['configtype'] === 'external_link') {
         window.open(imageDataset['externallink'], '_blank')
     } else {
 
