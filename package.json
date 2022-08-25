@@ -20,6 +20,7 @@
     "bootstrap-css-only": "4.4.1",
     "ejs": "^3.1.7",
     "history": "5.1.0",
+    "immer": "^9.0.6",
     "immutability-helper": "3.1.1",
     "kpmp-common-components": "1.1.10",
     "kpmp-common-styles": "1.0.12",
