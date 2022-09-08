@@ -1,8 +1,10 @@
 export const resultConverter = (results) => {
     return results.map(row => {
         let newRow =  Object.keys(row).reduce((attrs, key)=> ({...attrs, [key]: row[key].raw}), {});
-        newRow["longfilename"] = newRow["filename"];
-        newRow["filename"] = removeUUID(newRow["filename"]);
+        if (newRow["filename"]) {
+            newRow["longfilename"] = newRow["filename"];
+            newRow["filename"] = removeUUID(newRow["filename"]);
+        }
         return newRow;
     })
 };

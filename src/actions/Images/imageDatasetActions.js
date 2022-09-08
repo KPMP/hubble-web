@@ -1,9 +1,14 @@
 import actionNames from '../actionNames'
 
 export const setSelectedImageDataset = (imageDataset) => {
-    return {
-        type: actionNames.SET_SELECTED_IMAGE_DATASET,
-        payload: imageDataset
+    if (imageDataset['configtype'] === 'external_link') {
+        window.open(imageDataset['externallink'], '_blank')
+    } else {
+
+        return {
+            type: actionNames.SET_SELECTED_IMAGE_DATASET,
+            payload: imageDataset
+        }
     }
 }
 
