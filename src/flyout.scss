@@ -1,0 +1,26 @@
+.flyout {
+	background-color: white;
+	height: 100%;
+  position: absolute;  
+  right: 0;
+	top: 0;
+  width: 33%;
+	z-index: 10;
+	@media screen and (max-width: 750px) {
+		width: 100%;
+	}
+}
+
+.flyout.open {
+  transform: translate(0%);
+}
+
+.flyout.closed {
+  transform: translate(100%);
+}
+
+.flyout .header {
+	background-color: $kpmp-blue;
+	color: white;
+}
+

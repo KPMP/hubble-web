@@ -1,5 +1,6 @@
 @import "kpmp-base.scss";
 @import "../node_modules/kpmp-common-styles/index.scss";
+@import "flyout.scss";
 
 #navbar .navbar-brand img.logo {
     width: 80px;
@@ -128,13 +129,15 @@
 
 #vitessce-container {
     height: auto;
+    overflow: hidden;
+    position: relative;
     background: #fff;
     .react-grid-layout {
         position: relative;
     }
 }
 
-.btn-link:hover {
+.btn-link:hover, .btn-link:focus {
     text-decoration: none;
 }
 
@@ -472,4 +475,12 @@ td:hover {
     text-overflow: ellipsis;
     display: block;
     overflow: hidden
+}
+
+// Utility Classes
+.u-gutter-fix {
+	margin: 0px !important;
+}
+.u-transition {
+    transition: all 0.5s ease 0s;
 }
