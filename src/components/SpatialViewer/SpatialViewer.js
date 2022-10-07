@@ -7,7 +7,7 @@ import { createHeaderString } from './spatialHelper';
 import { Redirect } from 'react-router-dom';
 import { handleGoogleAnalyticsEvent } from "../../helpers/googleAnalyticsHelper";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, faAngleDoubleRight} from "@fortawesome/free-solid-svg-icons";
 
 
 class SpatialViewer extends Component {
@@ -21,6 +21,7 @@ class SpatialViewer extends Component {
             reportCardOpen: false
         }
     }
+
 
     async componentDidMount() {
         if (this.props.selectedImageDataset) {
@@ -53,8 +54,7 @@ class SpatialViewer extends Component {
                             <Row>
                                 <Col className="menu-title">
                                     <div className="menu-header-close-button clickable" onClick={()=>{this.toggleReportCard()}}>
-                                        <FontAwesomeIcon className={"fa fa-angle-down"} icon={faChevronRight} />
-                                        <FontAwesomeIcon className={"fa fa-angle-down"} icon={faChevronRight} />
+                                        <FontAwesomeIcon className="fa fa-angle-double-right" icon={faAngleDoubleRight} />
                                     </div>
                                     <span>Participant Information</span>
                                 </Col>
@@ -67,8 +67,19 @@ class SpatialViewer extends Component {
                         <div>
                     <Row xs='12'>                        
                         <Col xs='8'>
-                            <h5 onClick={()=>{this.toggleReportCard()}}>
-                                {this.state.headerString}
+                            <h5>
+                                {`${this.props.selectedImageDataset["datatype"]} 
+                                for ${this.props.selectedImageDataset["tissuetype"]} 
+                                sample ${this.props.selectedImageDataset["spectracksampleid"]} 
+                                (participant`} 
+                                {/* <span className="clickable link" onClick={()=>{this.toggleReportCard()}}>{`${this.props.selectedImageDataset["redcapid"]})`}</span> */}
+                                <button
+                                 type="button"
+                                 class="btn btn-link text-left p-0 u-text-decoration-none"
+                                 onClick={()=>{this.toggleReportCard()}}>
+                                    {`${this.props.selectedImageDataset["redcapid"]}`}
+                                </button>
+                                {`)`}
                             </h5>
                         </Col>
                         <Col xs='4' className="text-right text-primary ">

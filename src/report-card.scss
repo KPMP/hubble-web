@@ -104,7 +104,7 @@ $menu-header-height: 80px;
 
   .menu-header {
   	background-color: white;
-  	height: $menu-header-height;
+  	// height: $menu-header-height;
   	border-bottom: 1px solid silver;
   	padding: 0 $standard-padding;
   	display: flex;
@@ -145,14 +145,10 @@ $menu-header-height: 80px;
 	.menu-slide-list-header {
 		background-color: $kpmp-blue;
 		color: white;
-		height: $menu-header-height;
+		// height: $menu-header-height;
 		
 		a:hover, a:visited, a {
 			color: white;
-		}
-		
-		.row {
-			padding-bottom: 20px;
 		}
 		
 		.pad-right {
@@ -163,6 +159,7 @@ $menu-header-height: 80px;
 			font-weight: 400;
 			font-size: 15px;
 			padding-top: 5px;
+			padding-bottom: 5px;
 		}
 		
 		.menu-control {
