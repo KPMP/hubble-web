@@ -3,7 +3,6 @@ import { Vitessce } from 'vitessce';
 import 'vitessce/dist/esm/index.css';
 import { Row, Col } from "reactstrap";
 import { getViewConfig, populateViewConfig } from './viewConfigHelper';
-import { createHeaderString } from './spatialHelper';
 import { Redirect } from 'react-router-dom';
 import { handleGoogleAnalyticsEvent } from "../../helpers/googleAnalyticsHelper";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,7 +16,6 @@ class SpatialViewer extends Component {
         this.state = {
             viewConfig: '',
             noData: true,
-            headerString: '',
             reportCardOpen: false
         }
     }
@@ -31,8 +29,7 @@ class SpatialViewer extends Component {
                 this.props.selectedImageDataset["filename"]);
             let viewConfig = getViewConfig(this.props.selectedImageDataset["configtype"]);
             viewConfig = await populateViewConfig(viewConfig, this.props.selectedImageDataset);
-            const headerString = createHeaderString(this.props.selectedImageDataset);
-            this.setState({viewConfig: viewConfig, noData: false, headerString});
+            this.setState({viewConfig: viewConfig, noData: false});
         }
     }
 
