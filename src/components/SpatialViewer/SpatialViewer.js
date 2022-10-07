@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Vitessce } from 'vitessce';
 import 'vitessce/dist/esm/index.css';
-import { Row, Col} from "reactstrap";
+import { Row, Col } from "reactstrap";
 import { getViewConfig, populateViewConfig } from './viewConfigHelper';
 import { createHeaderString } from './spatialHelper';
 import { Redirect } from 'react-router-dom';
 import { handleGoogleAnalyticsEvent } from "../../helpers/googleAnalyticsHelper";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight, faAngleDoubleRight} from "@fortawesome/free-solid-svg-icons";
+import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 
 
 class SpatialViewer extends Component {
@@ -36,8 +36,12 @@ class SpatialViewer extends Component {
         }
     }
 
-    toggleReportCard = () => {
-        this.setState({reportCardOpen: !this.state.reportCardOpen})
+    openReportCard = () => {
+        this.setState({reportCardOpen: true})
+    }
+
+    closeReportCard = () => {
+        this.setState({reportCardOpen: false})
     }
 
     render() {
@@ -49,17 +53,15 @@ class SpatialViewer extends Component {
             <div className="container-fluid">
                 <div id="vitessce-container" className="rounded border shadow-sm mt-2 mx-3 p-3">
                     
-                    <div id="side-menu" className={`shadow-sm border ${this.state.reportCardOpen ? "menu-open" : "menu-closed"}`}>
-                        <div className="menu-slide-list-header">
-                            <Row>
-                                <Col className="menu-title">
-                                    <div className="menu-header-close-button clickable" onClick={()=>{this.toggleReportCard()}}>
-                                        <FontAwesomeIcon className="fa fa-angle-double-right" icon={faAngleDoubleRight} />
-                                    </div>
-                                    <span>Participant Information</span>
-                                </Col>
-                            </Row>
-                        </div>
+                    <div className={`flyout shadow-sm border u-transition ${this.state.reportCardOpen ? "open" : "closed"}`}>
+                        <Row className="header u-gutter-fix">
+                            <Col className="pt-1 pb-1">
+                                <div className="pr-2 d-inline clickable" onClick={()=>{this.closeReportCard()}}>
+                                    <FontAwesomeIcon className="fa fa-angle-double-right" icon={faAngleDoubleRight} />
+                                </div>
+                                <span>Participant Information</span>
+                            </Col>
+                        </Row>
                     </div>
 
 
@@ -72,11 +74,10 @@ class SpatialViewer extends Component {
                                 for ${this.props.selectedImageDataset["tissuetype"]} 
                                 sample ${this.props.selectedImageDataset["spectracksampleid"]} 
                                 (participant`} 
-                                {/* <span className="clickable link" onClick={()=>{this.toggleReportCard()}}>{`${this.props.selectedImageDataset["redcapid"]})`}</span> */}
                                 <button
-                                 type="button"
-                                 class="btn btn-link text-left p-0 u-text-decoration-none"
-                                 onClick={()=>{this.toggleReportCard()}}>
+                                    type="button"
+                                    class="btn btn-link text-left p-0 u-text-decoration-none"
+                                    onClick={()=>{this.openReportCard()}}>
                                     {`${this.props.selectedImageDataset["redcapid"]}`}
                                 </button>
                                 {`)`}
