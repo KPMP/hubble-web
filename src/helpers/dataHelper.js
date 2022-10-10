@@ -9,6 +9,16 @@ export const resultConverter = (results) => {
     })
 };
 
+export const dataToTableConverter = (data) => {
+    return Object.keys(data).map((key, index) => {
+        return {
+            key: key,
+            value: data[key]
+        }
+    })
+}
+
+
 export const removeUUID = (text) => {
     return text.substring(37);
 };

@@ -4,7 +4,6 @@ import { withRouter } from 'react-router';
 import { setClinicalDatasets, setSummaryDatasets } from "../../actions/Clinical/clinicalDatasetAction";
 import { setExperimentalDataCounts } from "../../actions/Experimental/experimentalDatasetAction";
 
-
 const mapStateToProps = (state, props) =>
     ({
         selectedImageDataset: state.selectedImageDataset,
@@ -44,7 +43,7 @@ const mapDispatchToProps = (dispatch, props) =>
             dispatch(setClinicalDatasets(clinicalDatasets));
         },
         setExperimentalDataCounts(participant_id) {
-            const experimentalDataCounts ={}
+            const experimentalDataCounts = {}
             experimentalDataCounts[participant_id] = {
                 'Light Microscopic Whole Slide Image': '8',
                 'CODEX': 0,
