@@ -8,6 +8,7 @@
 	top: 0;
   width: 33%;
 	z-index: 10;
+	overflow-y: scroll;
 	@media screen and (max-width: 750px) {
 		width: 100%;
 	}
@@ -26,8 +27,7 @@
 	color: white;
 }
 
-.absolute-scroll-fix {
-	height: 98%;
-	overflow: scroll;
+.flyout .u-border-helper table {
+    border-top: 2px solid #dee2e6;
+		border-collapse: collapse;
 }
-

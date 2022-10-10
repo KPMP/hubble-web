@@ -37,6 +37,20 @@ class ReportCard extends Component {
         ];
     };
 
+    formatLinkableCellKey = (row) => {
+        let key = row['key'];
+        if (row['key'] === 'Single-Cell RNA-Seq') {
+            key = (<div><span>{`${row['key']}`} <span className="u-controlled-access-asterisk">*</span></span></div>);
+        } else {
+            key = (<div><span>{`${row['key']}`}</span></div>);
+        }
+        return( key )
+    }
+
+    formatLinkableCellValue = (row) => {
+        return( row['value'] > 0 ? <a className="p-0" href="/">{row['value']}</a>: <span>{row['value']}</span>)
+    }
+    
     getLinkableColumns = () => {
         return [
             {
@@ -44,17 +58,25 @@ class ReportCard extends Component {
                 sortable: false,
                 hideable: false,
                 defaultHidden: false,
+                getCellValue: row => this.formatLinkableCellKey(row)
+
             },
             {
                 name: 'value',
                 sortable: false,
                 hideable: false,
                 defaultHidden: false,
-                getCellValue: row => {return( row['value'] > 0 ? <a href="/">{row['value']}</a>: <span>{row['value']}</span>) }
+                getCellValue: row => this.formatLinkableCellValue(row)
 
             },
         ];
     };
+
+    getTableColumnExtensions = () => {
+        return [
+            { columnName: 'value', align: 'right' }
+        ]
+    }
 
     getRows = (dataset) => {
         return dataToTableConverter(dataset)
@@ -71,36 +93,45 @@ class ReportCard extends Component {
                         <span>Participant Information</span>
                     </Col>
                 </Row>
-
-                <div className="absolute-scroll-fix">
-
-                    <div>
+                
+                <div className="container">
+                    <div class>
                         <React.Fragment>
-                            <h3>Summary</h3>
-                            <Grid rows={this.getRows(this.props.summaryDataset)} columns={this.getColumns()}>
-                                <Table />
-                            </Grid>
+                            <h4 className='mt-3'>Summary</h4>
+                            <div className="u-border-helper">
+                                <Grid rows={this.getRows(this.props.summaryDataset)} columns={this.getColumns()}>
+                                    <Table />
+                                </Grid>
+                            </div>
                         </React.Fragment>
                     </div>
 
                     <div>
                         <React.Fragment>
-                            <h3>Clinical</h3>
+                        <h4 className="mt-3">Clinical</h4>
+                            <div className="u-border-helper">
                             <Grid rows={this.getRows(this.props.clinicalDataset)} columns={this.getColumns()}>
                                 <Table />
                             </Grid>
+                            </div>
+                            
                         </React.Fragment>
                     </div>
 
                     <div>
                         <React.Fragment>
-                            <h3>Counts By Experimental Strategy</h3>
-                            <Grid rows={this.getRows(this.props.experimentalDataCounts)} columns={this.getLinkableColumns()}>
-                                <Table />
-                            </Grid>
+                            <h4 className="mt-3">Counts By Experimental Strategy</h4>
+                            <div className="u-border-helper">
+                                <Grid rows={this.getRows(this.props.experimentalDataCounts)} columns={this.getLinkableColumns()}>
+                                    <Table columnExtensions={[{ columnName: 'value', align: 'right' }]} />
+                                    
+                                </Grid>
+                            </div>
                         </React.Fragment>
                     </div>
-
+                    <div className="mt-3 font-italic">
+                        <span className="u-controlled-access-asterisk">*</span> = Aggregated dataset opens in Explorer
+                    </div>
                 </div>
             </div>
         )
