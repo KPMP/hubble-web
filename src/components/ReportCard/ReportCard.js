@@ -3,7 +3,7 @@ import { Col, Row } from "reactstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from 'prop-types';
-import { Grid, Table } from '@devexpress/dx-react-grid-bootstrap4';
+import { Grid, Table, TableColumnResizing, TableHeaderRow} from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 import { dataToTableConverter } from '../../helpers/dataHelper';
 
@@ -16,7 +16,13 @@ class ReportCard extends Component {
     }
     getDefaultColumnWidths = () => {
         return [
-            { columnName: 'key', width: 30 },
+            { columnName: 'key', width: 225 },
+            { columnName: 'value', width: 150 },
+        ]
+    };
+    getDefaultLinkColumnWidths = () => {
+        return [
+            { columnName: 'key', width: 350 },
             { columnName: 'value', width: 30 },
         ]
     };
@@ -40,9 +46,9 @@ class ReportCard extends Component {
     formatLinkableCellKey = (row) => {
         let key = row['key'];
         if (row['key'] === 'Single-Cell RNA-Seq') {
-            key = (<div><span>{`${row['key']}`} <span className="u-controlled-access-asterisk">*</span></span></div>);
+            key = (<div>{`${row['key']}`} <span className="u-controlled-access-asterisk">*</span></div>);
         } else {
-            key = (<div><span>{`${row['key']}`}</span></div>);
+            key = (<div>{`${row['key']}`}</div>);
         }
         return( key )
     }
@@ -59,7 +65,6 @@ class ReportCard extends Component {
                 hideable: false,
                 defaultHidden: false,
                 getCellValue: row => this.formatLinkableCellKey(row)
-
             },
             {
                 name: 'value',
@@ -67,16 +72,9 @@ class ReportCard extends Component {
                 hideable: false,
                 defaultHidden: false,
                 getCellValue: row => this.formatLinkableCellValue(row)
-
             },
         ];
     };
-
-    getTableColumnExtensions = () => {
-        return [
-            { columnName: 'value', align: 'right' }
-        ]
-    }
 
     getRows = (dataset) => {
         return dataToTableConverter(dataset)
@@ -95,41 +93,46 @@ class ReportCard extends Component {
                 </Row>
                 
                 <div className="container">
-                    <div class>
+                    <div className="report-card">
                         <React.Fragment>
                             <h4 className='mt-3'>Summary</h4>
                             <div className="u-border-helper">
                                 <Grid rows={this.getRows(this.props.summaryDataset)} columns={this.getColumns()}>
-                                    <Table />
+                                    <Table/>
+                                    <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} />
+                                    <TableHeaderRow />
                                 </Grid>
                             </div>
                         </React.Fragment>
                     </div>
 
-                    <div>
+                    <div className="report-card">
                         <React.Fragment>
                         <h4 className="mt-3">Clinical</h4>
                             <div className="u-border-helper">
                             <Grid rows={this.getRows(this.props.clinicalDataset)} columns={this.getColumns()}>
                                 <Table />
+                                <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} />
+                                <TableHeaderRow />
                             </Grid>
                             </div>
                             
                         </React.Fragment>
                     </div>
 
-                    <div>
+                    <div className="report-card">
                         <React.Fragment>
                             <h4 className="mt-3">Counts By Experimental Strategy</h4>
                             <div className="u-border-helper">
                                 <Grid rows={this.getRows(this.props.experimentalDataCounts)} columns={this.getLinkableColumns()}>
                                     <Table columnExtensions={[{ columnName: 'value', align: 'right' }]} />
-                                    
+                                    <TableColumnResizing defaultColumnWidths={this.getDefaultLinkColumnWidths()} />
+                                    <TableHeaderRow />
                                 </Grid>
                             </div>
                         </React.Fragment>
                     </div>
-                    <div className="mt-3 font-italic">
+                    <div className="mt-3 mb-3 font-italic">
                         <span className="u-controlled-access-asterisk">*</span> = Aggregated dataset opens in Explorer
                     </div>
                 </div>
