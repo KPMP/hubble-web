@@ -46,7 +46,9 @@ const mapDispatchToProps = (dispatch, props) =>
             experimentalDataCounts[participant_id] = {
                 'Light Microscopic Whole Slide Image': '8',
                 'CODEX': 0,
-                'Single-Cell RNA-Seq': 1
+                'Single-cell RNA-Seq': 1,
+                'Single-nucleus RNA-Seq': 30,
+                'Regional Transcriptomics': 100
             }
             dispatch(setExperimentalDataCounts(experimentalDataCounts));
         }

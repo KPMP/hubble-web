@@ -23,7 +23,7 @@ class ReportCard extends Component {
     getDefaultLinkColumnWidths = () => {
         return [
             { columnName: 'key', width: 350 },
-            { columnName: 'value', width: 30 },
+            { columnName: 'value', width: 40 },
         ]
     };
     getColumns = () => {
@@ -45,7 +45,9 @@ class ReportCard extends Component {
 
     formatLinkableCellKey = (row) => {
         let key = row['key'];
-        if (row['key'] === 'Single-Cell RNA-Seq') {
+        if (row['key'] === 'Single-cell RNA-Seq'
+         || row['key'] === 'Single-nucleus RNA-Seq'
+         || row['key'] === 'Regional Transcriptomics' ) {
             key = (<div>{`${row['key']}`} <span className="u-controlled-access-asterisk">*</span></div>);
         } else {
             key = (<div>{`${row['key']}`}</div>);
