@@ -5,9 +5,7 @@ import { Row, Col } from "reactstrap";
 import { getViewConfig, populateViewConfig } from './viewConfigHelper';
 import { Redirect } from 'react-router-dom';
 import { handleGoogleAnalyticsEvent } from "../../helpers/googleAnalyticsHelper";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
-
+import ReportCard from '../ReportCard/ReportCard';
 
 class SpatialViewer extends Component {
 
@@ -18,6 +16,9 @@ class SpatialViewer extends Component {
             noData: true,
             reportCardOpen: false
         }
+        this.props.setSummaryDatasets(this.props.selectedImageDataset["redcapid"])
+        this.props.setClinicalDatasets(this.props.selectedImageDataset["redcapid"])
+        this.props.setExperimentalDataCounts(this.props.selectedImageDataset["redcapid"])   
     }
 
 
@@ -41,26 +42,24 @@ class SpatialViewer extends Component {
         this.setState({reportCardOpen: false})
     }
 
-    render() {
+    render() {     
         if (!this.props.selectedImageDataset || (this.props.selectedImageDataset && Object.keys(this.props.selectedImageDataset).length === 0)) {
             return <Redirect to='/' />
         }
+        const summaryDataset = this.props.summaryDatasets[this.props.selectedImageDataset["redcapid"]]
+        const clinicalDataset = this.props.clinicalDatasets[this.props.selectedImageDataset["redcapid"]]
+        const experimentalDataCounts = this.props.experimentalDataCounts[this.props.selectedImageDataset["redcapid"]]
 
         return (
             <div className="container-fluid">
                 <div id="vitessce-container" className="rounded border shadow-sm mt-2 mx-3 p-3">
-                    
-                    <div className={`flyout shadow-sm border u-transition ${this.state.reportCardOpen ? "open" : "closed"}`}>
-                        <Row className="header u-gutter-fix">
-                            <Col className="pt-1 pb-1">
-                                <div className="pr-2 d-inline clickable" onClick={()=>{this.closeReportCard()}}>
-                                    <FontAwesomeIcon className="fa fa-angle-double-right" icon={faAngleDoubleRight} />
-                                </div>
-                                <span>Participant Information</span>
-                            </Col>
-                        </Row>
-                    </div>
-
+                    <ReportCard 
+                        reportCardOpen={this.state.reportCardOpen}
+                        closeReportCard={this.closeReportCard}
+                        summaryDataset={summaryDataset}
+                        clinicalDataset={clinicalDataset}
+                        experimentalDataCounts={experimentalDataCounts}
+                    />
 
                     {!this.state.noData &&
                         <div>
