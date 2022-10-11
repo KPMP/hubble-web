@@ -9,7 +9,19 @@
   width: 33%;
 	z-index: 10;
 	overflow-y: scroll;
-	@media screen and (max-width: 750px) {
+	@media screen and (max-width: 1335px) {
+		width: 37%;
+	}
+	@media screen and (max-width: 1275px) {
+		width: 40%;
+	}
+	@media screen and (max-width: 1100px) {
+		width: 50%;
+	}
+	@media screen and (max-width: 900px) {
+		width: 60%;
+	}
+	@media screen and (max-width: 760px) {
 		width: 100%;
 	}
 }
@@ -30,4 +42,12 @@
 .flyout .u-border-helper table {
     border-top: 2px solid #dee2e6;
 		border-collapse: collapse;
+}
+
+.flyout .report-card thead {
+	display: none;
+}
+
+.flyout .report-card td {
+  text-overflow: ellipsis;
 }
