@@ -19,7 +19,6 @@ const mapDispatchToProps = (dispatch, props) =>
             summaryDatasets[participant_id] = {
                 "Participant ID": "ABC-123",
                 "Disease Type": "AKI",
-                "Affiliation Site": "ABCDE",
             }
             dispatch(setSummaryDatasets(summaryDatasets));
         },
