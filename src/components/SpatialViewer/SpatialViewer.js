@@ -46,7 +46,7 @@ class SpatialViewer extends Component {
         if (!this.props.selectedImageDataset || (this.props.selectedImageDataset && Object.keys(this.props.selectedImageDataset).length === 0)) {
             return <Redirect to='/' />
         }
-        const summaryDataset = this.props.summaryDatasets[this.props.selectedImageDataset["redcapid"]]
+        const summaryDataset = this.props.summaryDatasets
         const clinicalDataset = this.props.clinicalDatasets[this.props.selectedImageDataset["redcapid"]]
         const experimentalDataCounts = this.props.experimentalDataCounts[this.props.selectedImageDataset["redcapid"]]
 
