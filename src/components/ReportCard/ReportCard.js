@@ -135,7 +135,7 @@ class ReportCard extends Component {
                         </React.Fragment>
                     </div>
                     <div className="mt-3 mb-3 font-italic">
-                        <span className="u-controlled-access-asterisk">*</span> = Aggregated dataset opens in Explorer
+                        <small><span className="u-controlled-access-asterisk">*</span> = Aggregated dataset opens in Explorer</small>
                     </div>
                 </div>
             </div>
