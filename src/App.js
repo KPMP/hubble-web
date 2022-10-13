@@ -19,7 +19,7 @@ import { SearchProvider } from "@elastic/react-search-ui";
 
 const cacheStore = window.sessionStorage.getItem('hubble-redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
-const store = applyMiddleware(thunk)(createStore)(
+export const store = applyMiddleware(thunk)(createStore)(
   appReducer,
   initialState,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -34,7 +34,7 @@ const saveState = () => {
 // *** Get a new tracking Id and add it here *** //
 const GA_TRACKING_ID = 'UA-124331187-10';
 
-ReactGA.initialize(GA_TRACKING_ID);
+ReactGA.initialize(GA_TRACKING_ID,{ testMode: process.env.NODE_ENV === 'test' ? true : false });
 function logPageView(location, action) {
   ReactGA.set({ page: location.pathname + location.search });
   ReactGA.pageview(location.pathname + location.search);

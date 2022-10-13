@@ -3,6 +3,8 @@ import SpatialViewer from "./SpatialViewer";
 import { withRouter } from 'react-router';
 import { setClinicalDatasets, setSummaryDatasets } from "../../actions/Clinical/clinicalDatasetAction";
 import { setExperimentalDataCounts } from "../../actions/Experimental/experimentalDatasetAction";
+import { mapKeysToPresentationStyle } from "../../helpers/dataHelper";
+import { fetchParticipantSummaryDataset } from "../../helpers/Api";
 
 const mapStateToProps = (state, props) =>
     ({
@@ -14,12 +16,9 @@ const mapStateToProps = (state, props) =>
 
 const mapDispatchToProps = (dispatch, props) =>
     ({
-        setSummaryDatasets(participant_id) {
-            const summaryDatasets = {}
-            summaryDatasets[participant_id] = {
-                "Participant ID": "ABC-123",
-                "Disease Type": "AKI",
-            }
+        async setSummaryDatasets(participant_id) {
+            let summaryDatasets = await fetchParticipantSummaryDataset(participant_id);
+            summaryDatasets = mapKeysToPresentationStyle(summaryDatasets);
             dispatch(setSummaryDatasets(summaryDatasets));
         },
         setClinicalDatasets(participant_id) {

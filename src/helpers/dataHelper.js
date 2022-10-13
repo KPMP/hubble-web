@@ -22,3 +22,14 @@ export const dataToTableConverter = (data=[]) => {
 export const removeUUID = (text) => {
     return text.substring(37);
 };
+
+export const mapKeysToPresentationStyle = (data) => {
+    const result = {}
+    if (data['redcap_id']) {
+        result['Participant ID'] = data['redcap_id'];
+    }
+    if (data['tissue_type']) {
+        result['Disease Type'] = data['tissue_type'];
+    }
+    return result
+}
