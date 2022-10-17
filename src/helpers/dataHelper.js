@@ -25,11 +25,11 @@ export const removeUUID = (text) => {
 
 export const mapKeysToPresentationStyle = (data) => {
     const result = {}
-    if (data['redcap_id']) {
-        result['Participant ID'] = data['redcap_id'];
+    if (data['redcapId']) {
+        result['Participant ID'] = data['redcapId'];
     }
-    if (data['tissue_type']) {
-        result['Disease Type'] = data['tissue_type'];
+    if (data['tissueType']) {
+        result['Disease Type'] = data['tissueType'];
     }
     return result
 }
