@@ -18,21 +18,20 @@ export const getFileLink = async (queryString) => {
 };
 
 
-export const fetchParticipantSummaryDataset = async (participant_id) => {
+export const fetchParticipantSummaryDataset = async (redcapId) => {
   const query = gql`
-  query participantSummaryDataset($participant_id: String) {
-    participantSummaryDataset(participant_id: $participant_id){
-      tissue_type
-      redcap_id
+  query participantSummaryDataset($redcapId: String) {
+    participantSummaryDataset(redcapId: $redcapId){
+      tissueType
+      redcapId
     }
   }`;
   const response = await apolloClient.query({
       query: query,
       variables: {
-        participant_id: participant_id
+        redcapId: redcapId
       }
     });
-  
   if (response && response.data && response.data.participantSummaryDataset) {
       return response.data.participantSummaryDataset;
   } else {
