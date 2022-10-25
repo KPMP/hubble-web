@@ -61,6 +61,10 @@ class ReportCard extends Component {
             let dataType = '';
             if (row.key.includes('Single-cell')) {
                 dataType = 'sc'
+            } else if (row.key.includes('Single-nuc')) {
+                dataType = 'sn'
+            } else if (row.key.includes('Regional')) {
+                dataType = 'regionalViz'
             }
             link = '/' + row.tool + '/dataViz?dataType=' + dataType
         }
