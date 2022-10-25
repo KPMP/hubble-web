@@ -9,6 +9,25 @@ export const resultConverter = (results) => {
     })
 };
 
+export const exprimentalDataConverter = (data={}) => {
+    let spatialData = data.spatialViewerDataTypes;
+    let explorerData = data.explorerDataTypes;
+    let result = formatData(spatialData, result, 'spatial-viewer');
+    result = formatData(explorerData, result, 'explorer');
+    return result;
+}
+
+const formatData = (data={}, result=[], toolName='') => {
+    data.forEach((datum) => {
+        let label = datum.dataType;
+        if (datum.isAggregatedData) {
+            label = label.concat('*')
+        }
+        result.push({key: label, value: datum.count, tool: toolName})
+    });
+    return result;
+}
+
 export const dataToTableConverter = (data=[]) => {
     return Object.keys(data).map((key, index) => {
         return {

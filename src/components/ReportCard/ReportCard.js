@@ -5,7 +5,7 @@ import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from 'prop-types';
 import { Grid, Table, TableColumnResizing, TableHeaderRow} from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
-import { dataToTableConverter } from '../../helpers/dataHelper';
+import { dataToTableConverter, exprimentalDataConverter } from '../../helpers/dataHelper';
 
 class ReportCard extends Component {
     constructor(props) {
@@ -56,7 +56,11 @@ class ReportCard extends Component {
     }
 
     formatLinkableCellValue = (row) => {
-        return( row['value'] > 0 ? <a className="p-0" href="/">{row['value']}</a>: <span>{row['value']}</span>)
+        let link = '/'
+        if (row.tool === 'spatial-viewer') {
+            link = '/' + row.tool + '?filters[0][field]=datatype&filters[0][values][0]=' + row.key + '&filters[1][field]=redcapid&filters[1][values][0]=' + this.props.redcapid
+        }
+        return( row['value'] > 0 ? <a className="p-0" href={link}>{row['value']}</a>: <span>{row['value']}</span>)
     }
     
     getLinkableColumns = () => {
@@ -77,6 +81,10 @@ class ReportCard extends Component {
             },
         ];
     };
+
+    getRowSets = (dataset) => {
+        return  exprimentalDataConverter(dataset)
+    }
 
     getRows = (dataset) => {
         return dataToTableConverter(dataset)
@@ -126,11 +134,12 @@ class ReportCard extends Component {
                         <React.Fragment>
                             <h4 className="mt-3">Counts By Experimental Strategy</h4>
                             <div className="u-border-helper">
-                                <Grid rows={this.getRows(this.props.experimentalDataCounts)} columns={this.getLinkableColumns()}>
+                                
+                                <Grid rows={this.getRowSets(this.props.experimentalDataCounts)} columns={this.getLinkableColumns()}>
                                     <Table columnExtensions={[{ columnName: 'value', align: 'right' }]} />
                                     <TableColumnResizing defaultColumnWidths={this.getDefaultLinkColumnWidths()} />
                                     <TableHeaderRow />
-                                </Grid>
+                                </Grid> 
                             </div>
                         </React.Fragment>
                     </div>
