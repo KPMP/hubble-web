@@ -38,3 +38,29 @@ export const fetchParticipantSummaryDataset = async (redcapId) => {
       store.dispatch(sendMessageToBackend("Could not retrieve participantSummaryDataset: " + response.error));
   }
 };
+
+export const fetchParticipantExperimentCounts = async (redcapId) => {
+  const response = await apolloClient.query({
+    query: gql`
+      query {
+        getDataTypeInformationByParticipant(redcapId: "${redcapId}") {
+          spatialViewerDataTypes {
+            count
+            dataType
+            isAggregatedData
+          }
+          explorerDataTypes {
+            count
+            dataType
+            isAggregatedData
+          }
+        }
+      }`
+  });
+
+  if (response && response.data && response.data.getDataTypeInformationByParticipant) {
+    return response.data.getDataTypeInformationByParticipant;
+  } else {
+    store.dispatch(sendMessageToBackend("Could not retrieve getDataTypeInformationByParticipant: " + response.error));
+  }
+};

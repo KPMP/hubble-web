@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 import { setClinicalDatasets, setSummaryDatasets } from "../../actions/Clinical/clinicalDatasetAction";
 import { setExperimentalDataCounts } from "../../actions/Experimental/experimentalDatasetAction";
 import { mapKeysToPresentationStyle } from "../../helpers/dataHelper";
-import { fetchParticipantSummaryDataset } from "../../helpers/Api";
+import { fetchParticipantSummaryDataset, fetchParticipantExperimentCounts } from "../../helpers/Api";
 
 const mapStateToProps = (state, props) =>
     ({
@@ -40,15 +40,8 @@ const mapDispatchToProps = (dispatch, props) =>
             }
             dispatch(setClinicalDatasets(clinicalDatasets));
         },
-        setExperimentalDataCounts(participant_id) {
-            const experimentalDataCounts = {}
-            experimentalDataCounts[participant_id] = {
-                'Light Microscopic Whole Slide Image': '8',
-                'CODEX': 0,
-                'Single-cell RNA-Seq': 1,
-                'Single-nucleus RNA-Seq': 30,
-                'Regional Transcriptomics': 100
-            }
+        async setExperimentalDataCounts(participant_id) {
+            let experimentalDataCounts = await fetchParticipantExperimentCounts(participant_id);
             dispatch(setExperimentalDataCounts(experimentalDataCounts));
         }
 

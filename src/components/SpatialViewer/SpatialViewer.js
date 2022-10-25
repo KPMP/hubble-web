@@ -48,7 +48,7 @@ class SpatialViewer extends Component {
         }
         const summaryDataset = this.props.summaryDatasets
         const clinicalDataset = this.props.clinicalDatasets[this.props.selectedImageDataset["redcapid"]]
-        const experimentalDataCounts = this.props.experimentalDataCounts[this.props.selectedImageDataset["redcapid"]]
+        const experimentalDataCounts = this.props.experimentalDataCounts
 
         return (
             <div className="container-fluid">
@@ -59,6 +59,7 @@ class SpatialViewer extends Component {
                         summaryDataset={summaryDataset}
                         clinicalDataset={clinicalDataset}
                         experimentalDataCounts={experimentalDataCounts}
+                        redcapid={this.props.selectedImageDataset["redcapid"]}
                     />
 
                     {!this.state.noData &&
