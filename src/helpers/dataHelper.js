@@ -9,7 +9,7 @@ export const resultConverter = (results) => {
     })
 };
 
-export const exprimentalDataConverter = (data={}) => {
+export const experimentalDataConverter = (data={}) => {
     let spatialData = data.spatialViewerDataTypes;
     let explorerData = data.explorerDataTypes;
     let result = formatData(spatialData, result, 'spatial-viewer');

@@ -5,7 +5,7 @@ import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from 'prop-types';
 import { Grid, Table, TableColumnResizing, TableHeaderRow} from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
-import { dataToTableConverter, exprimentalDataConverter } from '../../helpers/dataHelper';
+import { dataToTableConverter, experimentalDataConverter } from '../../helpers/dataHelper';
 
 class ReportCard extends Component {
     constructor(props) {
@@ -92,7 +92,7 @@ class ReportCard extends Component {
     };
 
     getRowSets = (dataset) => {
-        return  exprimentalDataConverter(dataset)
+        return  experimentalDataConverter(dataset)
     }
 
     getRows = (dataset) => {
