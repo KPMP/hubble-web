@@ -19,11 +19,7 @@ export const exprimentalDataConverter = (data={}) => {
 
 const formatData = (data={}, result=[], toolName='') => {
     data.forEach((datum) => {
-        let label = datum.dataType;
-        if (datum.isAggregatedData) {
-            label = label.concat('*')
-        }
-        result.push({key: label, value: datum.count, tool: toolName})
+        result.push({key: datum.dataType, value: datum.count, tool: toolName, isAggregated: datum.isAggregatedData})
     });
     return result;
 }

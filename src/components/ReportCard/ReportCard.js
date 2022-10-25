@@ -45,9 +45,7 @@ class ReportCard extends Component {
 
     formatLinkableCellKey = (row) => {
         let key = row['key'];
-        if (row['key'] === 'Single-cell RNA-Seq'
-         || row['key'] === 'Single-nucleus RNA-Seq'
-         || row['key'] === 'Regional Transcriptomics' ) {
+       if(row.isAggregated) {
             key = (<div>{`${row['key']}`} <span className="u-controlled-access-asterisk">*</span></div>);
         } else {
             key = (<div>{`${row['key']}`}</div>);
@@ -58,8 +56,15 @@ class ReportCard extends Component {
     formatLinkableCellValue = (row) => {
         let link = '/'
         if (row.tool === 'spatial-viewer') {
-            link = '/' + row.tool + '?filters[0][field]=datatype&filters[0][values][0]=' + row.key + '&filters[1][field]=redcapid&filters[1][values][0]=' + this.props.redcapid
+            link = '/' + row.tool + '?filters[0][field]=datatype&filters[0][values][0]=' + row.key + '&filters[0][type]=any&filters[1][field]=redcapid&filters[1][values][0]=' + this.props.redcapid + '&filters[1][type]=any'
+        } else if (row.tool === 'explorer') {
+            let dataType = '';
+            if (row.key.includes('Single-cell')) {
+                dataType = 'sc'
+            }
+            link = '/' + row.tool + '/dataViz?dataType=' + dataType
         }
+
         return( row['value'] > 0 ? <a className="p-0" href={link}>{row['value']}</a>: <span>{row['value']}</span>)
     }
     
