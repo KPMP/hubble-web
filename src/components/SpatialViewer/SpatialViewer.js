@@ -47,8 +47,8 @@ class SpatialViewer extends Component {
             return <Redirect to='/' />
         }
         const summaryDataset = this.props.summaryDatasets
-        const clinicalDataset = this.props.clinicalDatasets[this.props.selectedImageDataset["redcapid"]]
         const experimentalDataCounts = this.props.experimentalDataCounts
+        const clinicalDataset = this.props.clinicalDatasets
 
         return (
             <div className="container-fluid">

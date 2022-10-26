@@ -64,3 +64,23 @@ export const fetchParticipantExperimentCounts = async (redcapId) => {
     store.dispatch(sendMessageToBackend("Could not retrieve getDataTypeInformationByParticipant: " + response.error));
   }
 };
+
+export const fetchParticipantClinicalDataset = async (redcapId) => {
+  const query = gql`
+  query participantClinicalDataset($redcapId: String) {
+    participantClinicalDataset(redcapId: $redcapId){
+      clinicalData
+    }
+  }`;
+  const response = await apolloClient.query({
+      query: query,
+      variables: {
+        redcapId: redcapId
+      }
+    });
+  if (response && response.data && response.data.participantClinicalDataset) {
+      return response.data.participantClinicalDataset;
+  } else {
+      store.dispatch(sendMessageToBackend("Could not retrieve participantClinicalDataset: " + response.error));
+  }
+};
