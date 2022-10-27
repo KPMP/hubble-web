@@ -17,7 +17,7 @@ export const experimentalDataConverter = (data={}) => {
     return result;
 }
 
-const formatData = (data={}, result=[], toolName='') => {
+const formatData = (data=[], result=[], toolName='') => {
     data.forEach((datum) => {
         result.push({key: datum.dataType, value: datum.count, tool: toolName, isAggregated: datum.isAggregatedData})
     });
