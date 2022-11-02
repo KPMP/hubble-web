@@ -67,8 +67,11 @@ export const mapClinicalKeysToPresentationStyle = (data) => {
     result['On RAAS Blockade'] = "";
     result['Proteinuria (mg)'] = "";
     result['Ethnicity'] = "";
-    result['Age'] = "";
+    result['Age (Years)'] = "";
+    result['Sample Type'] = "";
     result['Sex'] = "";
+    result['Protocol'] = "";
+    result['Tissue Source'] = "";
 
     if (!data || data === {}) {
         return result;
@@ -106,11 +109,18 @@ export const mapClinicalKeysToPresentationStyle = (data) => {
     if (data['Race']) {
         result['Ethnicity'] = data['Race'] ? data['Race'] : "";
     }
-    if (data['Age']) {
-        result['Age'] = data['Age'] ? data['Age'] : "";
+    if (data['Age (Years) (Binned)']) {
+        result['Age (Years)'] = data['Age (Years) (Binned)'] ? data['Age (Years) (Binned)'] : "";
     }
     if (data['Sex']) {
         result['Sex'] = data['Sex'] ? data['Sex'] : "";
     }
+    if (data['Protocol']) {
+        result['Protocol'] = data['Protocol'] ? data['Protocol'] : "";
+    }
+    if (data['Tissue Source']) {
+        result['Tissue Source'] = data['Tissue Source'] ? data['Tissue Source'] : "";
+    }
+    
     return result;
 };
