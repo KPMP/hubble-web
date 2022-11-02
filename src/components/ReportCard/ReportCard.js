@@ -16,14 +16,14 @@ class ReportCard extends Component {
     }
     getDefaultColumnWidths = () => {
         return [
-            { columnName: 'key', width: 225 },
-            { columnName: 'value', width: 150 },
+            { columnName: 'key', width: 215 },
+            { columnName: 'value', width: 180 },
         ]
     };
     getDefaultLinkColumnWidths = () => {
         return [
-            { columnName: 'key', width: 350 },
-            { columnName: 'value', width: 40 },
+            { columnName: 'key', width: 380 },
+            { columnName: 'value', width: 20 },
         ]
     };
     getColumns = () => {
@@ -87,7 +87,7 @@ class ReportCard extends Component {
                 hideable: false,
                 defaultHidden: false,
                 getCellValue: row => this.formatLinkableCellValue(row)
-            },
+            }
         ];
     };
 
