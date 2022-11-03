@@ -2,7 +2,6 @@ import {connect} from "react-redux";
 import ImageDatasetList from "./ImageDatasetList";
 import { withRouter } from 'react-router';
 import {setSelectedImageDataset, setTableSettings} from "../../actions/Images/imageDatasetActions";
-import compose from "recompose/compose";
 import { withSearch } from "@elastic/react-search-ui";
 
 const mapStateToProps = (state, props) =>
@@ -30,6 +29,6 @@ const mapSearchToProps = (context) => ({
     removeFilter: context.removeFilter
 });
 
-export default withRouter(compose(
+export default withRouter(
     withSearch(mapSearchToProps),
-    connect(mapStateToProps, mapDispatchToProps))(ImageDatasetList))
+    connect(mapStateToProps, mapDispatchToProps))(ImageDatasetList)
