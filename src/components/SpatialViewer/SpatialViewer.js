@@ -44,10 +44,6 @@ class SpatialViewer extends Component {
     }
 
     render() {     
-        document.querySelector('.jss94').addEventListener('click', event => handleGoogleAnalyticsEvent(
-            'Download',
-                this.props.selectedImageDataset["filename"]));
-
         if (!this.props.selectedImageDataset || (this.props.selectedImageDataset && Object.keys(this.props.selectedImageDataset).length === 0)) {
             return <Redirect to='/' />
         }
