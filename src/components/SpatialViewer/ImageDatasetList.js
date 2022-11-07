@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { Component } from 'react';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Col, Container, Row, Spinner } from "reactstrap";
@@ -37,28 +37,60 @@ import { MultiCheckboxFacet } from "@elastic/react-search-ui-views";
 
 import "@elastic/react-search-ui-views/lib/styles/styles.css";
 
-const ImageDatasetList = (props)  => {
+class ImageDatasetList extends Component {
 
-    const tabEnum = {
-        DATASET: 'DATASET',
-        PARTICIPANT: 'PARTICIPANT',
+    constructor(props) {
+        super(props);
+        const columnCards = this.getColumns().map((item, index) => {
+            return {id: index, text: item.title, name: item.name, hideable: item.hideable}
+        });
+        this.state = {
+            filterTabActive: true,
+            activeFilterTab: 'DATASET',
+            tableData: [],
+            cards: this.props.props.tableSettings.cards || columnCards,
+            currentPage: this.props.props.tableSettings.currentPage,
+            isLoaded: false
+        };
+
+    }
+
+    getSearchResults = () => {
+        let spatialData = resultConverter(this.props.results);
+        this.setState({ "tableData": spatialData });
     };
-    const getImageTypeCell = (row) => {
-        return row["imagetype"] !== "" &&
-            <div className={`image-type-cell ${(getImageTypeTooltipCopy(row["imagetype"]) !== "") ? 'clickable': '' }`}>
-                <span className='mr-1'>{row["imagetype"]}</span>
-                {getImageTypeTooltipCopy(row["imagetype"]) !== "" &&
-                <div>
-                    <div className='tooltip-parent-sibling'></div>
-                    <div className='tooltip-parent rounded border shadow mt-2 p-2'>
-                        <span className='tooltip-child'>{getImageTypeTooltipCopy(row["imagetype"])}</span>
-                    </div>
-                </div>
-                }
-            </div>
+
+    async componentDidMount() {
+        await this.getSearchResults();
+        this.setState({isLoaded: true})
     };
-    const getColumns = () => {
-        const { setSelectedImageDataset } =props;
+
+    componentDidUpdate(prevProps, prevState, snapShot) {
+        if (this.props !== prevProps) {
+            if (this.props.results !== prevProps.results) {
+                this.getSearchResults();
+            }
+            if (this.props.filters !== prevProps.filters) {
+                this.props.props.setTableSettings({currentPage: 0});
+            }
+        }
+    };
+
+    setCards = (cards) => {
+        this.setState({cards});
+        this.props.props.setTableSettings({cards: cards});
+    };
+    
+    setDefaultCards = () => {
+        const cards = this.getColumns().map((item, index) => {
+            return {id: index, text: item.title, name: item.name, hideable: item.hideable}
+        });
+        this.setCards(cards)
+    };
+
+    // This is used for column ordering too.
+    getColumns = () => {
+        const { setSelectedImageDataset } = this.props.props;
         let columns = [
             {
                 name: 'spectrackSampleId',
@@ -95,7 +127,7 @@ const ImageDatasetList = (props)  => {
                 sortable: true,
                 hideable: true,
                 defaultHidden: false,
-                getCellValue: getImageTypeCell
+                getCellValue: this.getImageTypeCell
             },
             {
                 name: 'level',
@@ -106,58 +138,9 @@ const ImageDatasetList = (props)  => {
             },
         ];
         return columns;
-    }
-    const columnCards = getColumns().map((item, index) => {
-        return {id: index, text: item.title, name: item.name, hideable: item.hideable}
-    })
-    const { pagingSize, columnWidths, hiddenColumnNames, sorting } = props.tableSettings;
-    const [filterTabActive, setFilterTabActive] = useState(true);
-    const [currentPage] = useState(props.tableSettings.currentPage);
-    const [activeFilterTab , setActiveFilterTab] = useState(tabEnum.DATASET)
-    const [tableData, setTableData] = useState([]);
-    const [isLoaded , setIsLoaded] = useState(false);
-    const [cards, setCardState] = useState(props.tableSettings.cards || columnCards);
-    const prevProps = useRef(props); 
-
-    useEffect(() => {
-        const getSearchResults = () => {
-            let spatialData = resultConverter(props.results);
-            setTableData(spatialData);
-        };
-        getSearchResults();
-        setIsLoaded(true);
-    }, [props]);
-
-    useEffect(() => { 
-        const getSearchResults = () => {
-            let spatialData = resultConverter(props.results);
-            setTableData(spatialData);
-        };
-         
-        if (props !== prevProps.current) {
-            if (props.results !== prevProps.current.results) {
-                getSearchResults();
-            }
-            if (props.filters !== prevProps.current.filters) {
-                props.setTableSettings({currentPage: 0});
-            }
-        }
-    }, [props]);
-
-    const setCards = (cards) => {
-        setCardState(cards);
-        props.setTableSettings({cards: cards});
-    };
-    
-    const setDefaultCards = () => {
-        const cards = getColumns().map((item, index) => {
-            return {id: index, text: item.title, name: item.name, hideable: item.hideable}
-        });
-        setCards(cards)
     };
 
-    // This is used for column ordering too.
-    const getDefaultHiddenColumnNames = (columns) => {
+    getDefaultHiddenColumnNames = (columns) => {
         return columns.filter((column) => {
             return column.defaultHidden === true
           }).map((column) => {
@@ -165,11 +148,22 @@ const ImageDatasetList = (props)  => {
           })
     };
 
-    
-    
+    getImageTypeCell = (row) => {
+        return row["imagetype"] !== "" &&
+            <div className={`image-type-cell ${(getImageTypeTooltipCopy(row["imagetype"]) !== "") ? 'clickable': '' }`}>
+                <span className='mr-1'>{row["imagetype"]}</span>
+                {getImageTypeTooltipCopy(row["imagetype"]) !== "" &&
+                <div>
+                    <div className='tooltip-parent-sibling'></div>
+                    <div className='tooltip-parent rounded border shadow mt-2 p-2'>
+                        <span className='tooltip-child'>{getImageTypeTooltipCopy(row["imagetype"])}</span>
+                    </div>
+                </div>
+                }
+            </div>
+    };
 
-
-    const getDefaultColumnWidths = () => {
+    getDefaultColumnWidths = () => {
         return [
             { columnName: 'spectrackSampleId', width: 145 },
             { columnName: 'datatype', width: 250 },
@@ -180,66 +174,79 @@ const ImageDatasetList = (props)  => {
         ]
     };
 
-    const toggleFilterTab = () => {
-        if(filterTabActive) {
-            setFilterTabActive(false)
+    toggleFilterTab = () => {
+        if(this.state.filterTabActive) {
+            this.setState({filterTabActive: false});
         } else {
-            
-            setFilterTabActive(true)
+            this.setState({filterTabActive: true});
         }
     };
+
+    setActiveFilterTab = (tabName) => {
+        this.setState({activeFilterTab: tabName});
+    };
     
-    const getPageSizes = () => {
+    getPageSizes = () => {
         return [10,20,40,80,100]
     };
 
-    const getFilterPills = (filters) => {
+    getFilterPills = (filters) => {
         return filters.map(
             filter => {
                 return filter.values.map(value => {
-                    return (<div
-                                key={(filter.field).toString() + value.toString()}
-                                className="border rounded activeFilter">
-                                <span>{value}
-                                    <FontAwesomeIcon
-                                        alt="Close Filter"
-                                        onClick={()=>{
-                                            props.removeFilter(filter.field, value)
-                                        }}
-                                        className="close-button fas fa-xmark ml-2"
-                                        icon={faXmark} />
-                                </span>
-                             </div>)
+                    return (
+                        <div
+                            key={(filter.field).toString() + value.toString()}
+                            className="border rounded activeFilter">
+                            <span>{value}
+                                <FontAwesomeIcon
+                                    alt="Close Filter"
+                                    onClick={()=>{
+                                        this.props.removeFilter(filter.field, value)
+                                    }}
+                                    className="close-button fas fa-xmark ml-2"
+                                    icon={faXmark} />
+                            </span>
+                        </div>)
                 })
             })
     };
+
+    render() {
+        const tabEnum = {
+            DATASET: 'DATASET',
+            PARTICIPANT: 'PARTICIPANT',
+        };
+
+        const { pagingSize, columnWidths, hiddenColumnNames, sorting, currentPage} = this.props.props.tableSettings;
+
         return (
             <Container id='outer-wrapper' className="multi-container-container container-xxl">
                 <Row>
                     <Col xl={3}>
-                        <div className={`filter-panel-wrapper ${filterTabActive ? '': 'hidden'}`}>
+                        <div className={`filter-panel-wrapper ${this.state.filterTabActive ? '': 'hidden'}`}>
                         <div className="filter-panel-tab-wrapper">
-                            <div onClick={() => {setActiveFilterTab(tabEnum.DATASET)}}
-                                className={`filter-tab ${activeFilterTab === tabEnum.DATASET ? 'active' : ''} rounded border`}>DATASET</div>
-                            <div onClick={() => {setActiveFilterTab(tabEnum.PARTICIPANT)}}
-                                className={`filter-tab ${activeFilterTab === tabEnum.PARTICIPANT ? 'active' : ''} rounded border`}>PARTICIPANT</div>
+                            <div onClick={() => {this.setActiveFilterTab(tabEnum.DATASET)}}
+                                className={`filter-tab ${this.state.activeFilterTab === tabEnum.DATASET ? 'active' : ''} rounded border`}>DATASET</div>
+                            <div onClick={() => {this.setActiveFilterTab(tabEnum.PARTICIPANT)}}
+                                className={`filter-tab ${this.state.activeFilterTab === tabEnum.PARTICIPANT ? 'active' : ''} rounded border`}>PARTICIPANT</div>
                             
                             <div className="filter-tab filter-tab-control-icon clickable"
                                  alt="Close Filter Tab"
-                                 onClick={() => {toggleFilterTab()}}>                                
+                                 onClick={() => {this.toggleFilterTab()}}>                                
                                 <FontAwesomeIcon
                                     className="fas fa-angles-left " icon={faAnglesLeft} />
                             </div>
                         </div>
                             <React.Fragment>
-                            {activeFilterTab === tabEnum.DATASET &&
+                            {this.state.activeFilterTab === tabEnum.DATASET &&
                             <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
                                 <Row className="mb-2"><Col><Facet field="datatype" label="Experimental Strategy" filterType="any"
                                                                   view={MultiCheckboxFacet}/></Col></Row>
                                 <Row className="mb-2"><Col><Facet field="imagetype" label="Image Type" filterType="any"
                                                                   view={MultiCheckboxFacet}/></Col></Row>
                             </Container>
-                            }{activeFilterTab === tabEnum.PARTICIPANT &&
+                            }{this.state.activeFilterTab === tabEnum.PARTICIPANT &&
                         <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
                             <Row className="mb-2"><Col><Facet field="sex" label="Sex" filterType="any"
                                                               view={MultiCheckboxFacet}/></Col></Row>
@@ -257,25 +264,25 @@ const ImageDatasetList = (props)  => {
                         </div>
 
                     </Col>
-                    <Col xl={`${filterTabActive ? 9 : 12 }`}>
+                    <Col xl={`${this.state.filterTabActive ? 9 : 12 }`}>
                         <Row>
                             <Col 
-                                className={`filter-collapse clickable ${filterTabActive ? 'hidden': ''}`}
+                                className={`filter-collapse clickable ${this.state.filterTabActive ? 'hidden': ''}`}
                                 xl={1}
                                 alt="Open Filter Tab"
-                                onClick={() => {toggleFilterTab()}}>
+                                onClick={() => {this.toggleFilterTab()}}>
                             <FontAwesomeIcon
                                     className="fas fa-angles-left" icon={faAnglesRight} />
                             </Col>
-                            <Col xl={12} className={`my-0 activeFilter-column ${filterTabActive ? 'closed': ''}`}>
-                                {props.filters.length === 0 ?
+                            <Col xl={12} className={`my-0 activeFilter-column ${this.state.filterTabActive ? 'closed': ''}`}>
+                                {this.props.filters.length === 0 ?
 
                                 <Row className="filter-pill-row inactive-filters">
                                     <span>Select a spatial dataset from the list below to visualize it in the <a target="_blank" rel="noreferrer" href="http://vitessce.io/">Vitessce</a> visual integration tool.</span>
                                 </Row>
                                 :
                                 <Row className="filter-pill-row">
-                                    {getFilterPills(props.filters)}
+                                    {this.getFilterPills(this.props.filters)}
                                 </Row>}
                                 
                             </Col>
@@ -284,13 +291,13 @@ const ImageDatasetList = (props)  => {
                             <div className='container-max spatial-data-table-wrapper'>
                                 <div className="spatial-data-table">
                                     <React.Fragment>
-                                    { isLoaded ?
+                                    { this.state.isLoaded ?
                                     <Grid
-                                        rows={tableData}
-                                        columns={getColumns()}>
+                                        rows={this.state.tableData}
+                                        columns={this.getColumns()}>
                                         <SortingState
                                             defaultSorting={[]}
-                                            onSortingChange={(sorting) =>  props.setTableSettings({sorting: sorting})}
+                                            onSortingChange={(sorting) =>  this.props.props.setTableSettings({sorting: sorting})}
                                             sorting={sorting}/>
                                         <IntegratedSorting 
                                             columnExtensions={[
@@ -303,44 +310,44 @@ const ImageDatasetList = (props)  => {
                                         <PagingState
                                             currentPage={currentPage}
                                             defaultPageSize={pagingSize}
-                                            onCurrentPageChange={(page) => props.setTableSettings({currentPage: page})}
+                                            onCurrentPageChange={(page) => this.props.props.setTableSettings({currentPage: page})}
                                         />
                                         <IntegratedPaging />
                                         <PagingPanel />
                                         <Toolbar
-                                            cards={cards}
-                                            setCards={setCards}
+                                            cards={this.state.cards}
+                                            setCards={this.state.setCards}
                                         />
-                                        <ToolbarButtonState setTableSettings={props.setTableSettings} />
+                                        <ToolbarButtonState setTableSettings={this.props.props.setTableSettings} />
                                         <Table />
                                         <TableColumnResizing
-                                            defaultColumnWidths={getDefaultColumnWidths()} minColumnWidth={145}
-                                            onColumnWidthsChange={(columnWidths) =>  props.setTableSettings({columnWidths: columnWidths})}
+                                            defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={145}
+                                            onColumnWidthsChange={(columnWidths) =>  this.props.props.setTableSettings({columnWidths: columnWidths})}
                                             columnWidths={columnWidths}
                                         />
 
                                         <TableColumnReordering
-                                            order={(cards).map(item => item.name)}
-                                            defaultOrder={getColumns().map(item => item.name)}
+                                            order={(this.state.cards).map(item => item.name)}
+                                            defaultOrder={this.getColumns().map(item => item.name)}
                                         />
                                         <TableHeaderRow showSortingControls />
                                         <TableColumnVisibility
-                                            defaultHiddenColumnNames={getDefaultHiddenColumnNames(getColumns())}
+                                            defaultHiddenColumnNames={this.getDefaultHiddenColumnNames(this.getColumns())}
                                             hiddenColumnNames={hiddenColumnNames}
-                                            onHiddenColumnNamesChange={(hiddenColumnNames) => {props.setTableSettings({hiddenColumnNames: hiddenColumnNames})}}
+                                            onHiddenColumnNamesChange={(hiddenColumnNames) => {this.props.props.setTableSettings({hiddenColumnNames: hiddenColumnNames})}}
                                         />
                                         <ColumnChooser />
                                         
                                         <ToolbarButton 
-                                            cards={cards}
-                                            setCards={setCards}
-                                            setDefaultCards={setDefaultCards}
-                                            defaultOrder={getColumns().map(item => item.name)} />
+                                            cards={this.state.cards}
+                                            setCards={this.setCards}
+                                            setDefaultCards={this.setDefaultCards}
+                                            defaultOrder={this.getColumns().map(item => item.name)} />
                                         <PaginationState
                                             currentPage={currentPage}
-                                            setTableSettings={props.setTableSettings}
+                                            setTableSettings={this.props.props.setTableSettings}
                                             pagingSize={pagingSize}/>
-                                        <Pagination pageSizes={getPageSizes()} />
+                                        <Pagination pageSizes={this.getPageSizes()} />
                                     </Grid>
                                     : <Spinner animation="border" variant="primary">
                                             <span className="visually-hidden">Loading...</span>
@@ -348,11 +355,12 @@ const ImageDatasetList = (props)  => {
                                         </React.Fragment>
                                 </div>
                             </div>
-                        </DndProvider> 
+                        </DndProvider>
                     </Col>
                 </Row>
             </Container>
         )
+    }
 }
 
 export default ImageDatasetList;
