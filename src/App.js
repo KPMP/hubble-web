@@ -32,7 +32,7 @@ const saveState = () => {
 };
 
 // *** Get a new tracking Id and add it here *** //
-const GA_TRACKING_ID = 'UA-124331187-10';
+const GA_TRACKING_ID = 'G-64W6E37TQB';
 
 ReactGA.initialize(GA_TRACKING_ID,{ testMode: process.env.NODE_ENV === 'test' ? true : false });
 function logPageView(location, action) {
