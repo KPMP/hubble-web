@@ -14,7 +14,12 @@
         },
         "embeddingCellRadius": {
             "UMAP": 3
-        }
+        },
+        "spatialCellsLayer": 
+            {
+            "is_visible": {"opacity": 1,"radius": 50,"visible": true,"stroked": false},
+            "is_not_visible": {"opacity": 1,"radius": 50,"visible": false,"stroked": false}
+            }
     },
     "datasets": [
         {
@@ -76,11 +81,23 @@
         {
             "component": "spatial",
             "coordinationScopes": {
+                "spatialCellsLayer": "is_visible",
                 "dataset": "A"
             },
             "h": 12,
             "w": 5,
             "x": 3,
+            "y": 0
+        },
+        {
+            "component": "spatial",
+            "coordinationScopes": {
+                "spatialCellsLayer": "is_not_visible",
+                "dataset": "A"
+            },
+            "h": 12,
+            "w": 4,
+            "x": 8,
             "y": 0
         },
         {
@@ -93,7 +110,7 @@
             },
             "h": 12,
             "w": 4,
-            "x": 8,
+            "x": 3,
             "y": 0
         },
         {
