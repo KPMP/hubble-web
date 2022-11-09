@@ -5,9 +5,6 @@ import ImageDatasetList from "./ImageDatasetList";
 import { WithSearch } from "@elastic/react-search-ui";
 
 class ImageDatasetListSubContainer extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (
