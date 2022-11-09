@@ -65,7 +65,7 @@ class ImageDatasetList extends Component {
         this.setState({isLoaded: true})
     };
 
-    componentDidUpdate(prevProps, prevState, snapShot) {
+    componentDidUpdate(prevProps) {
         if (this.props !== prevProps) {
             if (this.props.results !== prevProps.results) {
                 this.getSearchResults();
@@ -181,11 +181,7 @@ class ImageDatasetList extends Component {
             this.setState({filterTabActive: true});
         }
     };
-
-    setActiveFilterTab = (tabName) => {
-        this.setState({activeFilterTab: tabName});
-    };
-    
+  
     getPageSizes = () => {
         return [10,20,40,80,100]
     };
@@ -226,10 +222,10 @@ class ImageDatasetList extends Component {
                     <Col xl={3}>
                         <div className={`filter-panel-wrapper ${this.state.filterTabActive ? '': 'hidden'}`}>
                         <div className="filter-panel-tab-wrapper">
-                            <div onClick={() => {this.setActiveFilterTab(tabEnum.DATASET)}}
-                                className={`filter-tab ${this.state.activeFilterTab === tabEnum.DATASET ? 'active' : ''} rounded border`}>DATASET</div>
-                            <div onClick={() => {this.setActiveFilterTab(tabEnum.PARTICIPANT)}}
-                                className={`filter-tab ${this.state.activeFilterTab === tabEnum.PARTICIPANT ? 'active' : ''} rounded border`}>PARTICIPANT</div>
+                            <div onClick={() => {this.props.setActiveFilterTab(tabEnum.DATASET)}}
+                                className={`filter-tab ${this.props.activeFilterTab === tabEnum.DATASET ? 'active' : ''} rounded border`}>DATASET</div>
+                            <div onClick={() => {this.props.setActiveFilterTab(tabEnum.PARTICIPANT)}}
+                                className={`filter-tab ${this.props.activeFilterTab === tabEnum.PARTICIPANT ? 'active' : ''} rounded border`}>PARTICIPANT</div>
                             
                             <div className="filter-tab filter-tab-control-icon clickable"
                                  alt="Close Filter Tab"
@@ -239,14 +235,14 @@ class ImageDatasetList extends Component {
                             </div>
                         </div>
                             <React.Fragment>
-                            {this.state.activeFilterTab === tabEnum.DATASET &&
+                            {this.props.activeFilterTab === tabEnum.DATASET &&
                             <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
                                 <Row className="mb-2"><Col><Facet field="datatype" label="Experimental Strategy" filterType="any"
                                                                   view={MultiCheckboxFacet}/></Col></Row>
                                 <Row className="mb-2"><Col><Facet field="imagetype" label="Image Type" filterType="any"
                                                                   view={MultiCheckboxFacet}/></Col></Row>
                             </Container>
-                            }{this.state.activeFilterTab === tabEnum.PARTICIPANT &&
+                            }{this.props.activeFilterTab === tabEnum.PARTICIPANT &&
                         <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
                             <Row className="mb-2"><Col><Facet field="sex" label="Sex" filterType="any"
                                                               view={MultiCheckboxFacet}/></Col></Row>
