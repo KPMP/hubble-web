@@ -84,8 +84,8 @@
                 "spatialCellsLayer": "is_visible",
                 "dataset": "A"
             },
-            "h": 12,
-            "w": 5,
+            "h": 6,
+            "w": 4,
             "x": 3,
             "y": 0
         },
@@ -95,9 +95,9 @@
                 "spatialCellsLayer": "is_not_visible",
                 "dataset": "A"
             },
-            "h": 12,
+            "h": 6,
             "w": 4,
-            "x": 8,
+            "x": 3,
             "y": 0
         },
         {
@@ -109,8 +109,8 @@
                 "embeddingCellRadius": "UMAP"
             },
             "h": 12,
-            "w": 4,
-            "x": 3,
+            "w": 5,
+            "x": 7,
             "y": 0
         },
         {
