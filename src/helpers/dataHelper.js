@@ -112,6 +112,11 @@ export const mapClinicalKeysToPresentationStyle = (data) => {
     if (data['Age (Years) (Binned)']) {
         result['Age (Years)'] = data['Age (Years) (Binned)'] ? data['Age (Years) (Binned)'] : "";
     }
+
+    if (data['Sample Type']) {
+        result['Sample Type'] = data['Sample Type'] ? data['Sample Type'] : "";
+    }
+    
     if (data['Sex']) {
         result['Sex'] = data['Sex'] ? data['Sex'] : "";
     }
