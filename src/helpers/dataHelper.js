@@ -82,8 +82,8 @@ export const mapClinicalKeysToPresentationStyle = (data) => {
     if (data['Albuminuria (mg) (Binned)']) {
         result['Albuminuria (mg)'] = data['Albuminuria (mg) (Binned)'] ? data['Albuminuria (mg) (Binned)'] : "";
     }
-    if (data['Baseline eGFR (ml/min/1.73m2) (Binned)']) {
-        result['Baseline_eGFR (ml/min/1.73m2)'] = data['Baseline eGFR (ml/min/1.73m2) (Binned)'] ? data['Baseline eGFR (ml/min/1.73m2) (Binned)'] : "";
+    if (data['Baseline eGFR (ml/min/1.73m2) (Binned) ']) {
+        result['Baseline_eGFR (ml/min/1.73m2)'] = data['Baseline eGFR (ml/min/1.73m2) (Binned) '] ? data['Baseline eGFR (ml/min/1.73m2) (Binned) '] : "";
     }
     if (data['Diabetes Duration (Years)']) {
         result['Diabetes Duration (Years)'] = data['Diabetes Duration (Years)'] ? data['Diabetes Duration (Years)'] : "";
