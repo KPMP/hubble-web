@@ -13,7 +13,7 @@ import Oops from './components/Error/Oops';
 import NotFoundPage from './components/Error/NotFoundPage';
 import ImageDatasetListContainer from "./components/SpatialViewer/ImageDatasetListContainer";
 import SpatialViewerContainer from "./components/SpatialViewer/SpatialViewerContainer";
-import { baseURL } from '../package.json';
+import packageJson from '../package.json';
 import AppSearchAPIConnector from "@elastic/search-ui-app-search-connector";
 import { SearchProvider } from "@elastic/react-search-ui";
 
@@ -87,7 +87,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <SearchProvider config={searchConfig}>
-        <BrowserRouter history={history} basename={baseURL}>
+        <BrowserRouter history={history} basename={packageJson.baseURL}>
           <ErrorBoundaryContainer>
             <NavBar app='atlas' />
             <Switch>
