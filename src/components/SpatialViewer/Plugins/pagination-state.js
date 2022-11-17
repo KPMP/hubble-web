@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Plugin, Getter, Action } from "@devexpress/dx-react-core";
-import { tableSettings } from '../../../initialState';
+import tableSettings from '../../../initialState';
 
 export class PaginationState extends React.PureComponent {
   constructor(props) {
