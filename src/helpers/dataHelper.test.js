@@ -71,7 +71,7 @@ describe('dataHelper', () => {
             let clinicalUnmapped = {};
             clinicalUnmapped['A1c (%) (Binned)']= "test-a1c";
             clinicalUnmapped['Albuminuria (mg) (Binned)'] = "test-albuminuria";
-            clinicalUnmapped['Baseline eGFR (ml/min/1.73m2) (Binned)'] = "test-baseline_egfr";
+            clinicalUnmapped['Baseline eGFR (ml/min/1.73m2) (Binned) '] = "test-baseline_egfr";
             clinicalUnmapped['Diabetes Duration (Years)'] = "test-diabetes_duration";
             clinicalUnmapped['Diabetes History'] = "test-diabetes_history";
             clinicalUnmapped['Hypertension Duration (Years)'] = "test-hypertension_duration";
@@ -80,8 +80,11 @@ describe('dataHelper', () => {
             clinicalUnmapped['On RAAS Blockade'] = "test-on_raas_blockade";
             clinicalUnmapped['Proteinuria (mg) (Binned)'] = "test-proteinuria";
             clinicalUnmapped['Race'] = "test-Ethnicity";
-            clinicalUnmapped['Age'] = "test-Age";
+            clinicalUnmapped['Age (Years) (Binned)'] = "test-Age";
             clinicalUnmapped['Sex'] = "test-sex";
+            clinicalUnmapped['Protocol'] = "test-Protocol";
+            clinicalUnmapped['Sample Type'] = "test-Sample Type";
+            clinicalUnmapped['Tissue Source'] = "test-Tissue Source";
             const clinicalMappingResult = mapClinicalKeysToPresentationStyle(clinicalUnmapped);
             const expectedClinicalMapping = {};
             expectedClinicalMapping['A1C (%)']= "test-a1c";
@@ -95,8 +98,11 @@ describe('dataHelper', () => {
             expectedClinicalMapping['On RAAS Blockade'] = "test-on_raas_blockade";
             expectedClinicalMapping['Proteinuria (mg)'] = "test-proteinuria";
             expectedClinicalMapping['Ethnicity'] = "test-Ethnicity";
-            expectedClinicalMapping['Age'] = "test-Age";
+            expectedClinicalMapping['Age (Years)'] = "test-Age";
             expectedClinicalMapping['Sex'] = "test-sex";
+            expectedClinicalMapping['Protocol'] = "test-Protocol";
+            expectedClinicalMapping['Sample Type'] = "test-Sample Type";
+            expectedClinicalMapping['Tissue Source'] = "test-Tissue Source";
             expect(clinicalMappingResult).toEqual(expectedClinicalMapping);
         }),
         it('should return remapped values when object params given even when bad data is sent', () => {
@@ -116,8 +122,11 @@ describe('dataHelper', () => {
             expectedClinicalMapping['On RAAS Blockade'] = "";
             expectedClinicalMapping['Proteinuria (mg)'] = "";
             expectedClinicalMapping['Ethnicity'] = "";
-            expectedClinicalMapping['Age'] = "";
+            expectedClinicalMapping['Age (Years)'] = "";
             expectedClinicalMapping['Sex'] = "";
+            expectedClinicalMapping['Protocol'] = "";
+            expectedClinicalMapping['Sample Type'] = "";
+            expectedClinicalMapping['Tissue Source'] = "";
             expect(clinicalMappingResult).toEqual(expectedClinicalMapping);
         }),
         it('should return remapped values when empty object params given', () => {
@@ -135,8 +144,11 @@ describe('dataHelper', () => {
             expectedClinicalMapping['On RAAS Blockade'] = "";
             expectedClinicalMapping['Proteinuria (mg)'] = "";
             expectedClinicalMapping['Ethnicity'] = "";
-            expectedClinicalMapping['Age'] = "";
+            expectedClinicalMapping['Age (Years)'] = "";
             expectedClinicalMapping['Sex'] = "";
+            expectedClinicalMapping['Protocol'] = "";
+            expectedClinicalMapping['Sample Type'] = "";
+            expectedClinicalMapping['Tissue Source'] = "";
             expect(clinicalMappingResult).toEqual(expectedClinicalMapping);
         }),
         it('should return remapped values when null params given', () => {
@@ -154,8 +166,11 @@ describe('dataHelper', () => {
             expectedClinicalMapping['On RAAS Blockade'] = "";
             expectedClinicalMapping['Proteinuria (mg)'] = "";
             expectedClinicalMapping['Ethnicity'] = "";
-            expectedClinicalMapping['Age'] = "";
+            expectedClinicalMapping['Age (Years)'] = "";
             expectedClinicalMapping['Sex'] = "";
+            expectedClinicalMapping['Protocol'] = "";
+            expectedClinicalMapping['Sample Type'] = "";
+            expectedClinicalMapping['Tissue Source'] = "";
             expect(clinicalMappingResult).toEqual(expectedClinicalMapping);
         })
     })
