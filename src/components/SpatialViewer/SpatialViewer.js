@@ -25,9 +25,10 @@ class SpatialViewer extends Component {
     async componentDidMount() {
         if (this.props.selectedImageDataset) {
             handleGoogleAnalyticsEvent(
-                'Visualization',
-                this.props.selectedImageDataset["imagetype"],
-                this.props.selectedImageDataset["filename"]);
+                'Spatial Viewer',
+                'Navigation',
+                this.props.selectedImageDataset["spectrackSampleId"] 
+                + this.props.selectedImageDataset['imagetype']);
             let viewConfig = getViewConfig(this.props.selectedImageDataset["configtype"]);
             viewConfig = await populateViewConfig(viewConfig, this.props.selectedImageDataset);
             this.setState({viewConfig: viewConfig, noData: false});
@@ -47,8 +48,8 @@ class SpatialViewer extends Component {
             return <Redirect to='/' />
         }
         const summaryDataset = this.props.summaryDatasets
-        const clinicalDataset = this.props.clinicalDatasets[this.props.selectedImageDataset["redcapid"]]
-        const experimentalDataCounts = this.props.experimentalDataCounts[this.props.selectedImageDataset["redcapid"]]
+        const experimentalDataCounts = this.props.experimentalDataCounts
+        const clinicalDataset = this.props.clinicalDatasets
 
         return (
             <div className="container-fluid">
@@ -59,6 +60,7 @@ class SpatialViewer extends Component {
                         summaryDataset={summaryDataset}
                         clinicalDataset={clinicalDataset}
                         experimentalDataCounts={experimentalDataCounts}
+                        redcapid={this.props.selectedImageDataset["redcapid"]}
                     />
 
                     {!this.state.noData &&

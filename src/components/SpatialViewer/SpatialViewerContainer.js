@@ -3,8 +3,8 @@ import SpatialViewer from "./SpatialViewer";
 import { withRouter } from 'react-router';
 import { setClinicalDatasets, setSummaryDatasets } from "../../actions/Clinical/clinicalDatasetAction";
 import { setExperimentalDataCounts } from "../../actions/Experimental/experimentalDatasetAction";
-import { mapKeysToPresentationStyle } from "../../helpers/dataHelper";
-import { fetchParticipantSummaryDataset } from "../../helpers/Api";
+import { mapClinicalKeysToPresentationStyle, mapSummaryKeysToPresentationStyle } from "../../helpers/dataHelper";
+import { fetchParticipantSummaryDataset, fetchParticipantExperimentCounts, fetchParticipantClinicalDataset } from "../../helpers/Api";
 
 const mapStateToProps = (state, props) =>
     ({
@@ -18,37 +18,19 @@ const mapDispatchToProps = (dispatch, props) =>
     ({
         async setSummaryDatasets(participant_id) {
             let summaryDatasets = await fetchParticipantSummaryDataset(participant_id);
-            summaryDatasets = mapKeysToPresentationStyle(summaryDatasets);
+            summaryDatasets = mapSummaryKeysToPresentationStyle(summaryDatasets);
             dispatch(setSummaryDatasets(summaryDatasets));
         },
-        setClinicalDatasets(participant_id) {
-            // api call to get clinical data
-            const clinicalDatasets = {}
-            clinicalDatasets[participant_id] = {
-                "Sex:": "Male",
-                "Age": "60-69",
-                "Ethnicity": "White",
-                'KDIGO Stage': 'Stage 2',
-                "Baseline_eGFR (ml/min/1.73m2)": "60-69",
-                "Proteinuria (mg)": "150mg-499mg",
-                "A1C (%)": ">8.5",
-                "Albuminuria(mg)": "",
-                "Diabetes History": "Yes",
-                "Hypertension History": "14-Oct",
-                "Hypertension Duration(years)": "",
-                "On RAAS Blockade": "No",
+        async setClinicalDatasets(participant_id) {
+            let clinicalDatasets = await fetchParticipantClinicalDataset(participant_id);
+            if (clinicalDatasets) {
+                clinicalDatasets = JSON.parse(clinicalDatasets.clinicalData);
             }
+            clinicalDatasets = mapClinicalKeysToPresentationStyle(clinicalDatasets);
             dispatch(setClinicalDatasets(clinicalDatasets));
         },
-        setExperimentalDataCounts(participant_id) {
-            const experimentalDataCounts = {}
-            experimentalDataCounts[participant_id] = {
-                'Light Microscopic Whole Slide Image': '8',
-                'CODEX': 0,
-                'Single-cell RNA-Seq': 1,
-                'Single-nucleus RNA-Seq': 30,
-                'Regional Transcriptomics': 100
-            }
+        async setExperimentalDataCounts(participant_id) {
+            let experimentalDataCounts = await fetchParticipantExperimentCounts(participant_id);
             dispatch(setExperimentalDataCounts(experimentalDataCounts));
         }
 

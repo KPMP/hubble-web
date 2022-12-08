@@ -5,7 +5,7 @@ import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from 'prop-types';
 import { Grid, Table, TableColumnResizing, TableHeaderRow} from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
-import { dataToTableConverter } from '../../helpers/dataHelper';
+import { dataToTableConverter, experimentalDataConverter } from '../../helpers/dataHelper';
 
 class ReportCard extends Component {
     constructor(props) {
@@ -16,14 +16,14 @@ class ReportCard extends Component {
     }
     getDefaultColumnWidths = () => {
         return [
-            { columnName: 'key', width: 225 },
-            { columnName: 'value', width: 150 },
+            { columnName: 'key', width: 215 },
+            { columnName: 'value', width: 180 },
         ]
     };
     getDefaultLinkColumnWidths = () => {
         return [
-            { columnName: 'key', width: 350 },
-            { columnName: 'value', width: 40 },
+            { columnName: 'key', width: 380 },
+            { columnName: 'value', width: 20 },
         ]
     };
     getColumns = () => {
@@ -45,9 +45,7 @@ class ReportCard extends Component {
 
     formatLinkableCellKey = (row) => {
         let key = row['key'];
-        if (row['key'] === 'Single-cell RNA-Seq'
-         || row['key'] === 'Single-nucleus RNA-Seq'
-         || row['key'] === 'Regional Transcriptomics' ) {
+       if(row.isAggregated) {
             key = (<div>{`${row['key']}`} <span className="u-controlled-access-asterisk">*</span></div>);
         } else {
             key = (<div>{`${row['key']}`}</div>);
@@ -56,7 +54,22 @@ class ReportCard extends Component {
     }
 
     formatLinkableCellValue = (row) => {
-        return( row['value'] > 0 ? <a className="p-0" href="/">{row['value']}</a>: <span>{row['value']}</span>)
+        let link = '/'
+        if (row.tool === 'spatial-viewer') {
+            link = '/' + row.tool + '?filters[0][field]=datatype&filters[0][values][0]=' + row.key + '&filters[0][type]=any&filters[1][field]=redcapid&filters[1][values][0]=' + this.props.redcapid + '&filters[1][type]=any'
+        } else if (row.tool === 'explorer') {
+            let dataType = '';
+            if (row.key.includes('Single-cell')) {
+                dataType = 'sc'
+            } else if (row.key.includes('Single-nuc')) {
+                dataType = 'sn'
+            } else if (row.key.includes('Regional')) {
+                dataType = 'regionalViz'
+            }
+            link = '/' + row.tool + '/dataViz?dataType=' + dataType
+        }
+
+        return( row['value'] > 0 ? <a className="p-0" href={link}>{row['value']}</a>: <span>{row['value']}</span>)
     }
     
     getLinkableColumns = () => {
@@ -74,9 +87,13 @@ class ReportCard extends Component {
                 hideable: false,
                 defaultHidden: false,
                 getCellValue: row => this.formatLinkableCellValue(row)
-            },
+            }
         ];
     };
+
+    getRowSets = (dataset) => {
+        return  experimentalDataConverter(dataset)
+    }
 
     getRows = (dataset) => {
         return dataToTableConverter(dataset)
@@ -126,11 +143,12 @@ class ReportCard extends Component {
                         <React.Fragment>
                             <h4 className="mt-3">Counts By Experimental Strategy</h4>
                             <div className="u-border-helper">
-                                <Grid rows={this.getRows(this.props.experimentalDataCounts)} columns={this.getLinkableColumns()}>
+                                
+                                <Grid rows={this.getRowSets(this.props.experimentalDataCounts)} columns={this.getLinkableColumns()}>
                                     <Table columnExtensions={[{ columnName: 'value', align: 'right' }]} />
                                     <TableColumnResizing defaultColumnWidths={this.getDefaultLinkColumnWidths()} />
                                     <TableHeaderRow />
-                                </Grid>
+                                </Grid> 
                             </div>
                         </React.Fragment>
                     </div>
