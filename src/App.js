@@ -60,7 +60,7 @@ const connector = new AppSearchAPIConnector({
 const searchConfig = {
   apiConnector: connector,
   searchQuery: {
-      disjunctiveFacets: ["sex", "age", "redcapid", "tissuetype", "imagetype", "datatype", "configtype", "level"],
+      disjunctiveFacets: ["sex", "age", "redcapid", "tissuetype", "imagetype", "datatype", "configtype", "level", "filename"],
       facets: {
         sex: { type: "value", size: 100},
         age: { type: "value", size: 100},
@@ -70,6 +70,7 @@ const searchConfig = {
         datatype: { type: "value", size: 100 },
         configtype: { type: "value", size: 100},
         level: { type: "value", size: 100},
+        filename: { type: "value", size: 100},
       }
   },
   initialState: {
