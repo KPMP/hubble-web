@@ -96,8 +96,8 @@ export const compareTableStrings = (a, b) => {
         }
     }
 
-    a = a.toString().split(/[-| |(|)|']/)
-    b = b.toString().split(/[-| |(|)|']/)
+    a = a?.toString().split(/[-| |(|)|']/) || ''
+    b = b?.toString().split(/[-| |(|)|']/) || ''
 
     a = a.filter(x => x !== '');
     b = b.filter(x => x !== '');
