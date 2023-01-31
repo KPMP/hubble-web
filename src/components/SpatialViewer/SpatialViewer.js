@@ -74,7 +74,7 @@ class SpatialViewer extends Component {
                                 (participant`} 
                                 <button
                                     type="button"
-                                    class="btn btn-link text-left p-0 u-text-decoration-none"
+                                    class="btn btn-link text-center p-0 u-text-decoration-none"
                                     onClick={()=>{this.openReportCard()}}>
                                     {`${this.props.selectedImageDataset["redcapid"]}`}
                                 </button>
