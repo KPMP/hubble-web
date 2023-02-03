@@ -23,7 +23,7 @@ class ReportCard extends Component {
     getDefaultLinkColumnWidths = () => {
         return [
             { columnName: 'key', width: 380 },
-            { columnName: 'value', width: 20 },
+            { columnName: 'value', width: 30 },
         ]
     };
     getColumns = () => {
