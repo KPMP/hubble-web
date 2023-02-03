@@ -71,13 +71,12 @@ class SpatialViewer extends Component {
                                 {`${this.props.selectedImageDataset["datatype"]} 
                                 for ${this.props.selectedImageDataset["tissuetype"]} 
                                 sample ${this.props.selectedImageDataset["spectracksampleid"]} 
-                                (participant`} 
-                                <span style={{"padding-bottom":"2px"}}><button
-                                    type="button"
-                                    class="btn btn-link text-center p-0 u-text-decoration-none"
+                                (participant `} 
+                                <a href="#"
+                                    class="p-0 u-text-decoration-none"
                                     onClick={()=>{this.openReportCard()}}>
                                     {`${this.props.selectedImageDataset["redcapid"]}`}
-                                </button></span>
+                                </a>
                                 {`)`}
                             </h5>
                         </Col>
