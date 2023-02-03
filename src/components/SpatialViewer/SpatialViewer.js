@@ -75,8 +75,9 @@ class SpatialViewer extends Component {
                                 <button
                                     type="button"
                                     class="btn btn-link text-center p-0 u-text-decoration-none"
-                                    onClick={()=>{this.openReportCard()}}>
-                                    {`${this.props.selectedImageDataset["redcapid"]}`}
+                                    onClick={()=>{this.openReportCard()}}><span style={{"font-size":"26px"}}>{`${this.props.selectedImageDataset["redcapid"]}`}
+                                    </span>
+                                    
                                 </button>
                                 {`)`}
                             </h5>
