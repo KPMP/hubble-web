@@ -9,12 +9,14 @@ export const fetchAndSetSummaryDatasets = async (participant_id) => {
 }
 
 export const fetchAndSetClinicalDatasets = async (participant_id) => {
-    let clinicalDatasets = await fetchParticipantClinicalDataset(participant_id);
-    if (clinicalDatasets) {
-        clinicalDatasets = JSON.parse(clinicalDatasets.clinicalData);
+    return async (dispatch) => {
+        let clinicalDatasets = await fetchParticipantClinicalDataset(participant_id);
+        if (clinicalDatasets) {
+            clinicalDatasets = JSON.parse(clinicalDatasets.clinicalData);
+        }
+        clinicalDatasets = mapClinicalKeysToPresentationStyle(clinicalDatasets);
+        dispatch(setClinicalDatasets(clinicalDatasets));
     }
-    clinicalDatasets = mapClinicalKeysToPresentationStyle(clinicalDatasets);
-    return (dispatch) => dispatch(setClinicalDatasets(clinicalDatasets));
 }
 
 export const setSummaryDatasets = (summaryDatasets) => {
