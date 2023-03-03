@@ -36,6 +36,7 @@ import { Facet } from "@elastic/react-search-ui";
 import { MultiCheckboxFacet } from "@elastic/react-search-ui-views";
 
 import "@elastic/react-search-ui-views/lib/styles/styles.css";
+import ReportCard from "../ReportCard/ReportCard";
 
 class ImageDatasetList extends Component {
 
@@ -53,6 +54,22 @@ class ImageDatasetList extends Component {
             isLoaded: false
         };
 
+    }
+
+    clickReportCard = (row) => {
+        this.props.setSummaryDatasets(row['redcapid']);
+        this.props.setClinicalDatasets(row['redcapid']);
+        this.props.setExperimentalDataCounts(row['redcapid']) ;
+        this.props.setSelectedImageDatasetReportCard(row);
+        this.openReportCard()
+    }
+
+    openReportCard = () => {
+        this.setState({reportCardOpen: true})
+    }
+
+    closeReportCard = () => {
+        this.setState({reportCardOpen: false})
     }
 
     getSearchResults = () => {
@@ -106,6 +123,7 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: true,
                 defaultHidden: false,
+                getCellValue: row => <><span class="tooltiptext">View participant information</span><button onClick={(e) => this.clickReportCard(row) }>{row["redcapid"]}</button></>
             },
             {
                 name: 'datatype',
@@ -215,9 +233,19 @@ class ImageDatasetList extends Component {
         };
 
         const { pagingSize, columnWidths, hiddenColumnNames, sorting, currentPage} = this.props.props.tableSettings;
-
+        const summaryDataset = this.props.summaryDatasets
+        const experimentalDataCounts = this.props.experimentalDataCounts
+        const clinicalDataset = this.props.clinicalDatasets
         return (
             <Container id='outer-wrapper' className="multi-container-container container-xxl">
+                {this.props.selectedImageDataset && <ReportCard
+                    reportCardOpen={this.state.reportCardOpen}
+                    closeReportCard={this.closeReportCard}
+                    summaryDataset={summaryDataset}
+                    clinicalDataset={clinicalDataset}
+                    experimentalDataCounts={experimentalDataCounts}
+                    redcapid={this.props.selectedImageDataset["redcapid"]}
+                />}
                 <Row>
                     <Col xl={3}>
                         <div className={`filter-panel-wrapper ${this.state.filterTabActive ? '': 'hidden'}`}>
