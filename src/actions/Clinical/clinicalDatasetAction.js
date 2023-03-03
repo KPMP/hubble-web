@@ -5,7 +5,7 @@ import {
     fetchParticipantSummaryDataset
 } from "../../helpers/Api";
 import {mapClinicalKeysToPresentationStyle, mapSummaryKeysToPresentationStyle} from "../../helpers/dataHelper";
-import {setExperimentalDataCounts} from "../Experimental/experimentalDatasetAction";
+import {fetchParticipantClinicalDataset, fetchParticipantSummaryDataset} from "../../helpers/Api";
 
 export const fetchAndSetSummaryDatasets = async (participant_id) => {
     let summaryDatasets = await fetchParticipantSummaryDataset(participant_id);
