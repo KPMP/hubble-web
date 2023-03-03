@@ -3,9 +3,11 @@ import {mapClinicalKeysToPresentationStyle, mapSummaryKeysToPresentationStyle} f
 import {fetchParticipantClinicalDataset, fetchParticipantSummaryDataset} from "../../helpers/Api";
 
 export const fetchAndSetSummaryDatasets = async (participant_id) => {
-    let summaryDatasets = await fetchParticipantSummaryDataset(participant_id);
-    summaryDatasets = mapSummaryKeysToPresentationStyle(summaryDatasets);
-    return (dispatch) => dispatch(setSummaryDatasets(summaryDatasets));
+    return async (dispatch) => {
+        let summaryDatasets = await fetchParticipantSummaryDataset(participant_id);
+        summaryDatasets = mapSummaryKeysToPresentationStyle(summaryDatasets);
+        dispatch(setSummaryDatasets(summaryDatasets));
+    }
 }
 
 export const fetchAndSetClinicalDatasets = async (participant_id) => {
