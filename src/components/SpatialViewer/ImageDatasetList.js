@@ -49,8 +49,8 @@ class ImageDatasetList extends Component {
             filterTabActive: true,
             activeFilterTab: 'DATASET',
             tableData: [],
-            cards: this.props.props.tableSettings.cards || columnCards,
-            currentPage: this.props.props.tableSettings.currentPage,
+            cards: this.props.tableSettings.cards || columnCards,
+            currentPage: this.props.tableSettings.currentPage,
             isLoaded: false
         };
 
@@ -88,14 +88,14 @@ class ImageDatasetList extends Component {
                 this.getSearchResults();
             }
             if (this.props.filters !== prevProps.filters) {
-                this.props.props.setTableSettings({currentPage: 0});
+                this.props.setTableSettings({currentPage: 0});
             }
         }
     };
 
     setCards = (cards) => {
         this.setState({cards});
-        this.props.props.setTableSettings({cards: cards});
+        this.props.setTableSettings({cards: cards});
     };
     
     setDefaultCards = () => {
@@ -107,7 +107,7 @@ class ImageDatasetList extends Component {
 
     // This is used for column ordering too.
     getColumns = () => {
-        const { setSelectedImageDataset } = this.props.props;
+        const { setSelectedImageDataset } = this.props;
         let columns = [
             {
                 name: 'spectrackSampleId',
@@ -232,7 +232,7 @@ class ImageDatasetList extends Component {
             PARTICIPANT: 'PARTICIPANT',
         };
 
-        const { pagingSize, columnWidths, hiddenColumnNames, sorting, currentPage} = this.props.props.tableSettings;
+        const { pagingSize, columnWidths, hiddenColumnNames, sorting, currentPage} = this.props.tableSettings;
         const summaryDataset = this.props.summaryDatasets
         const experimentalDataCounts = this.props.experimentalDataCounts
         const clinicalDataset = this.props.clinicalDatasets
@@ -321,7 +321,7 @@ class ImageDatasetList extends Component {
                                         columns={this.getColumns()}>
                                         <SortingState
                                             defaultSorting={[]}
-                                            onSortingChange={(sorting) =>  this.props.props.setTableSettings({sorting: sorting})}
+                                            onSortingChange={(sorting) =>  this.props.setTableSettings({sorting: sorting})}
                                             sorting={sorting}/>
                                         <IntegratedSorting 
                                             columnExtensions={[
@@ -334,7 +334,7 @@ class ImageDatasetList extends Component {
                                         <PagingState
                                             currentPage={currentPage}
                                             defaultPageSize={pagingSize}
-                                            onCurrentPageChange={(page) => this.props.props.setTableSettings({currentPage: page})}
+                                            onCurrentPageChange={(page) => this.props.setTableSettings({currentPage: page})}
                                         />
                                         <IntegratedPaging />
                                         <PagingPanel />
@@ -342,11 +342,11 @@ class ImageDatasetList extends Component {
                                             cards={this.state.cards}
                                             setCards={this.state.setCards}
                                         />
-                                        <ToolbarButtonState setTableSettings={this.props.props.setTableSettings} />
+                                        <ToolbarButtonState setTableSettings={this.props.setTableSettings} />
                                         <Table />
                                         <TableColumnResizing
                                             defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={145}
-                                            onColumnWidthsChange={(columnWidths) =>  this.props.props.setTableSettings({columnWidths: columnWidths})}
+                                            onColumnWidthsChange={(columnWidths) =>  this.props.setTableSettings({columnWidths: columnWidths})}
                                             columnWidths={columnWidths}
                                         />
 
@@ -358,7 +358,7 @@ class ImageDatasetList extends Component {
                                         <TableColumnVisibility
                                             defaultHiddenColumnNames={this.getDefaultHiddenColumnNames(this.getColumns())}
                                             hiddenColumnNames={hiddenColumnNames}
-                                            onHiddenColumnNamesChange={(hiddenColumnNames) => {this.props.props.setTableSettings({hiddenColumnNames: hiddenColumnNames})}}
+                                            onHiddenColumnNamesChange={(hiddenColumnNames) => {this.props.setTableSettings({hiddenColumnNames: hiddenColumnNames})}}
                                         />
                                         <ColumnChooser />
                                         
@@ -369,7 +369,7 @@ class ImageDatasetList extends Component {
                                             defaultOrder={this.getColumns().map(item => item.name)} />
                                         <PaginationState
                                             currentPage={currentPage}
-                                            setTableSettings={this.props.props.setTableSettings}
+                                            setTableSettings={this.props.setTableSettings}
                                             pagingSize={pagingSize}/>
                                         <Pagination pageSizes={this.getPageSizes()} />
                                     </Grid>

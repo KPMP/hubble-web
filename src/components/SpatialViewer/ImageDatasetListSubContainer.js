@@ -25,7 +25,6 @@ class ImageDatasetListSubContainer extends Component {
                 const { filters, results, searchContext, setResultsPerPage, removeFilter } = context;
                 return (
                     <ImageDatasetList
-                        props={this.props}
                         filters={filters}
                         results={results}
                         searchContext={searchContext}
@@ -33,6 +32,7 @@ class ImageDatasetListSubContainer extends Component {
                         removeFilter={removeFilter}
                         setActiveFilterTab={this.setActiveFilterTab}
                         activeFilterTab={this.state.activeFilterTab}
+                        {...this.props}
                     />
                 )}}
                 </WithSearch>
