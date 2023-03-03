@@ -123,7 +123,7 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: true,
                 defaultHidden: false,
-                getCellValue: row => <><span class="tooltiptext">View participant information</span><button onClick={(e) => this.clickReportCard(row) } type='button' data-toggle="popover" data-content="" className='table-column btn btn-link text-left p-0'>{row["redcapid"]}</button></>
+                getCellValue: row => <button onClick={(e) => this.clickReportCard(row) } type='button' data-toggle="popover" data-content="View participant information" className='table-column btn btn-link text-left p-0'>{row["redcapid"]}</button>
             },
             {
                 name: 'datatype',
