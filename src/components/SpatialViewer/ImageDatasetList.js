@@ -51,7 +51,8 @@ class ImageDatasetList extends Component {
             tableData: [],
             cards: this.props.tableSettings.cards || columnCards,
             currentPage: this.props.tableSettings.currentPage,
-            isLoaded: false
+            isLoaded: false,
+            reportCardOpen: false
         };
 
     }

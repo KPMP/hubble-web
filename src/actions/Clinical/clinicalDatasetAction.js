@@ -2,7 +2,7 @@ import actionNames from '../actionNames'
 import {mapClinicalKeysToPresentationStyle, mapSummaryKeysToPresentationStyle} from "../../helpers/dataHelper";
 import {fetchParticipantClinicalDataset, fetchParticipantSummaryDataset} from "../../helpers/Api";
 
-export const fetchAndSetSummaryDatasets = async (participant_id) => {
+export const fetchAndSetSummaryDatasets = (participant_id) => {
     return async (dispatch) => {
         let summaryDatasets = await fetchParticipantSummaryDataset(participant_id);
         summaryDatasets = mapSummaryKeysToPresentationStyle(summaryDatasets);
@@ -10,7 +10,7 @@ export const fetchAndSetSummaryDatasets = async (participant_id) => {
     }
 }
 
-export const fetchAndSetClinicalDatasets = async (participant_id) => {
+export const fetchAndSetClinicalDatasets = (participant_id) => {
     return async (dispatch) => {
         let clinicalDatasets = await fetchParticipantClinicalDataset(participant_id);
         if (clinicalDatasets) {
