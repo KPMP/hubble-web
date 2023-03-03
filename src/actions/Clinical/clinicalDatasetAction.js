@@ -1,9 +1,4 @@
 import actionNames from '../actionNames'
-import {
-    fetchParticipantClinicalDataset,
-    fetchParticipantExperimentCounts,
-    fetchParticipantSummaryDataset
-} from "../../helpers/Api";
 import {mapClinicalKeysToPresentationStyle, mapSummaryKeysToPresentationStyle} from "../../helpers/dataHelper";
 import {fetchParticipantClinicalDataset, fetchParticipantSummaryDataset} from "../../helpers/Api";
 
