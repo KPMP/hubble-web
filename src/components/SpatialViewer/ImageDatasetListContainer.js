@@ -13,7 +13,10 @@ import {
 const mapStateToProps = (state, props) =>
     ({
         selectedImageDataset: state.selectedImageDataset,
-        tableSettings: state.tableSettings
+        tableSettings: state.tableSettings,
+        summaryDatasets: state.summaryDatasets,
+        clinicalDatasets:  state.clinicalDatasets,
+        experimentalDataCounts: state.experimentalDataCounts,
     });
 
 const mapDispatchToProps = (dispatch, props) =>

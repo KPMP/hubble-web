@@ -239,14 +239,14 @@ class ImageDatasetList extends Component {
         const clinicalDataset = this.props.clinicalDatasets
         return (
             <Container id='outer-wrapper' className="multi-container-container container-xxl">
-                {this.props.selectedImageDataset && <ReportCard
+                <ReportCard
                     reportCardOpen={this.state.reportCardOpen}
                     closeReportCard={this.closeReportCard}
                     summaryDataset={summaryDataset}
                     clinicalDataset={clinicalDataset}
                     experimentalDataCounts={experimentalDataCounts}
                     redcapid={this.props.selectedImageDataset["redcapid"]}
-                />}
+                />
                 <Row>
                     <Col xl={3}>
                         <div className={`filter-panel-wrapper ${this.state.filterTabActive ? '': 'hidden'}`}>
