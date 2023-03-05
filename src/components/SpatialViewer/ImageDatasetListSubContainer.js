@@ -18,6 +18,8 @@ class ImageDatasetListSubContainer extends Component {
         if (this.props !== prevProps) {
             if (this.props.selectedImageDataset["redcapid"] !== prevProps.selectedImageDataset["redcapid"]) {
                 this.setState({reportCardOpen: true})
+            } else {
+                this.setState({reportCardOpen: false})
             }
         }
     };
