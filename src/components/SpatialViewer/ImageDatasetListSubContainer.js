@@ -18,11 +18,17 @@ class ImageDatasetListSubContainer extends Component {
         if (this.props !== prevProps) {
             if (this.props.selectedImageDataset["redcapid"] !== prevProps.selectedImageDataset["redcapid"]) {
                 this.setState({reportCardOpen: true})
-            } else {
-                this.setState({reportCardOpen: false})
             }
         }
     };
+
+    openReportCard = () => {
+        this.setState({reportCardOpen: true})
+    }
+
+    closeReportCard = () => {
+        this.setState({reportCardOpen: false})
+    }
 
     setActiveFilterTab = (tabName) => {
         this.setState({activeFilterTab: tabName});
@@ -38,6 +44,8 @@ class ImageDatasetListSubContainer extends Component {
                 return (
                     <ImageDatasetList
                         reportCardOpen={this.state.reportCardOpen}
+                        openReportCard={this.openReportCard()}
+                        closeReportCard={this.closeReportCard()}
                         filters={filters}
                         results={results}
                         searchContext={searchContext}

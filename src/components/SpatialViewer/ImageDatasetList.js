@@ -52,7 +52,6 @@ class ImageDatasetList extends Component {
             cards: this.props.tableSettings.cards || columnCards,
             currentPage: this.props.tableSettings.currentPage,
             isLoaded: false,
-            reportCardOpen: this.props.reportCardOpen || false
         };
 
     }
@@ -62,14 +61,7 @@ class ImageDatasetList extends Component {
         this.props.setClinicalDatasets(row['redcapid']);
         this.props.setExperimentalDataCounts(row['redcapid']) ;
         this.props.setSelectedImageDatasetReportCard(row);
-    }
-
-    openReportCard = () => {
-        this.setState({reportCardOpen: true})
-    }
-
-    closeReportCard = () => {
-        this.setState({reportCardOpen: false})
+        this.props.openReportCard();
     }
 
     getSearchResults = () => {
@@ -239,8 +231,8 @@ class ImageDatasetList extends Component {
         return (
             <Container id='outer-wrapper' className="multi-container-container container-xxl">
                 <ReportCard
-                    reportCardOpen={this.state.reportCardOpen}
-                    closeReportCard={this.closeReportCard}
+                    reportCardOpen={this.props.reportCardOpen}
+                    closeReportCard={this.props.closeReportCard}
                     summaryDataset={summaryDataset}
                     clinicalDataset={clinicalDataset}
                     experimentalDataCounts={experimentalDataCounts}
