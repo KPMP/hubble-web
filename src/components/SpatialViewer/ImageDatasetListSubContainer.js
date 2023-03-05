@@ -35,7 +35,7 @@ class ImageDatasetListSubContainer extends Component {
                 const { filters, results, searchContext, setResultsPerPage, removeFilter } = context;
                 return (
                     <ImageDatasetList
-                        reportCardOpen: this.state.reportCardOpen
+                        reportCardOpen={this.state.reportCardOpen}
                         filters={filters}
                         results={results}
                         searchContext={searchContext}
