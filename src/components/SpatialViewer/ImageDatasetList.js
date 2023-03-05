@@ -91,6 +91,9 @@ class ImageDatasetList extends Component {
             if (this.props.filters !== prevProps.filters) {
                 this.props.setTableSettings({currentPage: 0});
             }
+            if (this.props.selectedImageDataset !== prevProps.selectedImageDataset) {
+                this.openReportCard();
+            }
         }
     };
 
