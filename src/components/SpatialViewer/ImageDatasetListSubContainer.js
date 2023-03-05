@@ -9,13 +9,23 @@ class ImageDatasetListSubContainer extends Component {
         super(props);
         this.state = {
             activeFilterTab: 'DATASET',
+            reportCardOpen: false
         };
 
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props !== prevProps) {
+            if (this.props.selectedImageDataset["redcapid"] !== prevProps.selectedImageDataset["redcapid"]) {
+                this.setState({reportCardOpen: true})
+            }
+        }
+    };
+
     setActiveFilterTab = (tabName) => {
         this.setState({activeFilterTab: tabName});
     };
+
     render() {
         return (
             <Container id='outer-wrapper' className="multi-container-container container-xxl">
@@ -25,6 +35,7 @@ class ImageDatasetListSubContainer extends Component {
                 const { filters, results, searchContext, setResultsPerPage, removeFilter } = context;
                 return (
                     <ImageDatasetList
+                        reportCardOpen: this.state.reportCardOpen
                         filters={filters}
                         results={results}
                         searchContext={searchContext}
