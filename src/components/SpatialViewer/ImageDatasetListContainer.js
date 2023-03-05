@@ -22,7 +22,13 @@ const mapStateToProps = (state, props) =>
 const mapDispatchToProps = (dispatch, props) =>
     ({
         setSelectedImageDataset(selectedImageDataset) {
-             dispatch(setSelectedImageDataset(selectedImageDataset));
+             dispatch((dispatch) => {
+                 if (imageDataset['configtype'] === 'external_link') {
+                     window.open(imageDataset['externallink'], '_blank')
+                 } else {
+                     dispatch(setSelectedImageDataset(selectedImageDataset));
+                 }
+             })
              dispatch((dispatch) => props.history.push("/view"));
          },
         setSelectedImageDatasetReportCard(selectedImageDataset) {
