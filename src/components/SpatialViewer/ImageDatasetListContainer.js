@@ -23,8 +23,8 @@ const mapDispatchToProps = (dispatch, props) =>
     ({
         setSelectedImageDataset(selectedImageDataset) {
              dispatch((dispatch) => {
-                 if (imageDataset['configtype'] === 'external_link') {
-                     window.open(imageDataset['externallink'], '_blank')
+                 if (selectedImageDataset['configtype'] === 'external_link') {
+                     window.open(selectedImageDataset['externallink'], '_blank')
                  } else {
                      dispatch(setSelectedImageDataset(selectedImageDataset));
                  }
