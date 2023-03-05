@@ -44,8 +44,8 @@ class ImageDatasetListSubContainer extends Component {
                 return (
                     <ImageDatasetList
                         reportCardOpen={this.state.reportCardOpen}
-                        openReportCard={this.openReportCard()}
-                        closeReportCard={this.closeReportCard()}
+                        openReportCard={this.openReportCard}
+                        closeReportCard={this.closeReportCard}
                         filters={filters}
                         results={results}
                         searchContext={searchContext}
