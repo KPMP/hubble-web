@@ -1,10 +1,13 @@
 import {connect} from "react-redux";
 import SpatialViewer from "./SpatialViewer";
 import { withRouter } from 'react-router';
-import { setClinicalDatasets, setSummaryDatasets } from "../../actions/Clinical/clinicalDatasetAction";
-import { setExperimentalDataCounts } from "../../actions/Experimental/experimentalDatasetAction";
-import { mapClinicalKeysToPresentationStyle, mapSummaryKeysToPresentationStyle } from "../../helpers/dataHelper";
-import { fetchParticipantSummaryDataset, fetchParticipantExperimentCounts, fetchParticipantClinicalDataset } from "../../helpers/Api";
+import {
+    fetchAndSetClinicalDatasets,
+    fetchAndSetSummaryDatasets
+} from "../../actions/Clinical/clinicalDatasetAction";
+import {
+    fetchAndSetExperimentalDataCounts
+} from "../../actions/Experimental/experimentalDatasetAction";
 
 const mapStateToProps = (state, props) =>
     ({
@@ -16,23 +19,15 @@ const mapStateToProps = (state, props) =>
 
 const mapDispatchToProps = (dispatch, props) =>
     ({
-        async setSummaryDatasets(participant_id) {
-            let summaryDatasets = await fetchParticipantSummaryDataset(participant_id);
-            summaryDatasets = mapSummaryKeysToPresentationStyle(summaryDatasets);
-            dispatch(setSummaryDatasets(summaryDatasets));
+        setSummaryDatasets(participant_id) {
+            dispatch(fetchAndSetSummaryDatasets(participant_id));
         },
-        async setClinicalDatasets(participant_id) {
-            let clinicalDatasets = await fetchParticipantClinicalDataset(participant_id);
-            if (clinicalDatasets) {
-                clinicalDatasets = JSON.parse(clinicalDatasets.clinicalData);
-            }
-            clinicalDatasets = mapClinicalKeysToPresentationStyle(clinicalDatasets);
-            dispatch(setClinicalDatasets(clinicalDatasets));
+        setClinicalDatasets(participant_id) {
+            dispatch(fetchAndSetClinicalDatasets(participant_id));
         },
-        async setExperimentalDataCounts(participant_id) {
-            let experimentalDataCounts = await fetchParticipantExperimentCounts(participant_id);
-            dispatch(setExperimentalDataCounts(experimentalDataCounts));
-        }
+        setExperimentalDataCounts(participant_id) {
+            dispatch(fetchAndSetExperimentalDataCounts(participant_id));
+        },
 
     });
 

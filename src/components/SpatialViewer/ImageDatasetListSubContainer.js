@@ -9,13 +9,23 @@ class ImageDatasetListSubContainer extends Component {
         super(props);
         this.state = {
             activeFilterTab: 'DATASET',
+            reportCardOpen: false
         };
 
+    }
+
+    openReportCard = () => {
+        this.setState({reportCardOpen: true})
+    }
+
+    closeReportCard = () => {
+        this.setState({reportCardOpen: false})
     }
 
     setActiveFilterTab = (tabName) => {
         this.setState({activeFilterTab: tabName});
     };
+
     render() {
         return (
             <Container id='outer-wrapper' className="multi-container-container container-xxl">
@@ -25,7 +35,9 @@ class ImageDatasetListSubContainer extends Component {
                 const { filters, results, searchContext, setResultsPerPage, removeFilter } = context;
                 return (
                     <ImageDatasetList
-                        props={this.props}
+                        reportCardOpen={this.state.reportCardOpen}
+                        openReportCard={this.openReportCard}
+                        closeReportCard={this.closeReportCard}
                         filters={filters}
                         results={results}
                         searchContext={searchContext}
@@ -33,6 +45,7 @@ class ImageDatasetListSubContainer extends Component {
                         removeFilter={removeFilter}
                         setActiveFilterTab={this.setActiveFilterTab}
                         activeFilterTab={this.state.activeFilterTab}
+                        {...this.props}
                     />
                 )}}
                 </WithSearch>
