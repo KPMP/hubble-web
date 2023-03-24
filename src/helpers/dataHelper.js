@@ -58,7 +58,7 @@ export const mapClinicalKeysToPresentationStyle = (data) => {
     const result = {};
     result['A1C (%)']= "";
     result['Albuminuria (mg)'] = "";
-    result['Baseline_eGFR (ml/min/1.73m2)'] = "";
+    result['Baseline eGFR (ml/min/1.73m2)'] = "";
     result['Diabetes Duration (Years)'] = "";
     result['Diabetes History'] = "";
     result['Hypertension Duration (years)'] = "";
