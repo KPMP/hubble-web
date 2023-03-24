@@ -83,16 +83,16 @@ export const mapClinicalKeysToPresentationStyle = (data) => {
         result['Albuminuria (mg)'] = data['Albuminuria (mg) (Binned)'] ? data['Albuminuria (mg) (Binned)'] : "";
     }
     if (data['Baseline eGFR (ml/min/1.73m2) (Binned) ']) {
-        result['Baseline_eGFR (ml/min/1.73m2)'] = data['Baseline eGFR (ml/min/1.73m2) (Binned) '] ? data['Baseline eGFR (ml/min/1.73m2) (Binned) '] : "";
+        result['Baseline_eGFR (ml/min/1.73m2)'] = data['Baseline eGFR (ml/min/1.73m2) (Binned)'] ? data['Baseline eGFR (ml/min/1.73m2) (Binned)'].replace(' ml/min/1.73m2', '') : "";
     }
     if (data['Diabetes Duration (Years)']) {
-        result['Diabetes Duration (Years)'] = data['Diabetes Duration (Years)'] ? data['Diabetes Duration (Years)'] : "";
+        result['Diabetes Duration (Years)'] = data['Diabetes Duration (Years)'] ? data['Diabetes Duration (Years)'].replace(' Years', '') : "";
     }
     if (data['Diabetes History']) {
         result['Diabetes History']  = data['Diabetes History'] ? data['Diabetes History'] : "";
     }
     if (data['Hypertension Duration (Years)']) {
-        result['Hypertension Duration (years)'] = data['Hypertension Duration (Years)'] ? data['Hypertension Duration (Years)'] : "";
+        result['Hypertension Duration (years)'] = data['Hypertension Duration (Years)'] ? data['Hypertension Duration (Years)'].replace(' Years', '') : "";
     } 
     if (data['Hypertension History']) {
         result['Hypertension History'] = data['Hypertension History'] ? data['Hypertension History'] : "";
@@ -110,7 +110,7 @@ export const mapClinicalKeysToPresentationStyle = (data) => {
         result['Ethnicity'] = data['Race'] ? data['Race'] : "";
     }
     if (data['Age (Years) (Binned)']) {
-        result['Age (Years)'] = data['Age (Years) (Binned)'] ? data['Age (Years) (Binned)'] : "";
+        result['Age (Years)'] = data['Age (Years) (Binned)'] ? data['Age (Years) (Binned)'].replace(' Years', '') : "";
     }
 
     if (data['Sample Type']) {
