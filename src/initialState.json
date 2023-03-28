@@ -3,5 +3,8 @@
   "tableSettings": {
     "pagingSize": 20,
     "currentPage": 0
-  }
+  },
+  "summaryDatasets": {},
+  "clinicalDatasets": {},
+  "experimentalDataCounts": {}
 }

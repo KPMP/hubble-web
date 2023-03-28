@@ -1,17 +1,3 @@
-export const createHeaderString = (selectedImageDataset) => {
-
-    const dataType = selectedImageDataset["datatype"]
-    const tissueType = selectedImageDataset["tissuetype"]
-    const spectracksampleid = selectedImageDataset["spectracksampleid"]
-    const redcapId = selectedImageDataset["redcapid"]
-
-    if(dataType && tissueType && spectracksampleid && redcapId) {
-        return dataType + " for " + tissueType + " sample " + spectracksampleid + " (participant " + redcapId + ")"
-    }
-    
-    return "Viewing Spatial Data"
-}
-
 export const includesLetter = (stringToCheck) => { return /[a-zA-Z]/.test(stringToCheck); }
 
 export const compareNumeric = (a, b) => {
@@ -110,11 +96,11 @@ export const compareTableStrings = (a, b) => {
         }
     }
 
-    a = a.toString().split(/[-| |(|)|']/)
-    b = b.toString().split(/[-| |(|)|']/)
+    a = a?.toString().split(/[-| |(|)|']/) || ''
+    b = b?.toString().split(/[-| |(|)|']/) || ''
 
-    a = a.filter(x => x !== '');
-    b = b.filter(x => x !== '');
+    a = Array.isArray(a) ? a.filter(x => x !== '') : [];
+    b = Array.isArray(b) ? b.filter(x => x !== '') : [];
 
 
     let compareValue = 0

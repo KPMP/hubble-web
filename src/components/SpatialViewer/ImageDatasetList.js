@@ -36,6 +36,7 @@ import { Facet } from "@elastic/react-search-ui";
 import { MultiCheckboxFacet } from "@elastic/react-search-ui-views";
 
 import "@elastic/react-search-ui-views/lib/styles/styles.css";
+import ReportCard from "../ReportCard/ReportCard";
 
 class ImageDatasetList extends Component {
 
@@ -50,9 +51,17 @@ class ImageDatasetList extends Component {
             tableData: [],
             cards: this.props.tableSettings.cards || columnCards,
             currentPage: this.props.tableSettings.currentPage,
-            isLoaded: false
+            isLoaded: false,
         };
 
+    }
+
+    clickReportCard = (row) => {
+        this.props.setSummaryDatasets(row['redcapid']);
+        this.props.setClinicalDatasets(row['redcapid']);
+        this.props.setExperimentalDataCounts(row['redcapid']) ;
+        this.props.setSelectedImageDatasetReportCard(row);
+        this.props.openReportCard();
     }
 
     getSearchResults = () => {
@@ -65,7 +74,7 @@ class ImageDatasetList extends Component {
         this.setState({isLoaded: true})
     };
 
-    componentDidUpdate(prevProps, prevState, snapShot) {
+    componentDidUpdate(prevProps) {
         if (this.props !== prevProps) {
             if (this.props.results !== prevProps.results) {
                 this.getSearchResults();
@@ -98,7 +107,7 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: false,
                 defaultHidden: false,
-                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="popover" data-content="" className='table-column btn btn-link text-left p-0'>{row["spectracksampleid"]}</button>
+                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="tooltip" data-placement="top" title="View dataset" className='table-column btn btn-link text-left p-0'>{row["spectracksampleid"]}</button>
             },
             {
                 name: 'redcapid',
@@ -106,6 +115,7 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: true,
                 defaultHidden: false,
+                getCellValue: row => <button onClick={(e) => this.clickReportCard(row) } type='button' data-toggle="tooltip" data-placement="top" title="View participant information" className='table-column btn btn-link text-left p-0'>{row["redcapid"]}</button>
             },
             {
                 name: 'datatype',
@@ -139,6 +149,7 @@ class ImageDatasetList extends Component {
         ];
         return columns;
     };
+
     getDefaultHiddenColumnNames = (columns) => {
         return columns.filter((column) => {
             return column.defaultHidden === true
@@ -147,8 +158,6 @@ class ImageDatasetList extends Component {
           })
     };
 
-    
-    
     getImageTypeCell = (row) => {
         return row["imagetype"] !== "" &&
             <div className={`image-type-cell ${(getImageTypeTooltipCopy(row["imagetype"]) !== "") ? 'clickable': '' }`}>
@@ -182,11 +191,7 @@ class ImageDatasetList extends Component {
             this.setState({filterTabActive: true});
         }
     };
-
-    setActiveFilterTab = (tabName) => {
-        this.setState({activeFilterTab: tabName});
-    };
-    
+  
     getPageSizes = () => {
         return [10,20,40,80,100]
     };
@@ -195,19 +200,20 @@ class ImageDatasetList extends Component {
         return filters.map(
             filter => {
                 return filter.values.map(value => {
-                    return (<div
-                                key={(filter.field).toString() + value.toString()}
-                                className="border rounded activeFilter">
-                                <span>{value}
-                                    <FontAwesomeIcon
-                                        alt="Close Filter"
-                                        onClick={()=>{
-                                            this.props.removeFilter(filter.field, value)
-                                        }}
-                                        className="close-button fas fa-xmark ml-2"
-                                        icon={faXmark} />
-                                </span>
-                             </div>)
+                    return (
+                        <div
+                            key={(filter.field).toString() + value.toString()}
+                            className="border rounded activeFilter">
+                            <span>{value}
+                                <FontAwesomeIcon
+                                    alt="Close Filter"
+                                    onClick={()=>{
+                                        this.props.removeFilter(filter.field, value)
+                                    }}
+                                    className="close-button fas fa-xmark ml-2"
+                                    icon={faXmark} />
+                            </span>
+                        </div>)
                 })
             })
     };
@@ -217,17 +223,29 @@ class ImageDatasetList extends Component {
             DATASET: 'DATASET',
             PARTICIPANT: 'PARTICIPANT',
         };
+
         const { pagingSize, columnWidths, hiddenColumnNames, sorting, currentPage} = this.props.tableSettings;
+        const summaryDataset = this.props.summaryDatasets
+        const experimentalDataCounts = this.props.experimentalDataCounts
+        const clinicalDataset = this.props.clinicalDatasets
         return (
             <Container id='outer-wrapper' className="multi-container-container container-xxl">
+                <ReportCard
+                    reportCardOpen={this.props.reportCardOpen}
+                    closeReportCard={this.props.closeReportCard}
+                    summaryDataset={summaryDataset}
+                    clinicalDataset={clinicalDataset}
+                    experimentalDataCounts={experimentalDataCounts}
+                    redcapid={this.props.selectedImageDataset["redcapid"]}
+                />
                 <Row>
                     <Col xl={3}>
                         <div className={`filter-panel-wrapper ${this.state.filterTabActive ? '': 'hidden'}`}>
                         <div className="filter-panel-tab-wrapper">
-                            <div onClick={() => {this.setActiveFilterTab(tabEnum.DATASET)}}
-                                className={`filter-tab ${this.state.activeFilterTab === tabEnum.DATASET ? 'active' : ''} rounded border`}>DATASET</div>
-                            <div onClick={() => {this.setActiveFilterTab(tabEnum.PARTICIPANT)}}
-                                className={`filter-tab ${this.state.activeFilterTab === tabEnum.PARTICIPANT ? 'active' : ''} rounded border`}>PARTICIPANT</div>
+                            <div onClick={() => {this.props.setActiveFilterTab(tabEnum.DATASET)}}
+                                className={`filter-tab ${this.props.activeFilterTab === tabEnum.DATASET ? 'active' : ''} rounded border`}>DATASET</div>
+                            <div onClick={() => {this.props.setActiveFilterTab(tabEnum.PARTICIPANT)}}
+                                className={`filter-tab ${this.props.activeFilterTab === tabEnum.PARTICIPANT ? 'active' : ''} rounded border`}>PARTICIPANT</div>
                             
                             <div className="filter-tab filter-tab-control-icon clickable"
                                  alt="Close Filter Tab"
@@ -237,14 +255,14 @@ class ImageDatasetList extends Component {
                             </div>
                         </div>
                             <React.Fragment>
-                            {this.state.activeFilterTab === tabEnum.DATASET &&
+                            {this.props.activeFilterTab === tabEnum.DATASET &&
                             <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
                                 <Row className="mb-2"><Col><Facet field="datatype" label="Experimental Strategy" filterType="any"
                                                                   view={MultiCheckboxFacet}/></Col></Row>
                                 <Row className="mb-2"><Col><Facet field="imagetype" label="Image Type" filterType="any"
                                                                   view={MultiCheckboxFacet}/></Col></Row>
                             </Container>
-                            }{this.state.activeFilterTab === tabEnum.PARTICIPANT &&
+                            }{this.props.activeFilterTab === tabEnum.PARTICIPANT &&
                         <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
                             <Row className="mb-2"><Col><Facet field="sex" label="Sex" filterType="any"
                                                               view={MultiCheckboxFacet}/></Col></Row>
