@@ -223,11 +223,11 @@ td:hover {
     max-width: 100px;
 }
 
-.image-type {
-    min-width: 350px;
-    width: 350px;
-    max-width: 350px;
-}
+// .image-type {
+//     min-width: 350px;
+//     width: 350px;
+//     max-width: 350px;
+// }
 
 .level {
     min-width: 80px;
@@ -474,13 +474,10 @@ td:hover {
     text-indent: -23px; 
 }
 
-.image-type-cell {
-    min-width: 350px;
-    width: 350px;
-    max-width: 350px;
+.image-type-cell {    
+    max-width: 300px;
     white-space: nowrap;
     text-overflow: ellipsis;
-    // display: block;
     overflow: hidden;
 }
 
