@@ -474,11 +474,11 @@ td:hover {
     text-indent: -23px; 
 }
 
-.image-type-cell {
+.image-type-cell {    
+    height: 20px;
     white-space: nowrap;
     text-overflow: ellipsis;
-    display: block;
-    overflow: hidden
+    overflow: hidden;
 }
 
 // Utility Classes
