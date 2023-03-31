@@ -177,7 +177,7 @@ class ImageDatasetList extends Component {
         return [
             { columnName: 'spectrackSampleId', width: 145 },
             { columnName: 'datatype', width: 250 },
-            { columnName: 'imagetype', width: 300 },
+            { columnName: 'imagetype', width: 350 },
             { columnName: 'redcapid', width: 145 },
             { columnName: 'filename', width: 250 },
             { columnName: 'level', width: 100 },
