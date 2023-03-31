@@ -137,7 +137,7 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: true,
                 defaultHidden: false,
-                getCellValue: this.getImageTypeCell
+                // getCellValue: this.getImageTypeCell
             },
             {
                 name: 'level',
