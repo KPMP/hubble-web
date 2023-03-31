@@ -107,7 +107,6 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: false,
                 defaultHidden: false,
-                minWidth: 50,
                 getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="tooltip" data-placement="top" title="View dataset" className='table-column btn btn-link text-left p-0'>{row["spectracksampleid"]}</button>
             },
             {
@@ -115,7 +114,6 @@ class ImageDatasetList extends Component {
                 title: 'Participant ID',
                 sortable: true,
                 hideable: true,
-                minWidth: 50,
                 defaultHidden: false,
                 getCellValue: row => <button onClick={(e) => this.clickReportCard(row) } type='button' data-toggle="tooltip" data-placement="top" title="View participant information" className='table-column btn btn-link text-left p-0'>{row["redcapid"]}</button>
             },
@@ -124,7 +122,6 @@ class ImageDatasetList extends Component {
                 title: 'Data Type',
                 sortable: true,
                 hideable: true,
-                minWidth: 50,
                 defaultHidden: false,
             },
             {
@@ -132,7 +129,6 @@ class ImageDatasetList extends Component {
                 title: 'Filename',
                 sortable: true,
                 hideable: true,
-                minWidth: 50,
                 defaultHidden: true,
             },            
             {
@@ -140,7 +136,6 @@ class ImageDatasetList extends Component {
                 title: 'Image Type',
                 sortable: true,
                 hideable: true,
-                minWidth: 50,
                 defaultHidden: false,
                 getCellValue: this.getImageTypeCell
             },
@@ -149,7 +144,6 @@ class ImageDatasetList extends Component {
                 title: 'Level',
                 sortable: true,
                 hideable: true,
-                minWidth: 50,
                 defaultHidden: true,
             },
         ];
@@ -183,7 +177,7 @@ class ImageDatasetList extends Component {
         return [
             { columnName: 'spectrackSampleId', width: 145 },
             { columnName: 'datatype', width: 250 },
-            { columnName: 'imagetype', width: 350 },
+            { columnName: 'imagetype', width: 300 },
             { columnName: 'redcapid', width: 145 },
             { columnName: 'filename', width: 250 },
             { columnName: 'level', width: 100 },

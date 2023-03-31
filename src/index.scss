@@ -223,11 +223,11 @@ td:hover {
     max-width: 100px;
 }
 
-.image-type {
-    min-width: 350px;
-    width: 350px;
-    max-width: 350px;
-}
+// .image-type {
+//     min-width: 350px;
+//     width: 350px;
+//     max-width: 350px;
+// }
 
 .level {
     min-width: 80px;
@@ -240,10 +240,10 @@ td:hover {
     max-width: 380px;
 }
 @media only screen and (max-width: 1200px) {
-   .image-type {
-        width: 300px;
-        max-width: 300px;
-    }
+//    .image-type {
+//         width: 300px;
+//         max-width: 300px;
+//     }
 
     .participant-id {
         min-width: 120px;
@@ -478,7 +478,8 @@ td:hover {
     white-space: nowrap;
     text-overflow: ellipsis;
     display: block;
-    overflow: hidden
+    overflow: hidden;
+    width: 300px;
 }
 
 // Utility Classes
