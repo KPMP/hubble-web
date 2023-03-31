@@ -137,7 +137,7 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: true,
                 defaultHidden: false,
-                // getCellValue: this.getImageTypeCell
+                getCellValue: this.getImageTypeCell
             },
             {
                 name: 'level',
@@ -160,8 +160,8 @@ class ImageDatasetList extends Component {
 
     getImageTypeCell = (row) => {
         return row["imagetype"] !== "" &&
-            <div className={`mr-1 image-type-cell ${(getImageTypeTooltipCopy(row["imagetype"]) !== "") ? 'clickable': '' }`}>
-                {row["imagetype"]}
+            <div className={`mr-1 image-type ${(getImageTypeTooltipCopy(row["imagetype"]) !== "") ? 'clickable': '' }`}>
+                <span className='mr-1'>{row["imagetype"]}</span>
                 {getImageTypeTooltipCopy(row["imagetype"]) !== "" &&
                 <div>
                     <div className='tooltip-parent-sibling'></div>
