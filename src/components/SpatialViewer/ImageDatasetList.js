@@ -160,7 +160,7 @@ class ImageDatasetList extends Component {
 
     getImageTypeCell = (row) => {
         return row["imagetype"] !== "" &&
-            <div className={`mr-1 image-type ${(getImageTypeTooltipCopy(row["imagetype"]) !== "") ? 'clickable': '' }`}>
+            <div className={`image-type-cell ${(getImageTypeTooltipCopy(row["imagetype"]) !== "") ? 'clickable': '' }`}>
                 <span className='mr-1'>{row["imagetype"]}</span>
                 {getImageTypeTooltipCopy(row["imagetype"]) !== "" &&
                 <div>
