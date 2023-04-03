@@ -3,10 +3,10 @@
 .flyout {
 	background-color: white;
 	height: 100%;
-  position: absolute;  
-  right: 0;
+  	position: absolute;  
+  	right: 0;
 	top: 0;
-  width: 36%;
+  	width: 36%;
 	z-index: 10;
 	overflow-y: scroll;
 	@media screen and (max-width: 1335px) {
@@ -41,6 +41,7 @@
 
 .flyout.closed {
   transform: translate(100.25%);
+  display: none;
 }
 
 .flyout .header {
