@@ -257,22 +257,22 @@ class ImageDatasetList extends Component {
                             <React.Fragment>
                             {this.props.activeFilterTab === tabEnum.DATASET &&
                             <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
-                                <Row className="mb-2"><Col><Facet field="datatype" label="Experimental Strategy" filterType="any"
+                                <Row className="mb-2"><Col><Facet field="datatype" label="Experimental Strategy" filterType="any" show="10"
                                                                   view={MultiCheckboxFacet}/></Col></Row>
-                                <Row className="mb-2"><Col><Facet field="imagetype" label="Image Type" filterType="any"
+                                <Row className="mb-2"><Col><Facet field="imagetype" label="Image Type" filterType="any" show="10"
                                                                   view={MultiCheckboxFacet}/></Col></Row>
                             </Container>
                             }{this.props.activeFilterTab === tabEnum.PARTICIPANT &&
                         <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
-                            <Row className="mb-2"><Col><Facet field="sex" label="Sex" filterType="any"
+                            <Row className="mb-2"><Col><Facet field="sex" label="Sex" filterType="any" show="10"
                                                               view={MultiCheckboxFacet}/></Col></Row>
-                            <Row className="mb-2"><Col><Facet field="age" label="Age" filterType="any"
+                            <Row className="mb-2"><Col><Facet field="age" label="Age" filterType="any" show="10"
                                                               view={MultiCheckboxFacet}/></Col></Row>
                             <Row className="mb-2"><Col><Facet field="tissuetype" label="Tissue Type"
-                                                              filterType="any"
+                                                              filterType="any" show="10"
                                                               view={MultiCheckboxFacet}/></Col></Row>
                             <Row className="mb-2"><Col><Facet inputProps={{ placeholder: "cusaceholder" }} isFilterable={true}  field="redcapid" label="Participant ID"
-                                                              filterType="any"
+                                                              filterType="any" show="10"
                                                               view={(props) => <MultiCheckboxFacet {...props} searchPlaceholder={"Search..."}/>}/></Col></Row>
                         </Container>
                         }
