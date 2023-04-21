@@ -259,8 +259,11 @@ class ImageDatasetList extends Component {
                             <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
                                 <Row className="mb-2"><Col><Facet field="datatype" label="Experimental Strategy" filterType="any" show="10"
                                                                   view={MultiCheckboxFacet}/></Col></Row>
-                                <span height="100vh"><Row className="mb-2"><Col><Facet field="imagetype" label="Image Type" filterType="any" show="10"
-                                                                  view={MultiCheckboxFacet}/></Col></Row></span>
+                                <div id="image_type">
+                                    <Row className="mb-2"><Col><Facet field="imagetype" label="Image Type" filterType="any" show="10"
+                                                                    view={MultiCheckboxFacet}/></Col></Row>
+                                </div>
+                                
                             </Container>
                             }{this.props.activeFilterTab === tabEnum.PARTICIPANT &&
                         <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
