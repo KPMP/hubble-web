@@ -316,7 +316,7 @@ class ImageDatasetList extends Component {
                                         columns={this.getColumns()}>
                                         <SortingState
                                             defaultSorting={[]}
-                                            onSortingChange={(sorting) =>  this.props.setTableSettings({sorting: sorting})}
+                                            onSortingChange={(sorting) =>  this.props.setTableSettings({sorting: sorting, currentPage: 0})}
                                             sorting={sorting}/>
                                         <IntegratedSorting 
                                             columnExtensions={[
