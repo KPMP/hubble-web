@@ -337,7 +337,7 @@ class ImageDatasetList extends Component {
                                             cards={this.state.cards}
                                             setCards={this.state.setCards}
                                         />
-                                        <ToolbarButtonState setTableSettings={this.props.setTableSettings} />
+                                        <ToolbarButtonState setTableSettings={this.props.setTableSettings} order={this.state.cards} hidden={this.state.hiddenColumnNames} />
                                         <Table />
                                         <TableColumnResizing
                                             defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={145}
