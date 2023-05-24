@@ -4,7 +4,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Col, Container, Row, Spinner } from "reactstrap";
 import { resultConverter } from "../../helpers/dataHelper";
 import { getImageTypeTooltipCopy } from "./viewConfigHelper";
-import { faXmark, faAnglesRight, faAnglesLeft } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faAnglesRight, faAnglesLeft, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { compareTableStrings } from "./spatialHelper";
 import {
@@ -304,6 +304,14 @@ class ImageDatasetList extends Component {
                                 </Row>
                                 :
                                 <Row className="filter-pill-row">
+                                    <div className="border rounded activeFilter clear-filters">
+                                        <span 
+                                            onClick={()=>{
+                                                this.props.clearFilters()
+                                            }}>
+                                                <FontAwesomeIcon alt="Clear All Filters" className="fa-light fa-trash-can" icon={faTrashCan} /> Clear Filters 
+                                        </span>
+                                    </div>
                                     {this.getFilterPills(this.props.filters)}
                                 </Row>}
                                 
