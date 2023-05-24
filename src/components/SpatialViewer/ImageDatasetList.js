@@ -45,7 +45,7 @@ class ImageDatasetList extends Component {
         const columnCards = this.getColumns().map((item, index) => {
             return {id: index, text: item.title, name: item.name, hideable: item.hideable}
         });
-        
+
         const defaultHiddenColumns = this.getDefaultHiddenColumnNames(this.getColumns())
         this.state = {
             filterTabActive: true,
@@ -55,6 +55,7 @@ class ImageDatasetList extends Component {
             currentPage: this.props.tableSettings.currentPage,
             isLoaded: false,
             hiddenColumnNames: this.props.tableSettings.hiddenColumnNames || defaultHiddenColumns
+
         };
 
     }
@@ -90,7 +91,6 @@ class ImageDatasetList extends Component {
 
     setCards = (cards) => {
         this.setState({cards});
-        this.props.setTableSettings({cards: cards});
     };
 
     setDefaultCards = () => {
