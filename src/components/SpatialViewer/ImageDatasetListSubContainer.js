@@ -29,10 +29,10 @@ class ImageDatasetListSubContainer extends Component {
     render() {
         return (
             <Container id='outer-wrapper' className="multi-container-container container-xxl">
-            <WithSearch mapContextToProps={({ filters, results, searchContext,setResultsPerPage,removeFilter}) =>
-             ({filters, results, searchContext,setResultsPerPage,removeFilter})}>
+            <WithSearch mapContextToProps={({ filters, results, searchContext,setResultsPerPage,removeFilter, clearFilters}) =>
+             ({filters, results, searchContext,setResultsPerPage,removeFilter, clearFilters})}>
                 {(context) => {
-                const { filters, results, searchContext, setResultsPerPage, removeFilter } = context;
+                const { filters, results, searchContext, setResultsPerPage, removeFilter, clearFilters } = context;
                 return (
                     <ImageDatasetList
                         reportCardOpen={this.state.reportCardOpen}
@@ -43,6 +43,7 @@ class ImageDatasetListSubContainer extends Component {
                         searchContext={searchContext}
                         setResultsPerPage={setResultsPerPage}
                         removeFilter={removeFilter}
+                        clearFilters={clearFilters}
                         setActiveFilterTab={this.setActiveFilterTab}
                         activeFilterTab={this.state.activeFilterTab}
                         {...this.props}
