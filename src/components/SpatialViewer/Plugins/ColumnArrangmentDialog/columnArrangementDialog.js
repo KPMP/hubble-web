@@ -32,8 +32,8 @@ function ColumnArrangementDialog(
   const moveCard = (dragIndex, hoverIndex) => {
     setCards(update(cards, {
       $splice: [
-          [dragIndex, 1],
-          [hoverIndex, 0, cards[dragIndex]],
+        [dragIndex, 1],
+        [hoverIndex, 0, cards[dragIndex]],
       ],
     }))
   };
@@ -54,44 +54,44 @@ function ColumnArrangementDialog(
     <div className='column-arrage-dialog'>
       {(arrangeColumnsDialogOpen) && 
         <div>
-          <div className="modal-backdrop" onClick={() => {closeDialogs()}}>
+          <div className="modal-backdrop" onClick={() => { closeDialogs() }}>
           </div>
           <div className="sort-dialog border rounded">
             <div className="column-filter-wrapper">
-                <FontAwesomeIcon className="fas fa-magnifying-glass" alt="Arrange Columns Button" icon={faMagnifyingGlass} />
-                <input
-                  type="text"
-                  value={filterValue}
-                  onChange={onChangeHandler}
-                  placeholder="Filter Columns"
-                />
-              </div>
-              <div className="sort-dialog-options fake-link">
-                <span
-                  onClick={() => {handleRestoreDefaultsClick()}}>
-                  Restore Defaults
-                </span>
-              </div>
-              
-              <div>{cards.map((card, index) => {
-                return (
-                  <div key={card.text}>
-                    { isFiltered(card.text, filterValue)
-                      ?
-                      <Card
-                        index={index}
-                        id={card.text}
-                        text={card.text}
-                        name={card.name}
-                        moveCard={moveCard}
-                        hideable={card.hideable}
-                        hiddenColumnNames={hiddenColumnNames}
-                        toggleColumnVisibility={toggleColumnVisibility}
-                        forceUpdate={forceUpdate} />
-                      : <div></div>
-                    }
-                  </div>)
-              })}
+            <FontAwesomeIcon className="fas fa-magnifying-glass" alt="Arrange Columns Button" icon={faMagnifyingGlass} />
+              <input
+                type="text"
+                value={filterValue}
+                onChange={onChangeHandler}
+                placeholder="Filter Columns"
+              />
+            </div>
+            <div className="sort-dialog-options fake-link">
+              <span
+                onClick={() => { handleRestoreDefaultsClick() }}>
+                Restore Defaults
+              </span>
+            </div>
+
+            <div>{cards.map((card, index) => {
+              return (
+                <div key={card.text}>
+                  {isFiltered(card.text, filterValue)
+                    ?
+                    <Card
+                      index={index}
+                      id={card.text}
+                      text={card.text}
+                      name={card.name}
+                      moveCard={moveCard}
+                      hideable={card.hideable}
+                      hiddenColumnNames={hiddenColumnNames}
+                      toggleColumnVisibility={toggleColumnVisibility}
+                      forceUpdate={forceUpdate} />
+                    : <div></div>
+                  }
+                </div>)
+            })}
             </div>
           </div>
         </div>
