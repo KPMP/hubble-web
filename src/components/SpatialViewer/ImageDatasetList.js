@@ -48,7 +48,6 @@ class ImageDatasetList extends Component {
 
         const defaultHiddenColumns = this.getDefaultHiddenColumnNames(this.getColumns())
         this.state = {
-            filterTabActive: true,
             activeFilterTab: 'DATASET',
             tableData: [],
             cards: this.props.tableSettings.cards || columnCards,
@@ -57,7 +56,7 @@ class ImageDatasetList extends Component {
             hiddenColumnNames: this.props.tableSettings.hiddenColumnNames || defaultHiddenColumns
 
         };
-
+        
     }
 
     clickReportCard = (row) => {
@@ -186,14 +185,6 @@ class ImageDatasetList extends Component {
             { columnName: 'level', width: 100 },
         ]
     };
-
-    toggleFilterTab = () => {
-        if(this.state.filterTabActive) {
-            this.setState({filterTabActive: false});
-        } else {
-            this.setState({filterTabActive: true});
-        }
-    };
   
     getPageSizes = () => {
         return [10,20,40,80,100]
@@ -243,7 +234,7 @@ class ImageDatasetList extends Component {
                 />
                 <Row>
                     <Col xl={3}>
-                        <div className={`filter-panel-wrapper ${this.state.filterTabActive ? '': 'hidden'}`}>
+                        <div className={`filter-panel-wrapper ${this.props.filterTabActive ? '': 'hidden'}`}>
                         <div className="filter-panel-tab-wrapper">
                             <div onClick={() => {this.props.setActiveFilterTab(tabEnum.DATASET)}}
                                 className={`filter-tab ${this.props.activeFilterTab === tabEnum.DATASET ? 'active' : ''} rounded border`}>DATASET</div>
@@ -252,7 +243,7 @@ class ImageDatasetList extends Component {
                             
                             <div className="filter-tab filter-tab-control-icon clickable"
                                  alt="Close Filter Tab"
-                                 onClick={() => {this.toggleFilterTab()}}>                                
+                                 onClick={() => {this.props.toggleFilterTab()}}>                                
                                 <FontAwesomeIcon
                                     className="fas fa-angles-left " icon={faAnglesLeft} />
                             </div>
@@ -286,17 +277,17 @@ class ImageDatasetList extends Component {
                         </div>
 
                     </Col>
-                    <Col xl={`${this.state.filterTabActive ? 9 : 12 }`}>
+                    <Col xl={`${this.props.filterTabActive ? 9 : 12 }`}>
                         <Row>
                             <Col 
-                                className={`filter-collapse clickable ${this.state.filterTabActive ? 'hidden': ''}`}
+                                className={`filter-collapse clickable ${this.props.filterTabActive ? 'hidden': ''}`}
                                 xl={1}
                                 alt="Open Filter Tab"
-                                onClick={() => {this.toggleFilterTab()}}>
+                                onClick={() => {this.props.toggleFilterTab()}}>
                             <FontAwesomeIcon
                                     className="fas fa-angles-left" icon={faAnglesRight} />
                             </Col>
-                            <Col xl={12} className={`my-0 activeFilter-column ${this.state.filterTabActive ? 'closed': ''}`}>
+                            <Col xl={12} className={`my-0 activeFilter-column ${this.props.filterTabActive ? 'closed': ''}`}>
                                 {this.props.filters.length === 0 ?
 
                                 <Row className="filter-pill-row inactive-filters">

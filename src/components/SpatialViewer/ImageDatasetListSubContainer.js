@@ -9,7 +9,8 @@ class ImageDatasetListSubContainer extends Component {
         super(props);
         this.state = {
             activeFilterTab: 'DATASET',
-            reportCardOpen: false
+            reportCardOpen: false,
+            filterTabActive: true
         };
 
     }
@@ -24,6 +25,14 @@ class ImageDatasetListSubContainer extends Component {
 
     setActiveFilterTab = (tabName) => {
         this.setState({activeFilterTab: tabName});
+    };
+
+    toggleFilterTab = () => {
+        if(this.state.filterTabActive) {
+            this.setState({filterTabActive: false});
+        } else {
+            this.setState({filterTabActive: true});
+        }
     };
 
     render() {
@@ -46,6 +55,8 @@ class ImageDatasetListSubContainer extends Component {
                         clearFilters={clearFilters}
                         setActiveFilterTab={this.setActiveFilterTab}
                         activeFilterTab={this.state.activeFilterTab}
+                        filterTabActive={this.state.filterTabActive}
+                        toggleFilterTab={this.toggleFilterTab}
                         {...this.props}
                     />
                 )}}
