@@ -1,6 +1,12 @@
 @import "kpmp-base.scss";
 @import "../node_modules/kpmp-common-styles/index.scss";
 @import "flyout.scss";
+//importing pieces of bootstrap instead of importing all of bootstrap
+@import "../node_modules/bootstrap/scss/functions";
+
+//pass variable overrides
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
 
 #navbar .navbar-brand img.logo {
     width: 80px;
