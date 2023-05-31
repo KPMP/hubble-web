@@ -42,7 +42,8 @@
     margin-top: 3.5rem !important;
     border-top-left-radius: 0px !important;
     min-height: 70vh;
-    height: auto;
+    height: calc(100vh - #{$header-height-padded + $footer-height-padded});
+    overflow-y: scroll;
 }
 
 .filter-tab {
@@ -104,6 +105,7 @@
     box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
     border-radius: .25rem !important;
     border: 1px solid #dee2e6 !important;
+    height: calc(68vh - #{$header-height-padded + $footer-height-padded});
 }
 
 .spatial-data-table .card-footer {
