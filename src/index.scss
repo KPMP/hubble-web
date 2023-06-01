@@ -42,7 +42,8 @@
     margin-top: 3.5rem !important;
     border-top-left-radius: 0px !important;
     min-height: 70vh;
-    height: auto;
+    height: calc(83vh - #{$header-height-padded + $footer-height-padded});
+    overflow-y: scroll;
 }
 
 .filter-tab {
@@ -104,6 +105,7 @@
     box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
     border-radius: .25rem !important;
     border: 1px solid #dee2e6 !important;
+    height: calc(68vh - #{$header-height-padded + $footer-height-padded});
 }
 
 .spatial-data-table .card-footer {
@@ -335,7 +337,6 @@ td:hover {
 .container-max {
     max-width: 100%;
     overflow-y: scroll;
-    height: 100vh;
 }
 
 .filter-collapse {
@@ -512,6 +513,22 @@ td:hover {
     color: white;
 }
 
+
+#participant-filter{
+    padding-top:1rem;
+    padding-left:1rem;
+    padding-right:1rem;
+    padding-bottom:13rem;
+}
+
+#dataset-filter{
+    padding-top:1rem;
+    padding-left:1rem;
+    padding-right:1rem;
+    padding-bottom:38rem;
+}
+
 .paging-panel {
     float: right;
 }
+
