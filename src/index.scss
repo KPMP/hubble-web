@@ -452,6 +452,7 @@ td:hover {
 .pagination {
     z-index: 999;
     font-size: 13px;
+    margin-left: auto !important;
 }
 
 .modal-backdrop {
@@ -512,6 +513,7 @@ td:hover {
     color: white;
 }
 
+
 #participant-filter{
     padding-top:1rem;
     padding-left:1rem;
@@ -525,3 +527,8 @@ td:hover {
     padding-right:1rem;
     padding-bottom:38rem;
 }
+
+.paging-panel {
+    float: right;
+}
+
