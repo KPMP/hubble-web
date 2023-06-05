@@ -513,26 +513,10 @@ td:hover {
     color: white;
 }
 
-#participant-filter{
-    padding-top:1rem;
-    padding-left:1rem;
-    padding-right:1rem;
-    padding-bottom:13rem;
+.flex-column {
+    flex-direction: column !important;
 }
 
 #dataset-filter{
-    padding-top:1rem;
-    padding-left:1rem;
-    padding-right:1rem;
-    padding-bottom:38rem;
-}
-
-.col-xl-3{
-    height: calc(100vh - #{$header-height-padded + $footer-height-padded});
-    overflow-y:hidden;
-}
-
-.flex-column {
-    flex-direction: column !important;
-    height: calc(100vh - 236px);
+    padding:1rem;
 }
