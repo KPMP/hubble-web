@@ -106,7 +106,7 @@
     box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
     border-radius: .25rem !important;
     border: 1px solid #dee2e6 !important;
-    height: calc(68vh - #{$header-height-padded + $footer-height-padded});
+    max-height: calc(100vh - 420px);
 }
 
 .spatial-data-table .card-footer {
@@ -337,8 +337,6 @@ td:hover {
 
 .container-max {
     max-width: 100%;
-    overflow-y: scroll;
-    height: 100vh;
 }
 
 .filter-collapse {
