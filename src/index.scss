@@ -42,7 +42,7 @@
     margin-top: 3.5rem !important;
     border-top-left-radius: 0px !important;
     min-height: 70vh;
-    height: calc(83vh - #{$header-height-padded + $footer-height-padded});
+    height: calc(100vh - #{$header-height-padded + $footer-height-padded});
     overflow-y: scroll;
 }
 
@@ -150,10 +150,6 @@
 }
 
 .btn-link:hover, .btn-link:focus {
-    text-decoration: none;
-}
-
-.btn-link {
     text-decoration: none;
 }
 
@@ -341,6 +337,7 @@ td:hover {
 .container-max {
     max-width: 100%;
     overflow-y: scroll;
+    height: 100vh;
 }
 
 .filter-collapse {
@@ -456,7 +453,6 @@ td:hover {
 .pagination {
     z-index: 999;
     font-size: 13px;
-    margin-left: auto !important;
 }
 
 .modal-backdrop {
@@ -517,7 +513,6 @@ td:hover {
     color: white;
 }
 
-
 #participant-filter{
     padding-top:1rem;
     padding-left:1rem;
@@ -532,7 +527,12 @@ td:hover {
     padding-bottom:38rem;
 }
 
-.paging-panel {
-    float: right;
+.col-xl-3{
+    height: calc(100vh - #{$header-height-padded + $footer-height-padded});
+    overflow-y:hidden;
 }
 
+.flex-column {
+    flex-direction: column !important;
+    height: calc(100vh - 236px);
+}
