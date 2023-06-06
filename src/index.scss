@@ -29,6 +29,11 @@
     white-space: nowrap;
 }
 
+.table > thead{
+    top:0px;
+    position: sticky;
+}
+
 .filter-panel-wrapper {
     contain: content;
 }
@@ -101,7 +106,7 @@
     cursor: pointer;
 }
 .spatial-data-table .table-responsive {
-    padding: 1rem !important;
+    padding: 0rem 1rem 1rem !important;
     background-color: #fff;
     box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
     border-radius: .25rem !important;
@@ -512,10 +517,6 @@ td:hover {
     color: white;
 }
 
-.flex-column {
-    flex-direction: column !important;
-}
-
-#dataset-filter{
+#spatial-filter{
     padding:1rem;
 }
