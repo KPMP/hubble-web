@@ -91,6 +91,10 @@
 .spatial-data-table thead tr {
     text-transform: uppercase;
 }
+.spatial-data-table td {
+    text-decoration: none;
+    padding:5px;
+}
 .spatial-data-table .card-header {
     background-color: rgba(0, 0, 0, 0);
     border-bottom: 0px solid rgba(0,0,0,0);
