@@ -3,6 +3,7 @@ import { Container } from "reactstrap";
 import ImageDatasetList from "./ImageDatasetList";
 
 import { WithSearch } from "@elastic/react-search-ui";
+import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
 class ImageDatasetListSubContainer extends Component {
     constructor(props) {
@@ -17,6 +18,11 @@ class ImageDatasetListSubContainer extends Component {
 
     openReportCard = () => {
         this.setState({reportCardOpen: true})
+        handleGoogleAnalyticsEvent(
+            'Spatial Viewer',
+            'Navigation',
+            'Participant Information'
+        );
     }
 
     closeReportCard = () => {
