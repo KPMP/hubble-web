@@ -37,6 +37,11 @@ class SpatialViewer extends Component {
 
     openReportCard = () => {
         this.setState({reportCardOpen: true})
+        handleGoogleAnalyticsEvent(
+            'Spatial Viewer', 
+            'Navigation', 
+            'Participant Information'
+        );
     }
 
     closeReportCard = () => {
