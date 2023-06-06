@@ -41,10 +41,10 @@
     "redux-thunk": "2.3.0",
     "vitessce": "1.1.21"
   },
-  
+
   "overrides": {
     "autoprefixer": "10.4.5"
-  }
+  },
   "scripts": {
     "start": "npm-run-all -p watch-css start-js --max_old_space_size=8192",
     "build": "npm-run-all build-css build-js",
