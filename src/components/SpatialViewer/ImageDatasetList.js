@@ -109,7 +109,7 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: false,
                 defaultHidden: false,
-                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="tooltip" data-placement="top" title="View dataset" className='table-column btn btn-link text-left p-0'>{row["spectracksampleid"]}</button>
+                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="tooltip" data-placement="top" title="View dataset" className='table-column btn btn-link text-left p-0 text-decoration-none'>{row["spectracksampleid"]}</button>
             },
             {
                 name: 'redcapid',
@@ -117,7 +117,7 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: true,
                 defaultHidden: false,
-                getCellValue: row => <button onClick={(e) => this.clickReportCard(row) } type='button' data-toggle="tooltip" data-placement="top" title="View participant information" className='table-column btn btn-link text-left p-0'>{row["redcapid"]}</button>
+                getCellValue: row => <button onClick={(e) => this.clickReportCard(row) } type='button' data-toggle="tooltip" data-placement="top" title="View participant information" className='table-column btn btn-link text-left p-0 text-decoration-none'>{row["redcapid"]}</button>
             },
             {
                 name: 'datatype',
@@ -250,7 +250,7 @@ class ImageDatasetList extends Component {
                         </div>
                             <React.Fragment>
                             {this.props.activeFilterTab === tabEnum.DATASET &&
-                            <Container id="dataset-filter" className="mt-3 rounded border shadow-sm spatial-filter-panel container-max">
+                            <Container id="spatial-filter" className="mt-3 rounded border shadow-sm spatial-filter-panel container-max">
                                 <Row className="mb-2"><Col><Facet field="datatype" label="Experimental Strategy" filterType="any" show="10"
                                                                   view={MultiCheckboxFacet}/></Col></Row>
                                 <div id="image_type">
@@ -260,7 +260,7 @@ class ImageDatasetList extends Component {
                                 
                             </Container>
                             }{this.props.activeFilterTab === tabEnum.PARTICIPANT &&
-                        <Container id="participant-filter" className="mt-3 rounded border shadow-sm spatial-filter-panel container-max">
+                        <Container id="spatial-filter" className="mt-3 rounded border shadow-sm spatial-filter-panel container-max">
                             <Row className="mb-2"><Col><Facet field="sex" label="Sex" filterType="any" show="10"
                                                               view={MultiCheckboxFacet}/></Col></Row>
                             <Row className="mb-2"><Col><Facet field="age" label="Age" filterType="any" show="10"
