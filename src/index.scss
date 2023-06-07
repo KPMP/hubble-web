@@ -29,6 +29,11 @@
     white-space: nowrap;
 }
 
+.table > thead{
+    top:0px;
+    position: sticky;
+}
+
 .filter-panel-wrapper {
     contain: content;
 }
@@ -42,7 +47,8 @@
     margin-top: 3.5rem !important;
     border-top-left-radius: 0px !important;
     min-height: 70vh;
-    height: calc(100vh - #{$header-height-padded + $footer-height-padded});
+    // height calculation includes header, footer and additional element widths
+    height: calc(100vh - 220px);
     overflow-y: scroll;
 }
 
@@ -85,6 +91,10 @@
 .spatial-data-table thead tr {
     text-transform: uppercase;
 }
+.spatial-data-table td {
+    text-decoration: none;
+    padding:5px;
+}
 .spatial-data-table .card-header {
     background-color: rgba(0, 0, 0, 0);
     border-bottom: 0px solid rgba(0,0,0,0);
@@ -100,12 +110,13 @@
     cursor: pointer;
 }
 .spatial-data-table .table-responsive {
-    padding: 1rem !important;
+    padding: 0rem 1rem 1rem !important;
     background-color: #fff;
     box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
     border-radius: .25rem !important;
     border: 1px solid #dee2e6 !important;
-    height: calc(68vh - #{$header-height-padded + $footer-height-padded});
+    // ~345px is the header, footer, and additonal element padding
+    max-height: calc(100vh - 345px);
 }
 
 .spatial-data-table .card-footer {
@@ -336,8 +347,6 @@ td:hover {
 
 .container-max {
     max-width: 100%;
-    overflow-y: scroll;
-    height: 100vh;
 }
 
 .filter-collapse {
@@ -453,6 +462,7 @@ td:hover {
 .pagination {
     z-index: 999;
     font-size: 13px;
+    margin-left: auto !important;
 }
 
 .modal-backdrop {
@@ -513,26 +523,10 @@ td:hover {
     color: white;
 }
 
-#participant-filter{
-    padding-top:1rem;
-    padding-left:1rem;
-    padding-right:1rem;
-    padding-bottom:13rem;
+.paging-panel{
+    float:right;
 }
 
-#dataset-filter{
-    padding-top:1rem;
-    padding-left:1rem;
-    padding-right:1rem;
-    padding-bottom:38rem;
-}
-
-.col-xl-3{
-    height: calc(100vh - #{$header-height-padded + $footer-height-padded});
-    overflow-y:hidden;
-}
-
-.flex-column {
-    flex-direction: column !important;
-    height: calc(100vh - 236px);
+#spatial-filter{
+    padding:1rem;
 }
