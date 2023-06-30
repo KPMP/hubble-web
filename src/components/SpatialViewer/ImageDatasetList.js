@@ -4,7 +4,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Col, Container, Row, Spinner } from "reactstrap";
 import { resultConverter } from "../../helpers/dataHelper";
 import { getImageTypeTooltipCopy } from "./viewConfigHelper";
-import { faXmark, faAnglesRight, faAnglesLeft } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faAnglesRight, faAnglesLeft, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { compareTableStrings } from "./spatialHelper";
 import {
@@ -45,15 +45,18 @@ class ImageDatasetList extends Component {
         const columnCards = this.getColumns().map((item, index) => {
             return {id: index, text: item.title, name: item.name, hideable: item.hideable}
         });
+
+        const defaultHiddenColumns = this.getDefaultHiddenColumnNames(this.getColumns())
         this.state = {
-            filterTabActive: true,
             activeFilterTab: 'DATASET',
             tableData: [],
             cards: this.props.tableSettings.cards || columnCards,
             currentPage: this.props.tableSettings.currentPage,
             isLoaded: false,
-        };
+            hiddenColumnNames: this.props.tableSettings.hiddenColumnNames || defaultHiddenColumns
 
+        };
+        
     }
 
     clickReportCard = (row) => {
@@ -87,9 +90,8 @@ class ImageDatasetList extends Component {
 
     setCards = (cards) => {
         this.setState({cards});
-        this.props.setTableSettings({cards: cards});
     };
-    
+
     setDefaultCards = () => {
         const cards = this.getColumns().map((item, index) => {
             return {id: index, text: item.title, name: item.name, hideable: item.hideable}
@@ -107,7 +109,7 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: false,
                 defaultHidden: false,
-                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="tooltip" data-placement="top" title="View dataset" className='table-column btn btn-link text-left p-0'>{row["spectracksampleid"]}</button>
+                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="tooltip" data-placement="top" title="View dataset" className='table-column btn btn-link text-left p-0 text-decoration-none'>{row["spectracksampleid"]}</button>
             },
             {
                 name: 'redcapid',
@@ -115,7 +117,7 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: true,
                 defaultHidden: false,
-                getCellValue: row => <button onClick={(e) => this.clickReportCard(row) } type='button' data-toggle="tooltip" data-placement="top" title="View participant information" className='table-column btn btn-link text-left p-0'>{row["redcapid"]}</button>
+                getCellValue: row => <button onClick={(e) => this.clickReportCard(row) } type='button' data-toggle="tooltip" data-placement="top" title="View participant information" className='table-column btn btn-link text-left p-0 text-decoration-none'>{row["redcapid"]}</button>
             },
             {
                 name: 'datatype',
@@ -183,14 +185,6 @@ class ImageDatasetList extends Component {
             { columnName: 'level', width: 100 },
         ]
     };
-
-    toggleFilterTab = () => {
-        if(this.state.filterTabActive) {
-            this.setState({filterTabActive: false});
-        } else {
-            this.setState({filterTabActive: true});
-        }
-    };
   
     getPageSizes = () => {
         return [10,20,40,80,100]
@@ -240,7 +234,7 @@ class ImageDatasetList extends Component {
                 />
                 <Row>
                     <Col xl={3}>
-                        <div className={`filter-panel-wrapper ${this.state.filterTabActive ? '': 'hidden'}`}>
+                        <div className={`filter-panel-wrapper ${this.props.filterTabActive ? '': 'hidden'}`}>
                         <div className="filter-panel-tab-wrapper">
                             <div onClick={() => {this.props.setActiveFilterTab(tabEnum.DATASET)}}
                                 className={`filter-tab ${this.props.activeFilterTab === tabEnum.DATASET ? 'active' : ''} rounded border`}>DATASET</div>
@@ -249,30 +243,33 @@ class ImageDatasetList extends Component {
                             
                             <div className="filter-tab filter-tab-control-icon clickable"
                                  alt="Close Filter Tab"
-                                 onClick={() => {this.toggleFilterTab()}}>                                
+                                 onClick={() => {this.props.toggleFilterTab()}}>                                
                                 <FontAwesomeIcon
                                     className="fas fa-angles-left " icon={faAnglesLeft} />
                             </div>
                         </div>
                             <React.Fragment>
                             {this.props.activeFilterTab === tabEnum.DATASET &&
-                            <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
-                                <Row className="mb-2"><Col><Facet field="datatype" label="Experimental Strategy" filterType="any"
+                            <Container id="spatial-filter" className="mt-3 rounded border shadow-sm spatial-filter-panel container-max">
+                                <Row className="mb-2"><Col><Facet field="datatype" label="Experimental Strategy" filterType="any" show="10"
                                                                   view={MultiCheckboxFacet}/></Col></Row>
-                                <Row className="mb-2"><Col><Facet field="imagetype" label="Image Type" filterType="any"
-                                                                  view={MultiCheckboxFacet}/></Col></Row>
+                                <div id="image_type">
+                                    <Row className="mb-2"><Col><Facet field="imagetype" label="Image Type" filterType="any" show="10"
+                                                                    view={MultiCheckboxFacet}/></Col></Row>
+                                </div>
+                                
                             </Container>
                             }{this.props.activeFilterTab === tabEnum.PARTICIPANT &&
-                        <Container className="mt-3 rounded border p-3 shadow-sm spatial-filter-panel container-max">
-                            <Row className="mb-2"><Col><Facet field="sex" label="Sex" filterType="any"
+                        <Container id="spatial-filter" className="mt-3 rounded border shadow-sm spatial-filter-panel container-max">
+                            <Row className="mb-2"><Col><Facet field="sex" label="Sex" filterType="any" show="10"
                                                               view={MultiCheckboxFacet}/></Col></Row>
-                            <Row className="mb-2"><Col><Facet field="age" label="Age" filterType="any"
+                            <Row className="mb-2"><Col><Facet field="age" label="Age" filterType="any" show="10"
                                                               view={MultiCheckboxFacet}/></Col></Row>
                             <Row className="mb-2"><Col><Facet field="tissuetype" label="Tissue Type"
-                                                              filterType="any"
+                                                              filterType="any" show="10"
                                                               view={MultiCheckboxFacet}/></Col></Row>
                             <Row className="mb-2"><Col><Facet inputProps={{ placeholder: "cusaceholder" }} isFilterable={true}  field="redcapid" label="Participant ID"
-                                                              filterType="any"
+                                                              filterType="any" show="10"
                                                               view={(props) => <MultiCheckboxFacet {...props} searchPlaceholder={"Search..."}/>}/></Col></Row>
                         </Container>
                         }
@@ -280,17 +277,17 @@ class ImageDatasetList extends Component {
                         </div>
 
                     </Col>
-                    <Col xl={`${this.state.filterTabActive ? 9 : 12 }`}>
+                    <Col xl={`${this.props.filterTabActive ? 9 : 12 }`}>
                         <Row>
                             <Col 
-                                className={`filter-collapse clickable ${this.state.filterTabActive ? 'hidden': ''}`}
+                                className={`filter-collapse clickable ${this.props.filterTabActive ? 'hidden': ''}`}
                                 xl={1}
                                 alt="Open Filter Tab"
-                                onClick={() => {this.toggleFilterTab()}}>
+                                onClick={() => {this.props.toggleFilterTab()}}>
                             <FontAwesomeIcon
                                     className="fas fa-angles-left" icon={faAnglesRight} />
                             </Col>
-                            <Col xl={12} className={`my-0 activeFilter-column ${this.state.filterTabActive ? 'closed': ''}`}>
+                            <Col xl={12} className={`my-0 activeFilter-column ${this.props.filterTabActive ? 'closed': ''}`}>
                                 {this.props.filters.length === 0 ?
 
                                 <Row className="filter-pill-row inactive-filters">
@@ -298,6 +295,14 @@ class ImageDatasetList extends Component {
                                 </Row>
                                 :
                                 <Row className="filter-pill-row">
+                                    <div className="border rounded activeFilter clear-filters">
+                                        <span 
+                                            onClick={()=>{
+                                                this.props.clearFilters()
+                                            }}>
+                                                <FontAwesomeIcon alt="Clear All Filters" className="fa-light fa-trash-can" icon={faTrashCan} /> Clear Filters 
+                                        </span>
+                                    </div>
                                     {this.getFilterPills(this.props.filters)}
                                 </Row>}
                                 
@@ -313,7 +318,7 @@ class ImageDatasetList extends Component {
                                         columns={this.getColumns()}>
                                         <SortingState
                                             defaultSorting={[]}
-                                            onSortingChange={(sorting) =>  this.props.setTableSettings({sorting: sorting})}
+                                            onSortingChange={(sorting) =>  this.props.setTableSettings({sorting: sorting, currentPage: 0})}
                                             sorting={sorting}/>
                                         <IntegratedSorting 
                                             columnExtensions={[
@@ -334,7 +339,7 @@ class ImageDatasetList extends Component {
                                             cards={this.state.cards}
                                             setCards={this.state.setCards}
                                         />
-                                        <ToolbarButtonState setTableSettings={this.props.setTableSettings} />
+                                        <ToolbarButtonState setTableSettings={this.props.setTableSettings} order={this.state.cards} hidden={this.state.hiddenColumnNames} />
                                         <Table />
                                         <TableColumnResizing
                                             defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={145}

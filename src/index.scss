@@ -1,6 +1,12 @@
 @import "kpmp-base.scss";
 @import "../node_modules/kpmp-common-styles/index.scss";
 @import "flyout.scss";
+//importing pieces of bootstrap instead of importing all of bootstrap
+@import "../node_modules/bootstrap/scss/functions";
+
+//pass variable overrides
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
 
 #navbar .navbar-brand img.logo {
     width: 80px;
@@ -23,6 +29,11 @@
     white-space: nowrap;
 }
 
+.table > thead{
+    top:0px;
+    position: sticky;
+}
+
 .filter-panel-wrapper {
     contain: content;
 }
@@ -36,7 +47,9 @@
     margin-top: 3.5rem !important;
     border-top-left-radius: 0px !important;
     min-height: 70vh;
-    height: auto;
+    // height calculation includes header, footer and additional element widths
+    height: calc(100vh - 220px);
+    overflow-y: scroll;
 }
 
 .filter-tab {
@@ -78,6 +91,10 @@
 .spatial-data-table thead tr {
     text-transform: uppercase;
 }
+.spatial-data-table td {
+    text-decoration: none;
+    padding:5px;
+}
 .spatial-data-table .card-header {
     background-color: rgba(0, 0, 0, 0);
     border-bottom: 0px solid rgba(0,0,0,0);
@@ -93,11 +110,13 @@
     cursor: pointer;
 }
 .spatial-data-table .table-responsive {
-    padding: 1rem !important;
+    padding: 0rem 1rem 1rem !important;
     background-color: #fff;
     box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
     border-radius: .25rem !important;
     border: 1px solid #dee2e6 !important;
+    // ~345px is the header, footer, and additonal element padding
+    max-height: calc(100vh - 345px);
 }
 
 .spatial-data-table .card-footer {
@@ -313,6 +332,7 @@ td:hover {
     display: inline-block;
     position: relative;
     cursor: pointer;
+    width: fit-content;
 }
 
 .activeFilter .close-button {
@@ -442,6 +462,7 @@ td:hover {
 .pagination {
     z-index: 999;
     font-size: 13px;
+    margin-left: auto !important;
 }
 
 .modal-backdrop {
@@ -491,4 +512,21 @@ td:hover {
 
 .u-controlled-access-asterisk {
     color: red;
+}
+
+#image_type {
+    height: 50vh;
+}
+
+.clear-filters {
+    background-color: rgb(67, 100, 157);
+    color: white;
+}
+
+.paging-panel{
+    float:right;
+}
+
+#spatial-filter{
+    padding:1rem;
 }

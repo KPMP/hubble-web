@@ -37,6 +37,11 @@ class SpatialViewer extends Component {
 
     openReportCard = () => {
         this.setState({reportCardOpen: true})
+        handleGoogleAnalyticsEvent(
+            'Spatial Viewer', 
+            'Navigation', 
+            'Participant Information'
+        );
     }
 
     closeReportCard = () => {
@@ -73,16 +78,16 @@ class SpatialViewer extends Component {
                                 sample ${this.props.selectedImageDataset["spectracksampleid"]} 
                                 (participant `} 
                                 <button
-                                    class="btn btn-link p-0 u-text-decoration-none"
+                                    className="btn btn-link p-0 u-text-decoration-none"
                                     onClick={()=>{this.openReportCard()}}>
                                     {`${this.props.selectedImageDataset["redcapid"]}`}
                                 </button>
                                 {`)`}
                             </h5>
                         </Col>
-                        <Col xs='4' className="text-right text-primary ">
+                        <Col xs='4' className="text-end text-primary ">
                             <button onClick={() => {this.props.history.goBack()}} type='button' className='btn btn-link'>
-                                <h5><span style={{"font-size":"26px"}}>&larr;</span> Close viewer</h5></button></Col>
+                                <h5><span style={{"fontSize":"26px"}}>&larr;</span> Close viewer</h5></button></Col>
                     </Row>
                     
                     <Vitessce
