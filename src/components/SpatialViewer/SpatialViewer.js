@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Vitessce } from 'vitessce';
-import 'vitessce/dist/esm/index.css';
+// import 'vitessce/dist/esm/index.css';
 import { Row, Col } from "reactstrap";
 import { getViewConfig, populateViewConfig } from './viewConfigHelper';
 import { Redirect } from 'react-router-dom';
