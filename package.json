@@ -38,7 +38,7 @@
     "reactstrap": "8.9.0",
     "redux": "4.1.1",
     "redux-thunk": "2.3.0",
-    "vitessce": "2.0.3"
+    "vitessce": "2.0.2"
   },
   "overrides": {
     "autoprefixer": "10.4.4",
@@ -47,7 +47,8 @@
     },
     "fast-xml-parser": "4.2.5",
     "semver": "7.5.2",
-    "jest": "27.0.0"
+    "jest": "27.0.0",
+    "webpack": "5.88.2"
   },
   "scripts": {
     "start": "npm-run-all -p watch-css start-js --max_old_space_size=8192",
