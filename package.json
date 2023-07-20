@@ -46,7 +46,8 @@
       "@svgr/webpack": "6.0.0"
     },
     "fast-xml-parser": "4.2.5",
-    "semver": "7.5.2"
+    "semver": "7.5.2",
+    "jest": "27.0.0"
   },
   "scripts": {
     "start": "npm-run-all -p watch-css start-js --max_old_space_size=8192",
@@ -61,6 +62,11 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(@ui5|lit-html)).*\\.js$"
+    ]
   },
   "browserslist": {
     "production": [
