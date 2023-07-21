@@ -50,8 +50,8 @@
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-js": "craco --max_old_space_size=8192 start --openssl-legacy-provider",
-    "build-js": "craco --max_old_space_size=8192 build --openssl-legacy-provider",
+    "start-js": "craco --max_old_space_size=8192 start",
+    "build-js": "craco --max_old_space_size=8192 build",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "yarn build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "analyze": "REACT_APP_RUN_ANALYZER=true npm run build"
