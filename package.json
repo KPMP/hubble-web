@@ -38,13 +38,14 @@
     "reactstrap": "8.9.0",
     "redux": "4.1.1",
     "redux-thunk": "2.3.0",
-    "vitessce": "2.0.3"
+    "vitessce": "2.0.2"
   },
   "overrides": {
     "autoprefixer": "10.4.4",
     "react-scripts": {
       "@svgr/webpack": "6.0.0"
     },
+    "material-ui": "4.1.1",
     "fast-xml-parser": "4.2.5",
     "semver": "7.5.2",
     "jest": "27.0.0",
