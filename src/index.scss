@@ -530,3 +530,15 @@ td:hover {
 #spatial-filter{
     padding:1rem;
 }
+
+.vit8, .vit9 {
+    background-color: #fafbfc !important;
+}
+
+#outer-wrapper {
+    @media (min-width: 1200px) {
+        height: calc(100vh + 16px
+        - #{$header-height-padded}
+        - #{$footer-height-padded});
+    }
+}
