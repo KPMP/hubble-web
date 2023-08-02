@@ -61,13 +61,12 @@ class ReportCard extends Component {
             let dataType = '';
             if (row.key.includes('Single-cell')) {
                 dataType = 'sc';
-                link = '/' + row.tool + '/dataViz?dataType=' + dataType
             } else if (row.key.includes('Single-nuc')) {
-                dataType = 'sn'
-                link = '/' + row.tool + '/dataViz?dataType=' + dataType
+                dataType = 'sn';
             } else if (row.key.includes('Regional')) {
-                link = '/' + row.tool + '/regionalviz'
+                dataType = 'rt';
             }
+            link = '/' + row.tool + '/dataViz?dataType=' + dataType;
         }
 
         return( row['value'] > 0 ? <a className="p-0" href={link}>{row['value']}</a>: <span>{row['value']}</span>)
