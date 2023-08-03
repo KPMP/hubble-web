@@ -538,7 +538,12 @@ td:hover {
 #outer-wrapper {
     @media (min-width: 1200px) {
         height: calc(100vh + 16px
-        - #{$header-height-padded}
         - #{$footer-height-padded});
     }
+}
+
+#vitessce-container {
+    height: calc(100vh - 11px
+        - #{$header-height-padded}
+        - #{$footer-height-padded});
 }
