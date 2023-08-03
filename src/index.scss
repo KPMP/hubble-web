@@ -536,9 +536,18 @@ td:hover {
 }
 
 #outer-wrapper {
-    @media (min-width: 1200px) {
-        height: calc(100vh + 16px
+    height: 100%;
+}
+
+.height-wrapper {
+    height: calc(100vh + 16px
         - #{$header-height-padded}
         - #{$footer-height-padded});
-    }
+}
+
+.oops-height-wrapper {
+    height: calc(100vh + 16px
+        - #{$header-height-padded}
+        - #{$footer-height-padded} 
+        - 150px);
 }

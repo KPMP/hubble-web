@@ -48,7 +48,8 @@ body {
 #root {
 	position: relative;
 	top: calc(#{$header-height-padded});
-
+	overflow-x: clip;
+	
 	/* md and up */
 	@media (min-width: 768px) {
 		top: calc(#{$header-height-padded});
