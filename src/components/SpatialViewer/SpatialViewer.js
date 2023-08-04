@@ -30,6 +30,7 @@ class SpatialViewer extends Component {
                 + this.props.selectedImageDataset['imagetype']);
             let viewConfig = getViewConfig(this.props.selectedImageDataset["configtype"]);
             viewConfig = await populateViewConfig(viewConfig, this.props.selectedImageDataset);
+            console.log(viewConfig);
             this.setState({viewConfig: viewConfig, noData: false});
         }
     }
@@ -88,7 +89,6 @@ class SpatialViewer extends Component {
                             <button onClick={() => {this.props.history.goBack()}} type='button' className='btn btn-link'>
                                 <h5><span style={{"fontSize":"26px"}}>&larr;</span> Close viewer</h5></button></Col>
                     </Row>
-                    {console.log(this.state.viewConfig)}
                     <Vitessce
                     config={this.state.viewConfig}
                     height={window.innerHeight - 200}
