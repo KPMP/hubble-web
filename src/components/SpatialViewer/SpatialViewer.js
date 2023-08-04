@@ -32,7 +32,7 @@ class SpatialViewer extends Component {
             console.log("View config beofre population " + viewConfig);
             viewConfig = await populateViewConfig(viewConfig, this.props.selectedImageDataset);
             this.setState({viewConfig: viewConfig, noData: false});
-            console.log("View config after population"+ viewConfig);
+            console.log(this.setState({viewConfig: viewConfig, noData: false}));
         }
     }
 
