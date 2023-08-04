@@ -44,7 +44,7 @@ export const populateViewConfig = async (viewConfig, selectedDataset) => {
             relatedFiles.push(JSON.parse(item));
         });
         let dataUrl = getPublicFileLink(selectedDataset["packageid"], relatedFiles[0]['filename']);
-        console.log(dataUrl);
+        console.log("Data Url = " + dataUrl);
         stringifiedConfig = stringifiedConfig.replace(/<DATA_FILE_URL>/gi, dataUrl);
     }
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', selectedDataset["filename"]);
