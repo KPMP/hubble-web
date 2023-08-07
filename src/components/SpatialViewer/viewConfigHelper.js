@@ -50,6 +50,7 @@ export const populateViewConfig = async (viewConfig, selectedDataset) => {
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', selectedDataset["filename"]);
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_URL>', imageUrlResponse.data);
     stringifiedConfig = stringifiedConfig.replace('<DATASET_INFO>', getDatasetInfo(selectedDataset));
+    console.log(JSON.parse(stringifiedConfig));
     return JSON.parse(stringifiedConfig);
 }
 
