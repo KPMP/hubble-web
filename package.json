@@ -40,7 +40,8 @@
     "reactstrap": "8.9.0",
     "redux": "4.1.1",
     "redux-thunk": "2.3.0",
-    "vitessce": "1.1.21"
+    "vitessce": "1.1.21",
+    "sass": "1.56.1"
   },
   "scripts": {
     "start": "npm-run-all -p watch-css start-js --max_old_space_size=8192",
@@ -49,8 +50,8 @@
     "eject": "react-scripts eject",
     "start-js": "craco --max_old_space_size=8192 start",
     "build-js": "craco --max_old_space_size=8192 build",
-    "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "yarn build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "build-css": "sass src/:src/",
+    "watch-css": "yarn build-css && sass src/:src/ --watch",
     "analyze": "REACT_APP_RUN_ANALYZER=true npm run build"
   },
   "eslintConfig": {
