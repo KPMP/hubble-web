@@ -38,6 +38,7 @@ export const getDatasetInfo = (selectedDataset) => {
 export const populateViewConfig = async (viewConfig, selectedDataset) => {
     let stringifiedConfig = JSON.stringify(viewConfig);
     let imageUrlResponse = await getFileLink(selectedDataset["packageid"] + '/' + selectedDataset["longfilename"]);
+    console.log("image url: " + imageUrlResponse);
     if (selectedDataset["relatedfiles"].length > 0) {
         let relatedFiles = [];
         selectedDataset['relatedfiles'].forEach(function (item, index) {
@@ -47,6 +48,7 @@ export const populateViewConfig = async (viewConfig, selectedDataset) => {
         
         stringifiedConfig = stringifiedConfig.replace(/<DATA_FILE_URL>/gi, dataUrl);
     }
+    console.log("Logging before string replace: " + stringifiedConfig);
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', selectedDataset["filename"]);
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_URL>', imageUrlResponse.data);
     stringifiedConfig = stringifiedConfig.replace('<DATASET_INFO>', getDatasetInfo(selectedDataset));
