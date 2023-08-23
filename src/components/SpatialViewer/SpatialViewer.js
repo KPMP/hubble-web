@@ -57,7 +57,7 @@ class SpatialViewer extends Component {
 
         return (
             <div className="container-fluid">
-                <div id="vitessce-container" className="rounded border shadow-sm mt-2 mx-3 p-3">
+                <div id="vitessce-container" className="rounded border shadow-sm mt-2 mb-3 mx-3 p-3">
                     <ReportCard 
                         reportCardOpen={this.state.reportCardOpen}
                         closeReportCard={this.closeReportCard}
