@@ -38,7 +38,7 @@
     "reactstrap": "8.9.0",
     "redux": "4.1.1",
     "redux-thunk": "2.3.0",
-    "vitessce": "2.0.3"
+    "vitessce": "3.1.1"
   },
   "overrides": {
     "autoprefixer": "10.4.4",
@@ -54,7 +54,7 @@
   "scripts": {
     "start": "npm-run-all -p watch-css start-js --max_old_space_size=8192",
     "build": "npm-run-all build-css build-js",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!vitessce|@devexpress|@elastic)'",
     "eject": "react-scripts eject",
     "start-js": "craco --max_old_space_size=8192 start",
     "build-js": "craco --max_old_space_size=8192 build",
