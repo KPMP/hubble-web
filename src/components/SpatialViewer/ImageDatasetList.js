@@ -6,10 +6,8 @@ import { resultConverter } from "../../helpers/dataHelper";
 import { getImageTypeTooltipCopy } from "./viewConfigHelper";
 import { faXmark, faAnglesRight, faAnglesLeft, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { compareTableStrings } from "./spatialHelper";
 import {
     SortingState,
-    IntegratedSorting,
     IntegratedPaging,
     PagingState,
 } from '@devexpress/dx-react-grid';
@@ -104,7 +102,7 @@ class ImageDatasetList extends Component {
         const { setSelectedImageDataset } = this.props;
         let columns = [
             {
-                name: 'spectrackSampleId',
+                name: 'spectracksampleid',
                 title: 'Sample ID',
                 sortable: true,
                 hideable: false,
@@ -148,6 +146,13 @@ class ImageDatasetList extends Component {
                 hideable: true,
                 defaultHidden: true,
             },
+            // Sort Column
+            {
+                name: 'file_name_sort',
+                sortable: false,
+                hideable: false,
+                defaultHidden: true
+            }
         ];
         return columns;
     };
@@ -177,12 +182,13 @@ class ImageDatasetList extends Component {
 
     getDefaultColumnWidths = () => {
         return [
-            { columnName: 'spectrackSampleId', width: 145 },
+            { columnName: 'spectracksampleid', width: 145 },
             { columnName: 'datatype', width: 250 },
             { columnName: 'imagetype', width: 350 },
             { columnName: 'redcapid', width: 145 },
             { columnName: 'filename', width: 250 },
             { columnName: 'level', width: 100 },
+            { columnName: 'file_name_sort', width: 0}
         ]
     };
   
@@ -318,23 +324,24 @@ class ImageDatasetList extends Component {
                                         columns={this.getColumns()}>
                                         <SortingState
                                             defaultSorting={[]}
-                                            onSortingChange={(sorting) =>  this.props.setTableSettings({sorting: sorting, currentPage: 0})}
+                                            onSortingChange={(sorting) => {
+                                                let sortOptions = sorting.map(val => {
+                                                    if (val.columnName === 'filename') {
+                                                        return { field: "file_name_sort", direction: val.direction }
+                                                    }
+                                                    return { field: val.columnName, direction: val.direction }
+                                                })
+                                                this.props.setSort(sortOptions);
+                                                this.props.setTableSettings({sorting: sorting, currentPage: 0})}
+                                            }  
                                             sorting={sorting}/>
-                                        <IntegratedSorting 
-                                            columnExtensions={[
-                                                { columnName: 'spectrackSampleId', compare: compareTableStrings },
-                                                { columnName: 'datatype',          compare: compareTableStrings },
-                                                { columnName: 'filename',          compare: compareTableStrings },
-                                                { columnName: 'imagetype',         compare: compareTableStrings },
-                                                { columnName: 'redcapid',          compare: compareTableStrings }]}
-                                        />
-                                        <PagingState
-                                            currentPage={currentPage}
-                                            defaultPageSize={pagingSize}
-                                            onCurrentPageChange={(page) => this.props.setTableSettings({currentPage: page})}
-                                        />
-                                        <IntegratedPaging />
-                                        <PagingPanel />
+                                            <PagingState
+                                                currentPage={currentPage}
+                                                defaultPageSize={pagingSize}
+                                                onCurrentPageChange={(page) => this.props.setTableSettings({currentPage: page})}
+                                            />
+                                            <IntegratedPaging />
+                                            <PagingPanel />
                                         <Toolbar
                                             cards={this.state.cards}
                                             setCards={this.state.setCards}

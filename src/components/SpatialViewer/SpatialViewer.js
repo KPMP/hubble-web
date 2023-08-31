@@ -26,7 +26,7 @@ class SpatialViewer extends Component {
             handleGoogleAnalyticsEvent(
                 'Spatial Viewer',
                 'Navigation',
-                this.props.selectedImageDataset["spectrackSampleId"] 
+                this.props.selectedImageDataset["spectracksampleid"] 
                 + this.props.selectedImageDataset['imagetype']);
             let viewConfig = getViewConfig(this.props.selectedImageDataset["configtype"]);
             viewConfig = await populateViewConfig(viewConfig, this.props.selectedImageDataset);
