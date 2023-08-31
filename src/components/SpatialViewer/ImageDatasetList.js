@@ -6,10 +6,8 @@ import { resultConverter } from "../../helpers/dataHelper";
 import { getImageTypeTooltipCopy } from "./viewConfigHelper";
 import { faXmark, faAnglesRight, faAnglesLeft, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { compareTableStrings } from "./spatialHelper";
 import {
     SortingState,
-    IntegratedSorting,
     IntegratedPaging,
     PagingState,
 } from '@devexpress/dx-react-grid';
