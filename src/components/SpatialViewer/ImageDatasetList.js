@@ -107,7 +107,7 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: false,
                 defaultHidden: false,
-                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="tooltip" data-placement="top" title="View dataset" className='table-column btn btn-link text-left p-0 text-decoration-none'>{row["spectracksampleid"]}</button>
+                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="tooltip" data-placement="top" title="View dataset" className='table-column btn btn-link text-start p-0 text-decoration-none'>{row["spectracksampleid"]}</button>
             },
             {
                 name: 'redcapid',
@@ -115,7 +115,7 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: true,
                 defaultHidden: false,
-                getCellValue: row => <button onClick={(e) => this.clickReportCard(row) } type='button' data-toggle="tooltip" data-placement="top" title="View participant information" className='table-column btn btn-link text-left p-0 text-decoration-none'>{row["redcapid"]}</button>
+                getCellValue: row => <button onClick={(e) => this.clickReportCard(row) } type='button' data-toggle="tooltip" data-placement="top" title="View participant information" className='table-column btn btn-link text-start p-0 text-decoration-none'>{row["redcapid"]}</button>
             },
             {
                 name: 'datatype',
@@ -176,7 +176,7 @@ class ImageDatasetList extends Component {
     getImageTypeCell = (row) => {
         return row["imagetype"] !== "" &&
             <div className={`image-type-cell ${(getImageTypeTooltipCopy(row["imagetype"]) !== "") ? 'clickable': '' }`}>
-                <span className='mr-1'>{row["imagetype"]}</span>
+                <span className='me-1'>{row["imagetype"]}</span>
                 {getImageTypeTooltipCopy(row["imagetype"]) !== "" &&
                 <div>
                     <div className='tooltip-parent-sibling'></div>
@@ -219,7 +219,7 @@ class ImageDatasetList extends Component {
                                     onClick={()=>{
                                         this.props.removeFilter(filter.field, value)
                                     }}
-                                    className="close-button fas fa-xmark ml-2"
+                                    className="close-button fas fa-xmark ms-2"
                                     icon={faXmark} />
                             </span>
                         </div>)
@@ -300,7 +300,7 @@ class ImageDatasetList extends Component {
                                 alt="Open Filter Tab"
                                 onClick={() => {this.props.toggleFilterTab()}}>
                             <FontAwesomeIcon
-                                    className="fas fa-angles-left" icon={faAnglesRight} />
+                                    className="fas fa-angles-right" icon={faAnglesRight} />
                             </Col>
                             <Col xl={12} className={`my-0 activeFilter-column ${this.props.filterTabActive ? 'closed': ''}`}>
                                 {this.props.filters.length === 0 ?
