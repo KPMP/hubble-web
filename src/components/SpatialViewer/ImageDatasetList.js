@@ -41,7 +41,7 @@ class ImageDatasetList extends Component {
     constructor(props) {
         super(props);
         const columnCards = this.getColumns().map((item, index) => {
-            return {id: index, text: item.title, name: item.name, hideable: item.hideable}
+            return {id: index, text: item.title, name: item.name, hideable: item.hideable, isSortField: item?.isSortField}
         });
 
         const defaultHiddenColumns = this.getDefaultHiddenColumnNames(this.getColumns())
@@ -92,7 +92,7 @@ class ImageDatasetList extends Component {
 
     setDefaultCards = () => {
         const cards = this.getColumns().map((item, index) => {
-            return {id: index, text: item.title, name: item.name, hideable: item.hideable}
+            return {id: index, text: item.title, name: item.name, hideable: item.hideable, isSortField: item?.isSortField}
         });
         this.setCards(cards)
     };
@@ -151,7 +151,8 @@ class ImageDatasetList extends Component {
                 name: 'file_name_sort',
                 sortable: false,
                 hideable: false,
-                defaultHidden: true
+                defaultHidden: true,
+                isSortField: true
             }
         ];
         return columns;
