@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "/spatial-viewer",
   "baseURL": "/spatial-viewer",
+  "type": "module",
   "dependencies": {
     "@apollo/client": "3.3.7",
     "@devexpress/dx-react-core": "3.0.0",
