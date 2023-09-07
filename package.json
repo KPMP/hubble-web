@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "/spatial-viewer",
   "baseURL": "/spatial-viewer",
+  "type": "module",
   "dependencies": {
     "@apollo/client": "3.3.7",
     "@devexpress/dx-react-core": "3.0.0",
@@ -54,7 +55,7 @@
   "scripts": {
     "start": "npm-run-all -p watch-css start-js --max_old_space_size=8192",
     "build": "npm-run-all build-css build-js",
-    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!vitessce|@devexpress|@elastic)'",
+    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!vitessce|@devexpress|@elastic|react-ga4)'",
     "eject": "react-scripts eject",
     "start-js": "craco --max_old_space_size=8192 start",
     "build-js": "craco --max_old_space_size=8192 build",
