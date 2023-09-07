@@ -153,6 +153,13 @@ class ImageDatasetList extends Component {
                 hideable: false,
                 defaultHidden: true,
                 isSortField: true
+            },
+            {
+                name: 'participant_id_sort',
+                sortable: false,
+                hideable: false,
+                defaultHidden: true,
+                isSortField: true
             }
         ];
         return columns;
@@ -189,7 +196,8 @@ class ImageDatasetList extends Component {
             { columnName: 'redcapid', width: 145 },
             { columnName: 'filename', width: 250 },
             { columnName: 'level', width: 100 },
-            { columnName: 'file_name_sort', width: 0}
+            { columnName: 'file_name_sort', width: 0},
+            { columnName: 'participant_id_sort', width: 0}
         ]
     };
   
@@ -329,6 +337,9 @@ class ImageDatasetList extends Component {
                                                 let sortOptions = sorting.map(val => {
                                                     if (val.columnName === 'filename') {
                                                         return { field: "file_name_sort", direction: val.direction }
+                                                    }
+                                                    else if (val.columnName === "redcapid") {
+                                                        return { field: "participant_id_sort", direction: val.direction }
                                                     }
                                                     return { field: val.columnName, direction: val.direction }
                                                 })
