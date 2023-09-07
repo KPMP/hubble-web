@@ -103,7 +103,7 @@ class ReportCard extends Component {
             <div className={`flyout shadow-sm border u-transition ${this.props.reportCardOpen ? "open" : "closed"}`}>
                 <Row className="header u-gutter-fix">
                     <Col className="pt-1 pb-1">
-                        <div className="pr-2 d-inline clickable" onClick={()=>{this.props.closeReportCard()}}>
+                        <div className="pe-2 d-inline clickable" onClick={()=>{this.props.closeReportCard()}}>
                             <FontAwesomeIcon className="fa fa-angle-double-right" icon={faAngleDoubleRight} />
                         </div>
                         <span>Participant Information</span>
