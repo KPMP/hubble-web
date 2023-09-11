@@ -81,7 +81,7 @@ class ImageDatasetList extends Component {
                 this.getSearchResults();
             }
             if (this.props.filters !== prevProps.filters) {
-                this.props.setTableSettings({currentPage: 0});
+                this.props.setCurrent(1);
             }
         }
     };
@@ -89,7 +89,10 @@ class ImageDatasetList extends Component {
     setCards = (cards) => {
         this.setState({cards});
     };
-
+    setShowHide = (hiddenColumnNames) => {
+        this.setState({hiddenColumnNames: hiddenColumnNames});
+    }
+    
     setDefaultCards = () => {
         const cards = this.getColumns().map((item, index) => {
             return {id: index, text: item.title, name: item.name, hideable: item.hideable, isSortField: item?.isSortField}
@@ -102,6 +105,7 @@ class ImageDatasetList extends Component {
         const { setSelectedImageDataset } = this.props;
         let columns = [
             {
+                name: 'spectracksampleid',
                 name: 'spectracksampleid',
                 title: 'Sample ID',
                 sortable: true,
@@ -205,6 +209,11 @@ class ImageDatasetList extends Component {
         return [10,20,40,80,100]
     };
 
+    getTotalPages = () => {
+        let val = Math.ceil(this.props.totalResults / this.props.resultsPerPage);
+        return (val > 100) ? 100 : val;
+    };
+
     getFilterPills = (filters) => {
         return filters.map(
             filter => {
@@ -233,7 +242,7 @@ class ImageDatasetList extends Component {
             PARTICIPANT: 'PARTICIPANT',
         };
 
-        const { pagingSize, columnWidths, hiddenColumnNames, sorting, currentPage} = this.props.tableSettings;
+        const { columnWidths, hiddenColumnNames, sorting } = this.props.tableSettings;
         const summaryDataset = this.props.summaryDatasets
         const experimentalDataCounts = this.props.experimentalDataCounts
         const clinicalDataset = this.props.clinicalDatasets
@@ -345,16 +354,38 @@ class ImageDatasetList extends Component {
                                                     return { field: val.columnName, direction: val.direction }
                                                 })
                                                 this.props.setSort(sortOptions);
-                                                this.props.setTableSettings({sorting: sorting, currentPage: 0})}
+                                                this.props.setTableSettings({sorting: sorting})
+                                                this.props.setCurrent(1);
+                                                }
                                             }  
                                             sorting={sorting}/>
-                                            <PagingState
-                                                currentPage={currentPage}
-                                                defaultPageSize={pagingSize}
-                                                onCurrentPageChange={(page) => this.props.setTableSettings({currentPage: page})}
-                                            />
-                                            <IntegratedPaging />
-                                            <PagingPanel />
+                                        <PagingState
+                                            currentPage={this.props.currentPage-1}
+                                            defaultPageSize={this.props.resultsPerPage}
+                                        />
+                                        <IntegratedPaging />
+                                        <PagingPanel 
+                                            pageSizes={this.getPageSizes()}
+                                            containerComponent={() => {
+                                                return (
+                                                <PagingPanel.Container
+                                                    totalPages={this.getTotalPages()}
+                                                    currentPage={this.props.currentPage-1}
+                                                    onCurrentPageChange={(page) => {
+                                                        // dx-react-grid paging starts at 0, while ElasticSearch starts at 1
+                                                        // (hence the "+1" and "-1")
+                                                        this.props.setCurrent(page+1);
+                                                    }}
+                                                    pageSize={this.props.resultsPerPage}
+                                                    totalCount={this.props.totalResults}
+                                                    onPageSizeChange={(pageSize) => {
+                                                        this.props.setResultsPerPage(pageSize);
+                                                    }}
+                                                    pageSizes={this.getPageSizes()}
+                                                    getMessage={(messageKey) => {return messageKey}}
+                                                />
+                                                )}}
+                                        />
                                         <Toolbar
                                             cards={this.state.cards}
                                             setCards={this.state.setCards}
@@ -375,7 +406,7 @@ class ImageDatasetList extends Component {
                                         <TableColumnVisibility
                                             defaultHiddenColumnNames={this.getDefaultHiddenColumnNames(this.getColumns())}
                                             hiddenColumnNames={hiddenColumnNames}
-                                            onHiddenColumnNamesChange={(hiddenColumnNames) => {this.props.setTableSettings({hiddenColumnNames: hiddenColumnNames})}}
+                                            onHiddenColumnNamesChange={(hiddenColumnNames) => {this.setShowHide(hiddenColumnNames)}}
                                         />
                                         <ColumnChooser />
                                         
@@ -385,9 +416,8 @@ class ImageDatasetList extends Component {
                                             setDefaultCards={this.setDefaultCards}
                                             defaultOrder={this.getColumns().map(item => item.name)} />
                                         <PaginationState
-                                            currentPage={currentPage}
-                                            setTableSettings={this.props.setTableSettings}
-                                            pagingSize={pagingSize}/>
+                                            setResultsPerPage={this.props.setResultsPerPage}
+                                            pagingSize={this.props.resultsPerPage}/>
                                         <Pagination pageSizes={this.getPageSizes()} />
                                     </Grid>
                                     : <Spinner animation="border" variant="primary">
