@@ -74,8 +74,10 @@ const searchConfig = {
       }
   },
   initialState: {
-    resultsPerPage: 1000
+    resultsPerPage: 20,
+    current: 1
   },
+  trackUrlState: true,
   alwaysSearchOnInitialLoad: true
 }
 
