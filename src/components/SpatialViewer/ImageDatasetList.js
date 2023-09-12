@@ -8,7 +8,6 @@ import { faXmark, faAnglesRight, faAnglesLeft, faTrashCan } from "@fortawesome/f
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     SortingState,
-    IntegratedPaging,
     PagingState,
 } from '@devexpress/dx-react-grid';
 import {
@@ -105,7 +104,6 @@ class ImageDatasetList extends Component {
         const { setSelectedImageDataset } = this.props;
         let columns = [
             {
-                name: 'spectracksampleid',
                 name: 'spectracksampleid',
                 title: 'Sample ID',
                 sortable: true,
