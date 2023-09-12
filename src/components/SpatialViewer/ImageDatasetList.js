@@ -361,9 +361,8 @@ class ImageDatasetList extends Component {
                                             sorting={sorting}/>
                                         <PagingState
                                             currentPage={this.props.currentPage-1}
-                                            defaultPageSize={this.props.resultsPerPage}
+                                            pageSize={this.props.resultsPerPage}
                                         />
-                                        <IntegratedPaging />
                                         <PagingPanel 
                                             pageSizes={this.getPageSizes()}
                                             containerComponent={() => {
