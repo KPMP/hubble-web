@@ -31,7 +31,7 @@
     "react-dnd-html5-backend": "15.1.2",
     "react-dom": "17.0.2",
     "react-ga": "3.3.0",
-    "react-ga4": "1.4.0",
+    "react-ga4": "2.1.0",
     "react-redux": "7.2.4",
     "react-router-dom": "5.2.1",
     "react-scripts": "5.0.1",
@@ -52,9 +52,9 @@
     "webpack": "5.88.2"
   },
   "scripts": {
-    "start": "npm-run-all -p watch-css start-js --max_old_space_size=8192",
+    "start": "npm-run-all -p start-js --max_old_space_size=8192",
     "build": "npm-run-all build-css build-js",
-    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!vitessce|@devexpress|@elastic)'",
+    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!vitessce|@devexpress|@elastic|react-ga4)'",
     "eject": "react-scripts eject",
     "start-js": "craco --max_old_space_size=8192 start",
     "build-js": "craco --max_old_space_size=8192 build",
