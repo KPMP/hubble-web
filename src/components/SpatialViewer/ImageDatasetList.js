@@ -292,6 +292,9 @@ class ImageDatasetList extends Component {
                             </Container>
                             }{this.props.activeFilterTab === tabEnum.PARTICIPANT &&
                         <Container id="spatial-filter" className="mt-3 rounded border shadow-sm spatial-filter-panel container-max">
+                            <Row className="mb-2"><Col><Facet inputProps={{ placeholder: "cusaceholder" }} isFilterable={true}  field="redcapid" label="Participant ID"
+                                                              filterType="any" show="10"
+                                                              view={(props) => <MultiCheckboxFacet {...props} searchPlaceholder={"Search..."}/>}/></Col></Row>
                             <Row className="mb-2"><Col><Facet field="sex" label="Sex" filterType="any" show="10"
                                                               view={MultiCheckboxFacet}/></Col></Row>
                             <Row className="mb-2"><Col><Facet field="age" label="Age" filterType="any" show="10"
@@ -299,9 +302,6 @@ class ImageDatasetList extends Component {
                             <Row className="mb-2"><Col><Facet field="tissuetype" label="Tissue Type"
                                                               filterType="any" show="10"
                                                               view={MultiCheckboxFacet}/></Col></Row>
-                            <Row className="mb-2"><Col><Facet inputProps={{ placeholder: "cusaceholder" }} isFilterable={true}  field="redcapid" label="Participant ID"
-                                                              filterType="any" show="10"
-                                                              view={(props) => <MultiCheckboxFacet {...props} searchPlaceholder={"Search..."}/>}/></Col></Row>
                         </Container>
                         }
                             </React.Fragment>
