@@ -1,19 +1,7 @@
 {
     "coordinationSpace": {
-        "embeddingZoom": {
-            "UMAP": 0
-        },
         "dataset": {
             "A": "A"
-        },
-        "embeddingType": {
-            "UMAP": "UMAP"
-        },
-        "embeddingCellRadiusMode": {
-            "UMAP": "manual"
-        },
-        "embeddingCellRadius": {
-            "UMAP": 3
         },
         "spatialCellsLayer": 
             {
@@ -29,13 +17,8 @@
                     "fileType": "anndata-cells.zarr",
                     "url": "<DATA_FILE_URL>",
                     "options": {
-                        "xy": "obsm/spatial",
-                        "mappings": {
-
-                            "UMAP": {
-                                "key": "obsm/X_umap",
-                                "dims": [ 0, 1 ]
-                            }                        }                    }
+                        "xy": "obsm/spatial"
+                    }
                 },
                 {
                     "type": "expression-matrix",
@@ -74,7 +57,7 @@
                 "dataset": "A"
             },
             "h": 3,
-            "w": 3,
+            "w": 4,
             "x": 0,
             "y": 0
         },
@@ -84,9 +67,9 @@
                 "spatialCellsLayer": "is_visible",
                 "dataset": "A"
             },
-            "h": 6,
+            "h": 12,
             "w": 4,
-            "x": 3,
+            "x": 4,
             "y": 0
         },
         {
@@ -95,36 +78,23 @@
                 "spatialCellsLayer": "is_not_visible",
                 "dataset": "A"
             },
-            "h": 6,
-            "w": 4,
-            "x": 3,
-            "y": 0
-        },
-        {
-            "component": "scatterplot",
-            "coordinationScopes": {
-                "embeddingType": "UMAP",
-                "embeddingZoom": "UMAP",
-                "embeddingCellRadiusMode": "UMAP",
-                "embeddingCellRadius": "UMAP"
-            },
             "h": 12,
-            "w": 5,
-            "x": 7,
+            "w": 4,
+            "x": 8,
             "y": 0
         },
         {
             "component": "genes",
             "x": 0,
             "y": 3,
-            "w": 3,
+            "w": 4,
             "h": 5
         },
         {
             "component": "expressionHistogram",
             "x": 0,
             "y": 7,
-            "w": 3,
+            "w": 4,
             "h": 4
         }
     ],
