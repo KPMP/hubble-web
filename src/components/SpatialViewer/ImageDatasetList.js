@@ -6,6 +6,7 @@ import { resultConverter } from "../../helpers/dataHelper";
 import { getImageTypeTooltipCopy } from "./viewConfigHelper";
 import { faXmark, faAnglesRight, faAnglesLeft, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Tooltip } from "react-tooltip"
 import {
     SortingState,
     PagingState,
@@ -139,7 +140,10 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: true,
                 defaultHidden: false,
-                getCellValue: this.getImageTypeCell
+                getCellValue: row => {
+                  return <span data-tooltip-id="tooltip" data-tooltip-content={getImageTypeTooltipCopy(row['imagetype'])}><Tooltip id="tooltip" />{row['imagetype']}</span>
+                }
+                  
             },
             {
                 name: 'level',
@@ -187,14 +191,18 @@ class ImageDatasetList extends Component {
             <div className={`image-type-cell ${(getImageTypeTooltipCopy(row["imagetype"]) !== "") ? 'clickable': '' }`}>
                 <span className='me-1'>{row["imagetype"]}</span>
                 {getImageTypeTooltipCopy(row["imagetype"]) !== "" &&
-                <div>
-                    <div className='tooltip-parent-sibling'></div>
-                    <div className='tooltip-parent rounded border shadow mt-2 p-2'>
-                        <span className='tooltip-child'>{getImageTypeTooltipCopy(row["imagetype"])}</span>
-                    </div>
+                <div className='tooltip-container'>
+                     <div className='tooltip-parent-sibling'></div>
+                     <div className='tooltip-parent rounded border shadow mt-2 p-2'>
+                         {/* <span className='tooltip-child'>{getImageTypeTooltipCopy(row["imagetype"])}</span> */}
+                         <span class="tooltip" data-tooltip={getImageTypeTooltipCopy(row["imagetype"])}>{getImageTypeTooltipCopy(row["imagetype"])}</span>
+                         {/* {getImageTypeTooltipCopy(row["imagetype"])} */}
+                     </div>
                 </div>
+                
                 }
             </div>
+        
     };
 
     getDefaultColumnWidths = () => {
