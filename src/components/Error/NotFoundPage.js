@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col, Button } from 'reactstrap';
+import { NavFooter } from 'kpmp-common-components';
 
 class NotFoundPage extends Component {
     render() {
@@ -24,6 +25,7 @@ class NotFoundPage extends Component {
                         </p>
                     </Col>
                 </Row>
+            <NavFooter app='atlas' />
           </article>
         );
     }

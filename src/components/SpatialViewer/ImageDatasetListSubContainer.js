@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container } from "reactstrap";
 import ImageDatasetList from "./ImageDatasetList";
 
+import { NavFooter } from 'kpmp-common-components';
 import { WithSearch } from "@elastic/react-search-ui";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
@@ -72,6 +73,7 @@ class ImageDatasetListSubContainer extends Component {
                     />
                 )}}
                 </WithSearch>
+            <NavFooter app='atlas' />
             </Container>
         )
     }

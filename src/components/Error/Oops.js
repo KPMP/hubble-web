@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Row, Button } from 'reactstrap';
+import { NavFooter } from 'kpmp-common-components';
 
 class Oops extends Component {
   render() {
@@ -36,6 +37,7 @@ class Oops extends Component {
           </Row>
         </article>
 
+        <NavFooter app='atlas' />
       </div>
     );
   }

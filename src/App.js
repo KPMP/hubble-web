@@ -99,7 +99,6 @@ class App extends Component {
               <Route exact path="/oops" component={Oops} />
               <Route path='*' component={NotFoundPage} />
             </Switch>
-            <NavFooter app='atlas' />
           </ErrorBoundaryContainer>
         </BrowserRouter>
         </SearchProvider>

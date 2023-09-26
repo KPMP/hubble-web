@@ -24,7 +24,7 @@
     "history": "5.1.0",
     "immutability-helper": "3.1.1",
     "isomorphic-unfetch": "3.1.0",
-    "kpmp-common-components": "1.2.3",
+    "kpmp-common-components": "1.2.4",
     "kpmp-common-styles": "1.0.13",
     "react": "17.0.2",
     "react-dnd": "15.1.1",
