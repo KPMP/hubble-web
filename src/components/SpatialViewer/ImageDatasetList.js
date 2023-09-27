@@ -6,6 +6,7 @@ import { resultConverter } from "../../helpers/dataHelper";
 import { getImageTypeTooltipCopy } from "./viewConfigHelper";
 import { faXmark, faAnglesRight, faAnglesLeft, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Tooltip } from "antd";
 import {
     SortingState,
     PagingState,
@@ -184,19 +185,12 @@ class ImageDatasetList extends Component {
     };
 
     getImageTypeCell = (row) => {
-        return row["imagetype"] !== "" &&
-            <div className={`image-type-cell ${(getImageTypeTooltipCopy(row["imagetype"]) !== "") ? 'clickable': '' }`}>
-                <span className='me-1'>{row["imagetype"]}</span>
-                {getImageTypeTooltipCopy(row["imagetype"]) !== "" &&
-                <div className='tooltip-container'>
-                     <div className='tooltip-parent-sibling'></div>
-                     <div className='tooltip-parent rounded border shadow mt-2 p-2'>
-                         <span className='tooltip-child'>{getImageTypeTooltipCopy(row["imagetype"])}</span>
-                     </div>
-                </div> 
-                }
-            </div>
-        
+        return (
+          <Tooltip color="black" position="bottom" title={getImageTypeTooltipCopy(row['imagetype'])}>
+            <span className='me-1'>{row["imagetype"]}</span>
+            {getImageTypeTooltipCopy(row["imagetype"]) !== ""}
+          </Tooltip>
+        )
     };
 
     getDefaultColumnWidths = () => {
