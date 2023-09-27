@@ -186,7 +186,7 @@ class ImageDatasetList extends Component {
 
     getImageTypeCell = (row) => {
         return (
-          <Tooltip color="black" position="bottom" title={getImageTypeTooltipCopy(row['imagetype'])}>
+          <Tooltip color="black" placement='bottom' title={getImageTypeTooltipCopy(row['imagetype'])}>
             <span className='me-1'>{row["imagetype"]}</span>
             {getImageTypeTooltipCopy(row["imagetype"]) !== ""}
           </Tooltip>
