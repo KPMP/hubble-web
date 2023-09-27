@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavBar, NavFooter } from 'kpmp-common-components';
+import { NavBar } from 'kpmp-common-components';
 import loadedState from './initialState';
 import { createStore, applyMiddleware } from 'redux';
 import appReducer from './reducers';
@@ -99,7 +99,6 @@ class App extends Component {
               <Route exact path="/oops" component={Oops} />
               <Route path='*' component={NotFoundPage} />
             </Switch>
-            <NavFooter app='atlas' />
           </ErrorBoundaryContainer>
         </BrowserRouter>
         </SearchProvider>
