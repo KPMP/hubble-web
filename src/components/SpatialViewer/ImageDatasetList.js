@@ -6,11 +6,8 @@ import { resultConverter } from "../../helpers/dataHelper";
 import { getImageTypeTooltipCopy } from "./viewConfigHelper";
 import { faXmark, faAnglesRight, faAnglesLeft, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { compareTableStrings } from "./spatialHelper";
 import {
     SortingState,
-    IntegratedSorting,
-    IntegratedPaging,
     PagingState,
 } from '@devexpress/dx-react-grid';
 import {
@@ -43,7 +40,7 @@ class ImageDatasetList extends Component {
     constructor(props) {
         super(props);
         const columnCards = this.getColumns().map((item, index) => {
-            return {id: index, text: item.title, name: item.name, hideable: item.hideable}
+            return {id: index, text: item.title, name: item.name, hideable: item.hideable, isSortField: item?.isSortField}
         });
 
         const defaultHiddenColumns = this.getDefaultHiddenColumnNames(this.getColumns())
@@ -83,7 +80,7 @@ class ImageDatasetList extends Component {
                 this.getSearchResults();
             }
             if (this.props.filters !== prevProps.filters) {
-                this.props.setTableSettings({currentPage: 0});
+                this.props.setCurrent(1);
             }
         }
     };
@@ -91,10 +88,13 @@ class ImageDatasetList extends Component {
     setCards = (cards) => {
         this.setState({cards});
     };
-
+    setShowHide = (hiddenColumnNames) => {
+        this.setState({hiddenColumnNames: hiddenColumnNames});
+    }
+    
     setDefaultCards = () => {
         const cards = this.getColumns().map((item, index) => {
-            return {id: index, text: item.title, name: item.name, hideable: item.hideable}
+            return {id: index, text: item.title, name: item.name, hideable: item.hideable, isSortField: item?.isSortField}
         });
         this.setCards(cards)
     };
@@ -104,12 +104,12 @@ class ImageDatasetList extends Component {
         const { setSelectedImageDataset } = this.props;
         let columns = [
             {
-                name: 'spectrackSampleId',
+                name: 'spectracksampleid',
                 title: 'Sample ID',
                 sortable: true,
                 hideable: false,
                 defaultHidden: false,
-                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="tooltip" data-placement="top" title="View dataset" className='table-column btn btn-link text-left p-0 text-decoration-none'>{row["spectracksampleid"]}</button>
+                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="tooltip" data-placement="top" title="View dataset" className='table-column btn btn-link text-start p-0 text-decoration-none'>{row["spectracksampleid"]}</button>
             },
             {
                 name: 'redcapid',
@@ -117,7 +117,7 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: true,
                 defaultHidden: false,
-                getCellValue: row => <button onClick={(e) => this.clickReportCard(row) } type='button' data-toggle="tooltip" data-placement="top" title="View participant information" className='table-column btn btn-link text-left p-0 text-decoration-none'>{row["redcapid"]}</button>
+                getCellValue: row => <button onClick={(e) => this.clickReportCard(row) } type='button' data-toggle="tooltip" data-placement="top" title="View participant information" className='table-column btn btn-link text-start p-0 text-decoration-none'>{row["redcapid"]}</button>
             },
             {
                 name: 'datatype',
@@ -148,6 +148,28 @@ class ImageDatasetList extends Component {
                 hideable: true,
                 defaultHidden: true,
             },
+            // Sort Column
+            {
+                name: 'file_name_sort',
+                sortable: false,
+                hideable: false,
+                defaultHidden: true,
+                isSortField: true
+            },
+            {
+                name: 'participant_id_sort',
+                sortable: false,
+                hideable: false,
+                defaultHidden: true,
+                isSortField: true
+            },
+            {
+                name: 'image_type_sort',
+                sortable: false,
+                hideable: false,
+                defaultHidden: true,
+                isSortField: true
+            }
         ];
         return columns;
     };
@@ -163,7 +185,7 @@ class ImageDatasetList extends Component {
     getImageTypeCell = (row) => {
         return row["imagetype"] !== "" &&
             <div className={`image-type-cell ${(getImageTypeTooltipCopy(row["imagetype"]) !== "") ? 'clickable': '' }`}>
-                <span className='mr-1'>{row["imagetype"]}</span>
+                <span className='me-1'>{row["imagetype"]}</span>
                 {getImageTypeTooltipCopy(row["imagetype"]) !== "" &&
                 <div>
                     <div className='tooltip-parent-sibling'></div>
@@ -177,17 +199,25 @@ class ImageDatasetList extends Component {
 
     getDefaultColumnWidths = () => {
         return [
-            { columnName: 'spectrackSampleId', width: 145 },
+            { columnName: 'spectracksampleid', width: 145 },
             { columnName: 'datatype', width: 250 },
             { columnName: 'imagetype', width: 350 },
             { columnName: 'redcapid', width: 145 },
             { columnName: 'filename', width: 250 },
             { columnName: 'level', width: 100 },
+            { columnName: 'file_name_sort', width: 0},
+            { columnName: 'participant_id_sort', width: 0},
+            { columnName: 'image_type_sort', width: 0}
         ]
     };
   
     getPageSizes = () => {
         return [10,20,40,80,100]
+    };
+
+    getTotalPages = () => {
+        let val = Math.ceil(this.props.totalResults / this.props.resultsPerPage);
+        return (val > 100) ? 100 : val;
     };
 
     getFilterPills = (filters) => {
@@ -204,7 +234,7 @@ class ImageDatasetList extends Component {
                                     onClick={()=>{
                                         this.props.removeFilter(filter.field, value)
                                     }}
-                                    className="close-button fas fa-xmark ml-2"
+                                    className="close-button fas fa-xmark ms-2"
                                     icon={faXmark} />
                             </span>
                         </div>)
@@ -218,7 +248,7 @@ class ImageDatasetList extends Component {
             PARTICIPANT: 'PARTICIPANT',
         };
 
-        const { pagingSize, columnWidths, hiddenColumnNames, sorting, currentPage} = this.props.tableSettings;
+        const { columnWidths, hiddenColumnNames, sorting } = this.props.tableSettings;
         const summaryDataset = this.props.summaryDatasets
         const experimentalDataCounts = this.props.experimentalDataCounts
         const clinicalDataset = this.props.clinicalDatasets
@@ -251,6 +281,7 @@ class ImageDatasetList extends Component {
                             <React.Fragment>
                             {this.props.activeFilterTab === tabEnum.DATASET &&
                             <Container id="spatial-filter" className="mt-3 rounded border shadow-sm spatial-filter-panel container-max">
+                                <Row className='mb-2'><Col><Facet field="releaseversion" filterType="any" label="" show="1" view={MultiCheckboxFacet}/></Col></Row>
                                 <Row className="mb-2"><Col><Facet field="datatype" label="Experimental Strategy" filterType="any" show="10"
                                                                   view={MultiCheckboxFacet}/></Col></Row>
                                 <div id="image_type">
@@ -261,6 +292,9 @@ class ImageDatasetList extends Component {
                             </Container>
                             }{this.props.activeFilterTab === tabEnum.PARTICIPANT &&
                         <Container id="spatial-filter" className="mt-3 rounded border shadow-sm spatial-filter-panel container-max">
+                            <Row className="mb-2"><Col><Facet inputProps={{ placeholder: "cusaceholder" }} isFilterable={true}  field="redcapid" label="Participant ID"
+                                                              filterType="any" show="10"
+                                                              view={(props) => <MultiCheckboxFacet {...props} searchPlaceholder={"Search..."}/>}/></Col></Row>
                             <Row className="mb-2"><Col><Facet field="sex" label="Sex" filterType="any" show="10"
                                                               view={MultiCheckboxFacet}/></Col></Row>
                             <Row className="mb-2"><Col><Facet field="age" label="Age" filterType="any" show="10"
@@ -268,9 +302,6 @@ class ImageDatasetList extends Component {
                             <Row className="mb-2"><Col><Facet field="tissuetype" label="Tissue Type"
                                                               filterType="any" show="10"
                                                               view={MultiCheckboxFacet}/></Col></Row>
-                            <Row className="mb-2"><Col><Facet inputProps={{ placeholder: "cusaceholder" }} isFilterable={true}  field="redcapid" label="Participant ID"
-                                                              filterType="any" show="10"
-                                                              view={(props) => <MultiCheckboxFacet {...props} searchPlaceholder={"Search..."}/>}/></Col></Row>
                         </Container>
                         }
                             </React.Fragment>
@@ -285,7 +316,7 @@ class ImageDatasetList extends Component {
                                 alt="Open Filter Tab"
                                 onClick={() => {this.props.toggleFilterTab()}}>
                             <FontAwesomeIcon
-                                    className="fas fa-angles-left" icon={faAnglesRight} />
+                                    className="fas fa-angles-right" icon={faAnglesRight} />
                             </Col>
                             <Col xl={12} className={`my-0 activeFilter-column ${this.props.filterTabActive ? 'closed': ''}`}>
                                 {this.props.filters.length === 0 ?
@@ -318,23 +349,51 @@ class ImageDatasetList extends Component {
                                         columns={this.getColumns()}>
                                         <SortingState
                                             defaultSorting={[]}
-                                            onSortingChange={(sorting) =>  this.props.setTableSettings({sorting: sorting, currentPage: 0})}
+                                            onSortingChange={(sorting) => {
+                                                let sortOptions = sorting.map(val => {
+                                                    if (val.columnName === 'filename') {
+                                                        return { field: "file_name_sort", direction: val.direction }
+                                                    }
+                                                    else if (val.columnName === "redcapid") {
+                                                        return { field: "participant_id_sort", direction: val.direction }
+                                                    }
+                                                    else if (val.columnName === "imagetype") {
+                                                        return { field: "image_type_sort", direction: val.direction }
+                                                    }
+                                                    return { field: val.columnName, direction: val.direction }
+                                                })
+                                                this.props.setSort(sortOptions);
+                                                this.props.setTableSettings({sorting: sorting})
+                                                this.props.setCurrent(1);
+                                                }
+                                            }  
                                             sorting={sorting}/>
-                                        <IntegratedSorting 
-                                            columnExtensions={[
-                                                { columnName: 'spectrackSampleId', compare: compareTableStrings },
-                                                { columnName: 'datatype',          compare: compareTableStrings },
-                                                { columnName: 'filename',          compare: compareTableStrings },
-                                                { columnName: 'imagetype',         compare: compareTableStrings },
-                                                { columnName: 'redcapid',          compare: compareTableStrings }]}
-                                        />
                                         <PagingState
-                                            currentPage={currentPage}
-                                            defaultPageSize={pagingSize}
-                                            onCurrentPageChange={(page) => this.props.setTableSettings({currentPage: page})}
+                                            currentPage={this.props.currentPage-1}
+                                            pageSize={this.props.resultsPerPage}
                                         />
-                                        <IntegratedPaging />
-                                        <PagingPanel />
+                                        <PagingPanel 
+                                            pageSizes={this.getPageSizes()}
+                                            containerComponent={() => {
+                                                return (
+                                                <PagingPanel.Container
+                                                    totalPages={this.getTotalPages()}
+                                                    currentPage={this.props.currentPage-1}
+                                                    onCurrentPageChange={(page) => {
+                                                        // dx-react-grid paging starts at 0, while ElasticSearch starts at 1
+                                                        // (hence the "+1" and "-1")
+                                                        this.props.setCurrent(page+1);
+                                                    }}
+                                                    pageSize={this.props.resultsPerPage}
+                                                    totalCount={this.props.totalResults}
+                                                    onPageSizeChange={(pageSize) => {
+                                                        this.props.setResultsPerPage(pageSize);
+                                                    }}
+                                                    pageSizes={this.getPageSizes()}
+                                                    getMessage={(messageKey) => {return messageKey}}
+                                                />
+                                                )}}
+                                        />
                                         <Toolbar
                                             cards={this.state.cards}
                                             setCards={this.state.setCards}
@@ -355,7 +414,7 @@ class ImageDatasetList extends Component {
                                         <TableColumnVisibility
                                             defaultHiddenColumnNames={this.getDefaultHiddenColumnNames(this.getColumns())}
                                             hiddenColumnNames={hiddenColumnNames}
-                                            onHiddenColumnNamesChange={(hiddenColumnNames) => {this.props.setTableSettings({hiddenColumnNames: hiddenColumnNames})}}
+                                            onHiddenColumnNamesChange={(hiddenColumnNames) => {this.setShowHide(hiddenColumnNames)}}
                                         />
                                         <ColumnChooser />
                                         
@@ -365,9 +424,8 @@ class ImageDatasetList extends Component {
                                             setDefaultCards={this.setDefaultCards}
                                             defaultOrder={this.getColumns().map(item => item.name)} />
                                         <PaginationState
-                                            currentPage={currentPage}
-                                            setTableSettings={this.props.setTableSettings}
-                                            pagingSize={pagingSize}/>
+                                            setResultsPerPage={this.props.setResultsPerPage}
+                                            pagingSize={this.props.resultsPerPage}/>
                                         <Pagination pageSizes={this.getPageSizes()} />
                                     </Grid>
                                     : <Spinner animation="border" variant="primary">

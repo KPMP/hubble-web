@@ -1,7 +1,5 @@
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const CracoAlias = require("craco-alias");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin
-
 const isProductionBuild = process.env.NODE_ENV === "production"
 const shouldAnalyze = process.env.REACT_APP_RUN_ANALYZER === "true"
 const plugins = []
@@ -23,5 +21,22 @@ module.exports = {
   ],
   webpack: {
     plugins,
+    configure: {
+      module: {
+        rules: [
+          {
+            test: /\.m?js/,
+            resolve: {
+              fullySpecified: false
+            }
+          },
+        ],
+        parser: {
+          javascript: {
+            exportsPresence: false,
+          },
+        },
+      },
+    },
   },
 }

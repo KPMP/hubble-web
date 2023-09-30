@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container } from "reactstrap";
 import ImageDatasetList from "./ImageDatasetList";
 
+import { NavFooter } from 'kpmp-common-components';
 import { WithSearch } from "@elastic/react-search-ui";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
@@ -44,13 +45,18 @@ class ImageDatasetListSubContainer extends Component {
     render() {
         return (
             <Container id='outer-wrapper' className="multi-container-container container-xxl">
-            <WithSearch mapContextToProps={({ filters, results, searchContext,setResultsPerPage,removeFilter, clearFilters}) =>
-             ({filters, results, searchContext,setResultsPerPage,removeFilter, clearFilters})}>
+            <WithSearch mapContextToProps={({ filters, current, setCurrent, results, resultsPerPage, searchContext, setResultsPerPage, removeFilter, clearFilters, totalResults, setSort}) =>
+             ({filters, current, setCurrent, results, resultsPerPage, searchContext, setResultsPerPage, removeFilter, clearFilters, totalResults, setSort})}>
                 {(context) => {
-                const { filters, results, searchContext, setResultsPerPage, removeFilter, clearFilters } = context;
+                const { filters, current, setCurrent, results, searchContext, resultsPerPage, setResultsPerPage, removeFilter, clearFilters, totalResults, setSort } = context;
                 return (
                     <ImageDatasetList
                         reportCardOpen={this.state.reportCardOpen}
+                        currentPage={current}
+                        setCurrent={setCurrent}
+                        setSort={setSort}
+                        totalResults={totalResults}
+                        resultsPerPage={resultsPerPage}
                         openReportCard={this.openReportCard}
                         closeReportCard={this.closeReportCard}
                         filters={filters}
@@ -67,6 +73,7 @@ class ImageDatasetListSubContainer extends Component {
                     />
                 )}}
                 </WithSearch>
+            <NavFooter app='atlas' />
             </Container>
         )
     }

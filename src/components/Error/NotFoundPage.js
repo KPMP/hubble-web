@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Row, Col, Button } from 'reactstrap';
+import { NavFooter } from 'kpmp-common-components';
 
 class NotFoundPage extends Component {
     render() {
         return (
             <article className="container height-wrapper" id='not-found-page'>
-                <Row id="not-found-container" className='mr-5 p-5'>
+                <Row id="not-found-container" className='me-5 p-5'>
                     <Col xs={12} md={4}>
                         <img className='not-found-image' src="/img/404-img.svg" alt="Page not found" id="oops-image"/>
                     </Col>
@@ -24,6 +25,7 @@ class NotFoundPage extends Component {
                         </p>
                     </Col>
                 </Row>
+            <NavFooter app='atlas' />
           </article>
         );
     }
