@@ -248,7 +248,7 @@ class ImageDatasetList extends Component {
             PARTICIPANT: 'PARTICIPANT',
         };
 
-        const { columnWidths, hiddenColumnNames, sorting } = this.props.tableSettings;
+        const { columnWidths, sorting } = this.props.tableSettings;
         const summaryDataset = this.props.summaryDatasets
         const experimentalDataCounts = this.props.experimentalDataCounts
         const clinicalDataset = this.props.clinicalDatasets
@@ -413,7 +413,7 @@ class ImageDatasetList extends Component {
                                         <TableHeaderRow showSortingControls />
                                         <TableColumnVisibility
                                             defaultHiddenColumnNames={this.getDefaultHiddenColumnNames(this.getColumns())}
-                                            hiddenColumnNames={hiddenColumnNames}
+                                            hiddenColumnNames={this.state.hiddenColumnNames}
                                             onHiddenColumnNamesChange={(hiddenColumnNames) => {this.setShowHide(hiddenColumnNames)}}
                                         />
                                         <ColumnChooser />
