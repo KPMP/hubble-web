@@ -64,7 +64,7 @@ const searchConfig = {
       facets: {
         sex: { type: "value", size: 100},
         age: { type: "value", size: 100},
-        redcapid: { type: "value", size: 200 },
+        redcapid: { type: "value", size: 500 },
         tissuetype: { type: "value", size: 100},
         imagetype: { type: "value", size: 100},
         datatype: { type: "value", size: 100 },
