@@ -51,7 +51,7 @@
         },
         "props": {
             "globalDisable3d": true,
-            "disableChannelsIfRgbDetected": true,
+            "disableChannelsIfRgbDetected": true
         },
         "h": 9,
         "w": 3,
