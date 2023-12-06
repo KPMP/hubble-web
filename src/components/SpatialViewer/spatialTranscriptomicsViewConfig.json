@@ -78,6 +78,12 @@
                 "spatialCellsLayer": "is_not_visible",
                 "dataset": "A"
             },
+            "props":
+            {
+              "closeButtonVisible": false,
+              "downloadButtonVisible": false
+            },
+            
             "h": 12,
             "w": 4,
             "x": 8,

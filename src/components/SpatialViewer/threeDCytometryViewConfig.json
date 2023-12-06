@@ -32,6 +32,10 @@
     "layout": [
     {
         "component": "spatial",
+        "props":{
+            "closeButtonVisible": false,
+            "downloadButtonVisible": false
+        },
         "coordinationScopes": {
             "dataset": "A"
         },
@@ -47,7 +51,7 @@
         },
         "props": {
             "globalDisable3d": true,
-            "disableChannelsIfRgbDetected": true
+            "disableChannelsIfRgbDetected": true,
         },
         "h": 9,
         "w": 3,
