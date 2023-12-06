@@ -32,10 +32,6 @@
     "layout": [
     {
         "component": "spatial",
-        "props":{
-            "closeButtonVisible": false,
-            "downloadButtonVisible": false
-        },
         "coordinationScopes": {
             "dataset": "A"
         },
