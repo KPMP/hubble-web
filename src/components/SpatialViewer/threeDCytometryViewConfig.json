@@ -35,6 +35,9 @@
         "coordinationScopes": {
             "dataset": "A"
         },
+        "props": {
+          "closeButtonVisible": false
+        },
         "h": 12,
         "w": 9,
         "x": 3,
@@ -47,8 +50,7 @@
         },
         "props": {
             "globalDisable3d": true,
-            "disableChannelsIfRgbDetected": true,
-            "closeButtonVisible": false
+            "disableChannelsIfRgbDetected": true
         },
         "h": 9,
         "w": 3,

@@ -35,6 +35,9 @@
         "coordinationScopes": {
           "dataset": "A"
         },
+        "props": {
+          "closeButtonVisible": false
+        },
         "h": 12,
         "w": 9,
         "x": 3,
