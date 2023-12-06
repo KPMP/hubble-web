@@ -47,7 +47,8 @@
         },
         "props": {
             "globalDisable3d": true,
-            "disableChannelsIfRgbDetected": true
+            "disableChannelsIfRgbDetected": true,
+            "closeButtonVisible": false
         },
         "h": 9,
         "w": 3,
