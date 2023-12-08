@@ -63,7 +63,7 @@ class ReportCard extends Component {
                 link += '/dataViz?dataType=sc';
             } else if (row.key.includes('Single-nuc')) {
                 link += '/dataViz?dataType=sn';
-            } else if (row.key.includes('Regional')) {
+            } else if (row.key.includes('Regional transcriptomics')) {
                 link +='/regionalviz?dataType=rt';
             } else if (row.key.includes('Regional proteomics')) {
                 link +='/regionalpro?dataType=rp';
