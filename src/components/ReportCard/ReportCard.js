@@ -65,6 +65,8 @@ class ReportCard extends Component {
                 link += '/dataViz?dataType=sn';
             } else if (row.key.includes('Regional')) {
                 link +='/regionalviz?dataType=rt';
+            } else if (row.key.includes('Regional proteomics')) {
+                link +='/regionalpro?dataType=rp';
             }
         }
 
