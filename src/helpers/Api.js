@@ -59,7 +59,18 @@ export const fetchParticipantExperimentCounts = async (redcapId) => {
   });
 
   if (response && response.data && response.data.getDataTypeInformationByParticipant) {
-    return response.data.getDataTypeInformationByParticipant;
+    if (process.env.REACT_APP_PROTEOMICS === "off") {
+      let explorerDataTypes = response.data.getDataTypeInformationByParticipant?.explorerDataTypes.filter((data) => {
+          return data?.dataType !== "Regional proteomics"
+      })
+      return {
+          "spatialViewerDataTypes": response.data.getDataTypeInformationByParticipant.spatialViewerDataTypes,
+          "explorerDataTypes": explorerDataTypes
+      }
+    }
+    else {
+      return response.data.getDataTypeInformationByParticipant;
+    }
   } else {
     store.dispatch(sendMessageToBackend("Could not retrieve getDataTypeInformationByParticipant: " + response.error));
   }
