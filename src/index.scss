@@ -545,6 +545,10 @@ th[title='Pixels Type'], th[title='Pixels Type'] + td {
   border-color: white !important;
 }
 
+.dropdown-item:active, .dropdown-item:focus{
+  background-color: #dee2e6 !important;
+}
+
 .nav-link{
   color: rgba(0,0,0,.55)
 }
