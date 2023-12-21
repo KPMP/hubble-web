@@ -195,30 +195,6 @@ th[title='Pixels Type'], th[title='Pixels Type'] + td {
     color: #212529;
 }
 
-tr:nth-last-of-type(1) .tooltip-parent-sibling,
-tr:nth-last-of-type(2) .tooltip-parent-sibling,
-tr:nth-last-of-type(3) .tooltip-parent-sibling {
-    cursor: pointer !important;
-    font-size: 14px;
-    margin-bottom: -5.75rem !important;
-    margin-left: 2rem !important;
-}
-.tooltip-parent {
-    z-index: 10;
-    cursor: pointer;
-    white-space: normal;
-    position: absolute;
-    background-color: #fff;
-    display: none;
-    width: 23rem;
-}
-
-td:hover {
-    .tooltip-parent {
-        display: block !important;
-    }
-}
-
 .icon-row .col {
     max-width: 90%;
 }
@@ -561,4 +537,18 @@ td:hover {
         position: fixed;
         bottom: 0px;
     }
+}
+
+.btn-secondary {
+  background-color: white !important;
+  color: rgba(0,0,0,.55) !important;
+  border-color: white !important;
+}
+
+.dropdown-item:active, .dropdown-item:focus{
+  background-color: #dee2e6 !important;
+}
+
+.nav-link{
+  color: rgba(0,0,0,.55)
 }
