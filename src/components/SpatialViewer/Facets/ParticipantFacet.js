@@ -3,6 +3,13 @@ import {Facet, MultiCheckboxFacet} from "@elastic/react-search-ui";
 import {Col, Container, Row, UncontrolledAccordion, AccordionItem, AccordionHeader, AccordionBody} from "reactstrap";
 
 class ParticipantFacet extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {};
+
+    }
+
     render() {
         return (
             <Container id="spatial-filter" className="mt-3 rounded border shadow-sm spatial-filter-panel container-max">
