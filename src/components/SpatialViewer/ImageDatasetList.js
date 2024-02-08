@@ -34,6 +34,7 @@ import "@elastic/react-search-ui-views/lib/styles/styles.css";
 import ReportCard from "../ReportCard/ReportCard";
 import {Facet, MultiCheckboxFacet} from "@elastic/react-search-ui";
 import ParticipantFacet from './Facets/ParticipantFacet.js';
+import FileFacet from './Facets/FileFacet.js';
 
 class ImageDatasetList extends Component {
 
@@ -276,36 +277,7 @@ class ImageDatasetList extends Component {
                         </div>
                             <React.Fragment>
                             {this.props.activeFilterTab === tabEnum.DATASET &&
-                                <Container id="spatial-filter" className="mt-3 rounded border shadow-sm spatial-filter-panel container-max">
-                                <Row className='mb-2'><Col><Facet field="releaseversion" filterType="any" label="" show="1" view={MultiCheckboxFacet}/></Col></Row>
-                                <UncontrolledAccordion defaultOpen={['1', '2']} stayOpen>
-                                    <AccordionItem>
-                                        <AccordionHeader targetId='1'>
-                                            Experimental Strategy
-                                        </AccordionHeader>
-                                        <AccordionBody accordionId="1">
-                                            <Row className="mb-2">
-                                                <Col>
-                                                    <Facet field="datatype" label="" filterType="any" show="10" view={MultiCheckboxFacet}/>
-                                                </Col>
-                                            </Row>
-                                        </AccordionBody>
-                                    </AccordionItem>
-                                    <AccordionItem>
-                                        <AccordionBody targetId="2">
-                                            Image Type
-                                        </AccordionBody>
-                                        <AccordionBody accordionId="2">
-                                            <Row className="mb-2">
-                                                <Col>
-                                                    <Facet field="imagetype" label="" filterType="any" show="10" view={MultiCheckboxFacet}/>
-                                                </Col>
-                                            </Row>
-                                        </AccordionBody>
-                                    </AccordionItem>
-                                </UncontrolledAccordion>
-                                
-                            </Container>
+                                <FileFacet />
                             }{this.props.activeFilterTab === tabEnum.PARTICIPANT &&
                                 <ParticipantFacet />
                             }

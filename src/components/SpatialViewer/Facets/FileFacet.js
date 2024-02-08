@@ -24,9 +24,9 @@ class FileFacet extends Component {
                         </AccordionBody>
                     </AccordionItem>
                     <AccordionItem>
-                        <AccordionBody targetId="2">
+                        <AccordionHeader targetId="2">
                             Image Type
-                        </AccordionBody>
+                        </AccordionHeader>
                         <AccordionBody accordionId="2">
                             <Row className="mb-2">
                                 <Col>

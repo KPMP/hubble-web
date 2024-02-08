@@ -25,9 +25,9 @@ class ParticipantFacet extends Component {
                         </AccordionBody>
                     </AccordionItem>
                     <AccordionItem>
-                        <AccordionBody targetId="2">
+                        <AccordionHeader targetId="2">
                             Sex
-                        </AccordionBody>
+                        </AccordionHeader>
                         <AccordionBody accordionId="2">
                             <Row className="mb-2">
                                 <Col>
@@ -37,9 +37,9 @@ class ParticipantFacet extends Component {
                         </AccordionBody>
                     </AccordionItem>
                     <AccordionItem>
-                        <AccordionBody targetId="3">
+                        <AccordionHeader targetId="3">
                             Age
-                        </AccordionBody>
+                        </AccordionHeader>
                         <AccordionBody accordionId="3">
                             <Row className="mb-2">
                                 <Col>
@@ -49,9 +49,9 @@ class ParticipantFacet extends Component {
                         </AccordionBody>
                     </AccordionItem>
                     <AccordionItem>
-                        <AccordionBody targetId="4">
+                        <AccordionHeader targetId="4">
                             Tissue Type
-                        </AccordionBody>
+                        </AccordionHeader>
                         <AccordionBody accordionId="4">
                             <Row className="mb-2">
                                 <Col>
