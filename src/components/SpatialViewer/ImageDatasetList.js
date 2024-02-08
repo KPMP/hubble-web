@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import { Col, Container, Row, Spinner } from "reactstrap";
+import {Col, Container, Row, Spinner} from "reactstrap";
 import { resultConverter } from "../../helpers/dataHelper";
 import { getImageTypeTooltipCopy } from "./viewConfigHelper";
 import { faXmark, faAnglesRight, faAnglesLeft, faTrashCan } from "@fortawesome/free-solid-svg-icons";
@@ -30,11 +30,10 @@ import { ToolbarButton } from './Plugins/toolbar-button.js';
 import { PaginationState } from './Plugins/pagination-state.js';
 import { Pagination } from './Plugins/pagination.js';
 
-import { Facet } from "@elastic/react-search-ui";
-import { MultiCheckboxFacet } from "@elastic/react-search-ui-views";
-
 import "@elastic/react-search-ui-views/lib/styles/styles.css";
 import ReportCard from "../ReportCard/ReportCard";
+import ParticipantFacet from './Facets/ParticipantFacet.js';
+import FileFacet from './Facets/FileFacet.js';
 
 class ImageDatasetList extends Component {
 
@@ -277,30 +276,10 @@ class ImageDatasetList extends Component {
                         </div>
                             <React.Fragment>
                             {this.props.activeFilterTab === tabEnum.DATASET &&
-                            <Container id="spatial-filter" className="mt-3 rounded border shadow-sm spatial-filter-panel container-max">
-                                <Row className='mb-2'><Col><Facet field="releaseversion" filterType="any" label="" show="1" view={MultiCheckboxFacet}/></Col></Row>
-                                <Row className="mb-2"><Col><Facet field="datatype" label="Experimental Strategy" filterType="any" show="10"
-                                                                  view={MultiCheckboxFacet}/></Col></Row>
-                                <div id="image_type">
-                                    <Row className="mb-2"><Col><Facet field="imagetype" label="Image Type" filterType="any" show="10"
-                                                                    view={MultiCheckboxFacet}/></Col></Row>
-                                </div>
-                                
-                            </Container>
+                                <FileFacet />
                             }{this.props.activeFilterTab === tabEnum.PARTICIPANT &&
-                        <Container id="spatial-filter" className="mt-3 rounded border shadow-sm spatial-filter-panel container-max">
-                            <Row className="mb-2"><Col><Facet inputProps={{ placeholder: "cusaceholder" }} isFilterable={true}  field="redcapid" label="Participant ID"
-                                                              filterType="any" show="10"
-                                                              view={(props) => <MultiCheckboxFacet {...props} searchPlaceholder={"Search..."}/>}/></Col></Row>
-                            <Row className="mb-2"><Col><Facet field="sex" label="Sex" filterType="any" show="10"
-                                                              view={MultiCheckboxFacet}/></Col></Row>
-                            <Row className="mb-2"><Col><Facet field="age" label="Age" filterType="any" show="10"
-                                                              view={MultiCheckboxFacet}/></Col></Row>
-                            <Row className="mb-2"><Col><Facet field="tissuetype" label="Tissue Type"
-                                                              filterType="any" show="10"
-                                                              view={MultiCheckboxFacet}/></Col></Row>
-                        </Container>
-                        }
+                                <ParticipantFacet />
+                            }
                             </React.Fragment>
                         </div>
 
