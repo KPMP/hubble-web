@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import {Col, Container, Row, UncontrolledAccordion, AccordionItem, AccordionHeader, AccordionBody, Spinner} from "reactstrap";
+import {Col, Container, Row, Spinner} from "reactstrap";
 import { resultConverter } from "../../helpers/dataHelper";
 import { getImageTypeTooltipCopy } from "./viewConfigHelper";
 import { faXmark, faAnglesRight, faAnglesLeft, faTrashCan } from "@fortawesome/free-solid-svg-icons";
@@ -32,7 +32,6 @@ import { Pagination } from './Plugins/pagination.js';
 
 import "@elastic/react-search-ui-views/lib/styles/styles.css";
 import ReportCard from "../ReportCard/ReportCard";
-import {Facet, MultiCheckboxFacet} from "@elastic/react-search-ui";
 import ParticipantFacet from './Facets/ParticipantFacet.js';
 import FileFacet from './Facets/FileFacet.js';
 

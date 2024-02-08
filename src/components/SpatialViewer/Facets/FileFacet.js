@@ -7,10 +7,7 @@ class FileFacet extends Component {
         return (
             <Container id="spatial-filter" className="mt-3 rounded border shadow-sm spatial-filter-panel container-max">
                 <Row className='mb-2'><Col><Facet field="releaseversion" filterType="any" label="" show="1" view={MultiCheckboxFacet}/></Col></Row>
-                <UncontrolledAccordion
-                    defaultOpen={['1', '2']}
-                    stayOpen
-                >
+                <UncontrolledAccordion defaultOpen={['1', '2']} stayOpen>
                     <AccordionItem>
                         <AccordionHeader targetId='1'>
                             Experimental Strategy
