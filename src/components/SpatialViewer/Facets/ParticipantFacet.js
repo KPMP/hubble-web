@@ -13,10 +13,14 @@ class ParticipantFacet extends Component {
                             Participant ID
                         </AccordionHeader>
                         <AccordionBody accordionId="1">
-                            <Row className="mb-2">
+                            <Row className='mb-2'>
                                 <Col>
-                                    <Facet inputProps={{ placeholder: "cusaceholder" }} isFilterable={true}  field="redcapid" label=""
-                                        filterType="any" show="10" view={(props) => <MultiCheckboxFacet {...props} searchPlaceholder={"Search..."}/>}/>
+                                    <Facet inputProps={{placeholder: "placeholder"}}
+                                        isFilterable={true} field="redcapid"
+                                        label=""
+                                        filterType="any"
+                                        view={(props) => <MultiCheckboxFacet {...props}
+                                                                                searchPlaceholder={"Search..."}/>}/>
                                 </Col>
                             </Row>
                         </AccordionBody>
