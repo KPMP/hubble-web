@@ -41,7 +41,7 @@ export const removeUUID = (text) => {
 export const mapSummaryKeysToPresentationStyle = (data) => {
     const result = {};
     result['Participant ID'] = "";
-    result['Disease Type'] = "";
+    result['Enrollment Category'] = "";
     if (!data || data === {}) {
         return result;
     }
@@ -49,7 +49,7 @@ export const mapSummaryKeysToPresentationStyle = (data) => {
         result['Participant ID'] = data['redcapId'] ? data['redcapId'] : "";
     }
     if (data['tissueType']) {
-        result['Disease Type'] = data['tissueType'] ? data['tissueType'] : "";
+        result['Enrollment Category'] = data['tissueType'] ? data['tissueType'] : "";
     }
     return result;
 };

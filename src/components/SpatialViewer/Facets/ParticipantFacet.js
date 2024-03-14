@@ -59,7 +59,7 @@ class ParticipantFacet extends Component {
                     </AccordionItem>
                     <AccordionItem>
                         <AccordionHeader targetId="4">
-                            Tissue Type
+                            Enrollment Category
                         </AccordionHeader>
                         <AccordionBody accordionId="4">
                             <Row className="mb-2">
