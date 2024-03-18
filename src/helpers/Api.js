@@ -67,7 +67,7 @@ export const fetchParticipantExperimentCounts = async (redcapId) => {
 
 export const fetchParticipantClinicalDataset = async (redcapId) => {
   const query = gql`
-  query participantSummaryDataset($redcapId: String) {
+  query participantSummaryDataset($redcapId: String!) {
     participantSummaryDataset(redcapId: $redcapId){
       clinicalData
     }
