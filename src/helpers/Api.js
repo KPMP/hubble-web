@@ -20,7 +20,7 @@ export const getFileLink = async (queryString) => {
 
 export const fetchParticipantSummaryDataset = async (redcapId) => {
   const query = gql`
-  query participantSummaryDataset($redcapId: String) {
+  query participantSummaryDataset($redcapId: String!) {
     participantSummaryDataset(redcapId: $redcapId){
       tissueType
       redcapId
@@ -67,8 +67,8 @@ export const fetchParticipantExperimentCounts = async (redcapId) => {
 
 export const fetchParticipantClinicalDataset = async (redcapId) => {
   const query = gql`
-  query participantClinicalDataset($redcapId: String) {
-    participantClinicalDataset(redcapId: $redcapId){
+  query participantSummaryDataset($redcapId: String!) {
+    participantSummaryDataset(redcapId: $redcapId){
       clinicalData
     }
   }`;
@@ -78,9 +78,9 @@ export const fetchParticipantClinicalDataset = async (redcapId) => {
         redcapId: redcapId
       }
     });
-  if (response && response.data && response.data.participantClinicalDataset) {
-      return response.data.participantClinicalDataset;
+  if (response && response.data && response.data.participantSummaryDataset) {
+      return response.data.participantSummaryDataset;
   } else {
-      store.dispatch(sendMessageToBackend("Could not retrieve participantClinicalDataset: " + response.error));
+      store.dispatch(sendMessageToBackend("Could not retrieve participantSummaryDataset (clinical data): " + response.error));
   }
 };

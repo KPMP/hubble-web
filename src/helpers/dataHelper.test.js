@@ -10,7 +10,7 @@ describe('dataHelper', () => {
             let summaryMappingResult = mapSummaryKeysToPresentationStyle(summaryUnmapped);
             let expectedSummaryMapping = {
                 'Participant ID': "test-redcapId",
-                'Disease Type': "test-tissueType"
+                ' Enrollment Category': "test-tissueType"
             }
             expect(summaryMappingResult).toEqual(expectedSummaryMapping);
         }),
@@ -22,7 +22,7 @@ describe('dataHelper', () => {
             let summaryMappingResult = mapSummaryKeysToPresentationStyle(summaryUnmapped);
             let expectedSummaryMapping = {
                 'Participant ID': "test-redcapId",
-                'Disease Type': ""
+                'Enrollment Category': ""
             }
             expect(summaryMappingResult).toEqual(expectedSummaryMapping);
         }),
@@ -34,7 +34,7 @@ describe('dataHelper', () => {
             let summaryMappingResult = mapSummaryKeysToPresentationStyle(summaryUnmapped);
             let expectedSummaryMapping = {
                 'Participant ID': "",
-                'Disease Type': "test-tissueType"
+                'Enrollment Category': "test-tissueType"
             }
             expect(summaryMappingResult).toEqual(expectedSummaryMapping);
         }),
@@ -43,7 +43,7 @@ describe('dataHelper', () => {
             let summaryMappingResult = mapSummaryKeysToPresentationStyle(summaryUnmapped);
             let expectedSummaryMapping = {
                 'Participant ID': "",
-                'Disease Type': ""
+                'Enrollment Category': ""
             }
             expect(summaryMappingResult).toEqual(expectedSummaryMapping);
         }),
@@ -52,7 +52,7 @@ describe('dataHelper', () => {
             let summaryMappingResult = mapSummaryKeysToPresentationStyle(summaryUnmapped);
             let expectedSummaryMapping = {
                 'Participant ID': "",
-                'Disease Type': ""
+                'Enrollment Category': ""
             }
             expect(summaryMappingResult).toEqual(expectedSummaryMapping);
         });
@@ -60,7 +60,7 @@ describe('dataHelper', () => {
             let summaryMappingResult = mapSummaryKeysToPresentationStyle();
             let expectedSummaryMapping = {
                 'Participant ID': "",
-                'Disease Type': ""
+                'Enrollment Category': ""
             }
             expect(summaryMappingResult).toEqual(expectedSummaryMapping);
         });

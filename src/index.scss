@@ -4,9 +4,16 @@
 //importing pieces of bootstrap instead of importing all of bootstrap
 @import "../node_modules/bootstrap/scss/functions";
 
+
+$accordion-button-active-color: black;
+$accordion-button-color: black;
+
 //pass variable overrides
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/mixins";
+
+// import accordion component with variable overrides applied
+@import "../node_modules/bootstrap/scss/_accordion.scss";
 
 #navbar .navbar-brand img.logo {
     width: 80px;
@@ -22,6 +29,7 @@
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
     background-color: #color;
 }
+
 .table thead th {
     font-size: 14px;
 }
@@ -552,3 +560,9 @@ th[title='Pixels Type'], th[title='Pixels Type'] + td {
 .nav-link{
   color: rgba(0,0,0,.55)
 }
+
+.accordion{
+    --bs-accordion-border-color: #dee2e6;
+}
+
+
