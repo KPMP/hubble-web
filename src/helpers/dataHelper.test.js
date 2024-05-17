@@ -10,7 +10,7 @@ describe('dataHelper', () => {
             let summaryMappingResult = mapSummaryKeysToPresentationStyle(summaryUnmapped);
             let expectedSummaryMapping = {
                 'Participant ID': "test-redcapId",
-                ' Enrollment Category': "test-tissueType"
+                'Enrollment Category': "test-tissueType"
             }
             expect(summaryMappingResult).toEqual(expectedSummaryMapping);
         }),
