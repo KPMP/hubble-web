@@ -2,7 +2,8 @@
 
 ## Release 2.4 [unreleased]
 Brief summary of what's in this release:
-
+- introduction of this changelog
+- update the version in the package.json
 
 ### Breaking changes
 
