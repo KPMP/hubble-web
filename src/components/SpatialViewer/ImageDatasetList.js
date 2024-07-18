@@ -306,6 +306,7 @@ class ImageDatasetList extends Component {
                                         <span 
                                             onClick={()=>{
                                                 this.props.clearFilters()
+                                                this.props.clearSearch()
                                             }}>
                                                 <FontAwesomeIcon alt="Clear All Filters" className="fa-light fa-trash-can" icon={faTrashCan} /> Clear Filters 
                                         </span>
