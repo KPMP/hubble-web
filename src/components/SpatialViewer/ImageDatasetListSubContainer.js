@@ -12,9 +12,14 @@ class ImageDatasetListSubContainer extends Component {
         this.state = {
             activeFilterTab: 'DATASET',
             reportCardOpen: false,
-            filterTabActive: true
+            filterTabActive: true, 
+            search: ""
         };
 
+    }
+
+    clearSearch = () => {
+        this.setState({search: null})
     }
 
     openReportCard = () => {
@@ -65,6 +70,7 @@ class ImageDatasetListSubContainer extends Component {
                         setResultsPerPage={setResultsPerPage}
                         removeFilter={removeFilter}
                         clearFilters={clearFilters}
+                        clearSearch={this.clearSearch}
                         setActiveFilterTab={this.setActiveFilterTab}
                         activeFilterTab={this.state.activeFilterTab}
                         filterTabActive={this.state.filterTabActive}
