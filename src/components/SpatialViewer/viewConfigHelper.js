@@ -2,7 +2,10 @@ import lmViewConfig from './lightMicroscopyViewConfig.json';
 import threeDCytometryViewConfig from './threeDCytometryViewConfig.json';
 import threeDCytometryViewNoChannelsConfig from './threeDCytometryViewNoChannelsConfig.json';
 import stViewConfig from './spatialTranscriptomicsViewConfig.json'
+import segmentationConfig from './segmentationViewConfig.json';
 import { getFileLink } from "../../helpers/Api";
+import { loadOmeTiff } from '@hms-dbmi/viv';
+import { unit } from 'mathjs';
 
 export const getViewConfig = (type) => {
     switch (type) {
@@ -16,6 +19,8 @@ export const getViewConfig = (type) => {
             return lmViewConfig;
         case 'Spatial Transcriptomics':
             return stViewConfig;
+        case 'Segmentation':
+            return segmentationConfig;
         default:
             return threeDCytometryViewConfig
     }
@@ -45,6 +50,14 @@ export const populateViewConfig = async (viewConfig, selectedDataset) => {
         });
         let dataUrl = getPublicFileLink(selectedDataset["packageid"], relatedFiles[0]['filename']);
         stringifiedConfig = stringifiedConfig.replace(/<DATA_FILE_URL>/gi, dataUrl);
+        stringifiedConfig = stringifiedConfig.replace('<SEGMENTATION_MASK_NAME>', relatedFiles[0]['filename']);
+        stringifiedConfig = stringifiedConfig.replace('<SEGMENTATION_MASK_URL>', dataUrl);
+
+        const loaders = await loadOmeTiff(dataUrl);
+        const physicalSizeX = unit(loaders.metadata.Pixels.PhysicalSizeX, (loaders.metadata.Pixels.PhysicalSizeXUnit.replace('µ', 'u'))).to("um").toNumber();
+        const physicalSizeY = unit(loaders.metadata.Pixels.PhysicalSizeY, (loaders.metadata.Pixels.PhysicalSizeYUnit.replace('µ', 'u'))).to("um").toNumber();
+        stringifiedConfig = stringifiedConfig.replace('"<PHYSICAL_SIZE_X>"', physicalSizeX);
+        stringifiedConfig = stringifiedConfig.replace('"<PHYSICAL_SIZE_Y>"', physicalSizeY);
     }
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', selectedDataset["filename"]);
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_URL>', imageUrlResponse.data);
