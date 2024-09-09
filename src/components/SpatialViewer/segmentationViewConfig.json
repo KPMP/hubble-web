@@ -1,0 +1,59 @@
+{
+    "coordinationSpace": {
+        "dataset": {
+            "A": "A"
+        }
+    },
+    "datasets": [
+        {
+            "files": [
+                {
+                    "name": "<IMAGE_NAME>",
+                    "url": "<IMAGE_URL>",
+                    "fileType": "image.ome-tiff"
+                },
+                {
+                    "name": "<SEGMENTATION_MASK_NAME>",
+                    "url": "<SEGMENTATION_MASK_URL>",
+                    "fileType": "obsSegmentations.ome-tiff",
+                    "options": {
+                        "obsTypesFromChannelNames": true,
+                        "coordinateTransformations": [
+                            {
+                                "type": "scale",
+                                "scale": [
+                                    "<PHYSICAL_SIZE_X>",
+                                    "<PHYSICAL_SIZE_Y>",
+                                    1,
+                                    1,
+                                    1
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ],
+            "name": "Visualization Files",
+            "uid": "A"
+        }
+    ],
+    "layout": [
+        {
+            "component": "spatialBeta",
+            "x": 0,
+            "y": 0,
+            "w": 6,
+            "h": 12
+        },
+        {
+            "component": "layerControllerBeta",
+            "x": 6,
+            "y": 0,
+            "w": 6,
+            "h": 12
+        }
+    ],
+    "initStrategy": "auto",
+    "name": "KPMP Spatial Viewer",
+    "version": "1.0.4"
+}
