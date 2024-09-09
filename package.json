@@ -70,7 +70,6 @@
   },
   "jest": {
     "transformIgnorePatterns": [
-      "node_modules/(?!vitessce|@devexpress|@elastic|react-ga4|@hms-dbmi|@deck.gl|@vivjs|quick-lru)",
       "node_modules/(?!(@ui5|lit-html)).*\\.js$"
     ]
   },
