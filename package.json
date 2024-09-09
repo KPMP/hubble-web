@@ -57,7 +57,7 @@
   "scripts": {
     "start": "npm-run-all -p start-js --max_old_space_size=8192",
     "build": "npm-run-all build-css build-js",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!vitessce|@devexpress|@elastic|react-ga4|@hms-dbmi|@deck.gl|@vivjs)'",
     "eject": "react-scripts eject",
     "start-js": "craco --max_old_space_size=8192 start",
     "build-js": "craco --max_old_space_size=8192 build",
