@@ -48,20 +48,22 @@ export const populateViewConfig = async (viewConfig, selectedDataset) => {
         selectedDataset['relatedfiles'].forEach(function (item, index) {
             relatedFiles.push(JSON.parse(item));
         });
-        let dataUrl = getPublicFileLink(selectedDataset["packageid"], relatedFiles[0]['filename']);
+        let ext = relatedFiles[0]['filename'].split('.').pop();
+        let dataUrl = (ext == "zarr") 
+            ? getPublicFileLink(selectedDataset["packageid"], relatedFiles[0]['filename']) 
+            : await getFileLink(relatedFiles[0]['packageid'] + "/" + relatedFiles[0]['filename']); 
         stringifiedConfig = stringifiedConfig.replace(/<DATA_FILE_URL>/gi, dataUrl);
 
         if (selectedDataset["configtype"] === "Segmentation Masks & Pathomics Vectors") {
             stringifiedConfig = stringifiedConfig.replace('<SEGMENTATION_MASK_NAME>', selectedDataset["filename"]);
             stringifiedConfig = stringifiedConfig.replace('<SEGMENTATION_MASK_URL>', imageUrlResponse.data);
-            let wsiUrl = await getFileLink(relatedFiles[0]['packageid'] + "/" + relatedFiles[0]['filename']);
-            const loaders = await loadOmeTiff(wsiUrl.data);
+            const loaders = await loadOmeTiff(dataUrl.data);
             const physicalSizeX = unit(loaders.metadata.Pixels.PhysicalSizeX, (loaders.metadata.Pixels.PhysicalSizeXUnit.replace(/[µ|?]/g, 'u'))).to("um").toNumber();
             const physicalSizeY = unit(loaders.metadata.Pixels.PhysicalSizeY, (loaders.metadata.Pixels.PhysicalSizeYUnit.replace(/[µ|?]/g, 'u'))).to("um").toNumber();
             stringifiedConfig = stringifiedConfig.replace('"<PHYSICAL_SIZE_X>"', physicalSizeX);
             stringifiedConfig = stringifiedConfig.replace('"<PHYSICAL_SIZE_Y>"', physicalSizeY);
-            selectedDataset = relatedFiles[0]
-            imageUrlResponse = wsiUrl
+            selectedDataset = relatedFiles[0];
+            imageUrlResponse = dataUrl;
         }
     }
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', selectedDataset["filename"]);
