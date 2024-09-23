@@ -52,9 +52,9 @@ export const populateViewConfig = async (viewConfig, selectedDataset) => {
         stringifiedConfig = stringifiedConfig.replace(/<DATA_FILE_URL>/gi, dataUrl);
 
         if (selectedDataset["configtype"] === "Segmentation Masks & Pathomics Vectors") {
-            let wsiUrl = await getFileLink(relatedFiles[0]['packageid'] + "/" + relatedFiles[0]['filename']);
             stringifiedConfig = stringifiedConfig.replace('<SEGMENTATION_MASK_NAME>', selectedDataset["filename"]);
             stringifiedConfig = stringifiedConfig.replace('<SEGMENTATION_MASK_URL>', imageUrlResponse.data);
+            let wsiUrl = await getFileLink(relatedFiles[0]['packageid'] + "/" + relatedFiles[0]['filename']);
             const loaders = await loadOmeTiff(wsiUrl.data);
             const physicalSizeX = unit(loaders.metadata.Pixels.PhysicalSizeX, (loaders.metadata.Pixels.PhysicalSizeXUnit.replace(/[µ|?]/g, 'u'))).to("um").toNumber();
             const physicalSizeY = unit(loaders.metadata.Pixels.PhysicalSizeY, (loaders.metadata.Pixels.PhysicalSizeYUnit.replace(/[µ|?]/g, 'u'))).to("um").toNumber();
