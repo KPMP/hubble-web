@@ -49,7 +49,7 @@ export const populateViewConfig = async (viewConfig, selectedDataset) => {
             relatedFiles.push(JSON.parse(item));
         });
         let ext = relatedFiles[0]['filename'].split('.').pop();
-        let dataUrl = (ext == "zarr") 
+        let dataUrl = (ext === "zarr") 
             ? getPublicFileLink(selectedDataset["packageid"], relatedFiles[0]['filename']) 
             : await getFileLink(relatedFiles[0]['packageid'] + "/" + relatedFiles[0]['filename']); 
         stringifiedConfig = stringifiedConfig.replace(/<DATA_FILE_URL>/gi, dataUrl);
