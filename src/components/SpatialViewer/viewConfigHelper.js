@@ -50,7 +50,8 @@ const populateSegmentationConfig = async (stringifiedConfig, wsiUrl, maskUrl) =>
     let spatialTargetC = {"A": 0, "B": 1, "C": 2};
     let spatialChannelColor = {"A": [255,0,0], "B": [0,255,0], "C": [0,0,255]};
     let spatialChannelVisible = {"A": true, "B": true, "C": true};
-    var segmentationChannel = {}, coordObsType = {}, coordSpatialTargetC = {}, coordsObsColorEncoding = {};
+    var segmentationChannel = {}, obsColorEncoding = {}, filled = {}, 
+        strokeWidth = {}, coordsArray = {}, coordSpatialTargetC = {};
     let coordSegmentationChannel = {"A": []};
     maskLoader.metadata.Pixels.Channels.forEach((channel, i) => {
         let indexFromA = String.fromCharCode(65+i);
@@ -87,10 +88,12 @@ const populateSegmentationConfig = async (stringifiedConfig, wsiUrl, maskUrl) =>
         spatialChannelColor[indexFromD] = color;
         spatialChannelVisible[indexFromD] = true; 
         segmentationChannel[indexFromA] = channel.Name;
+        obsColorEncoding[indexFromA] = "spatialChannelColor";
+        filled[indexFromA] = true;
+        strokeWidth[indexFromA] = 1;
         coordSegmentationChannel["A"].push(indexFromA);
-        coordObsType[indexFromA] = indexFromA;
+        coordsArray[indexFromA] = indexFromA;
         coordSpatialTargetC[indexFromA] = indexFromD;
-        coordsObsColorEncoding[indexFromA] = "A";
     })
     stringifiedConfig = stringifiedConfig.replace('"<SPATIAL_CHANNEL_OPACITY>"', JSON.stringify(spatialChannelOpacity))
         .replace('"<SPATIAL_TARGET_C>"', JSON.stringify(spatialTargetC))
@@ -98,13 +101,18 @@ const populateSegmentationConfig = async (stringifiedConfig, wsiUrl, maskUrl) =>
         .replace('"<SPATIAL_CHANNEL_VISIBLE>"', JSON.stringify(spatialChannelVisible))
         .replace('"<SEGMENTATION_CHANNEL>"', JSON.stringify(segmentationChannel))
         .replace('"<OBS_TYPE>"', JSON.stringify(segmentationChannel))
+        .replace('"<FILLED>"', JSON.stringify(filled))
+        .replace('"<STROKE_WIDTH>"', JSON.stringify(strokeWidth))
+        .replace('"<OBS_COLOR_ENCODING>"', JSON.stringify(obsColorEncoding))
         .replace('"<COORD_SEGMENTATION_CHANNEL>"', JSON.stringify(coordSegmentationChannel))
-        .replace('"<COORD_OBS_TYPE>"', JSON.stringify(coordObsType))
+        .replace('"<COORD_OBS_TYPE>"', JSON.stringify(coordsArray))
+        .replace('"<COORD_FILLED>"', JSON.stringify(coordsArray))
+        .replace('"<COORD_STROKE_WIDTH>"', JSON.stringify(coordsArray))
         .replace('"<COORD_SPATIAL_TARGET_C>"', JSON.stringify(coordSpatialTargetC))
         .replace('"<COORD_SPATIAL_CHANNEL_COLOR>"', JSON.stringify(coordSpatialTargetC))
         .replace('"<COORD_SPATIAL_CHANNEL_OPACITY>"', JSON.stringify(coordSpatialTargetC))
         .replace('"<COORD_SPATIAL_CHANNEL_VISIBLE>"', JSON.stringify(coordSpatialTargetC))
-        .replace('"<COORD_OBS_COLOR_ENCODING>"', JSON.stringify(coordsObsColorEncoding))
+        .replace('"<COORD_OBS_COLOR_ENCODING>"', JSON.stringify(coordsArray))
     return stringifiedConfig;
 }
 

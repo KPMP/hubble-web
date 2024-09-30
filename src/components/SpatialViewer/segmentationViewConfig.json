@@ -59,14 +59,14 @@
     "spatialTargetC": "<SPATIAL_TARGET_C>",
     "spatialChannelColor": "<SPATIAL_CHANNEL_COLOR>",
     "spatialChannelVisible": "<SPATIAL_CHANNEL_VISIBLE>",
+    "spatialSegmentationFilled": "<FILLED>",
+    "spatialSegmentationStrokeWidth": "<STROKE_WIDTH>",
     "segmentationLayer": {
       "A": "Segmentation Masks"
     },
     "segmentationChannel": "<SEGMENTATION_CHANNEL>",
     "obsType": "<OBS_TYPE>",
-    "obsColorEncoding": {
-      "A": "spatialChannelColor"
-    },
+    "obsColorEncoding": "<OBS_COLOR_ENCODING>",
     "metaCoordinationScopes": {
       "A": {
         "spatialZoom": "A",
@@ -134,6 +134,8 @@
           "spatialChannelColor": "<COORD_SPATIAL_CHANNEL_COLOR>",
           "spatialChannelOpacity": "<COORD_SPATIAL_CHANNEL_OPACITY>",
           "spatialChannelVisible": "<COORD_SPATIAL_CHANNEL_VISIBLE>",
+          "spatialSegmentationFilled": "<COORD_FILLED>",
+          "spatialSegmentationStrokeWidth": "<COORD_STROKE_WIDTH>",
           "obsColorEncoding": "<COORD_OBS_COLOR_ENCODING>"
         }
       }
