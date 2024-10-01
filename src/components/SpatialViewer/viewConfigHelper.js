@@ -86,7 +86,7 @@ const populateSegmentationConfig = async (stringifiedConfig, wsiUrl, maskUrl) =>
                 break;
         }
         spatialChannelColor[indexFromD] = color;
-        spatialChannelVisible[indexFromD] = true; 
+        spatialChannelVisible[indexFromD] = false; 
         segmentationChannel[indexFromA] = channel.Name;
         obsColorEncoding[indexFromA] = "spatialChannelColor";
         filled[indexFromA] = true;
