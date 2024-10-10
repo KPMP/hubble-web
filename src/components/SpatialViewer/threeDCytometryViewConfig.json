@@ -31,7 +31,7 @@
     "initStrategy": "auto",
     "layout": [
     {
-        "component": "spatialBeta",
+        "component": "spatial",
         "coordinationScopes": {
             "dataset": "A"
         },
@@ -44,7 +44,7 @@
         "y": 0
     },
       {
-        "component": "layerControllerBeta",
+        "component": "layerController",
         "coordinationScopes": {
           "dataset": "A"
         },
