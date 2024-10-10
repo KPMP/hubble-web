@@ -38,10 +38,10 @@
         "props": {
           "closeButtonVisible": false
         },
-        "x": 0,
-        "y": 0,
-        "w": 8,
-        "h": 12
+        "h": 12,
+        "w": 9,
+        "x": 3,
+        "y": 0
       },
       {
         "component": "layerControllerBeta",
@@ -52,21 +52,21 @@
             "globalDisable3d": true,
             "disableChannelsIfRgbDetected": true
         },
-        "x": 8,
-        "y": 0,
-        "w": 4,
-        "h": 7
+        "h": 9,
+        "w": 3,
+        "x": 0,
+        "y": 2
       },
       {
         "component": "description",
         "coordinationScopes": {
-          "dataset": "A"
+            "dataset": "A"
         },
-        "x": 8,
-        "y": 9,
-        "w": 4,
-        "h": 5
-      }
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 0
+    }
     ],
     "name": "KPMP Spatial Viewer",
     "version": "1.0.4"
