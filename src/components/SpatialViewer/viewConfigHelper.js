@@ -22,8 +22,8 @@ export const getViewConfig = (type) => {
             return stViewConfig;
         case 'Segmentation Masks & Pathomics Vectors':
             return segmentationConfig;
-        case "Imaging Mass Cytometry":
-            return imcConfig;
+        // case "Imaging Mass Cytometry":
+        //     return imcConfig;
         default:
             return threeDCytometryViewConfig
     }
