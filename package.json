@@ -41,7 +41,7 @@
     "reactstrap": "9.2.0",
     "redux": "4.1.1",
     "redux-thunk": "2.3.0",
-    "vitessce": "3.4.13"
+    "vitessce": "3.4.14"
   },
   "overrides": {
     "autoprefixer": "10.4.4",
