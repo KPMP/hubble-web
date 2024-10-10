@@ -1,0 +1,71 @@
+{
+    "coordinationSpace": {
+      "dataset": {
+        "A": "A"
+      }
+    },
+    "datasets": [
+        {
+            "files": [
+                {
+                    "fileType": "raster.json",
+                    "options": {
+                        "images": [
+                            {
+                                "name": "<IMAGE_NAME>",
+                                "type": "ome-tiff",
+                                "url": "<IMAGE_URL>"
+                            }
+                        ],
+                        "schemaVersion": "0.0.2",
+                        "usePhysicalSizeScaling": false
+                    },
+                    "type": "raster"
+                }
+            ],
+            "name": "Visualization Files",
+            "uid": "A"
+        }
+    ],
+    "layout": [
+      {
+        "component": "spatialBeta",
+        "coordinationScopes": {
+          "dataset": "A"
+        },
+        "props": {
+          "closeButtonVisible": false
+        },
+        "x": 0,
+        "y": 0,
+        "w": 8,
+        "h": 12
+      },
+      {
+        "component": "layerControllerBeta",
+        "coordinationScopes": {
+          "dataset": "A"
+        },
+        "props": {
+            "globalDisable3d": true,
+            "disableChannelsIfRgbDetected": true
+        },
+        "x": 8,
+        "y": 0,
+        "w": 4,
+        "h": 7
+      },
+      {
+        "component": "description",
+        "coordinationScopes": {
+          "dataset": "A"
+        },
+        "x": 8,
+        "y": 9,
+        "w": 4,
+        "h": 5
+      }
+    ],
+    "name": "KPMP Spatial Viewer",
+    "version": "1.0.4"
+  }

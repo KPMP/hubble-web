@@ -3,6 +3,7 @@ import threeDCytometryViewConfig from './threeDCytometryViewConfig.json';
 import threeDCytometryViewNoChannelsConfig from './threeDCytometryViewNoChannelsConfig.json';
 import stViewConfig from './spatialTranscriptomicsViewConfig.json'
 import segmentationConfig from './segmentationViewConfig.json';
+import imcConfig from "./imagingMassCytometryViewConfig.json";
 import { getFileLink } from "../../helpers/Api";
 import { loadOmeTiff } from '@hms-dbmi/viv';
 import { unit } from 'mathjs';
@@ -21,6 +22,8 @@ export const getViewConfig = (type) => {
             return stViewConfig;
         case 'Segmentation Masks & Pathomics Vectors':
             return segmentationConfig;
+        case "Imaging Mass Cytometry":
+            return imcConfig;
         default:
             return threeDCytometryViewConfig
     }
