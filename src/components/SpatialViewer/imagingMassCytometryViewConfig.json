@@ -27,6 +27,8 @@
             "uid": "A"
         }
     ],
+    "description": "<DATASET_INFO>",
+    "initStrategy": "auto",
     "layout": [
       {
         "component": "spatialBeta",
