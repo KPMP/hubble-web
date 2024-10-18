@@ -26,7 +26,7 @@
     "initStrategy": "auto",
     
     "layout": [{
-        "component": "spatial",
+        "component": "spatialBeta",
         "coordinationScopes": {
             "dataset": "A"
         },
