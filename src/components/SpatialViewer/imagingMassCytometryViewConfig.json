@@ -32,7 +32,7 @@
     },
     "layout": [
         {
-            "component": "spatial",
+            "component": "spatialBeta",
             "coordinationScopes": {
                 "dataset": "A"
             },
@@ -45,7 +45,7 @@
             "y": 0
         },
           {
-            "component": "layerController",
+            "component": "layerControllerBeta",
             "coordinationScopes": {
               "dataset": "A"
             },
