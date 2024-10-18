@@ -1,51 +1,34 @@
 {
+    "version": "1.0.16",
     "coordinationSpace": {
       "dataset": {
         "A": "A"
       }
     },
     "datasets": [
-        {
-            "files": [
-                {
-                    "fileType": "raster.json",
-                    "options": {
-                        "images": [
-                            {
-                                "name": "<IMAGE_NAME>",
-                                "type": "ome-tiff",
-                                "url": "<IMAGE_URL>"
-                            }
-                        ],
-                        "schemaVersion": "0.0.2",
-                        "usePhysicalSizeScaling": false,
-                        "coordinateTransformations": [
-                            {
-                                "type": "scale",
-                                "scale": [
-                                    "0.000001",
-                                    "0.000001",
-                                    1,
-                                    1,
-                                    1
-                      ]
-                  }
-              ]
-                    },
-                    "type": "raster"
-                }
-            ],
-            "name": "Visualization Files",
-            "uid": "A"
-        }
+      {
+        "files": [{
+            "fileType": "raster.json",
+            "options": {
+                "schemaVersion": "0.0.2",
+                "images": [{
+                    "name": "<IMAGE_NAME>",
+                    "type": "ome-tiff",
+                    "url": "<IMAGE_URL>"
+                }]
+            }
+      }],
+        "uid": "A",
+        "name": "Visualization Files"
+      }
     ],
     "description": "<DATASET_INFO>",
     "initStrategy": "auto",
-    "layout": [
-      {
+    
+    "layout": [{
         "component": "spatial",
         "coordinationScopes": {
-          "dataset": "A"
+            "dataset": "A"
         },
         "props": {
           "closeButtonVisible": false
@@ -54,22 +37,22 @@
         "w": 9,
         "x": 3,
         "y": 0
-      },
-      {
-        "component": "layerController",
+    },
+    {
+        "component": "layerControllerBeta",
         "coordinationScopes": {
-          "dataset": "A"
-        },
-        "props": {
-            "globalDisable3d": true,
-            "disableChannelsIfRgbDetected": true
-        },
-        "h": 9,
-        "w": 3,
-        "x": 0,
-        "y": 2
-      },
-      {
+            "dataset": "A"
+          },
+          "props": {
+              "globalDisable3d": true,
+              "disableChannelsIfRgbDetected": true
+          },
+          "h": 9,
+          "w": 3,
+          "x": 0,
+          "y": 2
+    },
+    {
         "component": "description",
         "coordinationScopes": {
             "dataset": "A"
@@ -78,8 +61,6 @@
         "w": 3,
         "x": 0,
         "y": 0
-    }
-    ],
-    "name": "KPMP Spatial Viewer",
-    "version": "1.0.4"
-  }
+    }],
+    "name": "KPMP Spatial Viewer"
+}
