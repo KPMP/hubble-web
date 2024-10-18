@@ -1,65 +1,71 @@
 {
-    "version": "1.0.16",
+    "version": "1.0.15",
+    "name": "Visualization Files",
+    "description": "<DATASET_INFO>",
+    "datasets": [
+      {
+        "uid": "A",
+        "name": "An automatically generated view config for dataset. Adjust values and add layout components if needed.",
+        "files": [
+            {
+                "fileType": "image.ome-tiff",
+                "options": {
+                    "images": [
+                        {
+                            "name": "<IMAGE_NAME>",
+                            "type": "ome-tiff",
+                            "url": "<IMAGE_URL>"
+                        }
+                    ],
+                    "schemaVersion": "0.0.2"
+                }
+            }
+        ]
+      }
+    ],
     "coordinationSpace": {
       "dataset": {
         "A": "A"
       }
     },
-    "datasets": [
-      {
-        "files": [{
-            "fileType": "raster.json",
-            "options": {
-                "images": [{
-                    "name": "<IMAGE_NAME>",
-                    "type": "ome-tiff",
-                    "url": "<IMAGE_URL>"
-                }]
-            }
-      }],
-        "uid": "A",
-        "name": "Visualization Files"
-      }
+    "layout": [
+        {
+            "component": "spatialBeta",
+            "coordinationScopes": {
+                "dataset": "A"
+            },
+            "props": {
+              "closeButtonVisible": false
+            },
+            "h": 12,
+            "w": 9,
+            "x": 3,
+            "y": 0
+        },
+          {
+            "component": "layerControllerBeta",
+            "coordinationScopes": {
+              "dataset": "A"
+            },
+            "props": {
+                "globalDisable3d": true,
+                "disableChannelsIfRgbDetected": true
+            },
+            "h": 9,
+            "w": 3,
+            "x": 0,
+            "y": 2
+          },
+        {
+            "component": "description",
+            "coordinationScopes": {
+                "dataset": "A"
+            },
+            "h": 3,
+            "w": 3,
+            "x": 0,
+            "y": 0
+        }
     ],
-    "description": "<DATASET_INFO>",
-    "initStrategy": "auto",
-    
-    "layout": [{
-        "component": "spatialBeta",
-        "coordinationScopes": {
-            "dataset": "A"
-        },
-        "props": {
-          "closeButtonVisible": false
-        },
-        "h": 12,
-        "w": 9,
-        "x": 3,
-        "y": 0
-    },
-    {
-        "component": "layerControllerBeta",
-        "coordinationScopes": {
-            "dataset": "A"
-          },
-          "props": {
-              "globalDisable3d": true,
-              "disableChannelsIfRgbDetected": true
-          },
-          "h": 9,
-          "w": 3,
-          "x": 0,
-          "y": 2
-    },
-    {
-        "component": "description",
-        "coordinationScopes": {
-            "dataset": "A"
-        },
-        "h": 3,
-        "w": 3,
-        "x": 0,
-        "y": 0
-    }],
-    "name": "KPMP Spatial Viewer"
-}
+    "initStrategy": "auto"
+  }

@@ -3,8 +3,8 @@ import threeDCytometryViewConfig from './threeDCytometryViewConfig.json';
 import threeDCytometryViewNoChannelsConfig from './threeDCytometryViewNoChannelsConfig.json';
 import stViewConfig from './spatialTranscriptomicsViewConfig.json'
 import segmentationConfig from './segmentationViewConfig.json';
-// import imcConfig from "./imagingMassCytometryViewConfig.json";
-import imcConfig from "./testConfig.json"
+import imcConfig from "./imagingMassCytometryViewConfig.json";
+// import imcConfig from "./testConfig.json"
 import { getFileLink } from "../../helpers/Api";
 import { loadOmeTiff } from '@hms-dbmi/viv';
 import { unit } from 'mathjs';
