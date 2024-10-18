@@ -9,6 +9,9 @@
         "files": [
             {
                 "fileType": "image.ome-tiff",
+                "coordinationValues": {
+                "fileUid": "<IMAGE_NAME>"
+                },
                 "options": {
                     "images": [
                         {
@@ -28,36 +31,43 @@
       }
     },
     "layout": [
-      {
-        "component": "spatialBeta",
-        "coordinationScopes": {
-          "dataset": "A"
+        {
+            "component": "spatialBets",
+            "coordinationScopes": {
+                "dataset": "A"
+            },
+            "props": {
+              "closeButtonVisible": false
+            },
+            "h": 12,
+            "w": 9,
+            "x": 3,
+            "y": 0
         },
-        "x": 0,
-        "y": 0,
-        "w": 8,
-        "h": 12
-      },
-      {
-        "component": "layerControllerBeta",
-        "coordinationScopes": {
-          "dataset": "A"
-        },
-        "x": 8,
-        "y": 0,
-        "w": 4,
-        "h": 7
-      },
-      {
-        "component": "description",
-        "coordinationScopes": {
-          "dataset": "A"
-        },
-        "x": 8,
-        "y": 9,
-        "w": 4,
-        "h": 5
-      }
+          {
+            "component": "layerControllerBeta",
+            "coordinationScopes": {
+              "dataset": "A"
+            },
+            "props": {
+                "globalDisable3d": true,
+                "disableChannelsIfRgbDetected": true
+            },
+            "h": 9,
+            "w": 3,
+            "x": 0,
+            "y": 2
+          },
+        {
+            "component": "description",
+            "coordinationScopes": {
+                "dataset": "A"
+            },
+            "h": 3,
+            "w": 3,
+            "x": 0,
+            "y": 0
+        }
     ],
     "initStrategy": "auto"
   }
