@@ -8,7 +8,7 @@
         "name": "An automatically generated view config for dataset. Adjust values and add layout components if needed.",
         "files": [
             {
-                "fileType": "raster.json",
+                "fileType": "image.ome-tiff",
                 "options": {
                     "images": [
                         {
@@ -19,8 +19,7 @@
                     ],
                     "schemaVersion": "0.0.2",
                     "usePhysicalSizeScaling": false
-                },
-                "type": "raster"
+                }
             }
         ]
       }
