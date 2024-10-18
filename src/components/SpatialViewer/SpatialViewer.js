@@ -29,7 +29,11 @@ class SpatialViewer extends Component {
                 this.props.selectedImageDataset["spectracksampleid"] 
                 + this.props.selectedImageDataset['imagetype']);
             let viewConfig = getViewConfig(this.props.selectedImageDataset["configtype"]);
+            console.log(this.props.selectedImageDataset["configtype"]);
+            console.log(this.props.selectedImageDataset);
+            console.log(viewConfig)
             viewConfig = await populateViewConfig(viewConfig, this.props.selectedImageDataset);
+            console.log(viewConfig);
             this.setState({viewConfig: viewConfig, noData: false});
         }
     }
