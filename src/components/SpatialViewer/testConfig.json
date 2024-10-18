@@ -1,0 +1,63 @@
+{
+    "version": "1.0.15",
+    "name": "An automatically generated config. Adjust values and add layout components if needed.",
+    "description": "Populate with text relevant to this visualisation.",
+    "datasets": [
+      {
+        "uid": "A",
+        "name": "An automatically generated view config for dataset. Adjust values and add layout components if needed.",
+        "files": [
+            {
+                "fileType": "image.ome-tiff",
+                "options": {
+                    "images": [
+                        {
+                            "name": "<IMAGE_NAME>",
+                            "type": "ome-tiff",
+                            "url": "<IMAGE_URL>"
+                        }
+                    ],
+                },
+            }
+        ],
+      }
+    ],
+    "coordinationSpace": {
+      "dataset": {
+        "A": "A"
+      }
+    },
+    "layout": [
+      {
+        "component": "spatialBeta",
+        "coordinationScopes": {
+          "dataset": "A"
+        },
+        "x": 0,
+        "y": 0,
+        "w": 8,
+        "h": 12
+      },
+      {
+        "component": "layerControllerBeta",
+        "coordinationScopes": {
+          "dataset": "A"
+        },
+        "x": 8,
+        "y": 0,
+        "w": 4,
+        "h": 7
+      },
+      {
+        "component": "description",
+        "coordinationScopes": {
+          "dataset": "A"
+        },
+        "x": 8,
+        "y": 9,
+        "w": 4,
+        "h": 5
+      }
+    ],
+    "initStrategy": "auto"
+  }
