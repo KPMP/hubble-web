@@ -9,9 +9,6 @@
         "files": [
             {
                 "fileType": "image.ome-tiff",
-                "coordinationValues": {
-                "fileUid": "<IMAGE_NAME>"
-                },
                 "options": {
                     "images": [
                         {
@@ -32,7 +29,7 @@
     },
     "layout": [
         {
-            "component": "spatialBets",
+            "component": "spatialBeta",
             "coordinationScopes": {
                 "dataset": "A"
             },
