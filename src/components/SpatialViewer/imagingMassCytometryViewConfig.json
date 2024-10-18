@@ -18,7 +18,19 @@
                             }
                         ],
                         "schemaVersion": "0.0.2",
-                        "usePhysicalSizeScaling": false
+                        "usePhysicalSizeScaling": false,
+                        "coordinateTransformations": [
+                            {
+                                "type": "scale",
+                                "scale": [
+                                    "0.000001",
+                                    "0.000001",
+                                    1,
+                                    1,
+                                    1
+                      ]
+                  }
+              ]
                     },
                     "type": "raster"
                 }
@@ -31,7 +43,7 @@
     "initStrategy": "auto",
     "layout": [
       {
-        "component": "spatialBeta",
+        "component": "spatial",
         "coordinationScopes": {
           "dataset": "A"
         },
@@ -44,7 +56,7 @@
         "y": 0
       },
       {
-        "component": "layerControllerBeta",
+        "component": "layerController",
         "coordinationScopes": {
           "dataset": "A"
         },
