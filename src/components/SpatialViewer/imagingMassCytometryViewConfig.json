@@ -10,7 +10,6 @@
         "files": [{
             "fileType": "raster.json",
             "options": {
-                "schemaVersion": "0.0.2",
                 "images": [{
                     "name": "<IMAGE_NAME>",
                     "type": "ome-tiff",

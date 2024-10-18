@@ -16,10 +16,10 @@
                             "type": "ome-tiff",
                             "url": "<IMAGE_URL>"
                         }
-                    ],
-                },
+                    ]
+                }
             }
-        ],
+        ]
       }
     ],
     "coordinationSpace": {
