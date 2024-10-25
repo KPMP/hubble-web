@@ -22,7 +22,7 @@ export const fetchParticipantSummaryDataset = async (redcapId) => {
   const query = gql`
   query participantSummaryDataset($redcapId: String!) {
     participantSummaryDataset(redcapId: $redcapId){
-      tissueType
+      enrollmentCategory
       redcapId
     }
   }`;
