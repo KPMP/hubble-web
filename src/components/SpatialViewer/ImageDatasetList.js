@@ -237,10 +237,6 @@ class ImageDatasetList extends Component {
     };
 
     render() {
-        const tabEnum = {
-            DATASET: 'DATASET',
-            PARTICIPANT: 'PARTICIPANT',
-        };
 
         const { columnWidths, sorting } = this.props.tableSettings;
         const summaryDataset = this.props.summaryDatasets
@@ -271,7 +267,7 @@ class ImageDatasetList extends Component {
                         </div>
 
                     </Col>
-                    <Col xl={9}>
+                    <Col xl={`${this.props.filterTabActive ? 9 : 12 }`}>
                         <Row>
                             <Col 
                                 className={`filter-collapse clickable ${this.props.filterTabActive ? 'hidden': ''}`}
