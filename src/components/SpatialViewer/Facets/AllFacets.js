@@ -3,7 +3,7 @@ import {Facet} from "@elastic/react-search-ui";
 import {MultiCheckboxFacet} from "@elastic/react-search-ui-views";
 import {Col, Container, Row, UncontrolledAccordion, AccordionItem, AccordionHeader, AccordionBody} from "reactstrap";
 
-class ParticipantFacet extends Component {
+class AllFacets extends Component {
 
     constructor(props) {
         super(props);
@@ -101,4 +101,4 @@ class ParticipantFacet extends Component {
 }
 
 
-export default ParticipantFacet;
+export default AllFacets;
