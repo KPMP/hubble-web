@@ -16,6 +16,30 @@ class ParticipantFacet extends Component {
             <Container id="spatial-filter" className="mt-3 rounded border shadow-sm spatial-filter-panel container-max">
                 <Row className='mb-2'><Col><Facet field="releaseversion" filterType="any" label="" show="1" view={MultiCheckboxFacet}/></Col></Row>
                 <UncontrolledAccordion defaultOpen={['1', '2', '3', '4']} stayOpen>
+                <AccordionItem>
+                    <AccordionHeader targetId='1'>
+                            Experimental Strategy
+                        </AccordionHeader>
+                        <AccordionBody accordionId="1">
+                            <Row className="mb-2">
+                                <Col>
+                                    <Facet field="datatype" label="" filterType="any" show="10" view={MultiCheckboxFacet}/>
+                                </Col>
+                            </Row>
+                        </AccordionBody>
+                    </AccordionItem>
+                    <AccordionItem>
+                        <AccordionHeader targetId="2">
+                            Image Type
+                        </AccordionHeader>
+                        <AccordionBody accordionId="2">
+                            <Row className="mb-2">
+                                <Col>
+                                    <Facet field="imagetype" label="" filterType="any" show="10" view={MultiCheckboxFacet}/>
+                                </Col>
+                            </Row>
+                        </AccordionBody>
+                    </AccordionItem>
                     <AccordionItem>
                         <AccordionHeader targetId='1'>
                             Participant ID
