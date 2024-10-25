@@ -32,7 +32,7 @@ import { Pagination } from './Plugins/pagination.js';
 
 import "@elastic/react-search-ui-views/lib/styles/styles.css";
 import ReportCard from "../ReportCard/ReportCard";
-import ParticipantFacet from './Facets/ParticipantFacet.js';
+import AllFacets from './Facets/AllFacets.js';
 
 class ImageDatasetList extends Component {
 
@@ -262,7 +262,7 @@ class ImageDatasetList extends Component {
                                     className="fas fa-angles-left " icon={faAnglesLeft} />
                             </div>
                         </div>
-                                <ParticipantFacet />
+                            <AllFacets />
                         </div>
 
                     </Col>
