@@ -237,7 +237,6 @@ class ImageDatasetList extends Component {
     };
 
     render() {
-
         const { columnWidths, sorting } = this.props.tableSettings;
         const summaryDataset = this.props.summaryDatasets
         const experimentalDataCounts = this.props.experimentalDataCounts
@@ -254,7 +253,7 @@ class ImageDatasetList extends Component {
                 />
                 <Row>
                     <Col xl={3}>
-                        <div className="filter-panel-wrapper">
+                        <div className={`filter-panel-wrapper ${this.props.filterTabActive ? '': 'hidden'}`}>
                         <div className="filter-panel-tab-wrapper">                            
                             <div className="filter-tab filter-tab-control-icon clickable"
                                  alt="Close Filter Tab"
