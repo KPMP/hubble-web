@@ -32,8 +32,7 @@ import { Pagination } from './Plugins/pagination.js';
 
 import "@elastic/react-search-ui-views/lib/styles/styles.css";
 import ReportCard from "../ReportCard/ReportCard";
-import ParticipantFacet from './Facets/ParticipantFacet.js';
-import FileFacet from './Facets/FileFacet.js';
+import AllFacets from './Facets/AllFacets.js';
 
 class ImageDatasetList extends Component {
 
@@ -45,7 +44,6 @@ class ImageDatasetList extends Component {
 
         const defaultHiddenColumns = this.getDefaultHiddenColumnNames(this.getColumns())
         this.state = {
-            activeFilterTab: 'DATASET',
             tableData: [],
             cards: this.props.tableSettings.cards || columnCards,
             currentPage: this.props.tableSettings.currentPage,
@@ -239,11 +237,6 @@ class ImageDatasetList extends Component {
     };
 
     render() {
-        const tabEnum = {
-            DATASET: 'DATASET',
-            PARTICIPANT: 'PARTICIPANT',
-        };
-
         const { columnWidths, sorting } = this.props.tableSettings;
         const summaryDataset = this.props.summaryDatasets
         const experimentalDataCounts = this.props.experimentalDataCounts
@@ -261,12 +254,7 @@ class ImageDatasetList extends Component {
                 <Row>
                     <Col xl={3}>
                         <div className={`filter-panel-wrapper ${this.props.filterTabActive ? '': 'hidden'}`}>
-                        <div className="filter-panel-tab-wrapper">
-                            <div onClick={() => {this.props.setActiveFilterTab(tabEnum.DATASET)}}
-                                className={`filter-tab ${this.props.activeFilterTab === tabEnum.DATASET ? 'active' : ''} rounded border`}>DATASET</div>
-                            <div onClick={() => {this.props.setActiveFilterTab(tabEnum.PARTICIPANT)}}
-                                className={`filter-tab ${this.props.activeFilterTab === tabEnum.PARTICIPANT ? 'active' : ''} rounded border`}>PARTICIPANT</div>
-                            
+                        <div className="filter-panel-tab-wrapper">                            
                             <div className="filter-tab filter-tab-control-icon clickable"
                                  alt="Close Filter Tab"
                                  onClick={() => {this.props.toggleFilterTab()}}>                                
@@ -274,13 +262,7 @@ class ImageDatasetList extends Component {
                                     className="fas fa-angles-left " icon={faAnglesLeft} />
                             </div>
                         </div>
-                            <React.Fragment>
-                            {this.props.activeFilterTab === tabEnum.DATASET &&
-                                <FileFacet />
-                            }{this.props.activeFilterTab === tabEnum.PARTICIPANT &&
-                                <ParticipantFacet />
-                            }
-                            </React.Fragment>
+                            <AllFacets />
                         </div>
 
                     </Col>
