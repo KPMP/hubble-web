@@ -13,9 +13,6 @@ export const fetchAndSetSummaryDatasets = (participant_id) => {
 export const fetchAndSetClinicalDatasets = (participant_id) => {
     return async (dispatch) => {
         let clinicalDatasets = await fetchParticipantClinicalDataset(participant_id);
-        if (clinicalDatasets) {
-            clinicalDatasets = JSON.parse(clinicalDatasets.clinicalData);
-        }
         clinicalDatasets = mapClinicalKeysToPresentationStyle(clinicalDatasets);
         dispatch(setClinicalDatasets(clinicalDatasets));
     }
