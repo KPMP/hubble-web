@@ -84,7 +84,8 @@ describe('dataHelper', () => {
                 "sex": "test-sex",
                 "protocol": "test-protocol",
                 "sampleType": "test-sample_type",
-                "tissueSource": "test-tissue_source"
+                "tissueSource": "test-tissue_source",
+                "ageBinned": 'test-age'
             };
             const clinicalMappingResult = mapClinicalKeysToPresentationStyle(clinicalUnmapped);
             const expectedClinicalMapping =   {
@@ -103,7 +104,8 @@ describe('dataHelper', () => {
                 'Sample Type': 'test-sample_type',
                 'Sex': 'test-sex',
                 'Protocol': 'test-protocol',
-                'Tissue Source': 'test-tissue_source'
+                'Tissue Source': 'test-tissue_source',
+                'Age (Years)': 'test-age'
               }
             expect(clinicalMappingResult).toEqual(expectedClinicalMapping);
         }),
@@ -129,7 +131,8 @@ describe('dataHelper', () => {
                 'Sample Type': '',
                 'Sex': '',
                 'Protocol': '',
-                'Tissue Source': ''
+                'Tissue Source': '',
+                'Age (Years)': ''
             };
             expect(clinicalMappingResult).toEqual(expectedClinicalMapping);
         }),
@@ -152,7 +155,8 @@ describe('dataHelper', () => {
                 'Sample Type': '',
                 'Sex': '',
                 'Protocol': '',
-                'Tissue Source': ''
+                'Tissue Source': '',
+                'Age (Years)': ''
             };
             expect(clinicalMappingResult).toEqual(expectedClinicalMapping);
         }),
@@ -175,7 +179,8 @@ describe('dataHelper', () => {
                 'Sample Type': '',
                 'Sex': '',
                 'Protocol': '',
-                'Tissue Source': ''
+                'Tissue Source': '',
+                'Age (Years)': ''
             };
             expect(clinicalMappingResult).toEqual(expectedClinicalMapping);
         })
