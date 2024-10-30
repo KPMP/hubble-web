@@ -80,6 +80,7 @@ export const fetchParticipantClinicalDataset = async (redcapId) => {
           hypertensionDuration
           onRaasBlockade
           race
+          ageBinned
       }
     }`;
     const response = await apolloClient.query({
