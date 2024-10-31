@@ -81,6 +81,10 @@ export const fetchParticipantClinicalDataset = async (redcapId) => {
           onRaasBlockade
           race
           ageBinned
+          sex
+          protocol
+          tissueSource
+          sampleType
       }
     }`;
     const response = await apolloClient.query({
