@@ -53,19 +53,19 @@ store.subscribe(saveState);
 const connector = new AppSearchAPIConnector({
   searchKey: process.env.REACT_APP_SEARCH_KEY,
   engineName: "spatial-viewer",
-  endpointBase: "/spatial-viewer/search",
+  endpointBase: "https://qa-atlas.kpmp.org/spatial-viewer/search",
   cacheResponses: false
 })
 
 const searchConfig = {
   apiConnector: connector,
   searchQuery: {
-      disjunctiveFacets: ["sex", "age", "redcapid", "tissuetype", "imagetype", "datatype", "configtype", "level", "releaseversion"],
+      disjunctiveFacets: ["sex", "age", "redcapid", "enrollmentcategory", "imagetype", "datatype", "configtype", "level", "releaseversion"],
       facets: {
         sex: { type: "value", size: 100},
         age: { type: "value", size: 100},
         redcapid: { type: "value", size: 500 },
-        tissuetype: { type: "value", size: 100},
+        enrollmentcategory: { type: "value", size: 100},
         imagetype: { type: "value", size: 100},
         datatype: { type: "value", size: 100 },
         configtype: { type: "value", size: 100},
