@@ -52,7 +52,7 @@ class AllFacets extends Component {
                         <AccordionBody accordionId="3">
                             <Row className="mb-2">
                                 <Col>
-                                    <Facet field="tissuetype" label="" filterType="any" show="10" view={MultiCheckboxFacet}/>
+                                    <Facet field="enrollmentCategory" label="" filterType="any" show="10" view={MultiCheckboxFacet}/>
                                 </Col>
                             </Row>
                         </AccordionBody>
