@@ -33,36 +33,11 @@ class AllFacets extends Component {
                             </Row>
                         </AccordionBody>
                     </AccordionItem>
-                <AccordionItem>
-                    <AccordionHeader targetId='2'>
-                            Experimental Strategy
-                        </AccordionHeader>
-                        <AccordionBody accordionId="2">
-                            <Row className="mb-2">
-                                <Col>
-                                    <Facet field="datatype" label="" filterType="any" show="10" view={MultiCheckboxFacet}/>
-                                </Col>
-                            </Row>
-                        </AccordionBody>
-                    </AccordionItem>
                     <AccordionItem>
-                        <AccordionHeader targetId="3">
-                            Image Type
-                        </AccordionHeader>
-                        <AccordionBody accordionId="3">
-                            <Row className="mb-2">
-                                <Col>
-                                    <Facet field="imagetype" label="" filterType="any" show="10" view={MultiCheckboxFacet}/>
-                                </Col>
-                            </Row>
-                        </AccordionBody>
-                    </AccordionItem>
-                   
-                    <AccordionItem>
-                        <AccordionHeader targetId="4">
+                        <AccordionHeader targetId="2">
                             Sex
                         </AccordionHeader>
-                        <AccordionBody accordionId="4">
+                        <AccordionBody accordionId="2">
                             <Row className="mb-2">
                                 <Col>
                                     <Facet field="sex" label="" filterType="any" show="10" view={MultiCheckboxFacet}/>
@@ -71,10 +46,22 @@ class AllFacets extends Component {
                         </AccordionBody>
                     </AccordionItem>
                     <AccordionItem>
-                        <AccordionHeader targetId="5">
+                        <AccordionHeader targetId="3">
+                            Enrollment Category
+                        </AccordionHeader>
+                        <AccordionBody accordionId="3">
+                            <Row className="mb-2">
+                                <Col>
+                                    <Facet field="enrollmentcategory" label="" filterType="any" show="10" view={MultiCheckboxFacet}/>
+                                </Col>
+                            </Row>
+                        </AccordionBody>
+                    </AccordionItem>
+                    <AccordionItem>
+                        <AccordionHeader targetId="4">
                             Age
                         </AccordionHeader>
-                        <AccordionBody accordionId="5">
+                        <AccordionBody accordionId="4">
                             <Row className="mb-2">
                                 <Col>
                                     <Facet field="age" label="" filterType="any" show="10" view={MultiCheckboxFacet}/>
@@ -83,13 +70,25 @@ class AllFacets extends Component {
                         </AccordionBody>
                     </AccordionItem>
                     <AccordionItem>
+                    <AccordionHeader targetId='5'>
+                            Experimental Strategy
+                        </AccordionHeader>
+                        <AccordionBody accordionId="5">
+                            <Row className="mb-2">
+                                <Col>
+                                    <Facet field="datatype" label="" filterType="any" show="10" view={MultiCheckboxFacet}/>
+                                </Col>
+                            </Row>
+                        </AccordionBody>
+                    </AccordionItem>
+                    <AccordionItem>
                         <AccordionHeader targetId="6">
-                            Enrollment Category
+                            Image Type
                         </AccordionHeader>
                         <AccordionBody accordionId="6">
                             <Row className="mb-2">
                                 <Col>
-                                    <Facet field="enrollmentcategory" label="" filterType="any" show="10" view={MultiCheckboxFacet}/>
+                                    <Facet field="imagetype" label="" filterType="any" show="10" view={MultiCheckboxFacet}/>
                                 </Col>
                             </Row>
                         </AccordionBody>
