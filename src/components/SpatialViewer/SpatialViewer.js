@@ -73,7 +73,7 @@ class SpatialViewer extends Component {
                         <Col xs='8'>
                             <h5>
                                 {`${this.props.selectedImageDataset["datatype"]} 
-                                for ${this.props.selectedImageDataset["tissuetype"]} 
+                                for ${this.props.selectedImageDataset["enrollmentcategory"]} 
                                 sample ${this.props.selectedImageDataset["spectracksampleid"]} 
                                 (participant `} 
                                 <button
