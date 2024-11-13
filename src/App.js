@@ -53,14 +53,36 @@ store.subscribe(saveState);
 const connector = new AppSearchAPIConnector({
   searchKey: process.env.REACT_APP_SEARCH_KEY,
   engineName: "spatial-viewer",
-  endpointBase: "/spatial-viewer/search",
+  endpointBase: process.env.REACT_APP_SEARCH_ENDPOINT,
   cacheResponses: false
 })
 
 const searchConfig = {
   apiConnector: connector,
   searchQuery: {
-      disjunctiveFacets: ["sex", "age", "redcapid", "enrollmentcategory", "imagetype", "datatype", "configtype", "level", "releaseversion"],
+      disjunctiveFacets: [
+        "sex", 
+        "age", 
+        "redcapid", 
+        "enrollmentcategory", 
+        "imagetype", 
+        "datatype", 
+        "configtype", 
+        "level", 
+        "releaseversion",
+        "ethnicity",
+        "proteinuria",
+        "hypertensionhistory",
+        "hypertensionduration",
+        "onraasblockade",
+        "diabetesduration",
+        "diabeteshistory",
+        "kdigostage",
+        "a1c",
+        "albuminuria",
+        "baselineegfr",
+        "primaryadjudicatedcategory",
+        ],
       facets: {
         sex: { type: "value", size: 100},
         age: { type: "value", size: 100},
@@ -70,7 +92,19 @@ const searchConfig = {
         datatype: { type: "value", size: 100 },
         configtype: { type: "value", size: 100},
         level: { type: "value", size: 100},
-        releaseversion: {type: "value", size: 250}
+        releaseversion: {type: "value", size: 250},
+        ethnicity: {type: "value", size: 250},
+        proteinuria: {type: "value", size: 250},
+        hypertensionhistory: {type: "value", size: 250},
+        hypertensionduration: {type: "value", size: 250},
+        onraasblockade:{type: "value", size: 250},
+        diabetesduration: {type: "value", size: 250},
+        diabeteshistory: {type: "value", size: 250},
+        kdigostage: {type: "value", size: 250},
+        a1c: {type: "value", size: 250},
+        albuminuria: {type: "value", size: 250},
+        baselineegfr: {type: "value", size: 250},
+        primaryadjudicatedcategory: {type: "value", size: 250},
       }
   },
   initialState: {
