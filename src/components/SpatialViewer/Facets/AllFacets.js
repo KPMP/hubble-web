@@ -71,12 +71,12 @@ class AllFacets extends Component {
                      </AccordionItem>
                     <AccordionItem>
                         <AccordionHeader targetId="5">
-                            Ethnicity
+                            Race
                         </AccordionHeader>
                         <AccordionBody accordionId="5">
                             <Row className='mb-2'>
                                 <Col>
-                                    <Facet field='ethnicity' label='' filterType='any' view={MultiCheckboxFacet}/>
+                                    <Facet field='race' label='' filterType='any' view={MultiCheckboxFacet}/>
                                 </Col>
                             </Row>
                         </AccordionBody></AccordionItem>

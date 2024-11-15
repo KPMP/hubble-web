@@ -70,7 +70,7 @@ export const mapClinicalKeysToPresentationStyle = (data) => {
     result['KDIGO Stage'] = "";
     result['On RAAS Blockade'] = "";
     result['Proteinuria (mg)'] = "";
-    result['Ethnicity'] = "";
+    result['Race'] = "";
     result['Age (Years)'] = "";
     result['Sample Type'] = "";
     result['Sex'] = "";
@@ -111,7 +111,7 @@ export const mapClinicalKeysToPresentationStyle = (data) => {
         result['Proteinuria (mg)'] = data.proteinuria ? data.proteinuria : "";
     }
     if (data.race) {
-        result['Ethnicity'] = data.race ? data.race : "";
+        result['race'] = data.race ? data.race : "";
     }
     if (data.ageBinned) {
         result['Age (Years)'] = data.ageBinned ? data.ageBinned.replace(' Years', '') : "";
