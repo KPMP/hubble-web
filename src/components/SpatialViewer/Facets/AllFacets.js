@@ -82,7 +82,7 @@ class AllFacets extends Component {
                         </AccordionBody></AccordionItem>
                     <AccordionItem>
                         <AccordionHeader targetId="6">
-                            A1c %
+                            A1c
                         </AccordionHeader>
                         <AccordionBody accordionId="6">
                             <Row className='mb-2'>

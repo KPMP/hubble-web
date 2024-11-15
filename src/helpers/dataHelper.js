@@ -60,7 +60,7 @@ export const mapSummaryKeysToPresentationStyle = (data) => {
 
 export const mapClinicalKeysToPresentationStyle = (data) => {
     const result = {};
-    result['A1C (%)']= "";
+    result['A1C']= "";
     result['Albuminuria (mg)'] = "";
     result['Baseline eGFR (ml/min/1.73m2)'] = "";
     result['Diabetes Duration (Years)'] = "";
@@ -81,7 +81,7 @@ export const mapClinicalKeysToPresentationStyle = (data) => {
         return result;
     }
     if (data.a1c) {
-        result['A1C (%)'] = data.a1c ? data.a1c : "";
+        result['A1C'] = data.a1c ? data.a1c : "";
     }
     if (data.albuminuria) {
         result['Albuminuria (mg)'] = data.albuminuria ? data.albuminuria : "";
