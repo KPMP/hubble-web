@@ -68,7 +68,7 @@ export const mapClinicalKeysToPresentationStyle = (data) => {
     result['Hypertension Duration (years)'] = "";
     result['Hypertension History'] = "";
     result['KDIGO Stage'] = "";
-    result['On RAAS Blockade'] = "";
+    result['RAAS Blockade'] = "";
     result['Proteinuria (mg)'] = "";
     result['Race'] = "";
     result['Age (Years)'] = "";
@@ -105,7 +105,7 @@ export const mapClinicalKeysToPresentationStyle = (data) => {
         result['KDIGO Stage'] = data.kdigoStage ? data.kdigoStage : "";
     }
     if (data.onRaasBlockade) {
-        result['On RAAS Blockade'] = data.onRaasBlockade ? data.onRaasBlockade : "";
+        result['RAAS Blockade'] = data.onRaasBlockade ? data.onRaasBlockade : "";
     }
     if (data.proteinuria) {
         result['Proteinuria (mg)'] = data.proteinuria ? data.proteinuria : "";
