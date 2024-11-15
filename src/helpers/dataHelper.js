@@ -60,7 +60,7 @@ export const mapSummaryKeysToPresentationStyle = (data) => {
 
 export const mapClinicalKeysToPresentationStyle = (data) => {
     const result = {};
-    result['A1C (%)']= "";
+    result['A1c %']= "";
     result['Albuminuria (mg)'] = "";
     result['Baseline eGFR (ml/min/1.73m2)'] = "";
     result['Diabetes Duration (Years)'] = "";
@@ -68,9 +68,9 @@ export const mapClinicalKeysToPresentationStyle = (data) => {
     result['Hypertension Duration (years)'] = "";
     result['Hypertension History'] = "";
     result['KDIGO Stage'] = "";
-    result['On RAAS Blockade'] = "";
+    result['RAAS Blockade'] = "";
     result['Proteinuria (mg)'] = "";
-    result['Ethnicity'] = "";
+    result['Race'] = "";
     result['Age (Years)'] = "";
     result['Sample Type'] = "";
     result['Sex'] = "";
@@ -81,7 +81,7 @@ export const mapClinicalKeysToPresentationStyle = (data) => {
         return result;
     }
     if (data.a1c) {
-        result['A1C (%)'] = data.a1c ? data.a1c : "";
+        result['A1c %'] = data.a1c ? data.a1c : "";
     }
     if (data.albuminuria) {
         result['Albuminuria (mg)'] = data.albuminuria ? data.albuminuria : "";
@@ -105,13 +105,13 @@ export const mapClinicalKeysToPresentationStyle = (data) => {
         result['KDIGO Stage'] = data.kdigoStage ? data.kdigoStage : "";
     }
     if (data.onRaasBlockade) {
-        result['On RAAS Blockade'] = data.onRaasBlockade ? data.onRaasBlockade : "";
+        result['RAAS Blockade'] = data.onRaasBlockade ? data.onRaasBlockade : "";
     }
     if (data.proteinuria) {
         result['Proteinuria (mg)'] = data.proteinuria ? data.proteinuria : "";
     }
     if (data.race) {
-        result['Ethnicity'] = data.race ? data.race : "";
+        result['race'] = data.race ? data.race : "";
     }
     if (data.ageBinned) {
         result['Age (Years)'] = data.ageBinned ? data.ageBinned.replace(' Years', '') : "";
