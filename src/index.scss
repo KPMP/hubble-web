@@ -572,3 +572,19 @@ th[title='Pixels Type'], th[title='Pixels Type'] + td {
   --bs-accordion-body-padding-y: .5rem !important;
   font-weight: 500;
 }
+
+.accordion-body {
+    padding: 0.5rem;
+}
+
+.inner-accordion .accordion-button:not(.collapsed) {
+    background-color: #ffffff;
+}
+
+.inner-accordion .accordion-button:not(.collapsed)::after {
+    background-color: #ffffff;
+}
+
+.inner-accordion .accordion-button::after {
+    margin: 0px 10px;
+}
