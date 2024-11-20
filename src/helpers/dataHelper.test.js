@@ -98,7 +98,7 @@ describe('dataHelper', () => {
             };
             const clinicalMappingResult = mapClinicalKeysToPresentationStyle(clinicalUnmapped);
             const expectedClinicalMapping =   {
-                'A1C (%)': "test-a1c",
+                'A1c %': "test-a1c",
                 'Albuminuria (mg)': 'test-albuminuria',
                 'Baseline eGFR (ml/min/1.73m2)': 'test-baseline_egfr',
                 'Diabetes Duration (Years)': 'test-diabetes_duration',
@@ -125,7 +125,7 @@ describe('dataHelper', () => {
             };
             const clinicalMappingResult = mapClinicalKeysToPresentationStyle(clinicalUnmapped);
             const expectedClinicalMapping = {
-                'A1C (%)': "test-a1c",
+                'A1c %': "test-a1c",
                 'Albuminuria (mg)': 'test-albuminuria',
                 'Baseline eGFR (ml/min/1.73m2)': '',
                 'Diabetes Duration (Years)': '',
@@ -149,7 +149,7 @@ describe('dataHelper', () => {
             let clinicalUnmapped = {};
             const clinicalMappingResult = mapClinicalKeysToPresentationStyle(clinicalUnmapped);
             const expectedClinicalMapping = {
-                'A1C (%)': "",
+                'A1c %': "",
                 'Albuminuria (mg)': '',
                 'Baseline eGFR (ml/min/1.73m2)': '',
                 'Diabetes Duration (Years)': '',
@@ -173,7 +173,7 @@ describe('dataHelper', () => {
             let clinicalUnmapped = null;
             const clinicalMappingResult = mapClinicalKeysToPresentationStyle(clinicalUnmapped);
             const expectedClinicalMapping = {
-                'A1C (%)': "",
+                'A1c %': "",
                 'Albuminuria (mg)': '',
                 'Baseline eGFR (ml/min/1.73m2)': '',
                 'Diabetes Duration (Years)': '',

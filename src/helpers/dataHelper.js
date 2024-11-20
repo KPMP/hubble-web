@@ -111,7 +111,7 @@ export const mapClinicalKeysToPresentationStyle = (data) => {
         result['Proteinuria (mg)'] = data.proteinuria ? data.proteinuria : "";
     }
     if (data.race) {
-        result['race'] = data.race ? data.race : "";
+        result['Race'] = data.race ? data.race : "";
     }
     if (data.ageBinned) {
         result['Age (Years)'] = data.ageBinned ? data.ageBinned.replace(' Years', '') : "";
