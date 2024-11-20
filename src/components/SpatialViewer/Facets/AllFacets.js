@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {Facet} from "@elastic/react-search-ui";
-import {MultiCheckboxFacet} from "@elastic/react-search-ui-views";
-import {Col, Container, Row, UncontrolledAccordion, AccordionItem, AccordionHeader, AccordionBody} from "reactstrap";
+import React, { Component } from 'react';
+import { Facet } from "@elastic/react-search-ui";
+import { MultiCheckboxFacet } from "@elastic/react-search-ui-views";
+import { Col, Container, Row, UncontrolledAccordion, AccordionItem, AccordionHeader, AccordionBody } from "reactstrap";
 
 class AllFacets extends Component {
 
@@ -14,12 +14,15 @@ class AllFacets extends Component {
     render() {
         return (
             <Container id="spatial-filter" className="mt-3 rounded border shadow-sm spatial-filter-panel container-max">
-                <Row className='mb-2'><Col><Facet field="releaseversion" filterType="any" label="" show="1" view={MultiCheckboxFacet}/></Col></Row>
+                <Row className='mb-2'>
+                    <Col id="release">
+                        <Facet field="releaseversion" filterType="any" label="" show="1" view={MultiCheckboxFacet} />
+                    </Col>
+                </Row>
 
                 <UncontrolledAccordion
                     defaultOpen={['1', '2', '3']}
-                    stayOpen
-                >
+                    stayOpen>
                     <AccordionItem>
                         <AccordionHeader targetId="1">
                             Participant metadata
@@ -256,7 +259,7 @@ class AllFacets extends Component {
                                     <AccordionBody accordionId="26">
                                         <Row className="mb-2">
                                             <Col>
-                                                <Facet field="imagetype" label="" filterType="any" show="10" view={MultiCheckboxFacet}/>
+                                                <Facet field="imagetype" label="" filterType="any" show="10" view={MultiCheckboxFacet} />
                                             </Col>
                                         </Row>
                                     </AccordionBody>
