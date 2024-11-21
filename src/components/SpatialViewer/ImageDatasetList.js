@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import {Col, Container, Row, Spinner} from "reactstrap";
+import {Col, Container, Row, Spinner, UncontrolledTooltip} from "reactstrap";
 import { resultConverter } from "../../helpers/dataHelper";
 import { getImageTypeTooltipCopy } from "./viewConfigHelper";
 import { faXmark, faAnglesRight, faAnglesLeft, faTrashCan } from "@fortawesome/free-solid-svg-icons";
@@ -215,25 +215,56 @@ class ImageDatasetList extends Component {
     };
 
     getFilterPills = (filters) => {
-        return filters.map(
-            filter => {
-                return filter.values.map(value => {
-                    return (
-                        <div
-                            key={(filter.field).toString() + value.toString()}
-                            className="border rounded activeFilter">
-                            <span>{value}
-                                <FontAwesomeIcon
-                                    alt="Close Filter"
-                                    onClick={()=>{
-                                        this.props.removeFilter(filter.field, value)
-                                    }}
-                                    className="close-button fas fa-xmark ms-2"
-                                    icon={faXmark} />
-                            </span>
-                        </div>)
-                })
-            })
+        const filterDisplayNames = {
+            sex: "Sex",
+            age: "Age",
+            redcapid: "Participant ID",
+            enrollmentcategory: "Enrollment Category",
+            imagetype: "Image Type",
+            datatype: "Data Type",
+            configtype: "Config Type",
+            level: "Level",
+            releaseversion: "Release Version",
+            race: "Race",
+            proteinuria: "Proteinuria",
+            hypertensionhistory: "Hypertension History",
+            hypertensionduration: "Hypertension Duration",
+            onraasblockade: "RAAS Blockade",
+            diabetesduration: "Diabetes Duration",
+            diabeteshistory: "Diabetes History",
+            kdigostage: "KDIGO Stage",
+            a1c: "A1c",
+            albuminuria: "Albuminuria",
+            baselineegfr: "Baseline eGFR",
+            primaryadjudicatedcategory: "Primary Adjudicated Category"
+        };
+
+        return filters.map(filter => {
+            return filter.values.map(value => {
+                const sanitizedId = `${filter.field.toString()}-${value.toString()}`.replace(/[^a-zA-Z0-9-_]/g, '_');
+                return (
+                    <div
+                        key={sanitizedId}
+                        className="border rounded activeFilter"
+                        id={sanitizedId}
+                    >
+                        <span>{value}
+                            <UncontrolledTooltip placement="bottom" target={sanitizedId}>
+                                {filterDisplayNames[filter.field] || filter.field}
+                            </UncontrolledTooltip>
+                            <FontAwesomeIcon
+                                alt="Close Filter"
+                                onClick={() => {
+                                    this.props.removeFilter(filter.field, value);
+                                }}
+                                className="close-button fas fa-xmark ms-2"
+                                icon={faXmark}
+                            />
+                        </span>
+                    </div>
+                );
+            });
+        });
     };
 
     render() {
