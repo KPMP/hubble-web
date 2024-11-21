@@ -246,7 +246,7 @@ class AllFacets extends Component {
                                     <AccordionBody accordionId="25">
                                         <Row className="mb-2">
                                             <Col>
-                                                <Facet field="experimentalstrategy" label="" filterType="any"
+                                                <Facet field="datatype" label="" filterType="any"
                                                     view={MultiCheckboxFacet} />
                                             </Col>
                                         </Row>
