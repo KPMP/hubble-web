@@ -217,7 +217,7 @@ class ImageDatasetList extends Component {
     getFilterPills = (filters) => {
         const filterDisplayNames = {
             sex: "Sex",
-            agebinned: "Age",
+            age: "Age",
             redcapid: "Participant ID",
             enrollmentcategory: "Enrollment Category",
             imagetype: "Image Type",
