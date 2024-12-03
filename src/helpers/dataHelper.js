@@ -60,18 +60,18 @@ export const mapSummaryKeysToPresentationStyle = (data) => {
 
 export const mapClinicalKeysToPresentationStyle = (data) => {
     const result = {};
-    result['A1c %']= "";
-    result['Albuminuria (mg)'] = "";
-    result['Baseline eGFR (ml/min/1.73m2)'] = "";
-    result['Diabetes Duration (Years)'] = "";
+    result['A1c']= "";
+    result['Albuminuria'] = "";
+    result['Baseline eGFR'] = "";
+    result['Diabetes Duration'] = "";
     result['Diabetes History'] = "";
-    result['Hypertension Duration (years)'] = "";
+    result['Hypertension Duration'] = "";
     result['Hypertension History'] = "";
     result['KDIGO Stage'] = "";
     result['RAAS Blockade'] = "";
-    result['Proteinuria (mg)'] = "";
+    result['Proteinuria'] = "";
     result['Race'] = "";
-    result['Age (Years)'] = "";
+    result['Age'] = "";
     result['Sample Type'] = "";
     result['Sex'] = "";
     result['Protocol'] = "";
@@ -81,22 +81,22 @@ export const mapClinicalKeysToPresentationStyle = (data) => {
         return result;
     }
     if (data.a1c) {
-        result['A1c %'] = data.a1c ? data.a1c : "";
+        result['A1c'] = data.a1c ? data.a1c : "";
     }
     if (data.albuminuria) {
-        result['Albuminuria (mg)'] = data.albuminuria ? data.albuminuria : "";
+        result['Albuminuria'] = data.albuminuria ? data.albuminuria : "";
     }
     if (data.baselineEgfr) {
-        result['Baseline eGFR (ml/min/1.73m2)'] = data.baselineEgfr ? data.baselineEgfr.replace(' ml/min/1.73m2', '') : "";
+        result['Baseline eGFR'] = data.baselineEgfr ? data.baselineEgfr : "";
     }
     if (data.diabetesDuration) {
-        result['Diabetes Duration (Years)'] = data.diabetesDuration ? data.diabetesDuration.replace(' Years', '') : "";
+        result['Diabetes Duration'] = data.diabetesDuration ? data.diabetesDuration : "";
     }
     if (data.diabetesHistory) {
         result['Diabetes History']  = data.diabetesHistory ? data.diabetesHistory : "";
     }
     if (data.hypertensionDuration) {
-        result['Hypertension Duration (years)'] = data.hypertensionDuration ? data.hypertensionDuration.replace(' Years', '') : "";
+        result['Hypertension Duration'] = data.hypertensionDuration ? data.hypertensionDuration : "";
     } 
     if (data.hypertensionHistory) {
         result['Hypertension History'] = data.hypertensionHistory ? data.hypertensionHistory : "";
@@ -108,13 +108,13 @@ export const mapClinicalKeysToPresentationStyle = (data) => {
         result['RAAS Blockade'] = data.onRaasBlockade ? data.onRaasBlockade : "";
     }
     if (data.proteinuria) {
-        result['Proteinuria (mg)'] = data.proteinuria ? data.proteinuria : "";
+        result['Proteinuria'] = data.proteinuria ? data.proteinuria : "";
     }
     if (data.race) {
         result['Race'] = data.race ? data.race : "";
     }
     if (data.ageBinned) {
-        result['Age (Years)'] = data.ageBinned ? data.ageBinned.replace(' Years', '') : "";
+        result['Age'] = data.ageBinned ? data.ageBinned : "";
     }
 
     if (data.sampleType) {
