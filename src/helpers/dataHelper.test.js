@@ -98,23 +98,22 @@ describe('dataHelper', () => {
             };
             const clinicalMappingResult = mapClinicalKeysToPresentationStyle(clinicalUnmapped);
             const expectedClinicalMapping =   {
-                'A1c %': "test-a1c",
-                'Albuminuria (mg)': 'test-albuminuria',
-                'Baseline eGFR (ml/min/1.73m2)': 'test-baseline_egfr',
-                'Diabetes Duration (Years)': 'test-diabetes_duration',
+                'A1c': "test-a1c",
+                'Albuminuria': 'test-albuminuria',
+                'Baseline eGFR': 'test-baseline_egfr',
+                'Diabetes Duration': 'test-diabetes_duration',
                 'Diabetes History': 'test-diabetes_history',
-                'Hypertension Duration (years)': 'test-hypertension_duration',
+                'Hypertension Duration': 'test-hypertension_duration',
                 'Hypertension History': 'test-hypertension_history',
                 'KDIGO Stage': 'testdkigo_stage',
                 'RAAS Blockade': 'test-on_raas_blockade',
-                'Proteinuria (mg)': 'proteinuria',
+                'Proteinuria': 'proteinuria',
                 'Race': 'test-race',
-                'Age (Years)': 'test-Age',
+                'Age': 'test-age',
                 'Sample Type': 'test-sample_type',
                 'Sex': 'test-sex',
                 'Protocol': 'test-protocol',
-                'Tissue Source': 'test-tissue_source',
-                'Age (Years)': 'test-age'
+                'Tissue Source': 'test-tissue_source'
               }
             expect(clinicalMappingResult).toEqual(expectedClinicalMapping);
         }),
@@ -125,23 +124,22 @@ describe('dataHelper', () => {
             };
             const clinicalMappingResult = mapClinicalKeysToPresentationStyle(clinicalUnmapped);
             const expectedClinicalMapping = {
-                'A1c %': "test-a1c",
-                'Albuminuria (mg)': 'test-albuminuria',
-                'Baseline eGFR (ml/min/1.73m2)': '',
-                'Diabetes Duration (Years)': '',
+                'A1c': "test-a1c",
+                'Albuminuria': 'test-albuminuria',
+                'Baseline eGFR': '',
+                'Diabetes Duration': '',
                 'Diabetes History': '',
-                'Hypertension Duration (years)': '',
+                'Hypertension Duration': '',
                 'Hypertension History': '',
                 'KDIGO Stage': '',
                 'RAAS Blockade': '',
-                'Proteinuria (mg)': '',
+                'Proteinuria': '',
                 'Race': '',
-                'Age (Years)': '',
+                'Age': '',
                 'Sample Type': '',
                 'Sex': '',
                 'Protocol': '',
-                'Tissue Source': '',
-                'Age (Years)': ''
+                'Tissue Source': ''
             };
             expect(clinicalMappingResult).toEqual(expectedClinicalMapping);
         }),
@@ -149,23 +147,22 @@ describe('dataHelper', () => {
             let clinicalUnmapped = {};
             const clinicalMappingResult = mapClinicalKeysToPresentationStyle(clinicalUnmapped);
             const expectedClinicalMapping = {
-                'A1c %': "",
-                'Albuminuria (mg)': '',
-                'Baseline eGFR (ml/min/1.73m2)': '',
-                'Diabetes Duration (Years)': '',
+                'A1c': "",
+                'Albuminuria': '',
+                'Baseline eGFR': '',
+                'Diabetes Duration': '',
                 'Diabetes History': '',
-                'Hypertension Duration (years)': '',
+                'Hypertension Duration': '',
                 'Hypertension History': '',
                 'KDIGO Stage': '',
                 'RAAS Blockade': '',
-                'Proteinuria (mg)': '',
+                'Proteinuria': '',
                 'Race': '',
-                'Age (Years)': '',
+                'Age': '',
                 'Sample Type': '',
                 'Sex': '',
                 'Protocol': '',
-                'Tissue Source': '',
-                'Age (Years)': ''
+                'Tissue Source': ''
             };
             expect(clinicalMappingResult).toEqual(expectedClinicalMapping);
         }),
@@ -173,23 +170,22 @@ describe('dataHelper', () => {
             let clinicalUnmapped = null;
             const clinicalMappingResult = mapClinicalKeysToPresentationStyle(clinicalUnmapped);
             const expectedClinicalMapping = {
-                'A1c %': "",
-                'Albuminuria (mg)': '',
-                'Baseline eGFR (ml/min/1.73m2)': '',
-                'Diabetes Duration (Years)': '',
+                'A1c': "",
+                'Albuminuria': '',
+                'Baseline eGFR': '',
+                'Diabetes Duration': '',
                 'Diabetes History': '',
-                'Hypertension Duration (years)': '',
+                'Hypertension Duration': '',
                 'Hypertension History': '',
                 'KDIGO Stage': '',
                 'RAAS Blockade': '',
-                'Proteinuria (mg)': '',
+                'Proteinuria': '',
                 'Race': '',
-                'Age (Years)': '',
+                'Age': '',
                 'Sample Type': '',
                 'Sex': '',
                 'Protocol': '',
-                'Tissue Source': '',
-                'Age (Years)': ''
+                'Tissue Source': ''
             };
             expect(clinicalMappingResult).toEqual(expectedClinicalMapping);
         })
