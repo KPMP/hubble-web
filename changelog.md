@@ -16,6 +16,7 @@ Breaking changes include any database updates needed, if we need to edit any fil
 
 ----
 
+
 ## Release 2.5 (10/3/2024)
 Brief summary of what's in this release:
 - Segmentation data viewer
