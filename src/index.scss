@@ -220,7 +220,7 @@ th[title='Pixels Type'], th[title='Pixels Type'] + td {
     max-width: 155px;
 }
 
-.tissue-type {
+.enrollment-category {
     min-width: 100px;
     width: 100px;
     max-width: 100px;
@@ -260,7 +260,7 @@ th[title='Pixels Type'], th[title='Pixels Type'] + td {
         max-width: 200px;
     }
 
-    .tissue-type {
+    .enrollment-category {
         min-width: 100px;
         width: 100px;
         max-width: 100px;
@@ -571,4 +571,33 @@ th[title='Pixels Type'], th[title='Pixels Type'] + td {
   font-size: .8125rem !important;
   --bs-accordion-body-padding-y: .5rem !important;
   font-weight: 500;
+}
+
+.accordion-body {
+    padding: 0.5rem 0rem;
+}
+
+.accordion-button:not(.inner-accordion .accordion-button) {
+    background-color: var(--bs-accordion-active-bg);
+}
+
+.inner-accordion .accordion-body {
+    padding: 0rem 1rem;
+}
+
+.inner-accordion .accordion-button:not(.collapsed) {
+    background-color: #ffffff;
+}
+
+.inner-accordion .accordion-button:not(.collapsed)::after {
+    background-color: #ffffff;
+}
+
+.inner-accordion .accordion-button::after {
+    margin: 0px 10px;
+}
+
+#release{
+    padding-left: 2rem;
+    padding-right: 2rem;
 }

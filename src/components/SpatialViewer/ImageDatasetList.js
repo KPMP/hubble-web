@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import {Col, Container, Row, Spinner} from "reactstrap";
+import {Col, Container, Row, Spinner, UncontrolledTooltip} from "reactstrap";
 import { resultConverter } from "../../helpers/dataHelper";
 import { getImageTypeTooltipCopy } from "./viewConfigHelper";
 import { faXmark, faAnglesRight, faAnglesLeft, faTrashCan } from "@fortawesome/free-solid-svg-icons";
@@ -32,8 +32,7 @@ import { Pagination } from './Plugins/pagination.js';
 
 import "@elastic/react-search-ui-views/lib/styles/styles.css";
 import ReportCard from "../ReportCard/ReportCard";
-import ParticipantFacet from './Facets/ParticipantFacet.js';
-import FileFacet from './Facets/FileFacet.js';
+import AllFacets from './Facets/AllFacets.js';
 
 class ImageDatasetList extends Component {
 
@@ -45,7 +44,6 @@ class ImageDatasetList extends Component {
 
         const defaultHiddenColumns = this.getDefaultHiddenColumnNames(this.getColumns())
         this.state = {
-            activeFilterTab: 'DATASET',
             tableData: [],
             cards: this.props.tableSettings.cards || columnCards,
             currentPage: this.props.tableSettings.currentPage,
@@ -217,33 +215,59 @@ class ImageDatasetList extends Component {
     };
 
     getFilterPills = (filters) => {
-        return filters.map(
-            filter => {
-                return filter.values.map(value => {
-                    return (
-                        <div
-                            key={(filter.field).toString() + value.toString()}
-                            className="border rounded activeFilter">
-                            <span>{value}
-                                <FontAwesomeIcon
-                                    alt="Close Filter"
-                                    onClick={()=>{
-                                        this.props.removeFilter(filter.field, value)
-                                    }}
-                                    className="close-button fas fa-xmark ms-2"
-                                    icon={faXmark} />
-                            </span>
-                        </div>)
-                })
-            })
+        const filterDisplayNames = {
+            sex: "Sex",
+            age: "Age",
+            redcapid: "Participant ID",
+            enrollmentcategory: "Enrollment Category",
+            imagetype: "Image Type",
+            datatype: "Data Type",
+            configtype: "Config Type",
+            level: "Level",
+            releaseversion: "Release Version",
+            race: "Race",
+            proteinuria: "Proteinuria",
+            hypertensionhistory: "Hypertension History",
+            hypertensionduration: "Hypertension Duration",
+            onraasblockade: "RAAS Blockade",
+            diabetesduration: "Diabetes Duration",
+            diabeteshistory: "Diabetes History",
+            kdigostage: "KDIGO Stage",
+            a1c: "A1c",
+            albuminuria: "Albuminuria",
+            baselineegfr: "Baseline eGFR",
+            primaryadjudicatedcategory: "Primary Adjudicated Category"
+        };
+
+        return filters.map(filter => {
+            return filter.values.map(value => {
+                const sanitizedId = `${filter.field.toString()}-${value.toString()}`.replace(/[^a-zA-Z0-9-_]/g, '_');
+                return (
+                    <div
+                        key={sanitizedId}
+                        className="border rounded activeFilter"
+                        id={sanitizedId}
+                    >
+                        <span>{value}
+                            <UncontrolledTooltip placement="bottom" target={sanitizedId}>
+                                {filterDisplayNames[filter.field] || filter.field}
+                            </UncontrolledTooltip>
+                            <FontAwesomeIcon
+                                alt="Close Filter"
+                                onClick={() => {
+                                    this.props.removeFilter(filter.field, value);
+                                }}
+                                className="close-button fas fa-xmark ms-2"
+                                icon={faXmark}
+                            />
+                        </span>
+                    </div>
+                );
+            });
+        });
     };
 
     render() {
-        const tabEnum = {
-            DATASET: 'DATASET',
-            PARTICIPANT: 'PARTICIPANT',
-        };
-
         const { columnWidths, sorting } = this.props.tableSettings;
         const summaryDataset = this.props.summaryDatasets
         const experimentalDataCounts = this.props.experimentalDataCounts
@@ -261,12 +285,7 @@ class ImageDatasetList extends Component {
                 <Row>
                     <Col xl={3}>
                         <div className={`filter-panel-wrapper ${this.props.filterTabActive ? '': 'hidden'}`}>
-                        <div className="filter-panel-tab-wrapper">
-                            <div onClick={() => {this.props.setActiveFilterTab(tabEnum.DATASET)}}
-                                className={`filter-tab ${this.props.activeFilterTab === tabEnum.DATASET ? 'active' : ''} rounded border`}>DATASET</div>
-                            <div onClick={() => {this.props.setActiveFilterTab(tabEnum.PARTICIPANT)}}
-                                className={`filter-tab ${this.props.activeFilterTab === tabEnum.PARTICIPANT ? 'active' : ''} rounded border`}>PARTICIPANT</div>
-                            
+                        <div className="filter-panel-tab-wrapper">                            
                             <div className="filter-tab filter-tab-control-icon clickable"
                                  alt="Close Filter Tab"
                                  onClick={() => {this.props.toggleFilterTab()}}>                                
@@ -274,13 +293,7 @@ class ImageDatasetList extends Component {
                                     className="fas fa-angles-left " icon={faAnglesLeft} />
                             </div>
                         </div>
-                            <React.Fragment>
-                            {this.props.activeFilterTab === tabEnum.DATASET &&
-                                <FileFacet />
-                            }{this.props.activeFilterTab === tabEnum.PARTICIPANT &&
-                                <ParticipantFacet />
-                            }
-                            </React.Fragment>
+                            <AllFacets />
                         </div>
 
                     </Col>
