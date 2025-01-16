@@ -1,0 +1,63 @@
+{
+    "version": "1.0.1",
+    "name": "KPMP Spatial Viewer",
+    "description": "<DATASET_INFO>",
+    "datasets": [
+      {
+        "uid": "A",
+        "name": "Visualization Files",
+        "files": [
+          {
+            "type": "raster",
+            "fileType": "raster.json",
+            "options": {
+              "schemaVersion": "0.0.2",
+              "images": [
+                {
+                  "name": "PAS",
+                  "type": "ome-tiff",
+                  "url": "https://kpmp-knowledge-environment-public.s3.us-east-1.amazonaws.com/maldi_test/240216_S-2008-007631_2_PAS_registered.ome.tiff"
+                },
+                {
+                  "name": "postAF",
+                  "type": "ome-tiff",
+                  "url": "https://kpmp-knowledge-environment-public.s3.us-east-1.amazonaws.com/maldi_test/240216_S-2008-007631_2_postAF_registered.ome.tiff"
+                },
+                {
+                  "name": "AF",
+                  "type": "ome-tiff",
+                  "url": "https://kpmp-knowledge-environment-public.s3.us-east-1.amazonaws.com/maldi_test/240216_S-2008-007631_2_AF_registered.ome.tiff"
+                }
+              ],
+              "usePhysicalSizeScaling": true,
+              "renderLayers": [
+                "PAS",
+                "postAF",
+                "AF"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "coordinationSpace": {},
+    "layout": [
+      {
+        "component": "spatial",
+        "coordinationScopes": {},
+        "x": 0,
+        "y": 0,
+        "w": 9,
+        "h": 12
+      },
+      {
+        "component": "layerController",
+        "coordinationScopes": {},
+        "x": 9,
+        "y": 0,
+        "w": 3,
+        "h": 12
+      }
+    ],
+    "initStrategy": "auto"
+  }
