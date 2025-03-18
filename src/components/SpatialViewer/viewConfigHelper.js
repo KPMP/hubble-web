@@ -6,6 +6,12 @@ import segmentationConfig from './segmentationViewConfig.json';
 import { getFileLink } from "../../helpers/Api";
 import { loadOmeTiff } from '@hms-dbmi/viv';
 import { unit } from 'mathjs';
+import {
+    VitessceConfig,
+    CoordinationLevel as CL,
+    CoordinationType as ct,
+    getInitialCoordinationScopePrefix
+} from 'vitessce'
 
 export const getViewConfig = (type) => {
     switch (type) {
@@ -116,9 +122,143 @@ const populateSegmentationConfig = async (stringifiedConfig, wsiUrl, maskUrl) =>
     return stringifiedConfig;
 }
 
-
+const populateMAlDIConfig = async (selectedDataset) => {
+    let imageUrlResponse = await getFileLink(selectedDataset["packageid"] + '/' + selectedDataset["longfilename"]);
+    let maldiObj = {};
+    if (selectedDataset["relatedfiles"].length > 0) {
+        selectedDataset['relatedfiles'].forEach(function (item) {
+            let parsed = JSON.parse(item);
+            if(parsed['filename'].includes("_AF_")) {
+                maldiObj.AF = parsed;
+            }
+            else if (parsed['filename'].includes("_IMS-lipids-pos")) {
+                maldiObj.IMS = parsed;
+            }
+            else if (parsed['filename'].includes("_IMS-lipids-neg")) {
+                maldiObj.IMS = parsed;
+            }
+            else if (parsed['filename'].includes(".json")) {
+                maldiObj.json = parsed;
+            }
+        });
+        let afUrl = await getFileLink(maldiObj.AF['packageid'] + "/" + maldiObj.AF['filename']);
+        let imsUrl = await getFileLink(maldiObj.IMS['packageid'] + "/" + maldiObj.IMS['filename']);
+        let jsonUrl = await getFileLink(maldiObj.json['packageid'] + "/" + maldiObj.json['filename']);
+        let jsonFile = await fetch(jsonUrl.data).then(response => response.json()).then(data => {return data});
+        let matrix = jsonFile['matrix_xy_um'];
+        let pixelSizeUm = jsonFile['moving_paths'][0]['pixel_size_um'];
+        let translation = [
+            matrix[0][2]/(matrix[0][0]/pixelSizeUm), 
+            matrix[1][2]/(matrix[1][1]/pixelSizeUm), 
+            0, 
+            0, 
+            0
+        ];
+        const config = new VitessceConfig({
+            schemaVersion: '1.0.16',
+            name: 'A',
+            description: 'Description'
+        });
+        const dataset = config.addDataset('A').addFile({
+            fileType: 'image.ome-tiff',
+            url: imageUrlResponse.data,
+            name: "PAS",
+            coordinationValues: {
+                fileUid: "PAS"
+            }
+        }).addFile({
+            fileType: 'image.ome-tiff',
+            url: afUrl.data,
+            name: "AF",
+            coordinationValues: {
+                fileUid: "AF"
+            }
+        }).addFile({
+            fileType: 'image.ome-tiff',
+            url: imsUrl.data,
+            name: "IMS",
+            coordinationValues: {
+                fileUid: "IMS"
+            },
+            options: {
+                coordinateTransformations: [
+                    {
+                        type: 'translation',
+                        translation: translation
+                    }
+                ]
+            }
+        });
+        const spatialView = config.addView(dataset, 'spatialBeta', { x: 0, y: 0, w: 9, h: 12 });
+        const lcView = config.addView(dataset, 'layerControllerBeta', { x:  9, y: 0, w: 3, h: 12 });
+        const [zoomScope, xScope, yScope] = config.addCoordination(
+            ct.SPATIAL_ZOOM,
+            ct.SPATIAL_TARGET_X,
+            ct.SPATIAL_TARGET_Y,
+        );
+        spatialView.useCoordination(zoomScope, xScope, yScope);
+        lcView.useCoordination(zoomScope, xScope, yScope);
+        zoomScope.setValue(-2.5);
+        xScope.setValue(1200);
+        yScope.setValue(2000);
+    
+        config.linkViewsByObject([spatialView, lcView], {
+            imageLayer: CL([
+                {
+                    fileUid: 'PAS',
+                    spatialLayerTransparentColor: null,
+                    spatialLayerVisible: true,
+                    spatialLayerOpacity: 1,
+                    photometricInterpretation: "BlackIsZero",
+                    imageChannel: CL([{
+                        spatialTargetC: 0,
+                        spatialChannelWindow: [0, 50],
+                        spatialChannelColor: [255, 255, 255]
+                    }]),
+                },
+                {
+                  fileUid: 'AF',
+                  spatialLayerTransparentColor: [0, 0, 0],
+                  spatialLayerVisible: true,
+                  spatialLayerOpacity: 1,
+                  photometricInterpretation: "BlackIsZero",
+                  imageChannel: CL([{
+                        spatialTargetC: 0,
+                        spatialChannelWindow: [10, 50],
+                        spatialChannelColor: [255, 0, 255]
+                    },
+                    {
+                        spatialTargetC: 1,
+                        spatialChannelWindow: [10, 50],
+                        spatialChannelColor: [255, 255, 0]
+                    }]),
+                },
+                {
+                  fileUid: 'IMS',
+                  spatialLayerTransparentColor: [0, 0, 0],
+                  spatialLayerVisible: true,
+                  spatialLayerOpacity: 1,
+                  photometricInterpretation: "BlackIsZero",
+                  imageChannel: CL([{
+                    spatialTargetC: 1,
+                    spatialChannelWindow: [0, 3000],
+                    spatialChannelColor: [0, 0, 255]
+                  },{
+                    spatialTargetC: 3,
+                    spatialChannelWindow: [0, 3000],
+                    spatialChannelColor: [0, 255, 0]
+                  }]),
+                }
+            ])
+        }, {meta: true, scopePrefix: getInitialCoordinationScopePrefix('A', 'image') }); // linkViewsByObject;
+        return config.toJSON();
+    }
+}
 
 export const populateViewConfig = async (viewConfig, selectedDataset) => {
+    if (selectedDataset["configtype"] === "Multimodal Imaging Mass Spectrometry") {
+        return populateMAlDIConfig(selectedDataset);
+    }
     let stringifiedConfig = JSON.stringify(viewConfig);
     let imageUrlResponse = await getFileLink(selectedDataset["packageid"] + '/' + selectedDataset["longfilename"]);
     if (selectedDataset["relatedfiles"].length > 0) {
