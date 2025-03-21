@@ -9,7 +9,6 @@ import { unit } from 'mathjs';
 import {
     VitessceConfig,
     CoordinationLevel as CL,
-    CoordinationType as ct,
     getInitialCoordinationScopePrefix
 } from 'vitessce'
 
@@ -191,16 +190,6 @@ const populateMAlDIConfig = async (selectedDataset) => {
         });
         const spatialView = config.addView(dataset, 'spatialBeta', { x: 0, y: 0, w: 9, h: 12 });
         const lcView = config.addView(dataset, 'layerControllerBeta', { x:  9, y: 0, w: 3, h: 12 });
-        const [zoomScope, xScope, yScope] = config.addCoordination(
-            ct.SPATIAL_ZOOM,
-            ct.SPATIAL_TARGET_X,
-            ct.SPATIAL_TARGET_Y,
-        );
-        spatialView.useCoordination(zoomScope, xScope, yScope);
-        lcView.useCoordination(zoomScope, xScope, yScope);
-        zoomScope.setValue(-2.5);
-        xScope.setValue(1200);
-        yScope.setValue(2000);
     
         config.linkViewsByObject([spatialView, lcView], {
             imageLayer: CL([
