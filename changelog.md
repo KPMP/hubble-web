@@ -1,6 +1,15 @@
 # Changelog
 
-## Release 2.6 (unreleased)
+## Release 2.7
+Brief summary of what's in this release:
+- Added MALDI files
+- Upgraded libraries
+
+### Breaking changes
+
+----
+
+## Release 2.6
 Brief summary of what's in this release:
 - combined the filter trees into one
 - added clinical data filters
