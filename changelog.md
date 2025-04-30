@@ -1,11 +1,20 @@
 # Changelog
 
+## Release 2.8
+Brief summary of what's in this release:
+
+### Breaking changes
+- n/a
+
+--- 
+
 ## Release 2.7
 Brief summary of what's in this release:
 - Added MALDI files
 - Upgraded libraries
 
 ### Breaking changes
+- n/a
 
 ----
 
