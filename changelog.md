@@ -1,14 +1,15 @@
 # Changelog
 
-## Release 2.8
+## Release 2.8 (unreleased)
 Brief summary of what's in this release:
+- update to common components to get new help menu options
 
 ### Breaking changes
 - n/a
 
 --- 
 
-## Release 2.7
+## Release 2.7 (04/28/2025)
 Brief summary of what's in this release:
 - Added MALDI files
 - Upgraded libraries
@@ -18,7 +19,7 @@ Brief summary of what's in this release:
 
 ----
 
-## Release 2.6
+## Release 2.6 (12/19/2024)
 Brief summary of what's in this release:
 - combined the filter trees into one
 - added clinical data filters
