@@ -5,23 +5,27 @@ import { getViewConfig, populateViewConfig } from './viewConfigHelper';
 import { Redirect } from 'react-router-dom';
 import { handleGoogleAnalyticsEvent } from "../../helpers/googleAnalyticsHelper";
 import ReportCard from '../ReportCard/ReportCard';
+import Api from '../../helpers/Api';
+import { resultConverter } from '../../helpers/dataHelper';
 
 class SpatialViewer extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            fileid: new URLSearchParams(window.location.search).get("image"),
             viewConfig: '',
             noData: true,
             reportCardOpen: false
         }
-        this.props.setSummaryDatasets(this.props.selectedImageDataset["redcapid"])
-        this.props.setClinicalDatasets(this.props.selectedImageDataset["redcapid"])
-        this.props.setExperimentalDataCounts(this.props.selectedImageDataset["redcapid"])   
     }
 
 
     async componentDidMount() {
+        await this.getSelectedImage();
+        this.props.setSummaryDatasets(this.props.selectedImageDataset["redcapid"])
+        this.props.setClinicalDatasets(this.props.selectedImageDataset["redcapid"])
+        this.props.setExperimentalDataCounts(this.props.selectedImageDataset["redcapid"])   
         if (this.props.selectedImageDataset) {
             handleGoogleAnalyticsEvent(
                 'Spatial Viewer',
@@ -32,6 +36,31 @@ class SpatialViewer extends Component {
             viewConfig = await populateViewConfig(viewConfig, this.props.selectedImageDataset);
             this.setState({viewConfig: viewConfig, noData: false});
         }
+    }
+
+    
+    getSelectedImage = async () => {
+        let result;
+        let config = {
+            "query": this.state.fileid,
+            "filters": {
+                "all": [
+                    { "dlfileid": this.state.fileid }
+                ]
+            }
+        }
+        await Api.getInstance().post(
+            process.env.REACT_APP_SEARCH_ENDPOINT + "/api/as/v1/engines/spatial-viewer/search.json", 
+            config, 
+            { 
+                headers: {
+                    "Authorization" : `Bearer ${process.env.REACT_APP_SEARCH_KEY}`
+                }
+            }).then((response) => {
+                result = resultConverter(response.data.results)[0];
+                this.props.setSelectedImageDataset(result);
+            })
+        return result;
     }
 
     openReportCard = () => {
@@ -47,15 +76,15 @@ class SpatialViewer extends Component {
         this.setState({reportCardOpen: false})
     }
 
-    render() {     
-        if (!this.props.selectedImageDataset || (this.props.selectedImageDataset && Object.keys(this.props.selectedImageDataset).length === 0)) {
+    render() {
+        if (!this.state.fileid && (this.props.selectedImageDataset && Object.keys(this.props.selectedImageDataset).length === 0)) {
             return <Redirect to='/' />
         }
         const summaryDataset = this.props.summaryDatasets
         const experimentalDataCounts = this.props.experimentalDataCounts
         const clinicalDataset = this.props.clinicalDatasets
 
-        return (
+        return this.props.selectedImageDataset && (
             <div className="container-fluid">
                 <div id="vitessce-container" className="rounded border shadow-sm mt-2 mb-3 mx-3 p-3">
                     <ReportCard 

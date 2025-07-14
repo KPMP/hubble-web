@@ -8,6 +8,7 @@ import {
 import {
     fetchAndSetExperimentalDataCounts
 } from "../../actions/Experimental/experimentalDatasetAction";
+import { setSelectedImageDataset } from "../../actions/Images/imageDatasetActions";
 
 const mapStateToProps = (state, props) =>
     ({
@@ -19,6 +20,9 @@ const mapStateToProps = (state, props) =>
 
 const mapDispatchToProps = (dispatch, props) =>
     ({
+        setSelectedImageDataset(selectedImageDataset) {
+            dispatch(setSelectedImageDataset(selectedImageDataset));
+        },
         setSummaryDatasets(participant_id) {
             dispatch(fetchAndSetSummaryDatasets(participant_id));
         },

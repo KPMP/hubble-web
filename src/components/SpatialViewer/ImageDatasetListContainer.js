@@ -27,7 +27,6 @@ const mapDispatchToProps = (dispatch, props) =>
                      window.open(selectedImageDataset['externallink'], '_blank')
                  } else {
                      dispatch(setSelectedImageDataset(selectedImageDataset));
-                     dispatch((dispatch) => props.history.push("/view"));
                  }
              })
          },
