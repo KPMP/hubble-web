@@ -7,6 +7,9 @@ if (isProductionBuild && shouldAnalyze ) {
   plugins.push(new BundleAnalyzerPlugin({ analyzerMode: 'server' }))
 }
 module.exports = {
+    eslint: {
+        enable:false,
+    },
   plugins: [
     {
       plugin: CracoAlias,
