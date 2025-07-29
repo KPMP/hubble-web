@@ -42,7 +42,7 @@ class SpatialViewer extends Component {
     getSelectedImage = async () => {
         let result;
         let config = {
-            "query": this.state.fileid,
+            "query": "",
             "filters": {
                 "all": [
                     { "dlfileid": this.state.fileid }
