@@ -46,10 +46,28 @@ export const getDatasetInfo = (selectedDataset) => {
 const populateSegmentationConfig = async (stringifiedConfig, wsiUrl, maskUrl) => {
     const wsiLoader = await loadOmeTiff(wsiUrl);
     const maskLoader = await loadOmeTiff(maskUrl);
-    const physicalSizeX = unit(wsiLoader.metadata.Pixels.PhysicalSizeX, (wsiLoader.metadata.Pixels.PhysicalSizeXUnit.replace(/[µ|?]/g, 'u'))).to("um").toNumber();
-    const physicalSizeY = unit(wsiLoader.metadata.Pixels.PhysicalSizeY, (wsiLoader.metadata.Pixels.PhysicalSizeYUnit.replace(/[µ|?]/g, 'u'))).to("um").toNumber();
-    stringifiedConfig = stringifiedConfig.replace('"<PHYSICAL_SIZE_X>"', physicalSizeX);
-    stringifiedConfig = stringifiedConfig.replace('"<PHYSICAL_SIZE_Y>"', physicalSizeY);
+    if (wsiLoader.metadata.Pixels.PhysicalSizeX && wsiLoader.metadata.Pixels.PhysicalSizeY) {
+        const physicalSizeX = unit(wsiLoader.metadata.Pixels.PhysicalSizeX, (wsiLoader.metadata.Pixels.PhysicalSizeXUnit.replace(/[µ|?]/g, 'u'))).to("um").toNumber();
+        const physicalSizeY = unit(wsiLoader.metadata.Pixels.PhysicalSizeY, (wsiLoader.metadata.Pixels.PhysicalSizeYUnit.replace(/[µ|?]/g, 'u'))).to("um").toNumber();
+        let coordinateTransformations = `
+            "obsTypesFromChannelNames": true,
+            "coordinateTransformations": [
+                {
+                    "type": "scale",
+                    "scale": [
+                        "<PHYSICAL_SIZE_X>",
+                        "<PHYSICAL_SIZE_Y>",
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        `
+        coordinateTransformations = coordinateTransformations.replace('"<PHYSICAL_SIZE_X>"', physicalSizeX);
+        coordinateTransformations = coordinateTransformations.replace('"<PHYSICAL_SIZE_Y>"', physicalSizeY);
+        stringifiedConfig = stringifiedConfig.replace('"obsTypesFromChannelNames": true', coordinateTransformations);
+    }
 
     let spatialChannelOpacity = {"A": 1, "B": 1, "C": 1};
     let spatialTargetC = {"A": 0, "B": 1, "C": 2};
@@ -64,21 +82,22 @@ const populateSegmentationConfig = async (stringifiedConfig, wsiUrl, maskUrl) =>
         spatialChannelOpacity[indexFromD] = 0.75;
         spatialTargetC[indexFromD] = i;
         let color = [];
-        switch (channel.Name.toLowerCase()) {
-            case "non-globally-sclerotic glomeruli":
+        switch (channel.Name.toLowerCase().replace(/[^a-zA-Z0-9 ]/g, ' ')) {
+            case "non globally sclerotic glomeruli":
                 color = [239, 226, 82]; // yellow
                 break;
-            case "globally-sclerotic glomeruli": 
+            case "globally sclerotic glomeruli": 
                 color = [228, 158, 37]; // light orange
                 break;
             case "tubules":
                 color = [91, 181, 231]; // light blue
                 break;
-            case "arteries/arterioles":
+            case "muscular vessels":
+            case "arteries arterioles":
                 color = [202, 122, 166]; // pink
                 break;
             case "ptc":
-            case "peritubular-capillaries":
+            case "peritubular capillaries":
                 color = [22, 157, 116]; // green
                 break;
             case "ifta":
