@@ -12,19 +12,7 @@
           "url": "<SEGMENTATION_MASK_URL>",
           "fileType": "obsSegmentations.ome-tiff",
           "options": {
-              "obsTypesFromChannelNames": true,
-              "coordinateTransformations": [
-                  {
-                      "type": "scale",
-                      "scale": [
-                          "<PHYSICAL_SIZE_X>",
-                          "<PHYSICAL_SIZE_Y>",
-                          1,
-                          1,
-                          1
-                      ]
-                  }
-              ]
+              "obsTypesFromChannelNames": true 
           },
           "coordinationValues": {
             "fileUid": "<SEGMENTATION_MASK_NAME>"
