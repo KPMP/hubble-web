@@ -1,6 +1,10 @@
 # Changelog
 
-## Release 2.8 (unreleased)
+## Release 2.9 (unreleased)
+Brief summary of what's in this release:
+- Update to Spatial Transcriptomics view config to view images without crashing
+
+## Release 2.8 (6/30/2025)
 Brief summary of what's in this release:
 - update to common components to get new help menu options
 
