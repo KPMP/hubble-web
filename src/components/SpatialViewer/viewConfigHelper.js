@@ -64,9 +64,12 @@ const populateSegmentationConfig = async (stringifiedConfig, wsiUrl, maskUrl) =>
                 }
             ]
         `
-        coordinateTransformations = coordinateTransformations.replace('"<PHYSICAL_SIZE_X>"', physicalSizeX);
-        coordinateTransformations = coordinateTransformations.replace('"<PHYSICAL_SIZE_Y>"', physicalSizeY);
-        stringifiedConfig = stringifiedConfig.replace('"obsTypesFromChannelNames": true', coordinateTransformations);
+        coordinateTransformations = coordinateTransformations
+            .replace('"<PHYSICAL_SIZE_X>"', physicalSizeX)
+            .replace('"<PHYSICAL_SIZE_Y>"', physicalSizeY);
+        stringifiedConfig = stringifiedConfig
+            .replace('"obsTypesFromChannelNames": true', '"obsTypesFromChannelNames":true')
+            .replace('"obsTypesFromChannelNames":true', coordinateTransformations);
     }
 
     let spatialChannelOpacity = {"A": 1, "B": 1, "C": 1};
