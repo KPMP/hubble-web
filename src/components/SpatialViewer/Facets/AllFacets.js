@@ -259,7 +259,7 @@ class AllFacets extends Component {
                                     <AccordionBody accordionId="26">
                                         <Row className="mb-2">
                                             <Col>
-                                                <Facet field="imagetype" label="" filterType="any" show="10" view={MultiCheckboxFacet} />
+                                                <Facet field="imagetype" label="" filterType="any" view={MultiCheckboxFacet} />
                                             </Col>
                                         </Row>
                                     </AccordionBody>
