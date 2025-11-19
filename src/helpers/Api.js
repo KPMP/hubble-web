@@ -44,7 +44,7 @@ export const fetchParticipantExperimentCounts = async (redcapId) => {
   const response = await apolloClient.query({
     query: gql`
       query {
-        getDataTypeInformationByParticipant(redcapId: "${redcapId}") {
+        getDataTypeInformationByParticipant2025(redcapId: "${redcapId}") {
           spatialViewerDataTypes {
             count
             dataType
