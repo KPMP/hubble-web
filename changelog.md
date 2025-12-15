@@ -1,8 +1,26 @@
 # Changelog
 
-## Release 2.9 (unreleased)
+## Release 2.11 (unreleased)
+Brief summary:
+
+### Breaking Changes
+
+---
+
+## Release 2.10 
+Brief summary:
+
+- Segmentation masks in participant info 
+
+### Breaking Changes
+
+---
+
+## Release 2.9 (11/13/2025)
 Brief summary of what's in this release:
 - Update to Spatial Transcriptomics view config to view images without crashing
+
+---
 
 ## Release 2.8 (6/30/2025)
 Brief summary of what's in this release:

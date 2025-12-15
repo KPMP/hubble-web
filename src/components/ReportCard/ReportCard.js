@@ -56,7 +56,11 @@ class ReportCard extends Component {
     formatLinkableCellValue = (row) => {
         let link = '/'
         if (row.tool === 'spatial-viewer') {
-            link = '/' + row.tool + '?filters[0][field]=datatype&filters[0][values][0]=' + row.key + '&filters[0][type]=any&filters[1][field]=redcapid&filters[1][values][0]=' + this.props.redcapid + '&filters[1][type]=any'
+            if (row.key.includes("Segmentation Masks & Pathomics Vectors")){
+                link = '/' + row.tool + '?filters[0][field]=imagetype&filters[0][values][0]=PAS (Segmentation Masks)&filters[0][type]=any&filters[1][field]=redcapid&filters[1][values][0]=' + this.props.redcapid + '&filters[1][type]=any'
+            }else{
+                link = '/' + row.tool + '?filters[0][field]=datatype&filters[0][values][0]=' + row.key + '&filters[0][type]=any&filters[1][field]=redcapid&filters[1][values][0]=' + this.props.redcapid + '&filters[1][type]=any'
+            }
         } else if (row.tool === 'explorer') {
             link += row.tool;
             if (row.key.includes('Single-cell')) {
