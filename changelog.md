@@ -1,7 +1,16 @@
 # Changelog
 
-## Release 2.10 (unreleased)
+## Release 2.11 (unreleased)
 Brief summary:
+
+### Breaking Changes
+
+---
+
+## Release 2.10 
+Brief summary:
+
+- Segmentation masks in participant info 
 
 ### Breaking Changes
 
