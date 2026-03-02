@@ -43,7 +43,7 @@ export const mapSummaryKeysToPresentationStyle = (data) => {
     result['Participant ID'] = "";
     result['Enrollment Category'] = "";
     result['Primary Adjudicated Category'] = "";
-    if (!data || data === {}) {
+    if (!data || Object.keys(data).length === 0) {
         return result;
     }
     if (data['redcapId']) {
@@ -77,7 +77,7 @@ export const mapClinicalKeysToPresentationStyle = (data) => {
     result['Protocol'] = "";
     result['Tissue Source'] = "";
 
-    if (!data || data === {}) {
+    if (!data || Object.keys(data).length === 0) {
         return result;
     }
     if (data.a1c) {
