@@ -210,8 +210,8 @@ const populateMAlDIConfig = async (selectedDataset) => {
                 ]
             }
         });
-        const spatialView = config.addView(dataset, 'spatialBeta', { x: 0, y: 0, w: 9, h: 12 });
-        const lcView = config.addView(dataset, 'layerControllerBeta', { x:  9, y: 0, w: 3, h: 12 });
+        const spatialView = config.addView(dataset, 'spatialBeta', { x: 3, y: 0, w: 9, h: 12 });
+        const lcView = config.addView(dataset, 'layerControllerBeta', { x:  0, y: 0, w: 3, h: 12 });
 
         config.linkViewsByObject([spatialView, lcView], {
             imageLayer: CL([
