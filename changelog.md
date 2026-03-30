@@ -1,10 +1,16 @@
 # Changelog
 
-## Release 2.11 (unreleased)
+## Release 2.12 (unreleased)
 Brief summary:
 
-### Breaking Changes
 
+## Release 2.11
+Brief summary:
+- Changed MALDI display settings and layout
+- Update common components 
+
+### Breaking Changes
+- n/a 
 ---
 
 ## Release 2.10 
