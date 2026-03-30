@@ -210,9 +210,9 @@ const populateMAlDIConfig = async (selectedDataset) => {
                 ]
             }
         });
-        const spatialView = config.addView(dataset, 'spatialBeta', { x: 0, y: 0, w: 9, h: 12 });
-        const lcView = config.addView(dataset, 'layerControllerBeta', { x:  9, y: 0, w: 3, h: 12 });
-    
+        const spatialView = config.addView(dataset, 'spatialBeta', { x: 3, y: 0, w: 9, h: 12 });
+        const lcView = config.addView(dataset, 'layerControllerBeta', { x:  0, y: 0, w: 3, h: 12 });
+
         config.linkViewsByObject([spatialView, lcView], {
             imageLayer: CL([
                 {
@@ -223,41 +223,29 @@ const populateMAlDIConfig = async (selectedDataset) => {
                     photometricInterpretation: "BlackIsZero",
                     imageChannel: CL([{
                         spatialTargetC: 0,
-                        spatialChannelWindow: [0, 50],
                         spatialChannelColor: [255, 255, 255]
                     }]),
                 },
                 {
                   fileUid: 'AF',
                   spatialLayerTransparentColor: [0, 0, 0],
-                  spatialLayerVisible: true,
-                  spatialLayerOpacity: 1,
+                  spatialLayerVisible: false,
+                  spatialLayerOpacity: 0.5,
                   photometricInterpretation: "BlackIsZero",
                   imageChannel: CL([{
                         spatialTargetC: 0,
-                        spatialChannelWindow: [10, 50],
-                        spatialChannelColor: [255, 0, 255]
-                    },
-                    {
-                        spatialTargetC: 1,
-                        spatialChannelWindow: [10, 50],
-                        spatialChannelColor: [255, 255, 0]
+                        spatialChannelColor: [0, 0, 255]
                     }]),
                 },
                 {
                   fileUid: 'IMS',
                   spatialLayerTransparentColor: [0, 0, 0],
                   spatialLayerVisible: true,
-                  spatialLayerOpacity: 1,
+                  spatialLayerOpacity: 0.5,
+                  spatialLayerColormap: "viridis",
                   photometricInterpretation: "BlackIsZero",
                   imageChannel: CL([{
-                    spatialTargetC: 1,
-                    spatialChannelWindow: [0, 3000],
-                    spatialChannelColor: [0, 0, 255]
-                  },{
-                    spatialTargetC: 3,
-                    spatialChannelWindow: [0, 3000],
-                    spatialChannelColor: [0, 255, 0]
+                    spatialTargetC: 1
                   }]),
                 }
             ])
