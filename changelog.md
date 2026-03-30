@@ -6,7 +6,7 @@ Brief summary:
 
 ## Release 2.11
 Brief summary:
-- Changed MALDI display settings and layout
+- Changed display settings and layout for MALDI and PAS (Segmentation Masks)
 - Update common components 
 
 ### Breaking Changes
