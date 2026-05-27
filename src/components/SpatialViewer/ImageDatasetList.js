@@ -107,7 +107,7 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: false,
                 defaultHidden: false,
-                getCellValue: row => <a href={`/view?image=${row['dlfileid']}`} target='_self' onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="tooltip" data-placement="top" title="View dataset" className='table-column btn btn-link text-start p-0 text-decoration-none'>{row["spectracksampleid"]}</a>
+                getCellValue: row => <a href={`/spatial-viewer/view?image=${row['dlfileid']}`} target='_self' onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="tooltip" data-placement="top" title="View dataset" className='table-column btn btn-link text-start p-0 text-decoration-none'>{row["spectracksampleid"]}</a>
             },
             {
                 name: 'redcapid',
