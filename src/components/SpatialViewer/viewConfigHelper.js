@@ -255,7 +255,7 @@ const populateMAlDIConfig = async (selectedDataset) => {
 }
 
 export const populateViewConfig = async (viewConfig, selectedDataset) => {
-    if (selectedDataset["configtype"] === "Multimodal Imaging Mass Spectrometry") {
+    if (selectedDataset["imagetype"] === "MALDI-IMS") {
         return populateMAlDIConfig(selectedDataset);
     }
     let stringifiedConfig = JSON.stringify(viewConfig);
