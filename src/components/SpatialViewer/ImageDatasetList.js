@@ -4,7 +4,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import {Col, Container, Row, Spinner, UncontrolledTooltip} from "reactstrap";
 import { resultConverter } from "../../helpers/dataHelper";
 import { getImageTypeTooltipCopy } from "./viewConfigHelper";
-import { faXmark, faAnglesRight, faAnglesLeft, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faAnglesRight, faAnglesLeft, faTrashCan, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Tooltip } from "antd";
 import {
@@ -107,7 +107,14 @@ class ImageDatasetList extends Component {
                 sortable: true,
                 hideable: false,
                 defaultHidden: false,
-                getCellValue: row => <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="tooltip" data-placement="top" title="View dataset" className='table-column btn btn-link text-start p-0 text-decoration-none'>{row["spectracksampleid"]}</button>
+                getCellValue: row => {
+                    if(row['configtype'] !== 'external_link') {
+                        return <a href={`/spatial-viewer/view?image=${row['dlfileid']}`} target='_self' onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="tooltip" data-placement="top" title="View dataset" className='table-column btn btn-link text-start p-0 text-decoration-none'>{row["spectracksampleid"]}</a>
+
+                    }else {
+                        return <button onClick={() => setSelectedImageDataset(row)} type='button' data-toggle="tooltip" data-placement="top" title="Open in METASPACE" className='table-column btn btn-link text-start p-0 text-decoration-none'>{row["spectracksampleid"]} <FontAwesomeIcon icon={faArrowUpRightFromSquare} /></button>
+                    }
+                }
             },
             {
                 name: 'redcapid',

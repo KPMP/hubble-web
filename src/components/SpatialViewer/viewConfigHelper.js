@@ -80,12 +80,16 @@ const populateSegmentationConfig = async (stringifiedConfig, wsiUrl, maskUrl) =>
         strokeWidth = {}, coordsArray = {}, coordSpatialTargetC = {};
     let coordSegmentationChannel = {"A": []};
     maskLoader.metadata.Pixels.Channels.forEach((channel, i) => {
+        let channelNameIgnoreCase = channel.Name.toLowerCase().replace(/[^a-zA-Z0-9 ]/g, ' ');
+        if (channelNameIgnoreCase === "ifta" || channelNameIgnoreCase === "cortex") {
+            return
+        }
         let indexFromA = String.fromCharCode(65+i);
         let indexFromD = String.fromCharCode(68+i);
         spatialChannelOpacity[indexFromD] = 0.75;
         spatialTargetC[indexFromD] = i;
         let color = [];
-        switch (channel.Name.toLowerCase().replace(/[^a-zA-Z0-9 ]/g, ' ')) {
+        switch (channelNameIgnoreCase) {
             case "non globally sclerotic glomeruli":
                 color = [239, 226, 82]; // yellow
                 break;
@@ -255,7 +259,7 @@ const populateMAlDIConfig = async (selectedDataset) => {
 }
 
 export const populateViewConfig = async (viewConfig, selectedDataset) => {
-    if (selectedDataset["configtype"] === "Multimodal Imaging Mass Spectrometry") {
+    if (selectedDataset["imagetype"] === "MALDI-IMS") {
         return populateMAlDIConfig(selectedDataset);
     }
     let stringifiedConfig = JSON.stringify(viewConfig);
