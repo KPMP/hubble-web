@@ -83,6 +83,7 @@ class SpatialViewer extends Component {
         }
         const summaryDataset = this.props.summaryDatasets
         const experimentalDataCounts = this.props.experimentalDataCounts
+        console.log("experimentalDataCounts", experimentalDataCounts)
         const clinicalDataset = this.props.clinicalDatasets
 
         return this.props.selectedImageDataset && (
