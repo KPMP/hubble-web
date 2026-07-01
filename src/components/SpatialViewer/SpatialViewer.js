@@ -25,7 +25,8 @@ class SpatialViewer extends Component {
         await this.getSelectedImage();
         this.props.setSummaryDatasets(this.props.selectedImageDataset["redcapid"])
         this.props.setClinicalDatasets(this.props.selectedImageDataset["redcapid"])
-        this.props.setExperimentalDataCounts(this.props.selectedImageDataset["redcapid"])   
+        this.props.setExperimentalDataCounts(this.props.selectedImageDataset["redcapid"])  
+        console.log("selectedImageDataset", this.props.selectedImageDataset["redcapid"]) 
         if (this.props.selectedImageDataset) {
             handleGoogleAnalyticsEvent(
                 'Spatial Viewer',
