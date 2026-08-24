@@ -28,6 +28,8 @@ module.exports = {
     configure: (webpackConfig) => {
       webpackConfig.resolve.alias = {
         ...webpackConfig.resolve.alias,
+        "@react-three/drei": false,
+        "@react-three/fiber": false,
         "@react-three/xr": false,
       };
 
