@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Col, Row } from "reactstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
-import PropTypes from 'prop-types';
 import { Grid, Table, TableColumnResizing, TableHeaderRow} from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 import { dataToTableConverter, experimentalDataConverter } from '../../helpers/dataHelper';
@@ -164,14 +163,6 @@ class ReportCard extends Component {
             </div>
         )
     }
-}
-
-ReportCard.propTypes = {
-    reportCardOpen: PropTypes.bool.isRequired,
-    closeReportCard: PropTypes.func.isRequired,
-    summaryDataset: PropTypes.object.isRequired,
-    clinicalDataset: PropTypes.object.isRequired,
-    experimentalDataCounts: PropTypes.object.isRequired,
 }
 
 export default ReportCard;

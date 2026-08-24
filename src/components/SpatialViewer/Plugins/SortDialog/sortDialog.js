@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -118,16 +117,6 @@ function SortDialog({
         }
       </div>
     )
-}
-
-SortDialog.propTypes = {
-  sortDialogOpenValue: PropTypes.bool,
-  sortedColumns: PropTypes.array,
-  sortableToolbarColumns: PropTypes.array,
-  closeDialogs: PropTypes.func,
-  changeColumnSorting: PropTypes.func,
-  addSortedColumn: PropTypes.func,
-  removeSortedColumn: PropTypes.func,
 }
 
 SortDialog.defaultProps = {
