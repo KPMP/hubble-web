@@ -1,6 +1,4 @@
 import * as React from "react";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
 
 import {
   Plugin,
@@ -37,24 +35,22 @@ export class Pagination extends React.PureComponent {
               }
             ) => (
             <div className="pagination-size-wrapper">
-                Show <Select
+                Show <select
                   value={pagingSizeValue}
                   onChange={event => {
                     changePagingSizeValue(event.target.value);
                     setPageSize(event.target.value)
                   }}
-                  inputProps={{
-                    name: "filter-field",
-                    id: "filter-field"
-                  }}
+                  name="filter-field"
+                  id="filter-field"
                 >
                   {pageSizes.map((item, index) => (
-                    <MenuItem key={index} value={item}>
+                    <option key={index} value={item}>
                       {item}
-                    </MenuItem>
+                    </option>
                   ))}
-                 
-                </Select>
+
+                </select>
                 entries
            </div>
           )}

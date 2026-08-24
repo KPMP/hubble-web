@@ -26,6 +26,11 @@ module.exports = {
   webpack: {
     plugins,
     configure: (webpackConfig) => {
+      webpackConfig.resolve.alias = {
+        ...webpackConfig.resolve.alias,
+        "@react-three/xr": false,
+      };
+
       if (isProductionBuild) {
         webpackConfig.devtool = false;
       }

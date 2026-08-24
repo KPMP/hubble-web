@@ -1,6 +1,5 @@
 import { ApolloClient, InMemoryCache, HttpLink, from } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
-import 'isomorphic-unfetch';
 import { sendMessageToBackend } from '../actions/Error/errorActions';
 import { store } from '../App'
 
