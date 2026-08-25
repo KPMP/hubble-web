@@ -17,7 +17,8 @@ import ImageDatasetListContainer from "./components/SpatialViewer/ImageDatasetLi
 import SpatialViewerContainer from "./components/SpatialViewer/SpatialViewerContainer";
 import packageJson from '../package.json';
 // import {ThemeProvider, createMuiTheme, makeSytles} from '@material-ui/core/styles';
-import {ApolloProvider} from "@apollo/client";
+import { ApolloProvider } from '@apollo/client/react';
+import { apolloClient } from './helpers/ApolloClient';
 
 // const theme = createMuiTheme();
 // const useStyles = makeStyles((theme) => {
@@ -49,7 +50,7 @@ const saveState = () => {
 // *** Get a new tracking Id and add it here *** //
 const GA_TRACKING_ID = 'G-64W6E37TQB';
 
-ReactGA.initialize(GA_TRACKING_ID,{ testMode: process.env.NODE_ENV === 'test' ? true : false });
+ReactGA.initialize(GA_TRACKING_ID,{ testMode: import.meta.env.MODE === 'test' });
 function logPageView(location, action) {
   ReactGA.set({ page: location.pathname + location.search });
   ReactGA.send({ hitType: "pageview", page: location.pathname + location.search });
@@ -73,11 +74,11 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <ApolloProvider>
+        <ApolloProvider client={apolloClient}>
             {/* <ThemeProvider theme={theme} > */}
                 <BrowserRouter history={history} basename={packageJson.baseURL}>
                     <ErrorBoundaryContainer>
-                    <NavBar app='atlas' comparatorOn={process.env.REACT_APP_COMPARATOR_ON} />
+                    <NavBar app='atlas' comparatorOn={import.meta.env.REACT_APP_COMPARATOR_ON} />
                     <Routes>
                       <Route path="/" element={<ImageDatasetListContainer />} />
                       <Route path="/view" element={<SpatialViewerContainer />} />

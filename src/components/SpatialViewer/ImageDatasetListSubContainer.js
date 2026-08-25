@@ -11,7 +11,7 @@ import { SearchProvider, WithSearch } from "@elastic/react-search-ui";
 const connector = new ElasticsearchAPIConnector({
     host: "http://localhost:9200",
     index: "spatial-viewer",
-    apikey: process.env.REACT_APP_SEARCH_KEY,
+    apikey: import.meta.env.REACT_APP_SEARCH_KEY,
   })
   
   const searchConfig = {
