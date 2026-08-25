@@ -30,6 +30,12 @@ module.exports = {
         webpackConfig.devtool = false;
       }
 
+      webpackConfig.resolve.alias = {
+        ...webpackConfig.resolve.alias,
+        "react/jsx-runtime.js": "react/jsx-runtime",
+        "react/jsx-dev-runtime.js": "react/jsx-dev-runtime",
+      };
+
       webpackConfig.module.rules.forEach((rule) => {
         if (rule.oneOf) {
           rule.oneOf.forEach((subRule) => {

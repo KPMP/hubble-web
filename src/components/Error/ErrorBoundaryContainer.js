@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import ErrorBoundary from './ErrorBoundary';
 import { sendMessageToBackend } from '../../actions/Error/errorActions';
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 const mapStateToProps = (state, props) => ({});
 

@@ -1,27 +1,44 @@
 import React, { Component } from 'react';
 import { NavBar } from 'kpmp-common-components';
 import loadedState from './initialState';
-import { createStore, applyMiddleware } from 'redux';
-import appReducer from './reducers';
+import { configureStore } from 'redux';
+import { resetStateReducer } from './resetStateReducer';
+import {selectedImageDataset, tableSettings} from "./components/SpatialViewer/imageDatasetReducer";
+import {summaryDatasets, clinicalDatasets} from "./components/SpatialViewer/clinicalDatasetReducer";
+import {experimentalDataCounts} from "./components/SpatialViewer/experimentalDataCountReducer";
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
 import ReactGA from 'react-ga4';
 import { createBrowserHistory } from 'history';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router';
 import ErrorBoundaryContainer from './components/Error/ErrorBoundaryContainer';
 import Oops from './components/Error/Oops';
 import NotFoundPage from './components/Error/NotFoundPage';
 import ImageDatasetListContainer from "./components/SpatialViewer/ImageDatasetListContainer";
 import SpatialViewerContainer from "./components/SpatialViewer/SpatialViewerContainer";
 import packageJson from '../package.json';
+// import {ThemeProvider, createMuiTheme, makeSytles} from '@material-ui/core/styles';
+import {ApolloProvider} from "@apollo/client";
 
+// const theme = createMuiTheme();
+// const useStyles = makeStyles((theme) => {
+//     root: {
+
+//     }
+// });
 const cacheStore = window.sessionStorage.getItem('hubble-redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
-export const store = applyMiddleware(thunk)(createStore)(
-  appReducer,
+export const store = configureStore({
+  reducer: {
+    resetStateReducer: resetStateReducer,
+    selectedImageDataset: selectedImageDataset,
+    tableSettings: tableSettings,
+    summaryDatasets: summaryDatasets,
+    clinicalDatasets: clinicalDatasets,
+    experimentalDataCounts: experimentalDataCounts
+  },
   initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+});
 const saveState = () => {
   window.sessionStorage.setItem(
     'hubble-redux-store',
@@ -56,17 +73,21 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <BrowserRouter history={history} basename={packageJson.baseURL}>
-          <ErrorBoundaryContainer>
-            <NavBar app='atlas' comparatorOn={process.env.REACT_APP_COMPARATOR_ON} />
-            <Switch>
-              <Route exact path="/" component={ImageDatasetListContainer} store={store} />
-              <Route exact path="/view" component={SpatialViewerContainer} store={store} />
-              <Route exact path="/oops" component={Oops} />
-              <Route path='*' component={NotFoundPage} />
-            </Switch>
-          </ErrorBoundaryContainer>
-        </BrowserRouter>
+        <ApolloProvider>
+            {/* <ThemeProvider theme={theme} > */}
+                <BrowserRouter history={history} basename={packageJson.baseURL}>
+                    <ErrorBoundaryContainer>
+                    <NavBar app='atlas' comparatorOn={process.env.REACT_APP_COMPARATOR_ON} />
+                    <Switch>
+                        <Route exact path="/" component={ImageDatasetListContainer} store={store} />
+                        <Route exact path="/view" component={SpatialViewerContainer} store={store} />
+                        <Route exact path="/oops" component={Oops} />
+                        <Route path='*' component={NotFoundPage} />
+                    </Switch>
+                    </ErrorBoundaryContainer>
+                </BrowserRouter>
+            {/* </ThemeProvider> */}
+        </ApolloProvider>
       </Provider>
     );
   }

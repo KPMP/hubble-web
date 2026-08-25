@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Vitessce } from 'vitessce';
 import { Row, Col } from "reactstrap";
 import { getViewConfig, populateViewConfig } from './viewConfigHelper';
-import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import { handleGoogleAnalyticsEvent } from "../../helpers/googleAnalyticsHelper";
 import ReportCard from '../ReportCard/ReportCard';
 import Api from '../../helpers/Api';
