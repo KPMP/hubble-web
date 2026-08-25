@@ -9,7 +9,7 @@ import {experimentalDataCounts} from "./components/SpatialViewer/experimentalDat
 import { Provider } from 'react-redux';
 import ReactGA from 'react-ga4';
 import { createBrowserHistory } from 'history';
-import { Route, Switch, BrowserRouter } from 'react-router';
+import { Route, Routes, BrowserRouter } from 'react-router';
 import ErrorBoundaryContainer from './components/Error/ErrorBoundaryContainer';
 import Oops from './components/Error/Oops';
 import NotFoundPage from './components/Error/NotFoundPage';
@@ -78,12 +78,12 @@ class App extends Component {
                 <BrowserRouter history={history} basename={packageJson.baseURL}>
                     <ErrorBoundaryContainer>
                     <NavBar app='atlas' comparatorOn={process.env.REACT_APP_COMPARATOR_ON} />
-                    <Switch>
-                        <Route exact path="/" component={ImageDatasetListContainer} store={store} />
-                        <Route exact path="/view" component={SpatialViewerContainer} store={store} />
-                        <Route exact path="/oops" component={Oops} />
-                        <Route path='*' component={NotFoundPage} />
-                    </Switch>
+                    <Routes>
+                      <Route path="/" element={<ImageDatasetListContainer />} />
+                      <Route path="/view" element={<SpatialViewerContainer />} />
+                      <Route path="/oops" element={<Oops />} />
+                      <Route path="*" element={<NotFoundPage />} />
+                    </Routes>
                     </ErrorBoundaryContainer>
                 </BrowserRouter>
             {/* </ThemeProvider> */}

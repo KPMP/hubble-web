@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Vitessce } from 'vitessce';
 import { Row, Col } from "reactstrap";
 import { getViewConfig, populateViewConfig } from './viewConfigHelper';
-import { Redirect } from 'react-router';
+import { Navigate } from 'react-router';
 import { handleGoogleAnalyticsEvent } from "../../helpers/googleAnalyticsHelper";
 import ReportCard from '../ReportCard/ReportCard';
 import Api from '../../helpers/Api';
@@ -78,7 +78,7 @@ class SpatialViewer extends Component {
 
     render() {
         if (!this.state.fileid && (this.props.selectedImageDataset && Object.keys(this.props.selectedImageDataset).length === 0)) {
-            return <Redirect to='/' />
+            return <Navigate to='/' replace />
         }
         const summaryDataset = this.props.summaryDatasets
         const experimentalDataCounts = this.props.experimentalDataCounts
