@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavBar } from 'kpmp-common-components';
 import loadedState from './initialState';
-import { configureStore } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import { resetStateReducer } from './resetStateReducer';
 import {selectedImageDataset, tableSettings} from "./components/SpatialViewer/imageDatasetReducer";
 import {summaryDatasets, clinicalDatasets} from "./components/SpatialViewer/clinicalDatasetReducer";
