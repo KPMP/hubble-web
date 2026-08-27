@@ -49,11 +49,11 @@ class SpatialViewer extends Component {
             }
         }
         await Api.getInstance().post(
-            process.env.REACT_APP_SEARCH_ENDPOINT + "/api/as/v1/engines/spatial-viewer/search.json", 
+            import.meta.env.REACT_APP_SEARCH_ENDPOINT + "/api/as/v1/engines/spatial-viewer/search.json", 
             config, 
             { 
                 headers: {
-                    "Authorization" : `Bearer ${process.env.REACT_APP_SEARCH_KEY}`
+                    "Authorization" : `Bearer ${import.meta.env.REACT_APP_SEARCH_KEY}`
                 }
             }).then((response) => {
                 result = resultConverter(response.data.results)[0];
