@@ -38,6 +38,7 @@ export class Pagination extends React.PureComponent {
             ) => (
             <div className="pagination-size-wrapper">
                 Show <Select
+                  variant="standard"
                   value={pagingSizeValue}
                   onChange={event => {
                     changePagingSizeValue(event.target.value);
