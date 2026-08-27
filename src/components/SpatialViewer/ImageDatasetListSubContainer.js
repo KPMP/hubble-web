@@ -4,7 +4,6 @@ import ImageDatasetList from "./ImageDatasetList";
 
 import { NavFooter } from 'kpmp-common-components';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
-import ElasticsearchAPIConnector from "@elastic/search-ui-elasticsearch-connector";
 import AppSearchAPIConnector from "@elastic/search-ui-app-search-connector";
 import { SearchProvider, WithSearch } from "@elastic/react-search-ui";
 
