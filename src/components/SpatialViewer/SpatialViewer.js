@@ -6,7 +6,6 @@ import { Navigate } from 'react-router';
 import { handleGoogleAnalyticsEvent } from "../../helpers/googleAnalyticsHelper";
 import ReportCard from '../ReportCard/ReportCard';
 import Api from '../../helpers/Api';
-import { resultConverter } from '../../helpers/dataHelper';
 
 class SpatialViewer extends Component {
 
@@ -41,23 +40,23 @@ class SpatialViewer extends Component {
     
     getSelectedImage = async () => {
         let result;
-        let config = {
-            "query": "",
-            "filters": {
-                "all": [
-                    { "dlfileid": this.state.fileid }
-                ]
-            }
-        }
         await Api.getInstance().post(
-            import.meta.env.REACT_APP_SEARCH_ENDPOINT + "/api/as/v1/engines/spatial-viewer/search.json", 
-            config, 
+            import.meta.env.REACT_APP_SEARCH_ENDPOINT + "/spatial-viewer/_search",
+            {
+                "query": {
+                    "bool": {
+                        "filter": [
+                            { "term": { "dlfileid": this.state.fileid } }
+                        ]
+                    }
+                }
+            },
             { 
                 headers: {
-                    "Authorization" : `Bearer ${import.meta.env.REACT_APP_SEARCH_KEY}`
+                    "Authorization" : `ApiKey ${import.meta.env.REACT_APP_SEARCH_KEY}`
                 }
             }).then((response) => {
-                result = resultConverter(response.data.results)[0];
+                result = response.data.hits.hits[0]?._source;
                 this.props.setSelectedImageDataset(result);
             })
         return result;
