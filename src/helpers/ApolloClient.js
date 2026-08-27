@@ -5,7 +5,7 @@ import { sendMessageToBackend } from '../actions/Error/errorActions';
 import { store } from '../App'
 
 const getBaseURL = () => {
-    return process.env.REACT_APP_API_HOST ? process.env.REACT_APP_API_HOST : '';
+    return import.meta.env.REACT_APP_API_HOST ? import.meta.env.REACT_APP_API_HOST : '';
 };
 
 const httpLink = new HttpLink({
