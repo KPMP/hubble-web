@@ -16,16 +16,8 @@ import NotFoundPage from './components/Error/NotFoundPage';
 import ImageDatasetListContainer from "./components/SpatialViewer/ImageDatasetListContainer";
 import SpatialViewerContainer from "./components/SpatialViewer/SpatialViewerContainer";
 import packageJson from '../package.json';
-// import {ThemeProvider, createMuiTheme, makeSytles} from '@material-ui/core/styles';
 import { ApolloProvider } from '@apollo/client/react';
 import { apolloClient } from './helpers/ApolloClient';
-
-// const theme = createMuiTheme();
-// const useStyles = makeStyles((theme) => {
-//     root: {
-
-//     }
-// });
 const cacheStore = window.sessionStorage.getItem('hubble-redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
 export const store = configureStore({
@@ -75,7 +67,6 @@ class App extends Component {
     return (
       <Provider store={store}>
         <ApolloProvider client={apolloClient}>
-            {/* <ThemeProvider theme={theme} > */}
                 <BrowserRouter history={history} basename={packageJson.baseURL}>
                     <ErrorBoundaryContainer>
                     <NavBar app='atlas' comparatorOn={import.meta.env.REACT_APP_COMPARATOR_ON} />
@@ -87,7 +78,6 @@ class App extends Component {
                     </Routes>
                     </ErrorBoundaryContainer>
                 </BrowserRouter>
-            {/* </ThemeProvider> */}
         </ApolloProvider>
       </Provider>
     );
