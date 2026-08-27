@@ -6,6 +6,7 @@ import { Navigate } from 'react-router';
 import { handleGoogleAnalyticsEvent } from "../../helpers/googleAnalyticsHelper";
 import ReportCard from '../ReportCard/ReportCard';
 import Api from '../../helpers/Api';
+import { resultConverter } from '../../helpers/dataHelper';
 
 class SpatialViewer extends Component {
 
