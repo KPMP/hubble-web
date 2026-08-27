@@ -59,7 +59,7 @@ store.subscribe(function () {
 store.subscribe(saveState);
 
 class App extends Component {
-  componentWillMount() {
+  componentDidMount() {
     logPageView(window.location, '');
   }
 

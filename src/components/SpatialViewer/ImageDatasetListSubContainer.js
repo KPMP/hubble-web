@@ -5,13 +5,14 @@ import ImageDatasetList from "./ImageDatasetList";
 import { NavFooter } from 'kpmp-common-components';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import ElasticsearchAPIConnector from "@elastic/search-ui-elasticsearch-connector";
+import AppSearchAPIConnector from "@elastic/search-ui-app-search-connector";
 import { SearchProvider, WithSearch } from "@elastic/react-search-ui";
 
-
-const connector = new ElasticsearchAPIConnector({
-    host: import.meta.env.REACT_APP_SEARCH_ENDPOINT,
-    index: "spatial-viewer",
-    apiKey: import.meta.env.REACT_APP_SEARCH_KEY,
+const connector = new AppSearchAPIConnector({
+    searchKey: import.meta.env.REACT_APP_SEARCH_KEY,
+    engineName: "spatial-viewer",
+    endpointBase: import.meta.env.REACT_APP_SEARCH_ENDPOINT,
+    cacheResponses: false
   })
   
   const searchConfig = {
