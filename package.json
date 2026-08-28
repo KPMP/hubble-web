@@ -65,7 +65,7 @@
     "build": "npm run build-css && npm run build-js",
     "test": "vitest",
     "start-js": "vite",
-    "build-js": "NODE_OPTIONS=--max-old-space-size=4096 vite build",
+    "build-js": "NODE_OPTIONS=--max-old-space-size=8192 vite build",
     "build-css": "sass -I ./src -I ./node_modules  src/:src/",
     "watch-css": "yarn build-css && sass -I ./src -I ./node_modules src/:src/ --watch",
     "analyze": "vite build --mode analyze"
