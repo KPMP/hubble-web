@@ -48,7 +48,7 @@
     "reactstrap": "9.2.3",
     "redux": "5.0.1",
     "redux-thunk": "2.3.0",
-    "vitessce": "4.0.4"
+    "vitessce": "4.0.7"
   },
   "overrides": {
     "autoprefixer": "10.4.4",
@@ -58,7 +58,8 @@
     "d3-color": "3.1.0",
     "@pmndrs/pointer-events": "6.0.0",
     "@pmndrs/xr": "6.0.0",
-    "@deck.gl/extensions": "8.8.27"
+    "@deck.gl/extensions": "8.8.27",
+    "@vitessce/all": "4.0.6"
   },
   "scripts": {
     "start": "npm run build-css && npm run start-js",

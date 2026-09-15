@@ -258,9 +258,132 @@ const populateMAlDIConfig = async (selectedDataset) => {
     }
 }
 
+const populateXeniumConfig = async (package_id, file_name) => {
+    const sdataUrl = getPublicFileLink(package_id, file_name);
+
+    const vc = new VitessceConfig({
+        schemaVersion: '1.0.18',
+        name: 'SpatialData with Xenium data'
+    });
+
+    let dataset = vc.addDataset('A').addFile({
+        fileType: 'spatialdata.zarr',
+        url: sdataUrl,
+        options: {
+            image: {
+                path: 'images/morphology_focus',
+            },
+            coordinateSystem: 'global',
+        },
+        coordinationValues: {
+            fileUid: 'morphology_focus',
+            featureType: 'gene'
+        },
+    }).addFile({
+        fileType: 'spatialdata.zarr',
+        url: sdataUrl,
+        options: {
+            obsFeatureMatrix: {
+                path: 'tables/dense_table/X',
+            },
+            obsSegmentations: {
+                path: 'shapes/cell_boundaries',
+            },
+            coordinateSystem: 'global',
+        },
+        coordinationValues: {
+            obsType: 'cell',
+            featureType: 'gene',
+        },
+    }).addFile({
+        fileType: 'spatialdata.zarr',
+        url: sdataUrl,
+        options: {
+            obsPoints: {
+                path: 'points/transcripts_with_morton_codes',
+                featureIndexColumn: 'feature_name_codes',
+                mortonCodeColumn: 'morton_code_2d',
+            },
+            coordinateSystem: 'global',
+        },
+        coordinationValues: {
+            obsType: 'point',
+            // This will be used to load the obsFeatureMatrix var index
+            // corresponding to featureType: 'gene'.
+            featureType: 'gene',
+        },
+    });
+
+    const spatialView = vc.addView(dataset, 'spatialBeta', {x: 0, y: 0, w: 8, h: 10});
+    const lcView = vc.addView(dataset, 'layerControllerBeta', {x: 8, y: 0, w: 4, h: 6}).setProps({ layerPerFeatureForPoints: true });
+    vc.addView(dataset, 'featureList', {x: 8, y: 4, w: 4, h: 4}).setProps({ enableMultiSelect: true });
+    vc.addView(dataset, 'heatmap', {x: 0, y: 8, w: 12, h: 4}).setProps({ transpose: true });
+
+    vc.linkViewsByObject([spatialView, lcView], {
+        imageLayer: CL([
+            {
+                fileUid: 'morphology_focus',
+                photometricInterpretation: 'BlackIsZero',
+                spatialLayerOpacity: 1.0,
+                spatialLayerVisible: true,
+                imageChannel: CL([
+                    {
+                        spatialChannelVisible: true,
+                        spatialTargetC: 0,
+                        spatialChannelColor: [255, 255, 255],
+                        spatialChannelOpacity: 1.0
+                    }
+                ])
+            },
+        ])
+    }, { scopePrefix: getInitialCoordinationScopePrefix('A', 'image') }
+    ).linkViewsByObject([spatialView, lcView], {
+        segmentationLayer: CL([
+            {
+                spatialLayerOpacity: 1.0,
+                spatialLayerVisible: true,
+                segmentationChannel: CL([
+                    {
+                        spatialChannelVisible: true,
+                        spatialChannelOpacity: 0.5, 
+                        obsType: 'cell',
+                        obsHighlight: null,
+                        spatialChannelColor: [200, 200, 200],
+                        obsColorEncoding: 'spatialChannelColor',
+                        spatialSegmentationFilled: false,
+                        spatialSegmentationStrokeWidth: 5
+                    }
+                ])
+            }
+        ])
+    }, { scopePrefix: getInitialCoordinationScopePrefix('A', 'obsSegmentations') }
+    ).linkViewsByObject([spatialView, lcView], {
+        spatialTargetZ: null,
+        pointLayer: CL([
+            {
+                spatialLayerOpacity: 1.0,
+                obsType: 'point',
+                obsHighlight: null,
+                featureColor: [
+                    { name: 'CLDN16', color: [255, 0, 0] }
+                ],
+                featureValueColormapRange: [0, 0.08]
+            }
+        ])
+    }, { scopePrefix: getInitialCoordinationScopePrefix('A', 'obsPoints') });
+
+
+    // vc.layout(hconcat(spatialView, lcView));
+    console.log(vc.toJSON());
+    return vc.toJSON();
+}
+
 export const populateViewConfig = async (viewConfig, selectedDataset) => {
     if (selectedDataset["imagetype"] === "MALDI-IMS") {
         return populateMAlDIConfig(selectedDataset);
+    }
+    else if (selectedDataset["imagetype"] === "Xenium") {
+        return populateXeniumConfig(selectedDataset["packageid"], selectedDataset["packageid"] + '.zarr')
     }
     let stringifiedConfig = JSON.stringify(viewConfig);
     let imageUrlResponse = await getFileLink(selectedDataset["packageid"] + '/' + selectedDataset["longfilename"]);
