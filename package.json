@@ -58,8 +58,7 @@
     "d3-color": "3.1.0",
     "@pmndrs/pointer-events": "6.0.0",
     "@pmndrs/xr": "6.0.0",
-    "@deck.gl/extensions": "8.8.27",
-    "@vitessce/all": "4.0.6"
+    "@deck.gl/extensions": "8.8.27"
   },
   "scripts": {
     "start": "npm run build-css && npm run start-js",
