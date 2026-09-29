@@ -314,10 +314,9 @@ const populateXeniumConfig = async (package_id, file_name) => {
         },
     });
 
-    const spatialView = vc.addView(dataset, 'spatialBeta', {x: 0, y: 0, w: 8, h: 10});
-    const lcView = vc.addView(dataset, 'layerControllerBeta', {x: 8, y: 0, w: 4, h: 6}).setProps({ layerPerFeatureForPoints: true });
+    const spatialView = vc.addView(dataset, 'spatialBeta', {x: 0, y: 0, w: 8, h: 12});
+    const lcView = vc.addView(dataset, 'layerControllerBeta', {x: 8, y: 0, w: 4, h: 8}).setProps({ layerPerFeatureForPoints: true });
     const featureListView = vc.addView(dataset, 'featureList', {x: 8, y: 4, w: 4, h: 4}).setProps({ enableMultiSelect: true });
-    const heatmapView = vc.addView(dataset, 'heatmap', {x: 0, y: 8, w: 12, h: 4}).setProps({ transpose: true });
 
     vc.linkViewsByObject([spatialView, lcView], {
         imageLayer: CL([
@@ -349,7 +348,7 @@ const populateXeniumConfig = async (package_id, file_name) => {
                         obsType: 'cell',
                         obsHighlight: null,
                         spatialChannelColor: [228, 158, 37],
-                        obsColorEncoding: 'spatialChannelColor',
+                        obsColorEncoding: 'geneSelection',
                         spatialSegmentationFilled: false,
                         spatialSegmentationStrokeWidth: 5
                     }
@@ -364,13 +363,12 @@ const populateXeniumConfig = async (package_id, file_name) => {
                 spatialLayerOpacity: 1.0,
                 obsType: 'point',
                 obsHighlight: null,
-                obsColorEncoding: 'randomByFeature'
+                obsColorEncoding: 'geneSelection',
+                featureFilterMode: 'featureSelection'
             }
         ])
     }, { scopePrefix: getInitialCoordinationScopePrefix('A', 'obsPoints') }
-    ).linkViewsByObject([heatmapView], {
-        featureValueColormapRange: [0, 0.06],
-    });
+    );
 
 
     // vc.layout(hconcat(spatialView, lcView));
