@@ -380,7 +380,7 @@ export const populateViewConfig = async (viewConfig, selectedDataset) => {
     if (selectedDataset["imagetype"] === "MALDI-IMS") {
         return populateMAlDIConfig(selectedDataset);
     }
-    else if (selectedDataset["imagetype"].includes("Xenium")) {
+    else if (selectedDataset["configtype"].includes("Xenium")) {
         return populateXeniumConfig(selectedDataset["packageid"], selectedDataset["packageid"] + '.zarr')
     }
     let stringifiedConfig = JSON.stringify(viewConfig);
