@@ -381,7 +381,7 @@ export const populateViewConfig = async (viewConfig, selectedDataset) => {
         return populateMAlDIConfig(selectedDataset);
     }
     else if (selectedDataset["configtype"].includes("Xenium")) {
-        return populateXeniumConfig(selectedDataset["packageid"], selectedDataset["packageid"] + '.zarr')
+        return populateXeniumConfig(selectedDataset["packageid"], selectedDataset["filename"])
     }
     let stringifiedConfig = JSON.stringify(viewConfig);
     let imageUrlResponse = await getFileLink(selectedDataset["packageid"] + '/' + selectedDataset["longfilename"]);
