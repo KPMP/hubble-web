@@ -372,7 +372,6 @@ const populateXeniumConfig = async (package_id, file_name) => {
 
 
     // vc.layout(hconcat(spatialView, lcView));
-    console.log(vc.toJSON());
     return vc.toJSON();
 }
 
