@@ -12,14 +12,14 @@ import {
     getInitialCoordinationScopePrefix
 } from 'vitessce'
 
-export const getViewConfig = (type) => {
+export const getViewConfig = (type, imageType) => {
     switch (type) {
         case '3D Tissue Imaging and Cytometry':
             return threeDCytometryViewConfig;
         case '3D Tissue Imaging and Cytometry No Channels':
             return threeDCytometryViewNoChannelsConfig;
         case 'CODEX':
-            return threeDCytometryViewConfig;
+            return (imageType == 'H&E Histology') ? lmViewConfig : threeDCytometryViewConfig
         case 'Light Microscopic Whole Slide Images':
             return lmViewConfig;
         case 'Spatial Transcriptomics':
@@ -180,7 +180,7 @@ const populateMAlDIConfig = async (selectedDataset) => {
             0
         ];
         const config = new VitessceConfig({
-            schemaVersion: '1.0.16',
+            schemaVersion: '1.0.18',
             name: 'A',
             description: 'Description'
         });
@@ -236,6 +236,7 @@ const populateMAlDIConfig = async (selectedDataset) => {
                   spatialLayerVisible: false,
                   spatialLayerOpacity: 0.5,
                   photometricInterpretation: "BlackIsZero",
+                  spatialChannelsSortOrder: "alphabetical",
                   imageChannel: CL([{
                         spatialTargetC: 0,
                         spatialChannelColor: [0, 0, 255]
@@ -248,6 +249,7 @@ const populateMAlDIConfig = async (selectedDataset) => {
                   spatialLayerOpacity: 0.5,
                   spatialLayerColormap: "viridis",
                   photometricInterpretation: "BlackIsZero",
+                  spatialChannelsSortOrder: "alphabetical",
                   imageChannel: CL([{
                     spatialTargetC: 1
                   }]),
@@ -263,7 +265,7 @@ const populateXeniumConfig = async (package_id, file_name) => {
 
     const vc = new VitessceConfig({
         schemaVersion: '1.0.18',
-        name: 'SpatialData with Xenium data'
+        name: 'KPMP Spatial Viewer'
     });
 
     let dataset = vc.addDataset('A').addFile({
@@ -314,9 +316,9 @@ const populateXeniumConfig = async (package_id, file_name) => {
         },
     });
 
-    const spatialView = vc.addView(dataset, 'spatialBeta', {x: 0, y: 0, w: 8, h: 12});
-    const lcView = vc.addView(dataset, 'layerControllerBeta', {x: 8, y: 0, w: 4, h: 8}).setProps({ layerPerFeatureForPoints: true });
-    const featureListView = vc.addView(dataset, 'featureList', {x: 8, y: 4, w: 4, h: 4}).setProps({ enableMultiSelect: true });
+    const spatialView = vc.addView(dataset, 'spatialBeta', {x: 4, y: 0, w: 8, h: 12});
+    const lcView = vc.addView(dataset, 'layerControllerBeta', {x: 0, y: 0, w: 4, h: 8}).setProps({ layerPerFeatureForPoints: true });
+    const featureListView = vc.addView(dataset, 'featureList', {x: 0, y: 4, w: 4, h: 4}).setProps({ enableMultiSelect: true, requireShiftForMultiSelect: false });
 
     vc.linkViewsByObject([spatialView, lcView], {
         imageLayer: CL([
@@ -325,6 +327,7 @@ const populateXeniumConfig = async (package_id, file_name) => {
                 photometricInterpretation: 'BlackIsZero',
                 spatialLayerOpacity: 1.0,
                 spatialLayerVisible: true,
+                spatialChannelsSortOrder: 'alphabetical',
                 imageChannel: CL([
                     {
                         spatialChannelVisible: true,
@@ -375,15 +378,74 @@ const populateXeniumConfig = async (package_id, file_name) => {
     return vc.toJSON();
 }
 
+const populateCODEXConfig = async (data_url, selectedDataset) => {
+    const vc = new VitessceConfig({
+        schemaVersion: '1.0.18',
+        name: 'KPMP Spatial Viewer'
+    });
+
+    let dataset = vc.addDataset('A').addFile({
+        fileType: 'image.ome-tiff',
+        url: data_url,
+        name: selectedDataset['filename'],
+        coordinationValues: {
+            fileUid: selectedDataset['filename']
+        }
+    });
+
+    const spatialView = vc.addView(dataset, 'spatialBeta', {x: 3, y: 0, w: 9, h: 12}).setProps({ closeButtonVisible: false });
+    const lcView = vc.addView(dataset, 'layerControllerBeta', {x: 0, y: 2, w: 3, h: 9}).setProps({ disableChannelsIfRgbDetected: true });
+    const description = vc.addView(dataset, "description", { x: 0, y: 0, w: 3, h: 3 }).setProps({ description: `${selectedDataset['imagetype']}\n\n${selectedDataset['filename']}`, descriptionType: "markdown" });
+
+    vc.linkViewsByObject([spatialView, lcView, description], {
+        spatialTargetZ: 0,
+        spatialTargetT: 0,
+        imageLayer: CL([
+            {
+                fileUid: selectedDataset['filename'],
+                photometricInterpretation: 'BlackIsZero',
+                spatialLayerOpacity: 1.0,
+                spatialLayerVisible: true,
+                spatialChannelsSortOrder: 'alphabetical',
+                imageChannel: CL([
+                    {
+                        spatialChannelVisible: true,
+                        spatialTargetC: 0,
+                        spatialChannelColor: [0, 0, 255],
+                        spatialChannelOpacity: 1.0
+                    },
+                    {
+                        spatialTargetC: 1,
+                        spatialChannelColor: [0, 255, 0],
+                        spatialChannelVisible: true,
+                        spatialChannelOpacity: 1.0
+                    },
+                    {
+                        spatialTargetC: 2,
+                        spatialChannelColor: [255, 0, 255],
+                        spatialChannelVisible: true,
+                        spatialChannelOpacity: 1.0
+                    }
+                ])
+            },
+        ])
+    }, { scopePrefix: getInitialCoordinationScopePrefix('A', 'image') });
+
+    return vc.toJSON();
+}
+
 export const populateViewConfig = async (viewConfig, selectedDataset) => {
+    let imageUrlResponse = await getFileLink(selectedDataset["packageid"] + '/' + selectedDataset["longfilename"]);
     if (selectedDataset["imagetype"] === "MALDI-IMS") {
         return populateMAlDIConfig(selectedDataset);
     }
     else if (selectedDataset["configtype"].includes("Xenium")) {
         return populateXeniumConfig(selectedDataset["packageid"], selectedDataset["longfilename"])
     }
+    else if (selectedDataset["configtype"] === "CODEX") {
+        return populateCODEXConfig(imageUrlResponse.data, selectedDataset);
+    }
     let stringifiedConfig = JSON.stringify(viewConfig);
-    let imageUrlResponse = await getFileLink(selectedDataset["packageid"] + '/' + selectedDataset["longfilename"]);
     if (selectedDataset["relatedfiles"]?.length > 0) {
         let relatedFiles = [];
         selectedDataset['relatedfiles'].forEach(function (item, index) {
