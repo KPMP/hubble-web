@@ -409,9 +409,9 @@ const populateCODEXConfig = async (data_url, selectedDataset) => {
                 spatialChannelsSortOrder: 'alphabetical',
                 imageChannel: CL([
                     {
-                        spatialChannelVisible: true,
                         spatialTargetC: 0,
                         spatialChannelColor: [0, 0, 255],
+                        spatialChannelVisible: true,
                         spatialChannelOpacity: 1.0
                     },
                     {
@@ -463,6 +463,13 @@ export const populateViewConfig = async (viewConfig, selectedDataset) => {
             stringifiedConfig = await populateSegmentationConfig(stringifiedConfig, dataUrl.data, imageUrlResponse.data);
             selectedDataset = relatedFiles[0];
             imageUrlResponse = dataUrl;
+        }
+        else if (selectedDataset["configtype"] === "Spatial Transcriptomics") {
+            const tiffLoader = await loadOmeTiff(imageUrlResponse.data);
+            let spatialTargetX = Math.floor(tiffLoader.metadata.Pixels.SizeX / 2);
+            let spatialTargetY = Math.floor(tiffLoader.metadata.Pixels.SizeY / 2);
+            stringifiedConfig = stringifiedConfig.replace('"<SPATIAL_TARGET_X>"', spatialTargetX);
+            stringifiedConfig = stringifiedConfig.replace('"<SPATIAL_TARGET_Y>"', spatialTargetY);
         }
     }
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', selectedDataset["filename"]);
