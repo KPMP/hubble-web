@@ -1,8 +1,13 @@
 # Changelog
 
-## Release 2.12 (unreleased)
-Brief summary:
+## Release 2.13 (unreleased)
 
+## Release 2.12 
+Brief summary:
+- Migrate project to Vite and React 19
+- Updated dependencies
+- Update environment variables to reflect vite configuration
+---
 
 ## Release 2.11
 Brief summary:
