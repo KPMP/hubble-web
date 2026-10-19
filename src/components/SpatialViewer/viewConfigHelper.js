@@ -12,14 +12,14 @@ import {
     getInitialCoordinationScopePrefix
 } from 'vitessce'
 
-export const getViewConfig = (type) => {
+export const getViewConfig = (type, imageType) => {
     switch (type) {
         case '3D Tissue Imaging and Cytometry':
             return threeDCytometryViewConfig;
         case '3D Tissue Imaging and Cytometry No Channels':
             return threeDCytometryViewNoChannelsConfig;
         case 'CODEX':
-            return threeDCytometryViewConfig;
+            return (imageType == 'H&E Histology') ? lmViewConfig : threeDCytometryViewConfig
         case 'Light Microscopic Whole Slide Images':
             return lmViewConfig;
         case 'Spatial Transcriptomics':
@@ -180,7 +180,7 @@ const populateMAlDIConfig = async (selectedDataset) => {
             0
         ];
         const config = new VitessceConfig({
-            schemaVersion: '1.0.16',
+            schemaVersion: '1.0.18',
             name: 'A',
             description: 'Description'
         });
@@ -236,6 +236,7 @@ const populateMAlDIConfig = async (selectedDataset) => {
                   spatialLayerVisible: false,
                   spatialLayerOpacity: 0.5,
                   photometricInterpretation: "BlackIsZero",
+                  spatialChannelsSortOrder: "alphabetical",
                   imageChannel: CL([{
                         spatialTargetC: 0,
                         spatialChannelColor: [0, 0, 255]
@@ -248,6 +249,7 @@ const populateMAlDIConfig = async (selectedDataset) => {
                   spatialLayerOpacity: 0.5,
                   spatialLayerColormap: "viridis",
                   photometricInterpretation: "BlackIsZero",
+                  spatialChannelsSortOrder: "alphabetical",
                   imageChannel: CL([{
                     spatialTargetC: 1
                   }]),
@@ -258,12 +260,192 @@ const populateMAlDIConfig = async (selectedDataset) => {
     }
 }
 
+const populateXeniumConfig = async (package_id, file_name) => {
+    const sdataUrl = getPublicFileLink(package_id, file_name);
+
+    const vc = new VitessceConfig({
+        schemaVersion: '1.0.18',
+        name: 'KPMP Spatial Viewer'
+    });
+
+    let dataset = vc.addDataset('A').addFile({
+        fileType: 'spatialdata.zarr',
+        url: sdataUrl,
+        options: {
+            image: {
+                path: 'images/morphology_focus',
+            },
+            coordinateSystem: 'global',
+        },
+        coordinationValues: {
+            fileUid: 'morphology_focus',
+            featureType: 'gene'
+        },
+    }).addFile({
+        fileType: 'spatialdata.zarr',
+        url: sdataUrl,
+        options: {
+            obsFeatureMatrix: {
+                path: 'tables/dense_table/X',
+            },
+            obsSegmentations: {
+                path: 'shapes/cell_boundaries',
+            },
+            coordinateSystem: 'global',
+        },
+        coordinationValues: {
+            obsType: 'cell',
+            featureType: 'gene',
+        },
+    }).addFile({
+        fileType: 'spatialdata.zarr',
+        url: sdataUrl,
+        options: {
+            obsPoints: {
+                path: 'points/transcripts_with_morton_codes',
+                featureIndexColumn: 'feature_name_codes',
+                mortonCodeColumn: 'morton_code_2d',
+            },
+            coordinateSystem: 'global',
+        },
+        coordinationValues: {
+            obsType: 'point',
+            // This will be used to load the obsFeatureMatrix var index
+            // corresponding to featureType: 'gene'.
+            featureType: 'gene',
+        },
+    });
+
+    const spatialView = vc.addView(dataset, 'spatialBeta', {x: 4, y: 0, w: 8, h: 12});
+    const lcView = vc.addView(dataset, 'layerControllerBeta', {x: 0, y: 0, w: 4, h: 8}).setProps({ layerPerFeatureForPoints: true });
+    const featureListView = vc.addView(dataset, 'featureList', {x: 0, y: 4, w: 4, h: 4}).setProps({ enableMultiSelect: true, requireShiftForMultiSelect: false });
+
+    vc.linkViewsByObject([spatialView, lcView], {
+        imageLayer: CL([
+            {
+                fileUid: 'morphology_focus',
+                photometricInterpretation: 'BlackIsZero',
+                spatialLayerOpacity: 1.0,
+                spatialLayerVisible: true,
+                spatialChannelsSortOrder: 'alphabetical',
+                imageChannel: CL([
+                    {
+                        spatialChannelVisible: true,
+                        spatialTargetC: 0,
+                        spatialChannelColor: [255, 255, 255],
+                        spatialChannelOpacity: 1.0
+                    }
+                ])
+            },
+        ])
+    }, { scopePrefix: getInitialCoordinationScopePrefix('A', 'image') }
+    ).linkViewsByObject([spatialView, lcView], {
+        segmentationLayer: CL([
+            {
+                spatialLayerOpacity: 1.0,
+                spatialLayerVisible: true,
+                segmentationChannel: CL([
+                    {
+                        spatialChannelVisible: true,
+                        spatialChannelOpacity: 0.5, 
+                        obsType: 'cell',
+                        obsHighlight: null,
+                        spatialChannelColor: [228, 158, 37],
+                        obsColorEncoding: 'geneSelection',
+                        spatialSegmentationFilled: false,
+                        spatialSegmentationStrokeWidth: 5
+                    }
+                ])
+            }
+        ])
+    }, { scopePrefix: getInitialCoordinationScopePrefix('A', 'obsSegmentations') }
+    ).linkViewsByObject([spatialView, lcView], {
+        spatialTargetZ: null,
+        pointLayer: CL([
+            {
+                spatialLayerOpacity: 1.0,
+                obsType: 'point',
+                obsHighlight: null,
+                obsColorEncoding: 'geneSelection',
+                featureFilterMode: 'featureSelection'
+            }
+        ])
+    }, { scopePrefix: getInitialCoordinationScopePrefix('A', 'obsPoints') }
+    );
+
+
+    // vc.layout(hconcat(spatialView, lcView));
+    return vc.toJSON();
+}
+
+const populateCODEXConfig = async (data_url, selectedDataset) => {
+    const vc = new VitessceConfig({
+        schemaVersion: '1.0.18',
+        name: 'KPMP Spatial Viewer'
+    });
+
+    let dataset = vc.addDataset('A').addFile({
+        fileType: 'image.ome-tiff',
+        url: data_url,
+        name: selectedDataset['filename'],
+        coordinationValues: {
+            fileUid: selectedDataset['filename']
+        }
+    });
+
+    const spatialView = vc.addView(dataset, 'spatialBeta', {x: 3, y: 0, w: 9, h: 12}).setProps({ closeButtonVisible: false });
+    const lcView = vc.addView(dataset, 'layerControllerBeta', {x: 0, y: 2, w: 3, h: 9}).setProps({ disableChannelsIfRgbDetected: true });
+    const description = vc.addView(dataset, "description", { x: 0, y: 0, w: 3, h: 3 }).setProps({ description: `${selectedDataset['imagetype']}\n\n${selectedDataset['filename']}`, descriptionType: "markdown" });
+
+    vc.linkViewsByObject([spatialView, lcView, description], {
+        spatialTargetZ: 0,
+        spatialTargetT: 0,
+        imageLayer: CL([
+            {
+                fileUid: selectedDataset['filename'],
+                photometricInterpretation: 'BlackIsZero',
+                spatialLayerOpacity: 1.0,
+                spatialLayerVisible: true,
+                spatialChannelsSortOrder: 'alphabetical',
+                imageChannel: CL([
+                    {
+                        spatialTargetC: 0,
+                        spatialChannelColor: [0, 0, 255],
+                        spatialChannelVisible: true,
+                        spatialChannelOpacity: 1.0
+                    },
+                    {
+                        spatialTargetC: 1,
+                        spatialChannelColor: [0, 255, 0],
+                        spatialChannelVisible: true,
+                        spatialChannelOpacity: 1.0
+                    },
+                    {
+                        spatialTargetC: 2,
+                        spatialChannelColor: [255, 0, 255],
+                        spatialChannelVisible: true,
+                        spatialChannelOpacity: 1.0
+                    }
+                ])
+            },
+        ])
+    }, { scopePrefix: getInitialCoordinationScopePrefix('A', 'image') });
+
+    return vc.toJSON();
+}
+
 export const populateViewConfig = async (viewConfig, selectedDataset) => {
+    let imageUrlResponse = await getFileLink(selectedDataset["packageid"] + '/' + selectedDataset["longfilename"]);
     if (selectedDataset["imagetype"] === "MALDI-IMS") {
         return populateMAlDIConfig(selectedDataset);
     }
+    else if (selectedDataset["configtype"].includes("Xenium")) {
+        return populateXeniumConfig(selectedDataset["packageid"], selectedDataset["longfilename"])
+    }
+    else if (selectedDataset["configtype"] === "CODEX" && selectedDataset["imagetype"] !== 'H&E Histology') {
+        return populateCODEXConfig(imageUrlResponse.data, selectedDataset);
+    }
     let stringifiedConfig = JSON.stringify(viewConfig);
-    let imageUrlResponse = await getFileLink(selectedDataset["packageid"] + '/' + selectedDataset["longfilename"]);
     if (selectedDataset["relatedfiles"]?.length > 0) {
         let relatedFiles = [];
         selectedDataset['relatedfiles'].forEach(function (item, index) {
@@ -281,6 +463,13 @@ export const populateViewConfig = async (viewConfig, selectedDataset) => {
             stringifiedConfig = await populateSegmentationConfig(stringifiedConfig, dataUrl.data, imageUrlResponse.data);
             selectedDataset = relatedFiles[0];
             imageUrlResponse = dataUrl;
+        }
+        else if (selectedDataset["configtype"] === "Spatial Transcriptomics") {
+            const tiffLoader = await loadOmeTiff(imageUrlResponse.data);
+            let spatialTargetX = Math.floor(tiffLoader.metadata.Pixels.SizeX / 2);
+            let spatialTargetY = Math.floor(tiffLoader.metadata.Pixels.SizeY / 2);
+            stringifiedConfig = stringifiedConfig.replace('"<SPATIAL_TARGET_X>"', spatialTargetX);
+            stringifiedConfig = stringifiedConfig.replace('"<SPATIAL_TARGET_Y>"', spatialTargetY);
         }
     }
     stringifiedConfig = stringifiedConfig.replace('<IMAGE_NAME>', selectedDataset["filename"]);

@@ -1,6 +1,6 @@
 import * as React from "react";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 
 import {
   Plugin,
@@ -38,6 +38,7 @@ export class Pagination extends React.PureComponent {
             ) => (
             <div className="pagination-size-wrapper">
                 Show <Select
+                  variant="standard"
                   value={pagingSizeValue}
                   onChange={event => {
                     changePagingSizeValue(event.target.value);

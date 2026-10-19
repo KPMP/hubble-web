@@ -7,11 +7,10 @@ import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper'
 import AppSearchAPIConnector from "@elastic/search-ui-app-search-connector";
 import { SearchProvider, WithSearch } from "@elastic/react-search-ui";
 
-
 const connector = new AppSearchAPIConnector({
-    searchKey: process.env.REACT_APP_SEARCH_KEY,
+    searchKey: import.meta.env.REACT_APP_SEARCH_KEY,
     engineName: "spatial-viewer",
-    endpointBase: process.env.REACT_APP_SEARCH_ENDPOINT,
+    endpointBase: import.meta.env.REACT_APP_SEARCH_ENDPOINT,
     cacheResponses: false
   })
   

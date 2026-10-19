@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import { withRouter } from 'react-router';
+import withRouter from '../../helpers/withRouter';
 import {setSelectedImageDataset, setTableSettings} from "../../actions/Images/imageDatasetActions";
 import ImageDatasetListSubContainer from "./ImageDatasetListSubContainer";
 import {

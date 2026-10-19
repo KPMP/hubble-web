@@ -3,11 +3,19 @@
         "dataset": {
             "A": "A"
         },
-        "spatialCellsLayer": 
-            {
+        "spatialSegmentationLayer": {
             "is_visible": {"opacity": 1,"radius": 50,"visible": true,"stroked": false},
             "is_not_visible": {"opacity": 1,"radius": 50,"visible": false,"stroked": false}
-            }
+        },
+        "spatialZoom": {
+            "A": -4.5
+        },
+        "spatialTargetX": {
+            "A":"<SPATIAL_TARGET_X>"
+        },
+        "spatialTargetY": {
+            "A":"<SPATIAL_TARGET_Y>"
+        }
     },
     "datasets": [
         {
@@ -65,7 +73,10 @@
         {
             "component": "spatial",
             "coordinationScopes": {
-                "spatialCellsLayer": "is_visible",
+                "spatialSegmentationLayer": "is_visible",
+                "spatialZoom": "A",
+                "spatialTargetX": "A",
+                "spatialTargetY": "A",
                 "dataset": "A"
             },
             "props":
@@ -80,7 +91,10 @@
         {
             "component": "spatial",
             "coordinationScopes": {
-                "spatialCellsLayer": "is_not_visible",
+                "spatialSegmentationLayer": "is_not_visible",
+                "spatialZoom": "A",
+                "spatialTargetX": "A",
+                "spatialTargetY": "A",
                 "dataset": "A"
             },
             "props":
@@ -109,5 +123,5 @@
         }
     ],
     "name": "KPMP Spatial Viewer",
-    "version": "1.0.4"
+    "version": "1.0.14"
 }
