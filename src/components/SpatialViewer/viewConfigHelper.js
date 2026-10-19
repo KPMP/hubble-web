@@ -442,7 +442,7 @@ export const populateViewConfig = async (viewConfig, selectedDataset) => {
     else if (selectedDataset["configtype"].includes("Xenium")) {
         return populateXeniumConfig(selectedDataset["packageid"], selectedDataset["longfilename"])
     }
-    else if (selectedDataset["configtype"] === "CODEX") {
+    else if (selectedDataset["configtype"] === "CODEX" && selectedDataset["imagetype"] !== 'H&E Histology') {
         return populateCODEXConfig(imageUrlResponse.data, selectedDataset);
     }
     let stringifiedConfig = JSON.stringify(viewConfig);
