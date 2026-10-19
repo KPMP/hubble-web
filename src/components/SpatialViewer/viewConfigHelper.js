@@ -22,7 +22,7 @@ export const getViewConfig = (type, imageType) => {
             return (imageType == 'H&E Histology') ? lmViewConfig : threeDCytometryViewConfig
         case 'Light Microscopic Whole Slide Images':
             return lmViewConfig;
-        case 'Spatial Transcriptomics':
+        case 'Spatial Transcriptomics Visium':
             return stViewConfig;
         case 'Segmentation Masks & Pathomics Vectors':
             return segmentationConfig;
@@ -464,7 +464,7 @@ export const populateViewConfig = async (viewConfig, selectedDataset) => {
             selectedDataset = relatedFiles[0];
             imageUrlResponse = dataUrl;
         }
-        else if (selectedDataset["configtype"] === "Spatial Transcriptomics") {
+        else if (selectedDataset["configtype"] === "Spatial Transcriptomics Visium") {
             const tiffLoader = await loadOmeTiff(imageUrlResponse.data);
             let spatialTargetX = Math.floor(tiffLoader.metadata.Pixels.SizeX / 2);
             let spatialTargetY = Math.floor(tiffLoader.metadata.Pixels.SizeY / 2);
