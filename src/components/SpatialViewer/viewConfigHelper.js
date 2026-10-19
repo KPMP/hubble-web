@@ -464,7 +464,7 @@ export const populateViewConfig = async (viewConfig, selectedDataset) => {
             selectedDataset = relatedFiles[0];
             imageUrlResponse = dataUrl;
         }
-        else if (selectedDataset["configtype"] === "Spatial Transcriptomics") {
+        else if (selectedDataset["configtype"] === "Spatial Transcriptomics Visium") {
             const tiffLoader = await loadOmeTiff(imageUrlResponse.data);
             let spatialTargetX = Math.floor(tiffLoader.metadata.Pixels.SizeX / 2);
             let spatialTargetY = Math.floor(tiffLoader.metadata.Pixels.SizeY / 2);
