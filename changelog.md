@@ -7,10 +7,10 @@ Brief summary:
 - Migrate project to Vite and React 19
 - Updated dependencies
 - Update environment variables to reflect vite configuration
-- Updated Vitessce to support Xenium data type
+- Updated Vitessce to 4.1.0 support Xenium data type
 - Create Xenium view config
-- Fixed a bug where Spatial Transcriptomics wasn't zooming together for both view windows
 - Fixed a bug where Font Awesome would crash the site if an icon didn't have a class name
+- Added channel sorting for most data types except Imaging Mass Cytometry
 
 ---
 
