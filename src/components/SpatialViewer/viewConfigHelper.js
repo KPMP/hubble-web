@@ -22,7 +22,7 @@ export const getViewConfig = (type, imageType) => {
             return (imageType == 'H&E Histology') ? lmViewConfig : threeDCytometryViewConfig
         case 'Light Microscopic Whole Slide Images':
             return lmViewConfig;
-        case 'Spatial Transcriptomics':
+        case 'Spatial Transcriptomics Visium':
             return stViewConfig;
         case 'Segmentation Masks & Pathomics Vectors':
             return segmentationConfig;
